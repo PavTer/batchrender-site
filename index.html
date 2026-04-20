@@ -4,14 +4,1460 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="BatchRender — Professional batch rendering software. Process multiple files simultaneously with maximum efficiency.">
+<meta property="og:title" content="BatchRender — Batch Rendering Software">
+<meta property="og:description" content="Professional batch rendering software for 3D artists and studios.">
+<meta property="og:type" content="website">
 <title>BatchRender — Professional Batch Rendering Software</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200;12..96,400;12..96,700;12..96,800&family=Space+Grotesk:wght@300;400;500&family=JetBrains+Mono:wght@200;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #131720;
+  --bg2: #1a1f2e;
+  --bg3: #232838;
+  --border: rgba(255,255,255,0.07);
+  --border2: rgba(59,158,255,0.2);
+  --accent: #3b9eff;
+  --accent-blue: #1e8ee8;
+  --accent-purple: #7b4fd4;
+  --accent2: #f5a623;
+  --text: #eef0f6;
+  --text2: #7a849e;
+  --text3: #4a5268;
+  --purple: #7b4fd4;
+  --teal: #2ecc71;
+  --red: #e05c5c;
+  --grad: linear-gradient(135deg, #1e8ee8 0%, #7b4fd4 100%);
+  --mono: 'JetBrains Mono', monospace;
+  --sans: 'Space Grotesk', sans-serif;
+  --display: 'Bricolage Grotesque', sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* LANG SWITCHER */
+.lang-bar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  background: rgba(10,10,11,0.92);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 32px;
+  height: 56px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.logo {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 20px;
+  color: var(--text);
+  text-decoration: none;
+  display: flex; align-items: center; gap: 10px;
+}
+.logo-icon {
+  width: 32px; height: 32px;
+  background: var(--accent);
+  border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px;
+  color: #000;
+  font-weight: 700;
+}
+.nav-links { display: flex; align-items: center; gap: 28px; }
+.nav-links a {
+  color: var(--text2); text-decoration: none; font-size: 14px;
+  font-weight: 400; transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--text); }
+.nav-right { display: flex; align-items: center; gap: 12px; }
+.lang-switch { display: flex; gap: 4px; }
+.lang-btn {
+  background: none; border: none; cursor: pointer;
+  font-family: var(--mono); font-size: 11px; font-weight: 200;
+  color: var(--text3); padding: 4px 8px; border-radius: 4px;
+  transition: all 0.15s; letter-spacing: 0.08em;
+}
+.lang-btn.active, .lang-btn:hover { color: var(--accent); background: rgba(232,255,71,0.08); }
+.btn-nav {
+  background: var(--grad); color: #fff; border: none;
+  padding: 8px 20px; border-radius: 6px; font-size: 13px;
+  font-weight: 500; cursor: pointer; font-family: var(--sans);
+  transition: all 0.2s; text-decoration: none;
+}
+.btn-nav:hover { opacity: 0.88; transform: translateY(-1px); }
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  padding: 120px 32px 80px;
+  display: flex; align-items: center;
+  position: relative; overflow: hidden;
+  max-width: 1200px; margin: 0 auto;
+}
+.hero-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: center; width: 100%;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(232,255,71,0.08);
+  border: 1px solid rgba(232,255,71,0.2);
+  border-radius: 20px; padding: 6px 14px;
+  font-family: var(--mono); font-size: 11px;
+  color: var(--accent); margin-bottom: 28px;
+  letter-spacing: 0.08em;
+}
+.badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.3)} }
+.hero h1 {
+  font-family: var(--display);
+  font-size: clamp(52px, 6.5vw, 88px);
+  font-weight: 800; line-height: 1.0;
+  letter-spacing: -0.04em; margin-bottom: 24px;
+}
+.hero h1 span { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.hero p {
+  font-size: 17px; color: var(--text2); line-height: 1.7;
+  margin-bottom: 40px; max-width: 480px;
+}
+.hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn-primary {
+  background: var(--grad); color: #fff; border: none;
+  padding: 14px 32px; border-radius: 8px; font-size: 15px;
+  font-weight: 500; cursor: pointer; font-family: var(--sans);
+  transition: all 0.2s; text-decoration: none; display: inline-block;
+}
+.btn-primary:hover { opacity: 0.88; transform: translateY(-2px); box-shadow: 0 8px 30px rgba(30,142,232,0.35); }
+.btn-secondary {
+  background: transparent; color: var(--text);
+  border: 1px solid var(--border2); padding: 14px 32px;
+  border-radius: 8px; font-size: 15px; cursor: pointer;
+  font-family: var(--sans); transition: all 0.2s;
+  text-decoration: none; display: inline-block;
+}
+.btn-secondary:hover { background: var(--bg3); border-color: var(--border2); }
+.hero-stats {
+  display: flex; gap: 32px; margin-top: 52px;
+  padding-top: 40px; border-top: 1px solid var(--border);
+}
+.stat { }
+.stat-num { font-family: var(--display); font-size: 28px; font-weight: 700; color: var(--text); }
+.stat-label { font-size: 12px; color: var(--text3); margin-top: 2px; }
+
+/* HERO VISUAL */
+.hero-visual {
+  position: relative;
+}
+.render-ui {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 14px; overflow: hidden;
+  box-shadow: 0 40px 100px rgba(0,0,0,0.6);
+}
+.render-titlebar {
+  background: var(--bg3);
+  padding: 12px 16px;
+  display: flex; align-items: center; gap: 8px;
+  border-bottom: 1px solid var(--border);
+}
+.dot { width: 10px; height: 10px; border-radius: 50%; }
+.dot-red { background: #ff5f57; }
+.dot-yellow { background: #febc2e; }
+.dot-green { background: #28c840; }
+.titlebar-name { font-family: var(--mono); font-size: 11px; color: var(--text3); margin-left: 8px; }
+.render-body { padding: 16px; }
+.queue-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 9px 12px; border-radius: 6px;
+  margin-bottom: 6px; background: var(--bg3);
+  border: 1px solid var(--border);
+  font-family: var(--mono); font-size: 12px;
+  animation: slideIn 0.5s ease both;
+}
+.queue-item:nth-child(1){animation-delay:0.1s}
+.queue-item:nth-child(2){animation-delay:0.2s}
+.queue-item:nth-child(3){animation-delay:0.3s}
+.queue-item:nth-child(4){animation-delay:0.4s}
+.queue-item:nth-child(5){animation-delay:0.5s}
+@keyframes slideIn { from{opacity:0;transform:translateX(20px)} to{opacity:1;transform:none} }
+.qi-status { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.qi-done { background: var(--teal); }
+.qi-active { background: var(--accent); animation: pulse 1.5s infinite; }
+.qi-wait { background: var(--text3); }
+.qi-error { background: var(--red); }
+.qi-name { color: var(--text); flex: 1; }
+.qi-time { color: var(--text3); font-size: 11px; }
+.progress-bar-wrap { margin: 12px 0; }
+.progress-label { display: flex; justify-content: space-between; margin-bottom: 6px; }
+.progress-label span { font-family: var(--mono); font-size: 11px; color: var(--text3); }
+.progress-label strong { color: var(--accent); font-size: 12px; }
+.progress-track { height: 4px; background: var(--bg); border-radius: 2px; overflow: hidden; }
+.progress-fill { height: 100%; border-radius: 2px; background: linear-gradient(90deg, var(--teal), var(--accent)); animation: fillBar 3s ease-in-out infinite alternate; }
+@keyframes fillBar { from{width:42%} to{width:78%} }
+.render-footer {
+  padding: 10px 16px; border-top: 1px solid var(--border);
+  display: flex; gap: 16px; justify-content: space-between;
+}
+.stat-mini { font-family: var(--mono); font-size: 10px; color: var(--text3); }
+.stat-mini strong { color: var(--teal); }
+
+/* BG DECORATION */
+.bg-glow {
+  position: fixed; pointer-events: none; z-index: -1;
+  border-radius: 50%; filter: blur(80px); opacity: 0.12;
+}
+.glow1 { width: 600px; height: 600px; top: -200px; right: -200px; background: var(--accent); }
+.glow2 { width: 400px; height: 400px; bottom: 200px; left: -100px; background: var(--purple); }
+
+/* SECTION COMMON */
+section { padding: 100px 32px; max-width: 1200px; margin: 0 auto; }
+.section-label {
+  font-family: var(--mono); font-size: 11px; font-weight: 200;
+  letter-spacing: 0.15em;
+  color: var(--accent); text-transform: uppercase; margin-bottom: 16px;
+}
+.section-title {
+  font-family: var(--display); font-size: clamp(36px, 4.5vw, 60px);
+  font-weight: 800; line-height: 1.05; letter-spacing: -0.03em;
+  margin-bottom: 20px;
+}
+.section-sub { font-size: 16px; color: var(--text2); max-width: 560px; line-height: 1.7; }
+
+/* FEATURES */
+.features-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1px; background: var(--border); margin-top: 64px;
+  border: 1px solid var(--border); border-radius: 16px; overflow: hidden;
+}
+.feature-card {
+  background: var(--bg);
+  padding: 36px 32px;
+  position: relative; overflow: hidden;
+  transition: background 0.3s;
+}
+.feature-card:hover { background: var(--bg2); }
+.feature-icon {
+  width: 44px; height: 44px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; margin-bottom: 20px;
+  background: var(--bg3); border: 1px solid var(--border);
+}
+.feature-card h3 { font-family: var(--display); font-size: 18px; font-weight: 600; margin-bottom: 10px; }
+.feature-card p { font-size: 14px; color: var(--text2); line-height: 1.6; }
+.feature-tag {
+  display: inline-block; margin-top: 16px;
+  font-family: var(--mono); font-size: 10px;
+  padding: 3px 8px; border-radius: 4px;
+  background: rgba(232,255,71,0.08); color: var(--accent);
+  border: 1px solid rgba(232,255,71,0.15);
+}
+
+/* VIDEO SECTION */
+.video-section { padding: 80px 32px; background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.video-section-inner { max-width: 1200px; margin: 0 auto; }
+.video-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 48px; }
+.video-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 12px; overflow: hidden;
+  cursor: pointer; transition: all 0.3s;
+  text-decoration: none; color: inherit;
+}
+.video-card:hover { border-color: var(--border2); transform: translateY(-4px); }
+.video-thumb {
+  aspect-ratio: 16/9; background: var(--bg3);
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.video-thumb-bg {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, var(--bg3) 0%, rgba(124,110,255,0.15) 100%);
+}
+.play-btn {
+  width: 52px; height: 52px; border-radius: 50%;
+  background: rgba(255,255,255,0.1);
+  border: 2px solid rgba(255,255,255,0.3);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; position: relative; z-index: 1;
+  transition: all 0.2s;
+}
+.video-card:hover .play-btn { background: var(--accent); border-color: var(--accent); }
+.video-card:hover .play-btn svg { fill: #000; }
+.play-btn svg { fill: white; width: 18px; height: 18px; margin-left: 3px; }
+.video-info { padding: 16px; }
+.video-num { font-family: var(--mono); font-size: 10px; color: var(--text3); margin-bottom: 6px; }
+.video-title { font-size: 14px; font-weight: 500; line-height: 1.4; }
+.video-dur { font-family: var(--mono); font-size: 11px; color: var(--text3); margin-top: 8px; }
+
+/* PRICING */
+.pricing-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 20px; margin-top: 64px; align-items: start;
+}
+.price-card {
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: 16px; padding: 36px 30px;
+  position: relative; transition: border-color 0.3s;
+}
+.price-card:hover { border-color: var(--border2); }
+.price-card.featured {
+  border-color: var(--accent);
+  background: rgba(232,255,71,0.04);
+}
+.popular-badge {
+  position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+  background: var(--grad); color: #fff;
+  font-family: var(--mono); font-size: 10px;
+  padding: 4px 14px; border-radius: 20px; font-weight: 500;
+  letter-spacing: 0.06em; white-space: nowrap;
+}
+.price-tier { font-family: var(--mono); font-size: 11px; color: var(--text3); letter-spacing: 0.08em; margin-bottom: 16px; }
+.price-amount { font-family: var(--display); font-size: 52px; font-weight: 800; line-height: 1; }
+.price-amount sup { font-size: 22px; vertical-align: top; margin-top: 10px; font-weight: 400; }
+.price-period { font-size: 13px; color: var(--text3); margin-top: 4px; margin-bottom: 28px; }
+.price-features { list-style: none; margin-bottom: 32px; }
+.price-features li {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 8px 0; font-size: 14px; color: var(--text2);
+  border-bottom: 1px solid var(--border);
+}
+.price-features li:last-child { border-bottom: none; }
+.check { color: var(--teal); font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+.cross { color: var(--text3); font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+.btn-plan {
+  width: 100%; padding: 13px; border-radius: 8px;
+  font-size: 14px; font-weight: 500; cursor: pointer;
+  font-family: var(--sans); transition: all 0.2s; border: none;
+  text-align: center; text-decoration: none; display: block;
+}
+.btn-plan-accent { background: var(--grad); color: #fff; }
+.btn-plan-accent:hover { opacity: 0.88; }
+.btn-plan-ghost { background: transparent; color: var(--text); border: 1px solid var(--border2); }
+.btn-plan-ghost:hover { background: var(--bg3); }
+
+/* TESTIMONIALS */
+.testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 56px; }
+.testi-card {
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: 14px; padding: 28px;
+}
+.testi-stars { color: var(--accent); font-size: 14px; margin-bottom: 14px; letter-spacing: 2px; }
+.testi-text { font-size: 14px; color: var(--text2); line-height: 1.7; margin-bottom: 20px; }
+.testi-author { display: flex; align-items: center; gap: 12px; }
+.testi-avatar {
+  width: 38px; height: 38px; border-radius: 50%;
+  background: var(--bg3); border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--mono); font-size: 12px; color: var(--accent);
+}
+.testi-name { font-size: 13px; font-weight: 500; }
+.testi-role { font-size: 12px; color: var(--text3); }
+
+/* FAQ */
+.faq-list { margin-top: 56px; }
+.faq-item {
+  border-bottom: 1px solid var(--border); overflow: hidden;
+}
+.faq-q {
+  width: 100%; text-align: left; background: none; border: none;
+  padding: 22px 0; cursor: pointer;
+  display: flex; justify-content: space-between; align-items: center;
+  font-family: var(--sans); font-size: 16px; color: var(--text);
+  font-weight: 500;
+}
+.faq-icon { color: var(--accent-blue); font-size: 20px; transition: transform 0.3s; flex-shrink: 0; }
+.faq-item.open .faq-icon { transform: rotate(45deg); }
+.faq-a {
+  max-height: 0; overflow: hidden; transition: max-height 0.4s ease;
+  font-size: 14px; color: var(--text2); line-height: 1.7;
+}
+.faq-item.open .faq-a { max-height: 200px; }
+.faq-a-inner { padding-bottom: 22px; }
+
+/* CONTACT */
+.contact-section { padding: 80px 32px; background: var(--bg2); border-top: 1px solid var(--border); }
+.contact-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+.contact-form { background: var(--bg); border: 1px solid var(--border); border-radius: 16px; padding: 36px; }
+.form-group { margin-bottom: 20px; }
+.form-group label { display: block; font-size: 13px; color: var(--text2); margin-bottom: 8px; font-family: var(--mono); }
+.form-group input, .form-group textarea, .form-group select {
+  width: 100%; background: var(--bg2); border: 1px solid var(--border);
+  border-radius: 8px; padding: 12px 14px; font-size: 14px;
+  color: var(--text); font-family: var(--sans);
+  transition: border-color 0.2s; outline: none;
+}
+.form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--accent); }
+.form-group textarea { height: 120px; resize: vertical; }
+.form-group select option { background: var(--bg2); }
+
+/* FOOTER */
+footer {
+  border-top: 1px solid var(--border); padding: 60px 32px 40px;
+  max-width: 1200px; margin: 0 auto;
+}
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+.footer-desc { font-size: 14px; color: var(--text3); line-height: 1.7; margin-top: 12px; max-width: 280px; }
+.footer-col h4 { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; color: var(--text3); margin-bottom: 16px; text-transform: uppercase; }
+.footer-col a { display: block; font-size: 14px; color: var(--text2); text-decoration: none; margin-bottom: 10px; transition: color 0.2s; }
+.footer-col a:hover { color: var(--text); }
+.footer-bottom { border-top: 1px solid var(--border); padding-top: 28px; display: flex; justify-content: space-between; align-items: center; flex-wrap: gap; gap: 12px; }
+.footer-bottom p { font-size: 13px; color: var(--text3); }
+.footer-legal { display: flex; gap: 20px; }
+.footer-legal a { font-size: 13px; color: var(--text3); text-decoration: none; }
+.footer-legal a:hover { color: var(--text2); }
+
+/* CHANGELOG SECTION */
+.changelog-list { margin-top: 48px; }
+.change-item { display: flex; gap: 24px; padding: 24px 0; border-bottom: 1px solid var(--border); }
+.change-ver { font-family: var(--mono); font-size: 12px; color: var(--accent); min-width: 60px; padding-top: 2px; }
+.change-date { font-family: var(--mono); font-size: 11px; color: var(--text3); margin-top: 4px; }
+.change-tag { display: inline-block; font-family: var(--mono); font-size: 10px; padding: 2px 7px; border-radius: 3px; margin-right: 6px; margin-bottom: 4px; }
+.tag-new { background: rgba(0,229,204,0.1); color: var(--teal); }
+.tag-fix { background: rgba(255,107,53,0.1); color: var(--accent2); }
+.tag-improve { background: rgba(124,110,255,0.1); color: var(--purple); }
+.change-title { font-size: 15px; font-weight: 500; margin-bottom: 6px; }
+.change-desc { font-size: 13px; color: var(--text2); line-height: 1.6; }
+
+/* DOWNLOAD SECTION */
+.download-box {
+  background: linear-gradient(135deg, rgba(232,255,71,0.06) 0%, rgba(0,229,204,0.04) 100%);
+  border: 1px solid rgba(232,255,71,0.2); border-radius: 20px;
+  padding: 64px; text-align: center; margin-top: 64px;
+}
+.download-box h2 { font-family: var(--display); font-size: 40px; font-weight: 700; margin-bottom: 12px; }
+.download-box p { color: var(--text2); font-size: 16px; margin-bottom: 36px; }
+.download-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.btn-download {
+  display: flex; align-items: center; gap: 10px;
+  background: var(--bg2); border: 1px solid var(--border2);
+  color: var(--text); padding: 14px 28px; border-radius: 10px;
+  text-decoration: none; font-size: 14px; transition: all 0.2s;
+}
+.btn-download:hover { background: var(--bg3); border-color: var(--accent); color: var(--accent); }
+.btn-download-icon { font-size: 20px; }
+
+/* TRIAL SECTION */
+.trial-section {
+  padding: 80px 32px;
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+}
+.trial-inner {
+  max-width: 860px; margin: 0 auto; text-align: center;
+}
+.trial-inner .section-label { margin-bottom: 16px; }
+.trial-inner h2 { font-family: var(--display); font-size: 42px; font-weight: 700; margin-bottom: 16px; }
+.trial-inner p { color: var(--text2); font-size: 17px; margin-bottom: 36px; line-height: 1.7; }
+.trial-perks {
+  display: flex; justify-content: center; gap: 32px; flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+.trial-perk {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 14px; color: var(--text2);
+}
+.trial-perk-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+
+/* TRIAL MODAL */
+.modal-overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(0,0,0,0.75); backdrop-filter: blur(6px);
+  z-index: 1000; align-items: center; justify-content: center;
+}
+.modal-overlay.open { display: flex; }
+.modal-box {
+  background: var(--bg2); border: 1px solid var(--border2);
+  border-radius: 20px; padding: 48px 40px;
+  width: 100%; max-width: 480px; position: relative;
+  animation: modalIn 0.25s ease;
+}
+@keyframes modalIn {
+  from { opacity: 0; transform: translateY(20px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+.modal-close {
+  position: absolute; top: 18px; right: 18px;
+  background: none; border: none; color: var(--text2);
+  font-size: 22px; cursor: pointer; line-height: 1;
+  transition: color 0.2s;
+}
+.modal-close:hover { color: var(--text); }
+.modal-box h3 { font-family: var(--display); font-size: 26px; font-weight: 700; margin-bottom: 8px; }
+.modal-box .modal-sub { color: var(--text2); font-size: 15px; margin-bottom: 28px; }
+.modal-input {
+  width: 100%; background: var(--bg); border: 1px solid var(--border2);
+  border-radius: 10px; padding: 14px 16px; color: var(--text);
+  font-size: 15px; outline: none; transition: border-color 0.2s;
+  box-sizing: border-box; margin-bottom: 16px; font-family: inherit;
+}
+.modal-input:focus { border-color: var(--accent); }
+.modal-input::placeholder { color: var(--text2); }
+.modal-checkbox-row {
+  display: flex; align-items: flex-start; gap: 12px;
+  margin-bottom: 24px;
+}
+.modal-checkbox-row input[type="checkbox"] {
+  width: 18px; height: 18px; margin-top: 2px; flex-shrink: 0;
+  accent-color: var(--accent); cursor: pointer;
+}
+.modal-checkbox-row label { font-size: 14px; color: var(--text2); line-height: 1.5; cursor: pointer; }
+.modal-checkbox-row a { color: var(--accent); text-decoration: none; }
+.modal-checkbox-row a:hover { text-decoration: underline; }
+.modal-submit {
+  width: 100%; background: var(--grad); color: #fff;
+  border: none; border-radius: 10px; padding: 15px;
+  font-size: 15px; font-weight: 700; font-family: inherit;
+  cursor: pointer; transition: opacity 0.2s;
+}
+.modal-submit:hover { opacity: 0.85; }
+.modal-submit:disabled { opacity: 0.4; cursor: not-allowed; }
+.modal-success {
+  display: none; text-align: center; padding: 16px 0;
+}
+.modal-success-icon { font-size: 48px; margin-bottom: 16px; }
+.modal-success h4 { font-family: var(--display); font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+.modal-success p { color: var(--text2); font-size: 15px; }
+
+/* USER ACCOUNT PREVIEW */
+.account-preview {
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: 16px; overflow: hidden; margin-top: 56px;
+}
+.account-tabs { display: flex; border-bottom: 1px solid var(--border); }
+.acc-tab {
+  padding: 14px 24px; font-size: 13px; cursor: pointer;
+  color: var(--text3); border-bottom: 2px solid transparent;
+  transition: all 0.2s; background: none; border-top: none; border-left: none; border-right: none;
+  font-family: var(--sans); margin-bottom: -1px;
+}
+.acc-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+.acc-content { padding: 28px; }
+.acc-purchase {
+  display: flex; align-items: center; gap: 16px;
+  padding: 16px; background: var(--bg);
+  border: 1px solid var(--border); border-radius: 10px; margin-bottom: 10px;
+}
+.acc-icon { width: 40px; height: 40px; border-radius: 8px; background: rgba(232,255,71,0.1); display: flex; align-items: center; justify-content: center; font-size: 18px; }
+.acc-info { flex: 1; }
+.acc-title { font-size: 14px; font-weight: 500; }
+.acc-meta { font-size: 12px; color: var(--text3); font-family: var(--mono); margin-top: 2px; }
+.acc-badge { font-family: var(--mono); font-size: 10px; padding: 4px 10px; border-radius: 20px; background: rgba(0,229,204,0.1); color: var(--teal); }
+
+/* ADMIN PREVIEW */
+.admin-preview {
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: 16px; overflow: hidden; margin-top: 56px;
+}
+.admin-header { padding: 16px 24px; border-bottom: 1px solid var(--border); display: flex; gap: 12px; align-items: center; }
+.admin-title { font-family: var(--mono); font-size: 12px; color: var(--text2); }
+.admin-table { width: 100%; border-collapse: collapse; }
+.admin-table th { padding: 10px 24px; text-align: left; font-family: var(--mono); font-size: 10px; color: var(--text3); letter-spacing: 0.05em; border-bottom: 1px solid var(--border); background: var(--bg3); }
+.admin-table td { padding: 12px 24px; font-size: 13px; color: var(--text2); border-bottom: 1px solid var(--border); }
+.admin-table tr:last-child td { border-bottom: none; }
+.status-badge { display: inline-block; padding: 3px 9px; border-radius: 20px; font-family: var(--mono); font-size: 10px; }
+.status-active { background: rgba(0,229,204,0.1); color: var(--teal); }
+.status-pending { background: rgba(232,255,71,0.1); color: var(--accent); }
+.status-cancelled { background: rgba(255,69,69,0.1); color: var(--red); }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .hero-grid, .features-grid, .pricing-grid, .testi-grid, .footer-grid, .contact-inner, .video-grid { grid-template-columns: 1fr; }
+  .hero { padding: 100px 20px 60px; }
+  section { padding: 60px 20px; }
+  .nav-links { display: none; }
+}
+
+/* LANG VISIBILITY */
+[data-lang] { display: none; }
+[data-lang].lang-active { display: block; }
+[data-lang-inline] { display: none; }
+[data-lang-inline].lang-active { display: inline; }
+</style>
 </head>
 <body>
-<h1>Restoring full site — please wait</h1>
-<p>This is a placeholder while the full original site is being restored.</p>
-<p>The original site files are too large for the GitHub API. Pavel needs to push the original index.html manually.</p>
+
+<div class="bg-glow glow1"></div>
+<div class="bg-glow glow2"></div>
+
+<!-- NAV -->
+<nav class="lang-bar">
+  <a href="#" class="logo">
+    <img src="img/logo.png" alt="BatchRender" style="height:40px;width:auto;" />
+  </a>
+  <div class="nav-links">
+    <a href="#features" data-nav-key="features"></a>
+    <a href="#videos" data-nav-key="tutorials"></a>
+    <a href="#pricing" data-nav-key="pricing"></a>
+    <a href="#changelog" data-nav-key="changelog"></a>
+    <a href="#contact" data-nav-key="contact"></a>
+  </div>
+  <div class="nav-right">
+    <div class="lang-switch">
+      <button class="lang-btn active" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" onclick="setLang('ru')">RU</button>
+      <button class="lang-btn" onclick="setLang('zh')">中文</button>
+    </div>
+    <a href="#pricing" class="btn-nav" data-key="getStarted"></a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div style="max-width:1200px;margin:0 auto">
+<section class="hero" style="max-width:none;padding-top:130px">
+  <div class="hero-grid">
+    <div class="hero-left">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        <span data-key="version">v2.4.1 — Now Available</span>
+      </div>
+      <h1 data-key="heroTitle">Render <span>Smarter,</span><br>Not Harder</h1>
+      <p data-key="heroSub">Professional batch rendering software. Process hundreds of files simultaneously, manage queues effortlessly, and deliver faster than ever before.</p>
+      <div class="hero-btns">
+        <a href="#pricing" class="btn-primary" data-key="heroCta1">Buy License</a>
+        <a href="#videos" class="btn-secondary" data-key="heroCta2">▶ Watch Demo</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><div class="stat-num">10×</div><div class="stat-label" data-key="stat1">Faster rendering</div></div>
+        <div class="stat"><div class="stat-num">2K+</div><div class="stat-label" data-key="stat2">Active users</div></div>
+        <div class="stat"><div class="stat-num">99.8%</div><div class="stat-label" data-key="stat3">Uptime reliability</div></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="render-ui">
+        <div class="render-titlebar">
+          <span class="dot dot-red"></span>
+          <span class="dot dot-yellow"></span>
+          <span class="dot dot-green"></span>
+          <span class="titlebar-name">BatchRender 2.4.1 — Queue Manager</span>
+        </div>
+        <div class="render-body">
+          <div class="progress-bar-wrap">
+            <div class="progress-label">
+              <span data-key="queueLabel">Queue progress</span>
+              <strong id="prog-pct">63%</strong>
+            </div>
+            <div class="progress-track"><div class="progress-fill"></div></div>
+          </div>
+          <div class="queue-item"><span class="qi-status qi-done"></span><span class="qi-name">scene_exterior_v3.max</span><span class="qi-time">4m 12s</span></div>
+          <div class="queue-item"><span class="qi-status qi-done"></span><span class="qi-name">interior_bedroom_final.c4d</span><span class="qi-time">6m 58s</span></div>
+          <div class="queue-item"><span class="qi-status qi-active"></span><span class="qi-name">product_hero_shot.blend</span><span class="qi-time">2m 31s…</span></div>
+          <div class="queue-item"><span class="qi-status qi-wait"></span><span class="qi-name">animation_walkthrough.max</span><span class="qi-time">pending</span></div>
+          <div class="queue-item"><span class="qi-status qi-wait"></span><span class="qi-name">facade_night_render.blend</span><span class="qi-time">pending</span></div>
+        </div>
+        <div class="render-footer">
+          <span class="stat-mini"><strong>CPU</strong> 94%</span>
+          <span class="stat-mini"><strong>GPU</strong> 87%</span>
+          <span class="stat-mini">RAM <strong>12.4GB</strong></span>
+          <span class="stat-mini">ETA <strong>14m</strong></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- FEATURES -->
+<div style="background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+<section id="features">
+  <div class="section-label" data-key="featuresLabel">Features</div>
+  <h2 class="section-title" data-key="featuresTitle">Everything you need<br>to render at scale</h2>
+  <p class="section-sub" data-key="featuresSub">BatchRender handles the complexity so you can focus on creativity.</p>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">⚡</div>
+      <h3 data-key="f1t">Parallel Processing</h3>
+      <p data-key="f1d">Process multiple render jobs simultaneously using all available CPU and GPU cores with intelligent load balancing.</p>
+      <span class="feature-tag" data-key="f1tag">Core feature</span>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📋</div>
+      <h3 data-key="f2t">Smart Queue Manager</h3>
+      <p data-key="f2d">Drag-and-drop queue management with priority control, pause/resume, and automatic retry on failure.</p>
+      <span class="feature-tag" data-key="f2tag">Workflow</span>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🎛️</div>
+      <h3 data-key="f3t">Multi-Software Support</h3>
+      <p data-key="f3d">Works seamlessly with 3ds Max, Blender, Cinema 4D, Maya, and more. One interface for all your tools.</p>
+      <span class="feature-tag" data-key="f3tag">Compatible</span>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📊</div>
+      <h3 data-key="f4t">Live Monitoring</h3>
+      <p data-key="f4d">Real-time CPU, GPU, RAM dashboards. Track every render job with detailed logs and progress indicators.</p>
+      <span class="feature-tag" data-key="f4tag">Analytics</span>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🔔</div>
+      <h3 data-key="f5t">Smart Notifications</h3>
+      <p data-key="f5d">Get notified when renders complete or fail via email, desktop alerts, or Telegram bot integration.</p>
+      <span class="feature-tag" data-key="f5tag">Automation</span>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🔑</div>
+      <h3 data-key="f6t">License Management</h3>
+      <p data-key="f6d">Simple activation on up to N machines. Transfer licenses easily. No dongles, no hassle.</p>
+      <span class="feature-tag" data-key="f6tag">Licensing</span>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- VIDEO TUTORIALS -->
+<div class="video-section" id="videos">
+  <div class="video-section-inner">
+    <div class="section-label" data-key="videosLabel">Video Tutorials</div>
+    <h2 class="section-title" data-key="videosTitle">Learn BatchRender<br>in minutes</h2>
+    <p class="section-sub" data-key="videosSub">Step-by-step video guides covering everything from installation to advanced queue optimization.</p>
+    <div class="video-grid">
+      <a href="#" class="video-card">
+        <div class="video-thumb">
+          <div class="video-thumb-bg"></div>
+          <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+        </div>
+        <div class="video-info">
+          <div class="video-num" data-key="ep">EP 01</div>
+          <div class="video-title" data-key="v1t">Installation & First Launch</div>
+          <div class="video-dur">5:24</div>
+        </div>
+      </a>
+      <a href="#" class="video-card">
+        <div class="video-thumb">
+          <div class="video-thumb-bg" style="background:linear-gradient(135deg,var(--bg3) 0%,rgba(255,107,53,0.15) 100%)"></div>
+          <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+        </div>
+        <div class="video-info">
+          <div class="video-num" data-key="ep">EP 02</div>
+          <div class="video-title" data-key="v2t">Setting Up Your First Queue</div>
+          <div class="video-dur">8:11</div>
+        </div>
+      </a>
+      <a href="#" class="video-card">
+        <div class="video-thumb">
+          <div class="video-thumb-bg" style="background:linear-gradient(135deg,var(--bg3) 0%,rgba(0,229,204,0.15) 100%)"></div>
+          <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+        </div>
+        <div class="video-info">
+          <div class="video-num" data-key="ep">EP 03</div>
+          <div class="video-title" data-key="v3t">Advanced: Multi-GPU Setup</div>
+          <div class="video-dur">12:37</div>
+        </div>
+      </a>
+      <a href="#" class="video-card">
+        <div class="video-thumb">
+          <div class="video-thumb-bg" style="background:linear-gradient(135deg,var(--bg3) 0%,rgba(124,110,255,0.15) 100%)"></div>
+          <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+        </div>
+        <div class="video-info">
+          <div class="video-num" data-key="ep">EP 04</div>
+          <div class="video-title" data-key="v4t">Integration with 3ds Max</div>
+          <div class="video-dur">9:55</div>
+        </div>
+      </a>
+      <a href="#" class="video-card">
+        <div class="video-thumb">
+          <div class="video-thumb-bg" style="background:linear-gradient(135deg,var(--bg3) 0%,rgba(232,255,71,0.1) 100%)"></div>
+          <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+        </div>
+        <div class="video-info">
+          <div class="video-num" data-key="ep">EP 05</div>
+          <div class="video-title" data-key="v5t">Blender & Cinema 4D Workflow</div>
+          <div class="video-dur">11:02</div>
+        </div>
+      </a>
+      <a href="#" class="video-card">
+        <div class="video-thumb">
+          <div class="video-thumb-bg" style="background:linear-gradient(135deg,var(--bg3) 0%,rgba(255,69,69,0.12) 100%)"></div>
+          <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+        </div>
+        <div class="video-info">
+          <div class="video-num" data-key="ep">EP 06</div>
+          <div class="video-title" data-key="v6t">Notifications & Automation</div>
+          <div class="video-dur">7:48</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- PRICING -->
+<div style="max-width:1200px;margin:0 auto">
+<section id="pricing">
+  <div class="section-label" data-key="pricingLabel">Pricing</div>
+  <h2 class="section-title" data-key="pricingTitle">Simple, transparent pricing</h2>
+  <p class="section-sub" data-key="pricingSub">One-time purchase. No subscriptions. Free updates for 1 year.</p>
+  <div class="pricing-grid">
+    <div class="price-card">
+      <div class="price-tier" data-key="p1tier">INDIE</div>
+      <div class="price-amount"><sup>$</sup>49</div>
+      <div class="price-period" data-key="p1period">One-time · 1 machine</div>
+      <ul class="price-features">
+        <li><span class="check">✓</span><span data-key="pf_queue">Unlimited queue jobs</span></li>
+        <li><span class="check">✓</span><span data-key="pf_software">All supported software</span></li>
+        <li><span class="check">✓</span><span data-key="pf_updates">1 year free updates</span></li>
+        <li><span class="cross">—</span><span data-key="pf_multi" style="color:var(--text3)">Multi-machine license</span></li>
+        <li><span class="cross">—</span><span data-key="pf_priority" style="color:var(--text3)">Priority support</span></li>
+      </ul>
+      <a href="#" class="btn-plan btn-plan-ghost" data-key="buyBtn">Buy License</a>
+    </div>
+    <div class="price-card featured">
+      <div class="popular-badge" data-key="popularBadge">MOST POPULAR</div>
+      <div class="price-tier" data-key="p2tier">STUDIO</div>
+      <div class="price-amount"><sup>$</sup>129</div>
+      <div class="price-period" data-key="p2period">One-time · 3 machines</div>
+      <ul class="price-features">
+        <li><span class="check">✓</span><span data-key="pf_queue">Unlimited queue jobs</span></li>
+        <li><span class="check">✓</span><span data-key="pf_software">All supported software</span></li>
+        <li><span class="check">✓</span><span data-key="pf_updates">1 year free updates</span></li>
+        <li><span class="check">✓</span><span data-key="pf_multi">Multi-machine license</span></li>
+        <li><span class="cross">—</span><span data-key="pf_priority" style="color:var(--text3)">Priority support</span></li>
+      </ul>
+      <a href="#" class="btn-plan btn-plan-accent" data-key="buyBtn">Buy License</a>
+    </div>
+    <div class="price-card">
+      <div class="price-tier" data-key="p3tier">ENTERPRISE</div>
+      <div class="price-amount"><sup>$</sup>299</div>
+      <div class="price-period" data-key="p3period">One-time · Unlimited machines</div>
+      <ul class="price-features">
+        <li><span class="check">✓</span><span data-key="pf_queue">Unlimited queue jobs</span></li>
+        <li><span class="check">✓</span><span data-key="pf_software">All supported software</span></li>
+        <li><span class="check">✓</span><span data-key="pf_updates2">2 years free updates</span></li>
+        <li><span class="check">✓</span><span data-key="pf_multi">Multi-machine license</span></li>
+        <li><span class="check">✓</span><span data-key="pf_priority">Priority support</span></li>
+      </ul>
+      <a href="#" class="btn-plan btn-plan-ghost" data-key="buyBtn">Buy License</a>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ACCOUNT PREVIEW -->
+<div style="background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+<section>
+  <div class="section-label" data-key="accountLabel">Your Account</div>
+  <h2 class="section-title" data-key="accountTitle">Everything in one place</h2>
+  <p class="section-sub" data-key="accountSub">After purchase — log in to manage your licenses, download updates, and view payment history.</p>
+  <div class="account-preview">
+    <div class="account-tabs">
+      <button class="acc-tab active" onclick="switchTab(this,'tab-purchases')" data-key="tabPurchases">My Purchases</button>
+      <button class="acc-tab" onclick="switchTab(this,'tab-payments')" data-key="tabPayments">Payment History</button>
+      <button class="acc-tab" onclick="switchTab(this,'tab-download')" data-key="tabDownload">Download</button>
+    </div>
+    <div id="tab-purchases" class="acc-content">
+      <div class="acc-purchase">
+        <div class="acc-icon">🖥</div>
+        <div class="acc-info">
+          <div class="acc-title">BatchRender Studio</div>
+          <div class="acc-meta">KEY: BR-XXXX-XXXX-XXXX · 3 machines · Activated 2/3</div>
+        </div>
+        <span class="acc-badge" data-key="activeStatus">ACTIVE</span>
+      </div>
+    </div>
+    <div id="tab-payments" class="acc-content" style="display:none">
+      <table class="admin-table" style="width:100%">
+        <thead><tr>
+          <th data-key="colDate">DATE</th><th data-key="colProduct">PRODUCT</th><th data-key="colAmount">AMOUNT</th><th data-key="colStatus">STATUS</th>
+        </tr></thead>
+        <tbody>
+          <tr><td>2024-11-15</td><td>BatchRender Studio</td><td>$129.00</td><td><span class="status-badge status-active" data-key="paid">Paid</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div id="tab-download" class="acc-content" style="display:none">
+      <div class="download-btns" style="justify-content:flex-start;margin-top:0">
+        <a href="#" class="btn-download"><span class="btn-download-icon">🪟</span> Windows x64</a>
+        <a href="#" class="btn-download"><span class="btn-download-icon">🍎</span> macOS</a>
+        <a href="#" class="btn-download"><span class="btn-download-icon">🐧</span> Linux</a>
+      </div>
+      <p style="font-size:13px;color:var(--text3);margin-top:16px;font-family:var(--mono)" data-key="latestVer">Current: v2.4.1 · Released 2024-11-10</p>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- TESTIMONIALS -->
+<div style="max-width:1200px;margin:0 auto">
+<section>
+  <div class="section-label" data-key="testiLabel">Testimonials</div>
+  <h2 class="section-title" data-key="testiTitle">Trusted by 3D artists worldwide</h2>
+  <div class="testi-grid">
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text" data-key="t1">"BatchRender cut our studio's rendering time in half. The queue manager is incredibly intuitive and the multi-GPU support works flawlessly."</p>
+      <div class="testi-author"><div class="testi-avatar">AK</div><div><div class="testi-name">Alex K.</div><div class="testi-role">3D Archviz Studio, Berlin</div></div></div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text" data-key="t2">"Finally a batch renderer that just works. Setup took 10 minutes, and now I can leave the office while my queue renders overnight."</p>
+      <div class="testi-author"><div class="testi-avatar">МВ</div><div><div class="testi-name">Михаил В.</div><div class="testi-role" data-key="t2role">Freelance 3D Artist, Moscow</div></div></div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text" data-key="t3">"We use BatchRender across our entire studio. Enterprise license is worth every cent — unlimited machines, priority support."</p>
+      <div class="testi-author"><div class="testi-avatar">LC</div><div><div class="testi-name">Li Chen</div><div class="testi-role">CG Director, Shanghai</div></div></div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- CHANGELOG -->
+<div style="background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+<section id="changelog">
+  <div class="section-label" data-key="changelogLabel">Changelog</div>
+  <h2 class="section-title" data-key="changelogTitle">Always improving</h2>
+  <p class="section-sub" data-key="changelogSub">Regular updates with new features, performance improvements, and bug fixes.</p>
+  <div class="changelog-list">
+    <div class="change-item">
+      <div><div class="change-ver">v2.4.1</div><div class="change-date">2024-11-10</div></div>
+      <div>
+        <div><span class="change-tag tag-fix" data-key="tagFix">FIX</span><span class="change-tag tag-improve" data-key="tagImprove">IMPROVE</span></div>
+        <div class="change-title" data-key="cl1t">Stability improvements & bug fixes</div>
+        <div class="change-desc" data-key="cl1d">Fixed queue freeze on large batch jobs. Improved memory management for 32+ file queues. Resolved Blender 4.0 compatibility issue.</div>
+      </div>
+    </div>
+    <div class="change-item">
+      <div><div class="change-ver">v2.4.0</div><div class="change-date">2024-10-22</div></div>
+      <div>
+        <div><span class="change-tag tag-new" data-key="tagNew">NEW</span><span class="change-tag tag-improve" data-key="tagImprove">IMPROVE</span></div>
+        <div class="change-title" data-key="cl2t">Telegram bot notifications + Multi-GPU improvements</div>
+        <div class="change-desc" data-key="cl2d">Added Telegram bot integration for real-time notifications. Multi-GPU performance improved by ~18%. New queue statistics dashboard.</div>
+      </div>
+    </div>
+    <div class="change-item">
+      <div><div class="change-ver">v2.3.0</div><div class="change-date">2024-09-05</div></div>
+      <div>
+        <div><span class="change-tag tag-new" data-key="tagNew">NEW</span></div>
+        <div class="change-title" data-key="cl3t">Cinema 4D 2025 support</div>
+        <div class="change-desc" data-key="cl3d">Full compatibility with Cinema 4D 2025. Added support for Redshift 3.6, Corona 11. Improved render progress estimation accuracy.</div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- FAQ -->
+<div style="max-width:1200px;margin:0 auto">
+<section>
+  <div class="section-label" data-key="faqLabel">FAQ</div>
+  <h2 class="section-title" data-key="faqTitle">Frequently asked questions</h2>
+  <div class="faq-list" id="faqList"></div>
+</section>
+</div>
+
+<!-- TRIAL DOWNLOAD -->
+<section class="trial-section" id="trial">
+  <div class="trial-inner">
+    <div class="section-label" data-key="trialLabel">Free Trial</div>
+    <h2 data-key="trialTitle">Try BatchRender Free for 14 Days</h2>
+    <p data-key="trialSub">Full-featured trial. No credit card required. Works with all supported 3D software.</p>
+    <div class="trial-perks">
+      <div class="trial-perk"><div class="trial-perk-dot"></div><span data-key="trialPerk1">All features unlocked</span></div>
+      <div class="trial-perk"><div class="trial-perk-dot"></div><span data-key="trialPerk2">No credit card</span></div>
+      <div class="trial-perk"><div class="trial-perk-dot"></div><span data-key="trialPerk3">Windows · macOS · Linux</span></div>
+      <div class="trial-perk"><div class="trial-perk-dot"></div><span data-key="trialPerk4">14-day trial</span></div>
+    </div>
+    <button class="btn-primary" onclick="openTrialModal()" data-key="trialBtn">Download Free Trial</button>
+  </div>
+</section>
+
+<!-- TRIAL MODAL -->
+<div class="modal-overlay" id="trialModal" onclick="closeModalOutside(event)">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeTrialModal()">&#x2715;</button>
+    <div id="modalForm">
+      <h3 data-key="modalTitle">Get Your Trial Link</h3>
+      <p class="modal-sub" data-key="modalSub">We'll send the download link to your email.</p>
+      <input class="modal-input" type="email" id="trialEmail" placeholder="your@email.com" />
+      <div class="modal-checkbox-row">
+        <input type="checkbox" id="eulaCheck" />
+        <label for="eulaCheck" id="eulaLabel"></label>
+      </div>
+      <button class="modal-submit" id="modalSubmitBtn" onclick="submitTrialForm()" data-key="modalSubmit">Get Download Link</button>
+    </div>
+    <div class="modal-success" id="modalSuccess">
+      <div class="modal-success-icon">&#x1F4EC;</div>
+      <h4 data-key="modalSuccessTitle">Link Sent!</h4>
+      <p data-key="modalSuccessText">Check your inbox — the download link is on its way.</p>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div class="contact-section" id="contact">
+  <div class="contact-inner">
+    <div>
+      <div class="section-label" data-key="contactLabel">Contact</div>
+      <h2 class="section-title" data-key="contactTitle">Get in touch</h2>
+      <p class="section-sub" data-key="contactSub">Have a question about licensing, need technical support, or want to discuss an enterprise deal?</p>
+      <div style="margin-top:36px">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
+          <div style="width:36px;height:36px;background:var(--bg);border:1px solid var(--border);border-radius:8px;display:flex;align-items:center;justify-content:center">📧</div>
+          <div>
+            <div style="font-size:12px;color:var(--text3);font-family:var(--mono)" data-key="emailLabel">Email</div>
+            <div style="font-size:14px"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="2a595f5a5a45585e6a484b5e4942584f444e4f5804494547">[email&#160;protected]</a></div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px">
+          <div style="width:36px;height:36px;background:var(--bg);border:1px solid var(--border);border-radius:8px;display:flex;align-items:center;justify-content:center">⏱</div>
+          <div>
+            <div style="font-size:12px;color:var(--text3);font-family:var(--mono)" data-key="responseLabel">Response time</div>
+            <div style="font-size:14px" data-key="responseTime">Within 24 hours</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="contact-form">
+      <div class="form-group">
+        <label data-key="formName">Your name</label>
+        <input type="text" placeholder="John Smith">
+      </div>
+      <div class="form-group">
+        <label data-key="formEmail">Email address</label>
+        <input type="email" placeholder="john@studio.com">
+      </div>
+      <div class="form-group">
+        <label data-key="formSubject">Subject</label>
+        <select>
+          <option data-key="subj1">License question</option>
+          <option data-key="subj2">Technical support</option>
+          <option data-key="subj3">Enterprise inquiry</option>
+          <option data-key="subj4">Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label data-key="formMessage">Message</label>
+        <textarea placeholder="Describe your question..."></textarea>
+      </div>
+      <button class="btn-primary" style="width:100%" data-key="sendBtn">Send Message</button>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div style="background:var(--bg2);border-top:1px solid var(--border)">
+<footer>
+  <div class="footer-grid">
+    <div>
+      <a href="#" class="logo">
+        <img src="img/logo.png" alt="BatchRender" style="height:34px;width:auto;" />
+      </a>
+      <p class="footer-desc" data-key="footerDesc">Professional batch rendering software for 3D artists, studios, and visualization teams worldwide.</p>
+    </div>
+    <div class="footer-col">
+      <h4 data-key="fcProduct">Product</h4>
+      <a href="#features" data-key="fcFeatures">Features</a>
+      <a href="#pricing" data-key="fcPricing">Pricing</a>
+      <a href="#changelog" data-key="fcChangelog">Changelog</a>
+      <a href="#videos" data-key="fcTutorials">Tutorials</a>
+    </div>
+    <div class="footer-col">
+      <h4 data-key="fcSupport">Support</h4>
+      <a href="#contact" data-key="fcContact">Contact Us</a>
+      <a href="#faq" data-key="fcFaq">FAQ</a>
+      <a href="#" data-key="fcDocs">Documentation</a>
+    </div>
+    <div class="footer-col">
+      <h4 data-key="fcLegal">Legal</h4>
+      <a href="privacy.html" data-key="fcPrivacy">Privacy Policy</a>
+      <a href="terms.html" data-key="fcTerms">Terms of Service</a>
+      <a href="refund.html" data-key="fcRefund">Refund Policy</a>
+      <a href="eula.html" data-key="fcEula">EULA</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2024 BatchRender. <span data-key="allRights">All rights reserved.</span></p>
+    <div class="footer-legal">
+      <a href="privacy.html" data-key="fcPrivacy">Privacy Policy</a>
+      <a href="terms.html" data-key="fcTerms">Terms of Service</a>
+      <a href="refund.html" data-key="fcRefund">Refund Policy</a>
+    </div>
+  </div>
+</footer>
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// ─── TRANSLATIONS ───────────────────────────────────────────────────────────
+const T = {
+  en: {
+    features:"Features", tutorials:"Tutorials", pricing:"Pricing", changelog:"Changelog", contact:"Contact",
+    getStarted:"Get Started",
+    version:"v2.4.1 — Now Available",
+    heroTitle:'Render <span>Smarter,</span><br>Not Harder',
+    heroSub:"Professional batch rendering software. Process hundreds of files simultaneously, manage queues effortlessly, and deliver faster than ever.",
+    heroCta1:"Buy License", heroCta2:"▶ Watch Demo",
+    stat1:"Faster rendering", stat2:"Active users", stat3:"Uptime reliability",
+    queueLabel:"Queue progress",
+    featuresLabel:"Features",
+    featuresTitle:"Everything you need<br>to render at scale",
+    featuresSub:"BatchRender handles the complexity so you can focus on creativity.",
+    f1t:"Parallel Processing", f1d:"Process multiple render jobs simultaneously using all available CPU and GPU cores with intelligent load balancing.", f1tag:"Core feature",
+    f2t:"Smart Queue Manager", f2d:"Drag-and-drop queue management with priority control, pause/resume, and automatic retry on failure.", f2tag:"Workflow",
+    f3t:"Multi-Software Support", f3d:"Works seamlessly with 3ds Max, Blender, Cinema 4D, Maya, and more. One interface for all your tools.", f3tag:"Compatible",
+    f4t:"Live Monitoring", f4d:"Real-time CPU, GPU, RAM dashboards. Track every render job with detailed logs and progress indicators.", f4tag:"Analytics",
+    f5t:"Smart Notifications", f5d:"Get notified when renders complete or fail via email, desktop alerts, or Telegram bot integration.", f5tag:"Automation",
+    f6t:"License Management", f6d:"Simple activation on up to N machines. Transfer licenses easily. No dongles, no hassle.", f6tag:"Licensing",
+    videosLabel:"Video Tutorials",
+    videosTitle:"Learn BatchRender<br>in minutes",
+    videosSub:"Step-by-step video guides covering everything from installation to advanced queue optimization.",
+    ep:"EP", v1t:"Installation & First Launch", v2t:"Setting Up Your First Queue", v3t:"Advanced: Multi-GPU Setup", v4t:"Integration with 3ds Max", v5t:"Blender & Cinema 4D Workflow", v6t:"Notifications & Automation",
+    pricingLabel:"Pricing",
+    pricingTitle:"Simple, transparent pricing",
+    pricingSub:"One-time purchase. No subscriptions. Free updates for 1 year.",
+    p1tier:"INDIE", p1period:"One-time · 1 machine",
+    p2tier:"STUDIO", p2period:"One-time · 3 machines",
+    p3tier:"ENTERPRISE", p3period:"One-time · Unlimited machines",
+    popularBadge:"MOST POPULAR",
+    pf_queue:"Unlimited queue jobs", pf_software:"All supported software",
+    pf_updates:"1 year free updates", pf_updates2:"2 years free updates",
+    pf_multi:"Multi-machine license", pf_priority:"Priority support",
+    buyBtn:"Buy License",
+    accountLabel:"Your Account", accountTitle:"Everything in one place",
+    accountSub:"After purchase — log in to manage your licenses, download updates, and view payment history.",
+    tabPurchases:"My Purchases", tabPayments:"Payment History", tabDownload:"Download",
+    activeStatus:"ACTIVE", colDate:"DATE", colProduct:"PRODUCT", colAmount:"AMOUNT", colStatus:"STATUS", paid:"Paid",
+    latestVer:"Current: v2.4.1 · Released 2024-11-10",
+    testiLabel:"Testimonials", testiTitle:"Trusted by 3D artists worldwide",
+    t1:'"BatchRender cut our studio\'s rendering time in half. The queue manager is incredibly intuitive and the multi-GPU support works flawlessly."',
+    t2:'"Finally a batch renderer that just works. Setup took 10 minutes, and now I can leave the office while my queue renders overnight."',
+    t2role:"Freelance 3D Artist, Moscow",
+    t3:'"We use BatchRender across our entire studio. Enterprise license is worth every cent — unlimited machines, priority support."',
+    changelogLabel:"Changelog", changelogTitle:"Always improving",
+    changelogSub:"Regular updates with new features, performance improvements, and bug fixes.",
+    tagNew:"NEW", tagFix:"FIX", tagImprove:"IMPROVE",
+    cl1t:"Stability improvements & bug fixes", cl1d:"Fixed queue freeze on large batch jobs. Improved memory management for 32+ file queues. Resolved Blender 4.0 compatibility issue.",
+    cl2t:"Telegram bot notifications + Multi-GPU improvements", cl2d:"Added Telegram bot integration for real-time notifications. Multi-GPU performance improved by ~18%. New queue statistics dashboard.",
+    cl3t:"Cinema 4D 2025 support", cl3d:"Full compatibility with Cinema 4D 2025. Added support for Redshift 3.6, Corona 11. Improved render progress estimation accuracy.",
+    faqLabel:"FAQ", faqTitle:"Frequently asked questions",
+    faq:[
+      {q:"What software does BatchRender support?", a:"BatchRender works with 3ds Max, Blender, Cinema 4D, Maya, V-Ray, Corona, Redshift, Octane, and more. Check the full compatibility list in the documentation."},
+      {q:"Is this a one-time purchase or subscription?", a:"One-time purchase. No subscriptions, no monthly fees. You own the license forever. Free updates are included for 1 year (2 years for Enterprise)."},
+      {q:"Can I use the license on multiple computers?", a:"Indie license: 1 machine. Studio: 3 machines. Enterprise: unlimited. You can deactivate and reactivate at any time from your account."},
+      {q:"Do you offer a trial version?", a:"Yes — a 14-day fully functional trial is available for download. No credit card required to try."},
+      {q:"What is the refund policy?", a:"If BatchRender doesn't work for you, contact us within 14 days of purchase for a full refund. No questions asked."},
+    ],
+    contactLabel:"Contact", contactTitle:"Get in touch",
+    contactSub:"Have a question about licensing, need technical support, or want to discuss an enterprise deal?",
+    emailLabel:"Email", responseLabel:"Response time", responseTime:"Within 24 hours",
+    formName:"Your name", formEmail:"Email address", formSubject:"Subject", formMessage:"Message",
+    subj1:"License question", subj2:"Technical support", subj3:"Enterprise inquiry", subj4:"Other",
+    sendBtn:"Send Message",
+    trialLabel:"Free Trial", trialTitle:"Try BatchRender Free for 14 Days",
+    trialSub:"Full-featured trial. No credit card required. Works with 3ds Max, Blender, Cinema 4D, Maya, and more.",
+    trialPerk1:"All features unlocked", trialPerk2:"No credit card", trialPerk3:"Windows · macOS · Linux", trialPerk4:"14-day trial",
+    trialBtn:"Download Free Trial",
+    modalTitle:"Get Your Trial Link", modalSub:"We'll send the download link to your email.",
+    modalEmailPlaceholder:"your@email.com",
+    eulaText:'I accept the <a href="eula.html">End User License Agreement</a>',
+    modalSubmit:"Get Download Link",
+    modalSuccessTitle:"Link Sent!", modalSuccessText:"Check your inbox — the download link is on its way.",
+    footerDesc:"Professional batch rendering software for 3D artists, studios, and visualization teams worldwide.",
+    fcProduct:"Product", fcFeatures:"Features", fcPricing:"Pricing", fcChangelog:"Changelog", fcTutorials:"Tutorials",
+    fcSupport:"Support", fcContact:"Contact Us", fcFaq:"FAQ", fcDocs:"Documentation",
+    fcLegal:"Legal", fcPrivacy:"Privacy Policy", fcTerms:"Terms of Service", fcRefund:"Refund Policy", fcEula:"EULA",
+    allRights:"All rights reserved.",
+  },
+  ru: {
+    features:"Функции", tutorials:"Уроки", pricing:"Цены", changelog:"Обновления", contact:"Контакты",
+    getStarted:"Начать",
+    version:"v2.4.1 — Доступна сейчас",
+    heroTitle:'Рендер <span>умнее,</span><br>не тяжелее',
+    heroSub:"Профессиональный пакетный рендеринг. Обрабатывайте сотни файлов одновременно, управляйте очередями и сдавайте проекты быстрее чем когда-либо.",
+    heroCta1:"Купить лицензию", heroCta2:"▶ Смотреть демо",
+    stat1:"Ускорение рендера", stat2:"Активных пользователей", stat3:"Надёжность",
+    queueLabel:"Прогресс очереди",
+    featuresLabel:"Возможности",
+    featuresTitle:"Всё что нужно<br>для рендера в масштабе",
+    featuresSub:"BatchRender берёт на себя сложность, позволяя вам сосредоточиться на творчестве.",
+    f1t:"Параллельная обработка", f1d:"Одновременная обработка нескольких задач с использованием всех ядер CPU и GPU с умной балансировкой нагрузки.", f1tag:"Ключевая функция",
+    f2t:"Умный менеджер очереди", f2d:"Drag-and-drop управление очередью, приоритеты, пауза/возобновление и автоповтор при ошибке.", f2tag:"Рабочий процесс",
+    f3t:"Поддержка ПО", f3d:"Работает с 3ds Max, Blender, Cinema 4D, Maya и другими. Один интерфейс для всех инструментов.", f3tag:"Совместимость",
+    f4t:"Мониторинг в реальном времени", f4d:"Дашборды CPU, GPU, RAM в реальном времени. Отслеживание каждой задачи с подробными логами.", f4tag:"Аналитика",
+    f5t:"Умные уведомления", f5d:"Получайте уведомления о завершении или ошибках через email, рабочий стол или Telegram-бот.", f5tag:"Автоматизация",
+    f6t:"Управление лицензиями", f6d:"Простая активация на нескольких машинах. Перенос лицензий без хлопот. Без донглов.", f6tag:"Лицензирование",
+    videosLabel:"Видеоуроки",
+    videosTitle:"Изучите BatchRender<br>за несколько минут",
+    videosSub:"Пошаговые видеогайды от установки до продвинутой оптимизации очереди.",
+    ep:"ЭП", v1t:"Установка и первый запуск", v2t:"Создание первой очереди", v3t:"Продвинуто: настройка Multi-GPU", v4t:"Интеграция с 3ds Max", v5t:"Рабочий процесс Blender и Cinema 4D", v6t:"Уведомления и автоматизация",
+    pricingLabel:"Цены",
+    pricingTitle:"Простые и прозрачные цены",
+    pricingSub:"Разовая покупка. Без подписок. Бесплатные обновления на 1 год.",
+    p1tier:"ИНДИ", p1period:"Разово · 1 машина",
+    p2tier:"СТУДИЯ", p2period:"Разово · 3 машины",
+    p3tier:"КОРПОРАТИВ", p3period:"Разово · Без ограничений",
+    popularBadge:"ПОПУЛЯРНО",
+    pf_queue:"Неограниченное число задач", pf_software:"Весь поддерживаемый софт",
+    pf_updates:"1 год бесплатных обновлений", pf_updates2:"2 года бесплатных обновлений",
+    pf_multi:"Мультимашинная лицензия", pf_priority:"Приоритетная поддержка",
+    buyBtn:"Купить лицензию",
+    accountLabel:"Личный кабинет", accountTitle:"Всё в одном месте",
+    accountSub:"После покупки — войдите в кабинет, чтобы управлять лицензиями, скачивать обновления и просматривать историю платежей.",
+    tabPurchases:"Мои покупки", tabPayments:"История платежей", tabDownload:"Скачать",
+    activeStatus:"АКТИВНА", colDate:"ДАТА", colProduct:"ПРОДУКТ", colAmount:"СУММА", colStatus:"СТАТУС", paid:"Оплачено",
+    latestVer:"Текущая: v2.4.1 · Выпущена 10.11.2024",
+    testiLabel:"Отзывы", testiTitle:"Нам доверяют 3D-художники по всему миру",
+    t1:'"BatchRender сократил время рендера нашей студии вдвое. Менеджер очередей невероятно удобен, а поддержка Multi-GPU работает безупречно."',
+    t2:'"Наконец рендерер, который просто работает. Настройка заняла 10 минут, теперь я ухожу из офиса, пока очередь рендерится ночью."',
+    t2role:"Фриланс 3D-художник, Москва",
+    t3:'"Мы используем BatchRender во всей студии. Корпоративная лицензия стоит каждого цента — неограниченные машины, приоритетная поддержка."',
+    changelogLabel:"Обновления", changelogTitle:"Постоянно улучшаемся",
+    changelogSub:"Регулярные обновления с новыми функциями, улучшением производительности и исправлением ошибок.",
+    tagNew:"НОВОЕ", tagFix:"ИСПРАВЛЕНИЕ", tagImprove:"УЛУЧШЕНИЕ",
+    cl1t:"Улучшения стабильности и исправления ошибок", cl1d:"Исправлено зависание очереди на больших задачах. Улучшено управление памятью для очередей из 32+ файлов. Устранена проблема совместимости с Blender 4.0.",
+    cl2t:"Уведомления Telegram-бота + улучшения Multi-GPU", cl2d:"Добавлена интеграция с Telegram-ботом для уведомлений в реальном времени. Производительность Multi-GPU улучшена на ~18%. Новый дашборд статистики очереди.",
+    cl3t:"Поддержка Cinema 4D 2025", cl3d:"Полная совместимость с Cinema 4D 2025. Добавлена поддержка Redshift 3.6, Corona 11. Улучшена точность оценки прогресса рендера.",
+    faqLabel:"FAQ", faqTitle:"Часто задаваемые вопросы",
+    faq:[
+      {q:"Какое ПО поддерживает BatchRender?", a:"BatchRender работает с 3ds Max, Blender, Cinema 4D, Maya, V-Ray, Corona, Redshift, Octane и другими. Полный список совместимости — в документации."},
+      {q:"Это разовая покупка или подписка?", a:"Разовая покупка. Никаких подписок и ежемесячных платежей. Лицензия принадлежит вам навсегда. Бесплатные обновления включены на 1 год (2 года для Enterprise)."},
+      {q:"Можно ли использовать лицензию на нескольких компьютерах?", a:"Инди: 1 машина. Студия: 3 машины. Корпоратив: без ограничений. Деактивировать и активировать повторно можно в любое время из личного кабинета."},
+      {q:"Есть ли пробная версия?", a:"Да — доступна 14-дневная полнофункциональная пробная версия. Кредитная карта для пробного периода не нужна."},
+      {q:"Какова политика возврата?", a:"Если BatchRender вам не подошёл, свяжитесь с нами в течение 14 дней после покупки для полного возврата средств. Без лишних вопросов."},
+    ],
+    contactLabel:"Контакты", contactTitle:"Свяжитесь с нами",
+    contactSub:"Вопросы о лицензировании, техническая поддержка или обсуждение корпоративной сделки?",
+    emailLabel:"Email", responseLabel:"Время ответа", responseTime:"В течение 24 часов",
+    formName:"Ваше имя", formEmail:"Email-адрес", formSubject:"Тема", formMessage:"Сообщение",
+    subj1:"Вопрос о лицензии", subj2:"Техническая поддержка", subj3:"Корпоративный запрос", subj4:"Другое",
+    sendBtn:"Отправить сообщение",
+    trialLabel:"Пробная версия", trialTitle:"Попробуйте BatchRender бесплатно 14 дней",
+    trialSub:"Полнофункциональная пробная версия. Кредитная карта не нужна. Работает с 3ds Max, Blender, Cinema 4D, Maya и другими.",
+    trialPerk1:"Все функции доступны", trialPerk2:"Без карты", trialPerk3:"Windows · macOS · Linux", trialPerk4:"14 дней",
+    trialBtn:"Скачать пробную версию",
+    modalTitle:"Получить ссылку для скачивания", modalSub:"Мы отправим ссылку на ваш email.",
+    modalEmailPlaceholder:"ваш@email.com",
+    eulaText:'Я принимаю условия <a href="eula.html">лицензионного соглашения (EULA)</a>',
+    modalSubmit:"Получить ссылку",
+    modalSuccessTitle:"Ссылка отправлена!", modalSuccessText:"Проверьте почту — письмо со ссылкой уже в пути.",
+    footerDesc:"Профессиональный пакетный рендеринг для 3D-художников, студий и команд визуализации по всему миру.",
+    fcProduct:"Продукт", fcFeatures:"Функции", fcPricing:"Цены", fcChangelog:"Обновления", fcTutorials:"Уроки",
+    fcSupport:"Поддержка", fcContact:"Связаться", fcFaq:"FAQ", fcDocs:"Документация",
+    fcLegal:"Правовое", fcPrivacy:"Политика конфиденциальности", fcTerms:"Условия использования", fcRefund:"Политика возврата", fcEula:"EULA",
+    allRights:"Все права защищены.",
+  },
+  zh: {
+    features:"功能", tutorials:"教程", pricing:"价格", changelog:"更新日志", contact:"联系我们",
+    getStarted:"立即开始",
+    version:"v2.4.1 — 现已发布",
+    heroTitle:'<span>更智能</span>地渲染，<br>而非更费力',
+    heroSub:"专业批量渲染软件。同时处理数百个文件，轻松管理队列，比以往更快交付项目。",
+    heroCta1:"购买许可证", heroCta2:"▶ 观看演示",
+    stat1:"渲染速度提升", stat2:"活跃用户", stat3:"稳定性",
+    queueLabel:"队列进度",
+    featuresLabel:"功能特性",
+    featuresTitle:"大规模渲染<br>所需的一切",
+    featuresSub:"BatchRender 处理复杂性，让您专注于创作。",
+    f1t:"并行处理", f1d:"同时处理多个渲染任务，智能利用所有可用的CPU和GPU核心进行负载均衡。", f1tag:"核心功能",
+    f2t:"智能队列管理器", f2d:"拖放式队列管理，支持优先级控制、暂停/恢复，以及失败时自动重试。", f2tag:"工作流程",
+    f3t:"多软件支持", f3d:"与3ds Max、Blender、Cinema 4D、Maya等无缝协作。一个界面管理所有工具。", f3tag:"兼容性",
+    f4t:"实时监控", f4d:"实时CPU、GPU、内存仪表盘。通过详细日志和进度指示器跟踪每个渲染任务。", f4tag:"分析",
+    f5t:"智能通知", f5d:"通过邮件、桌面提醒或Telegram机器人集成，在渲染完成或失败时获得通知。", f5tag:"自动化",
+    f6t:"许可证管理", f6d:"在多台机器上轻松激活。无障碍转移许可证。无需加密狗。", f6tag:"许可",
+    videosLabel:"视频教程",
+    videosTitle:"几分钟内<br>学会 BatchRender",
+    videosSub:"涵盖从安装到高级队列优化的分步视频指南。",
+    ep:"集", v1t:"安装与首次启动", v2t:"设置您的第一个队列", v3t:"高级：多GPU配置", v4t:"与3ds Max集成", v5t:"Blender和Cinema 4D工作流程", v6t:"通知与自动化",
+    pricingLabel:"价格",
+    pricingTitle:"简单透明的定价",
+    pricingSub:"一次性购买。无订阅。免费更新1年。",
+    p1tier:"独立版", p1period:"一次性 · 1台机器",
+    p2tier:"工作室版", p2period:"一次性 · 3台机器",
+    p3tier:"企业版", p3period:"一次性 · 无限机器",
+    popularBadge:"最受欢迎",
+    pf_queue:"无限队列任务", pf_software:"所有支持的软件",
+    pf_updates:"1年免费更新", pf_updates2:"2年免费更新",
+    pf_multi:"多机器许可证", pf_priority:"优先支持",
+    buyBtn:"购买许可证",
+    accountLabel:"您的账户", accountTitle:"一切尽在掌握",
+    accountSub:"购买后登录，管理您的许可证，下载更新，查看付款历史。",
+    tabPurchases:"我的购买", tabPayments:"付款历史", tabDownload:"下载",
+    activeStatus:"有效", colDate:"日期", colProduct:"产品", colAmount:"金额", colStatus:"状态", paid:"已付款",
+    latestVer:"当前版本：v2.4.1 · 发布于2024-11-10",
+    testiLabel:"用户评价", testiTitle:"全球3D艺术家的信赖之选",
+    t1:'"BatchRender将我们工作室的渲染时间缩短了一半。队列管理器非常直观，多GPU支持完美运行。"',
+    t2:'"终于找到了一个真正好用的批量渲染器。设置只需10分钟，现在我可以在队列渲染时离开办公室。"',
+    t2role:"自由职业3D艺术家，莫斯科",
+    t3:'"我们整个工作室都在使用BatchRender。企业许可证物超所值——无限机器，优先支持。"',
+    changelogLabel:"更新日志", changelogTitle:"持续改进",
+    changelogSub:"定期更新，包含新功能、性能改进和错误修复。",
+    tagNew:"新功能", tagFix:"修复", tagImprove:"改进",
+    cl1t:"稳定性改进与错误修复", cl1d:"修复了大批量任务时的队列冻结问题。改进了32+文件队列的内存管理。解决了Blender 4.0兼容性问题。",
+    cl2t:"Telegram机器人通知 + 多GPU改进", cl2d:"添加了Telegram机器人集成，实现实时通知。多GPU性能提升约18%。新增队列统计仪表盘。",
+    cl3t:"支持Cinema 4D 2025", cl3d:"完全兼容Cinema 4D 2025。新增对Redshift 3.6、Corona 11的支持。改进了渲染进度估算精度。",
+    faqLabel:"常见问题", faqTitle:"常见问题解答",
+    faq:[
+      {q:"BatchRender支持哪些软件？", a:"BatchRender支持3ds Max、Blender、Cinema 4D、Maya、V-Ray、Corona、Redshift、Octane等。完整兼容列表请查看文档。"},
+      {q:"这是一次性购买还是订阅？", a:"一次性购买。没有订阅，没有月费。许可证永久有效。免费更新包含1年（企业版2年）。"},
+      {q:"我可以在多台电脑上使用许可证吗？", a:"独立版：1台。工作室版：3台。企业版：无限制。可随时从账户中停用和重新激活。"},
+      {q:"有试用版吗？", a:"有——提供14天完整功能试用版，无需信用卡即可试用。"},
+      {q:"退款政策是什么？", a:"如果BatchRender不适合您，请在购买后14天内联系我们，我们将全额退款，无需解释。"},
+    ],
+    contactLabel:"联系", contactTitle:"联系我们",
+    contactSub:"关于许可证的问题、技术支持需求或讨论企业方案？",
+    emailLabel:"邮箱", responseLabel:"响应时间", responseTime:"24小时内",
+    formName:"您的姓名", formEmail:"邮箱地址", formSubject:"主题", formMessage:"消息",
+    subj1:"许可证问题", subj2:"技术支持", subj3:"企业咨询", subj4:"其他",
+    sendBtn:"发送消息",
+    trialLabel:"免费试用", trialTitle:"免费试用BatchRender 14天",
+    trialSub:"完整功能试用版。无需信用卡。支持3ds Max、Blender、Cinema 4D、Maya等软件。",
+    trialPerk1:"全功能解锁", trialPerk2:"无需信用卡", trialPerk3:"Windows · macOS · Linux", trialPerk4:"14天试用",
+    trialBtn:"下载免费试用版",
+    modalTitle:"获取试用下载链接", modalSub:"我们将把下载链接发送到您的邮箱。",
+    modalEmailPlaceholder:"您的邮箱@example.com",
+    eulaText:'我接受<a href="eula.html">最终用户许可协议（EULA）</a>',
+    modalSubmit:"获取下载链接",
+    modalSuccessTitle:"链接已发送！", modalSuccessText:"请查看您的收件箱，下载链接已发送。",
+    footerDesc:"面向全球3D艺术家、工作室和可视化团队的专业批量渲染软件。",
+    fcProduct:"产品", fcFeatures:"功能", fcPricing:"价格", fcChangelog:"更新日志", fcTutorials:"教程",
+    fcSupport:"支持", fcContact:"联系我们", fcFaq:"常见问题", fcDocs:"文档",
+    fcLegal:"法律", fcPrivacy:"隐私政策", fcTerms:"服务条款", fcRefund:"退款政策", fcEula:"最终用户协议",
+    allRights:"版权所有。",
+  }
+};
+
+let currentLang = 'en';
+
+function setLang(lang) {
+  currentLang = lang;
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.lang-btn').forEach(b => { if(b.textContent.trim().toLowerCase() === lang || (lang==='zh' && b.textContent.trim()==='中文')) b.classList.add('active'); });
+  // fix active for zh
+  document.querySelectorAll('.lang-btn').forEach(b => {
+    const map = {'en':'EN','ru':'RU','zh':'中文'};
+    if(b.textContent.trim() === map[lang]) b.classList.add('active');
+    else b.classList.remove('active');
+  });
+  const t = T[lang];
+  // Nav links
+  const navKeys = ['features','tutorials','pricing','changelog','contact'];
+  document.querySelectorAll('[data-nav-key]').forEach(el => {
+    const k = el.getAttribute('data-nav-key');
+    if(t[k]) el.textContent = t[k];
+  });
+  // Keyed elements
+  document.querySelectorAll('[data-key]').forEach(el => {
+    const k = el.getAttribute('data-key');
+    if(t[k] !== undefined) el.innerHTML = t[k];
+  });
+  // FAQ
+  buildFaq(lang);
+  // html lang attr
+  document.documentElement.lang = lang;
+  // update EULA label if modal is visible
+  updateEulaLabel();
+}
+
+function buildFaq(lang) {
+  const t = T[lang];
+  const list = document.getElementById('faqList');
+  if(!list || !t.faq) return;
+  list.innerHTML = '';
+  t.faq.forEach(item => {
+    const div = document.createElement('div');
+    div.className = 'faq-item';
+    div.innerHTML = `<button class="faq-q" onclick="toggleFaq(this)">${item.q}<span class="faq-icon">+</span></button><div class="faq-a"><div class="faq-a-inner">${item.a}</div></div>`;
+    list.appendChild(div);
+  });
+}
+
+function toggleFaq(btn) {
+  const item = btn.closest('.faq-item');
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if(!isOpen) item.classList.add('open');
+}
+
+function switchTab(btn, tabId) {
+  document.querySelectorAll('.acc-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.acc-content').forEach(c => c.style.display = 'none');
+  const target = document.getElementById(tabId);
+  if(target) target.style.display = 'block';
+}
+
+/* ── TRIAL MODAL ── */
+function openTrialModal() {
+  const modal = document.getElementById('trialModal');
+  modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  // reset to form view
+  document.getElementById('modalForm').style.display = 'block';
+  document.getElementById('modalSuccess').style.display = 'none';
+  document.getElementById('trialEmail').value = '';
+  document.getElementById('eulaCheck').checked = false;
+  // update EULA label text for current language
+  updateEulaLabel();
+}
+
+function closeTrialModal() {
+  document.getElementById('trialModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function closeModalOutside(e) {
+  if(e.target === document.getElementById('trialModal')) closeTrialModal();
+}
+
+function updateEulaLabel() {
+  const t = T[currentLang];
+  const label = document.getElementById('eulaLabel');
+  if(label && t.eulaText) label.innerHTML = t.eulaText;
+}
+
+function submitTrialForm() {
+  const email = document.getElementById('trialEmail').value.trim();
+  const agreed = document.getElementById('eulaCheck').checked;
+  const t = T[currentLang];
+
+  // basic email validation
+  if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    document.getElementById('trialEmail').focus();
+    document.getElementById('trialEmail').style.borderColor = '#ff5a5a';
+    setTimeout(() => document.getElementById('trialEmail').style.borderColor = '', 1500);
+    return;
+  }
+  if(!agreed) {
+    document.getElementById('eulaCheck').style.outline = '2px solid #ff5a5a';
+    setTimeout(() => document.getElementById('eulaCheck').style.outline = '', 1500);
+    return;
+  }
+
+  // Simulate sending (replace with real API call)
+  const btn = document.getElementById('modalSubmitBtn');
+  btn.disabled = true;
+  btn.textContent = '...';
+  setTimeout(() => {
+    document.getElementById('modalForm').style.display = 'none';
+    const success = document.getElementById('modalSuccess');
+    success.style.display = 'block';
+    // update success text for current lang
+    success.querySelector('[data-key="modalSuccessTitle"]').textContent = t.modalSuccessTitle || 'Link Sent!';
+    success.querySelector('[data-key="modalSuccessText"]').textContent = t.modalSuccessText || 'Check your inbox.';
+    btn.disabled = false;
+    // auto-close after 4s
+    setTimeout(closeTrialModal, 4000);
+  }, 900);
+}
+
+// Patch setLang to also update EULA label when language changes
+const _origSetLang = setLang;
+// extend via hook: after setLang runs, refresh EULA label if modal open
+document.addEventListener('DOMContentLoaded', () => {
+  setLang('en');
+});
+
+// close modal on Escape
+document.addEventListener('keydown', e => {
+  if(e.key === 'Escape') closeTrialModal();
+});
+</script>
 </body>
 </html>
