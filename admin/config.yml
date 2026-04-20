@@ -1,0 +1,80 @@
+backend:
+  name: github
+  repo: PavTer/batchrender-site
+  branch: main
+  # OAuth proxy URL will be added here after setup
+
+media_folder: "img"
+public_folder: "/img"
+
+locale: "en"
+
+collections:
+  - name: "content"
+    label: "Site Content"
+    files:
+      - file: "js/main.js"
+        name: "translations"
+        label: "Website Content & Translations"
+        format: "javascript"
+        fields:
+          - label: "Hero Section"
+            name: "hero"
+            widget: "object"
+            fields:
+              - {label: "Badge Text (EN)", name: "badge_en", widget: "string"}
+              - {label: "Title 1 (EN)", name: "title1_en", widget: "string"}
+              - {label: "Title 2 (EN)", name: "title2_en", widget: "string"}
+              - {label: "Title 3 (EN)", name: "title3_en", widget: "string"}
+              - {label: "Description (EN)", name: "desc_en", widget: "text"}
+              - {label: "CTA Button 1 (EN)", name: "cta1_en", widget: "string"}
+              - {label: "CTA Button 2 (EN)", name: "cta2_en", widget: "string"}
+              - {label: "Badge Text (RU)", name: "badge_ru", widget: "string"}
+              - {label: "Title 1 (RU)", name: "title1_ru", widget: "string"}
+              - {label: "Title 2 (RU)", name: "title2_ru", widget: "string"}
+              - {label: "Title 3 (RU)", name: "title3_ru", widget: "string"}
+              - {label: "Description (RU)", name: "desc_ru", widget: "text"}
+              - {label: "CTA Button 1 (RU)", name: "cta1_ru", widget: "string"}
+              - {label: "CTA Button 2 (RU)", name: "cta2_ru", widget: "string"}
+
+          - label: "Features Section"
+            name: "features"
+            widget: "object"
+            fields:
+              - {label: "Section Tag (EN)", name: "tag_en", widget: "string"}
+              - {label: "Section Title (EN)", name: "title_en", widget: "string"}
+              - {label: "Section Subtitle (EN)", name: "sub_en", widget: "text"}
+              - {label: "Section Tag (RU)", name: "tag_ru", widget: "string"}
+              - {label: "Section Title (RU)", name: "title_ru", widget: "string"}
+              - {label: "Section Subtitle (RU)", name: "sub_ru", widget: "text"}
+
+          - label: "Pricing Section"
+            name: "pricing"
+            widget: "object"
+            fields:
+              - {label: "Section Tag (EN)", name: "tag_en", widget: "string"}
+              - {label: "Section Title (EN)", name: "title_en", widget: "string"}
+              - {label: "Section Subtitle (EN)", name: "sub_en", widget: "text"}
+              - {label: "Professional Plan Price", name: "pro_price", widget: "string"}
+              - {label: "Professional Plan Description (EN)", name: "pro_desc_en", widget: "text"}
+              - {label: "Professional Plan Description (RU)", name: "pro_desc_ru", widget: "text"}
+
+          - label: "Contact Section"
+            name: "contact"
+            widget: "object"
+            fields:
+              - {label: "Section Tag (EN)", name: "tag_en", widget: "string"}
+              - {label: "Section Title (EN)", name: "title_en", widget: "string"}
+              - {label: "Section Subtitle (EN)", name: "sub_en", widget: "text"}
+              - {label: "Support Email", name: "email", widget: "string"}
+              - {label: "Section Tag (RU)", name: "tag_ru", widget: "string"}
+              - {label: "Section Title (RU)", name: "title_ru", widget: "string"}
+              - {label: "Section Subtitle (RU)", name: "sub_ru", widget: "text"}
+
+  - name: "images"
+    label: "Images & Media"
+    folder: "img"
+    create: true
+    fields:
+      - {label: "Image", name: "image", widget: "image"}
+      - {label: "Alt Text", name: "alt", widget: "string"}
