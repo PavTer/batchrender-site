@@ -33,44 +33,56 @@ const T = {
       tag: 'Pricing',
       title: 'Simple, honest pricing',
       sub: 'One-time license. No subscriptions. Yours forever.',
-      plans: [
-        {
-          name:'Starter', price:'29', currency:'$', period:'one-time',
-          desc:'For freelancers and beginners.',
-          features:['Up to 100 files/batch','Basic codec presets','Email support','1 machine license','Free updates for 1 year'],
-          missing:['GPU acceleration','Scheduled rendering','Priority support','Advanced logging'],
-          cta:'Buy Starter'
-        },
-        {
-          name:'Professional', price:'79', currency:'$', period:'one-time', popular:true,
-          desc:'Best for working professionals.',
-          features:['Unlimited files/batch','All codec presets','GPU acceleration','Scheduled rendering','2 machine licenses','Priority email support','Free updates for 3 years','Detailed export logs'],
-          missing:[],
-          cta:'Buy Professional'
-        },
-        {
-          name:'Studio', price:'149', currency:'$', period:'one-time',
-          desc:'For teams and studios.',
-          features:['Unlimited files/batch','All codec presets','GPU acceleration','Scheduled rendering','5 machine licenses','Priority + phone support','Lifetime free updates','Advanced logging & CSV','Team license management'],
-          missing:[],
-          cta:'Buy Studio'
-        }
-      ],
+      price: '14.99',
+      desc: 'Best for working professionals',
       note: '30-day money-back guarantee. No questions asked.'
     },
     contact: {
       tag: 'Contact',
       title: 'Get in touch',
       sub: "Have a question, issue, or feedback? We'll get back to you within 24 hours.",
-      info: [
-        { icon:'✉️', label:'Email', value:'support@batchrender.com' },
-        { icon:'📍', label:'Location', value:'Available worldwide' },
-        { icon:'⏰', label:'Support hours', value:'Mon–Fri, 9:00–18:00 UTC' },
-      ]
+      email: 'support@batchrender.com'
     },
     footer: {
       desc:'Professional batch rendering software for video creators.',
-      rights:'© 2025 BatchRender. All rights reserved.',
+      rights:'© 2026 BatchRender. All rights reserved.',
+    }
+  },
+  ru: {
+    nav: { features:'Функции', pricing:'Цены', tutorials:'Уроки', docs:'Документация', contact:'Контакт', login:'Войти', signup:'Начать' },
+    hero: {
+      badge: 'Версия 2.1 — Доступна сейчас',
+      title1: 'Пакетный рендер.',
+      title2: 'Умнее.',
+      title3: 'Быстрее.',
+      desc: 'Профессиональный инструмент для пакетного рендеринга видеофайлов. Очередь, автоматизация и обработка сотен файлов — пока вы спите.',
+      cta1: 'Начать', cta2: 'Смотреть демо',
+      stat1n:'500+', stat1l:'Активных пользователей',
+      stat2n:'99%', stat2l:'Удовлетворённость',
+      stat3n:'10×', stat3l:'Быстрее рендеринг',
+    },
+    features: {
+      tag: 'Функции',
+      title: 'Всё необходимое для рендеринга в масштабе',
+      sub: 'Мощный, гибкий и созданный для профессиональных видеорабочих процессов.',
+    },
+    pricing: {
+      tag: 'Цены',
+      title: 'Простая, честная цена',
+      sub: 'Разовая лицензия. Без подписок. Ваша навсегда.',
+      price: '14.99',
+      desc: 'Лучший выбор для профессионалов',
+      note: '30-дневная гарантия возврата денег. Без вопросов.'
+    },
+    contact: {
+      tag: 'Контакт',
+      title: 'Связаться с нами',
+      sub: 'Есть вопрос, проблема или отзыв? Мы ответим в течение 24 часов.',
+      email: 'support@batchrender.com'
+    },
+    footer: {
+      desc:'Профессиональное ПО для пакетного рендеринга для создателей видео.',
+      rights:'© 2026 BatchRender. Все права защищены.',
     }
   }
 };
