@@ -2,7 +2,7 @@ backend:
   name: github
   repo: PavTer/batchrender-site
   branch: main
-  # OAuth proxy URL will be added here after setup
+  base_url: https://batchrender-oauth.vercel.app
 
 media_folder: "img"
 public_folder: "/img"
