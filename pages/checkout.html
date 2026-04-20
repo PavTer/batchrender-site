@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout — BatchRender</title>
+  <link rel="icon" type="image/png" href="../img/logo.png">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-page="checkout">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo"><img src="../img/logo.png" alt="BatchRender Logo"></a>
+    <div style="font-size:0.85rem;color:var(--text3)" id="ch-secure">🔒 Secure Checkout</div>
+    <div class="nav-right">
+      <div class="lang-switcher">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="ru">RU</button>
+        <button class="lang-btn" data-lang="zh">中文</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div style="min-height:100vh;padding:100px 24px 60px;background:radial-gradient(ellipse 60% 40% at 50% 0%,rgba(123,94,232,0.08) 0%,transparent 70%)">
+  <div style="max-width:960px;margin:0 auto">
+    <h1 style="font-size:1.8rem;margin-bottom:8px;font-family:'Syne',sans-serif" id="ch-title">Complete Your Purchase</h1>
+    <p style="color:var(--text3);margin-bottom:40px" id="ch-sub">You're one step away from faster rendering</p>
+
+    <div style="display:grid;grid-template-columns:1.3fr 1fr;gap:32px;align-items:start">
+      <!-- LEFT: Form -->
+      <div>
+        <!-- Plan selector -->
+        <div class="table-wrap" style="margin-bottom:20px">
+          <div class="table-header"><div class="table-title" id="ch-plan-title">Select Plan</div></div>
+          <div style="padding:20px;display:flex;flex-direction:column;gap:10px" id="plan-selector">
+            <label style="display:flex;align-items:center;gap:12px;padding:14px;border:1px solid var(--border);border-radius:10px;cursor:pointer;transition:border-color 0.2s" id="plan-starter">
+              <input type="radio" name="plan" value="starter" style="accent-color:var(--violet)">
+              <div style="flex:1"><div style="font-weight:600;color:var(--text)" id="ch-starter-name">Starter</div><div style="font-size:0.8rem;color:var(--text3)" id="ch-starter-desc">1 machine · 1yr updates</div></div>
+              <div style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.3rem">$29</div>
+            </label>
+            <label style="display:flex;align-items:center;gap:12px;padding:14px;border:2px solid var(--violet);border-radius:10px;cursor:pointer;background:rgba(123,94,232,0.06)" id="plan-pro">
+              <input type="radio" name="plan" value="professional" checked style="accent-color:var(--violet)">
+              <div style="flex:1">
+                <div style="display:flex;align-items:center;gap:8px">
+                  <div style="font-weight:600;color:var(--text)" id="ch-pro-name">Professional</div>
+                  <span class="badge badge-blue" style="font-size:0.65rem" id="ch-popular">Most Popular</span>
+                </div>
+                <div style="font-size:0.8rem;color:var(--text3)" id="ch-pro-desc">2 machines · 3yr updates · GPU support</div>
+              </div>
+              <div style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.3rem" class="grad-text">$79</div>
+            </label>
+            <label style="display:flex;align-items:center;gap:12px;padding:14px;border:1px solid var(--border);border-radius:10px;cursor:pointer;transition:border-color 0.2s" id="plan-studio">
+              <input type="radio" name="plan" value="studio" style="accent-color:var(--violet)">
+              <div style="flex:1"><div style="font-weight:600;color:var(--text)" id="ch-studio-name">Studio</div><div style="font-size:0.8rem;color:var(--text3)" id="ch-studio-desc">5 machines · Lifetime updates · Team</div></div>
+              <div style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.3rem">$149</div>
+            </label>
+          </div>
+        </div>
+
+        <!-- Account info -->
+        <div class="table-wrap" style="margin-bottom:20px">
+          <div class="table-header"><div class="table-title" id="ch-account-title">Account Information</div></div>
+          <div style="padding:20px">
+            <div class="form">
+              <div class="form-row">
+                <div class="form-group"><label class="form-label" id="ch-fname">First Name</label><input type="text" class="form-input" placeholder="John" required></div>
+                <div class="form-group"><label class="form-label" id="ch-lname">Last Name</label><input type="text" class="form-input" placeholder="Smith" required></div>
+              </div>
+              <div class="form-group"><label class="form-label" id="ch-email">Email</label><input type="email" class="form-input" placeholder="you@example.com" required></div>
+              <div class="form-group"><label class="form-label" id="ch-create-pass">Create Password</label><input type="password" class="form-input" placeholder="Min. 8 characters" required minlength="8"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Payment notice -->
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:18px 20px;display:flex;align-items:flex-start;gap:14px">
+          <div style="font-size:1.3rem">🔒</div>
+          <div>
+            <div style="font-size:0.88rem;font-weight:600;color:var(--text);margin-bottom:4px" id="ch-payment-title">Secure Payment via Stripe</div>
+            <div style="font-size:0.82rem;color:var(--text3)" id="ch-payment-desc">You'll be redirected to Stripe's secure checkout to complete payment. We never store your card details.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Summary -->
+      <div>
+        <div class="table-wrap" style="position:sticky;top:100px">
+          <div class="table-header"><div class="table-title" id="ch-summary-title">Order Summary</div></div>
+          <div style="padding:20px">
+            <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid var(--border)">
+              <img src="../img/logo.png" style="height:40px">
+              <div>
+                <div style="font-weight:600;color:var(--text)" id="sum-product">BatchRender Professional</div>
+                <div style="font-size:0.78rem;color:var(--text3)" id="sum-desc">2 machines · 3 years updates</div>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px">
+              <div style="display:flex;justify-content:space-between;font-size:0.88rem"><span style="color:var(--text2)" id="sum-price-label">License price</span><span style="color:var(--text)">$79.00</span></div>
+              <div style="display:flex;justify-content:space-between;font-size:0.88rem"><span style="color:var(--text2)" id="sum-tax">Tax</span><span style="color:var(--text3)">Calculated at checkout</span></div>
+            </div>
+            <div style="display:flex;justify-content:space-between;padding-top:16px;border-top:1px solid var(--border);margin-bottom:20px">
+              <span style="font-family:'Syne',sans-serif;font-weight:700;font-size:1rem" id="sum-total">Total</span>
+              <span style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.4rem" class="grad-text">$79.00</span>
+            </div>
+            <button class="btn btn-primary" style="width:100%;justify-content:center;font-size:1rem" onclick="handleCheckout()">
+              <span id="ch-btn">Complete Purchase →</span>
+            </button>
+            <div style="display:flex;flex-direction:column;gap:8px;margin-top:16px">
+              <div style="font-size:0.78rem;color:var(--text3);display:flex;align-items:center;gap:6px">✓ <span id="sum-g1">30-day money-back guarantee</span></div>
+              <div style="font-size:0.78rem;color:var(--text3);display:flex;align-items:center;gap:6px">✓ <span id="sum-g2">Instant license delivery by email</span></div>
+              <div style="font-size:0.78rem;color:var(--text3);display:flex;align-items:center;gap:6px">✓ <span id="sum-g3">One-time payment, no subscription</span></div>
+              <div style="font-size:0.78rem;color:var(--text3);display:flex;align-items:center;gap:6px">✓ <span id="sum-g4">Secure payment via Stripe</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="toast" class="toast"></div>
+<script src="../js/main.js"></script>
+<script>
+function handleCheckout() {
+  showToast('Redirecting to secure payment...', 'success');
+  setTimeout(() => { window.location.href = 'dashboard.html'; }, 2000);
+}
+const chT = {
+  en: { secure:'🔒 Secure Checkout', title:'Complete Your Purchase', sub:"You're one step away from faster rendering", planTitle:'Select Plan', accountTitle:'Account Information', fname:'First Name', lname:'Last Name', email:'Email', createPass:'Create Password', payTitle:'Secure Payment via Stripe', payDesc:"You'll be redirected to Stripe's secure checkout. We never store your card details.", summaryTitle:'Order Summary', btn:'Complete Purchase →', g1:'30-day money-back guarantee', g2:'Instant license delivery by email', g3:'One-time payment, no subscription', g4:'Secure payment via Stripe', total:'Total', tax:'Tax', priceLabel:'License price', popular:'Most Popular' },
+  ru: { secure:'🔒 Безопасная оплата', title:'Завершите покупку', sub:'Вы в одном шаге от более быстрого рендеринга', planTitle:'Выберите план', accountTitle:'Информация об аккаунте', fname:'Имя', lname:'Фамилия', email:'Email', createPass:'Создайте пароль', payTitle:'Безопасная оплата через Stripe', payDesc:'Вы будете перенаправлены в безопасную форму оплаты Stripe. Мы не храним данные карты.', summaryTitle:'Итого', btn:'Оплатить →', g1:'30-дневная гарантия возврата', g2:'Мгновенная доставка лицензии по email', g3:'Единоразовый платёж, без подписки', g4:'Безопасная оплата через Stripe', total:'Итого', tax:'Налог', priceLabel:'Стоимость лицензии', popular:'Популярный' },
+  zh: { secure:'🔒 安全结账', title:'完成购买', sub:'距离更快渲染只差一步', planTitle:'选择方案', accountTitle:'账户信息', fname:'名', lname:'姓', email:'电子邮件', createPass:'创建密码', payTitle:'通过Stripe安全支付', payDesc:'您将被重定向到Stripe的安全结账页面。我们从不存储您的卡片信息。', summaryTitle:'订单摘要', btn:'完成购买 →', g1:'30天退款保证', g2:'立即通过邮件发送授权', g3:'一次性付款，无订阅', g4:'通过Stripe安全支付', total:'合计', tax:'税费', priceLabel:'授权价格', popular:'最受欢迎' }
+};
+function renderPage() {
+  const t = chT[lang];
+  ['ch-secure','ch-title','ch-sub','ch-plan-title','ch-account-title','ch-fname','ch-lname','ch-email','ch-create-pass','ch-btn','ch-summary-title','sum-g1','sum-g2','sum-g3','sum-g4','sum-total','sum-tax','sum-price-label','ch-popular','ch-payment-title','ch-payment-desc'].forEach(id => {
+    const el = document.getElementById(id);
+    const key = id.replace('ch-','').replace('sum-','').replace(/-([a-z])/g,(_,c)=>c.toUpperCase());
+    if (el && t[key]) el.textContent = t[key];
+    if (el && id==='ch-payment-title') el.textContent = t.payTitle;
+    if (el && id==='ch-payment-desc') el.textContent = t.payDesc;
+  });
+}
+</script>
+</body>
+</html>

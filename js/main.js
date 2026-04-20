@@ -90,6 +90,18 @@ const T = {
         { text:'"We use BatchRender across our whole studio. The team licensing and scheduled jobs are exactly what we needed."', name:'Dmitri R.', role:'VFX Studio Lead, Moscow', init:'DR' },
       ]
     },
+    faq: {
+      tag: 'FAQ',
+      title: 'Frequently asked questions',
+      items: [
+        { q:'What operating systems are supported?', a:'BatchRender runs on Windows 10/11 (64-bit). macOS support is planned for Q3 2025.' },
+        { q:'Is this a subscription or one-time purchase?', a:'One-time purchase. Pay once, use forever. Free updates are included for the period specified in your plan.' },
+        { q:'Can I use it on multiple computers?', a:'Yes — Starter allows 1 machine, Professional 2 machines, Studio 5 machines. You can transfer a license by deactivating it on one machine.' },
+        { q:'What video formats are supported?', a:'Input: MP4, MOV, MKV, AVI, WMV, FLV, WebM and more. Output depends on installed codecs and your settings.' },
+        { q:'Do I need a powerful GPU?', a:"GPU acceleration is optional. BatchRender works on any machine, but a compatible NVIDIA, Intel or AMD GPU will significantly speed up rendering." },
+        { q:'What is your refund policy?', a:'We offer a full 30-day money-back guarantee. Contact support@batchrender.com within 30 days of purchase.' },
+      ]
+    },
     contact: {
       tag: 'Contact',
       title: 'Get in touch',
@@ -115,28 +127,522 @@ const T = {
       product:['Features','Pricing','Changelog','Roadmap'],
       support:['Documentation','Video Tutorials','Contact Support','Refund Policy'],
       legal:['Privacy Policy','Terms of Service','EULA','Cookie Policy'],
-      rights:'© 2026 BatchRender. All rights reserved.',
+      rights:'© 2025 BatchRender. All rights reserved.',
+    }
+  },
+
+  ru: {
+    nav: { features:'Функции', pricing:'Цены', tutorials:'Уроки', docs:'Документация', contact:'Контакт', login:'Войти', signup:'Начать' },
+    hero: {
+      badge: 'Версия 2.1 — Доступна сейчас',
+      title1: 'Пакетный рендер.',
+      title2: 'Умнее.',
+      title3: 'Быстрее.',
+      desc: 'Профессиональный инструмент для пакетного рендеринга видеофайлов. Очередь, автоматизация и обработка сотен файлов — пока вы спите.',
+      cta1: 'Начать', cta2: 'Смотреть демо',
+      stat1n:'500+', stat1l:'Активных пользователей',
+      stat2n:'99%', stat2l:'Удовлетворённость',
+      stat3n:'10×', stat3l:'Быстрее рендеринг',
+    },
+    features: {
+      tag: 'Функции',
+      title: 'Всё необходимое для рендеринга в масштабе',
+      sub: 'Мощный, гибкий и созданный для профессиональных видеорабочих процессов.',
+      items: [
+        { icon:'⚡', title:'Движок очереди', desc:'Добавляйте неограниченное количество файлов. Drag & drop, слежение за папкой или CLI.' },
+        { icon:'🎛️', title:'Настройки для каждого файла', desc:'Задайте кодек, битрейт, разрешение и формат вывода для каждого файла отдельно.' },
+        { icon:'🔄', title:'Автоповтор', desc:'Ошибочные задачи повторяются автоматически с настраиваемой задержкой.' },
+        { icon:'📊', title:'Прогресс в реальном времени', desc:'Отслеживайте каждую задачу рендеринга с прогресс-барами, ETA и скоростью.' },
+        { icon:'📁', title:'Умный вывод', desc:'Пользовательские шаблоны именования, структура папок и пресеты форматов.' },
+        { icon:'🔔', title:'Уведомления', desc:'Получайте уведомления о завершении или ошибке через десктоп или email-вебхук.' },
+        { icon:'🖥️', title:'Ускорение GPU', desc:'Используйте NVENC, QuickSync и AMD VCE для аппаратного ускорения.' },
+        { icon:'⏱️', title:'Расписание рендеринга', desc:'Планируйте пакетные задачи на ночь или в нерабочие часы.' },
+        { icon:'📋', title:'Подробные логи', desc:'Полные логи рендеринга для каждой задачи. Экспорт в CSV для анализа.' },
+      ]
+    },
+    how: {
+      tag: 'Как это работает',
+      title: 'От файлов до готовых рендеров за 4 шага',
+      steps: [
+        { title:'Добавьте файлы', desc:'Перетащите файлы или укажите папку для автоматического отслеживания.' },
+        { title:'Настройте параметры', desc:'Задайте кодек, вывод, разрешение для каждого файла или глобально.' },
+        { title:'Запустите очередь', desc:'Нажмите «Рендер» — BatchRender сделает всё остальное.' },
+        { title:'Получите результат', desc:'Готовые файлы окажутся именно там, где вы их задали.' },
+      ]
+    },
+    pricing: {
+      tag: 'Цены',
+      title: 'Простые и честные цены',
+      sub: 'Единоразовая лицензия. Без подписки. Навсегда ваша.',
+      plans: [
+        {
+          name:'Стартер', price:'29', currency:'$', period:'единоразово',
+          desc:'Для фрилансеров и начинающих.',
+          features:['До 100 файлов/пакет','Базовые пресеты кодеков','Поддержка по email','1 машина','Бесплатные обновления 1 год'],
+          missing:['Ускорение GPU','Расписание рендеринга','Приоритетная поддержка','Расширенные логи'],
+          cta:'Купить Стартер'
+        },
+        {
+          name:'Профессионал', price:'79', currency:'$', period:'единоразово', popular:true,
+          desc:'Лучший выбор для профессионалов.',
+          features:['Неограниченные файлы/пакет','Все пресеты кодеков','Ускорение GPU','Расписание рендеринга','2 машины','Приоритетная поддержка','Бесплатные обновления 3 года','Экспорт логов'],
+          missing:[],
+          cta:'Купить Профессионал'
+        },
+        {
+          name:'Студия', price:'149', currency:'$', period:'единоразово',
+          desc:'Для команд и студий.',
+          features:['Неограниченные файлы/пакет','Все пресеты кодеков','Ускорение GPU','Расписание рендеринга','5 машин','Приоритетная + телефонная поддержка','Пожизненные обновления','Расширенные логи + CSV','Управление командной лицензией'],
+          missing:[],
+          cta:'Купить Студия'
+        }
+      ],
+      note: '30-дневная гарантия возврата денег. Без лишних вопросов.'
+    },
+    tutorials: {
+      tag: 'Видеоуроки',
+      title: 'Изучите BatchRender быстро',
+      sub: 'От установки до сложных рабочих процессов — чёткие видеоуроки для каждого уровня.',
+      items: [
+        { title:'Быстрый старт: установка и первый рендер', dur:'4:32', level:'Начинающий' },
+        { title:'Создание первой очереди пакетного рендера', dur:'6:15', level:'Начинающий' },
+        { title:'Объяснение пресетов кодеков', dur:'8:44', level:'Средний' },
+        { title:'Настройка ускорения GPU (NVENC)', dur:'5:20', level:'Средний' },
+        { title:'Расписание рендеринга и автоматизация', dur:'7:01', level:'Продвинутый' },
+        { title:'Расширенные логи и экспорт в CSV', dur:'5:55', level:'Продвинутый' },
+      ]
+    },
+    testimonials: {
+      tag: 'Отзывы',
+      title: 'Любимый инструмент видеопрофессионалов',
+      items: [
+        { text:'"BatchRender сократил мою ночную очередь рендеринга с 8 часов до 40 минут. Теперь я не могу без него работать."', name:'Маркус Х.', role:'Моушн-дизайнер, Берлин', init:'МХ' },
+        { text:'"Наконец-то пакетный рендерер, который просто работает. Настройка заняла 5 минут, а ускорение GPU — это революция."', name:'Сара К.', role:'Пост-продакшн, Лондон', init:'СК' },
+        { text:'"Мы используем BatchRender по всей студии. Командное лицензирование и расписание задач — именно то, что нам было нужно."', name:'Дмитрий Р.', role:'Руководитель VFX-студии, Москва', init:'ДР' },
+      ]
+    },
+    faq: {
+      tag: 'FAQ',
+      title: 'Часто задаваемые вопросы',
+      items: [
+        { q:'Какие операционные системы поддерживаются?', a:'BatchRender работает на Windows 10/11 (64-бит). Поддержка macOS запланирована на Q3 2025.' },
+        { q:'Это подписка или единоразовая покупка?', a:'Единоразовая покупка. Платите один раз, используйте навсегда. Бесплатные обновления включены на срок, указанный в вашем плане.' },
+        { q:'Можно ли использовать на нескольких компьютерах?', a:'Да — Стартер: 1 машина, Профессионал: 2 машины, Студия: 5 машин. Вы можете перенести лицензию, деактивировав её на одной машине.' },
+        { q:'Какие видеоформаты поддерживаются?', a:'Вход: MP4, MOV, MKV, AVI, WMV, FLV, WebM и другие. Выход зависит от установленных кодеков и ваших настроек.' },
+        { q:'Нужна ли мощная видеокарта?', a:'Ускорение GPU опционально. BatchRender работает на любом компьютере, но совместимый GPU значительно ускорит рендеринг.' },
+        { q:'Какова ваша политика возврата?', a:'Мы предоставляем полный возврат в течение 30 дней. Обратитесь на support@batchrender.com в течение 30 дней после покупки.' },
+      ]
+    },
+    contact: {
+      tag: 'Контакт',
+      title: 'Свяжитесь с нами',
+      sub: 'Есть вопрос, проблема или отзыв? Мы ответим в течение 24 часов.',
+      info: [
+        { icon:'✉️', label:'Email', value:'support@batchrender.com' },
+        { icon:'📍', label:'Местоположение', value:'Доступно по всему миру' },
+        { icon:'⏰', label:'Часы поддержки', value:'Пн–Пт, 9:00–18:00 UTC' },
+      ],
+      form: {
+        name:'Полное имя', email:'Email адрес', subject:'Тема',
+        subjects:['Общий вопрос','Техническая поддержка','Оплата','Партнёрство','Другое'],
+        message:'Ваше сообщение', send:'Отправить сообщение', success:'Сообщение отправлено! Мы ответим в течение 24 часов.'
+      }
+    },
+    cta: {
+      title:'Готовы рендерить умнее?',
+      sub:'Присоединяйтесь к 500+ профессионалам, которые экономят часы каждую неделю с BatchRender.',
+      btn1:'Купить — от $29', btn2:'Попробовать демо'
+    },
+    footer: {
+      desc:'Профессиональное программное обеспечение для пакетного рендеринга видео.',
+      product:['Функции','Цены','Changelog','Дорожная карта'],
+      support:['Документация','Видеоуроки','Поддержка','Политика возврата'],
+      legal:['Политика конфиденциальности','Условия использования','EULA','Политика cookies'],
+      rights:'© 2025 BatchRender. Все права защищены.',
+    }
+  },
+
+  zh: {
+    nav: { features:'功能', pricing:'价格', tutorials:'教程', docs:'文档', contact:'联系', login:'登录', signup:'开始使用' },
+    hero: {
+      badge: '版本 2.1 — 立即可用',
+      title1: '批量渲染。',
+      title2: '更智能。',
+      title3: '更快速。',
+      desc: '专业的视频文件批量渲染工具。在您睡觉时，自动排队、调度和处理数百个文件。',
+      cta1: '立即开始', cta2: '观看演示',
+      stat1n:'500+', stat1l:'活跃用户',
+      stat2n:'99%', stat2l:'满意度',
+      stat3n:'10×', stat3l:'渲染速度提升',
+    },
+    features: {
+      tag: '功能特性',
+      title: '专业规模渲染所需的一切',
+      sub: '强大、灵活，专为专业视频工作流程而设计。',
+      items: [
+        { icon:'⚡', title:'批量队列引擎', desc:'将无限文件添加到智能队列。拖放、文件夹监控或命令行操作。' },
+        { icon:'🎛️', title:'逐文件设置', desc:'为每个文件单独设置编解码器、比特率、分辨率和输出格式。' },
+        { icon:'🔄', title:'自动重试', desc:'失败的任务自动重试，可配置延迟和重试次数。' },
+        { icon:'📊', title:'实时进度', desc:'通过详细的进度条、预计完成时间和速度实时跟踪每个渲染任务。' },
+        { icon:'📁', title:'智能输出', desc:'自定义输出命名模式、文件夹结构和格式预设。' },
+        { icon:'🔔', title:'通知提醒', desc:'通过桌面提醒或电子邮件Webhook在完成或出错时收到通知。' },
+        { icon:'🖥️', title:'GPU加速', desc:'利用NVENC、QuickSync和AMD VCE进行硬件加速编码。' },
+        { icon:'⏱️', title:'定时渲染', desc:'安排批量任务在夜间或非高峰时段运行。' },
+        { icon:'📋', title:'详细日志', desc:'每个任务的完整渲染日志。导出为CSV进行分析。' },
+      ]
+    },
+    how: {
+      tag: '工作原理',
+      title: '4步从文件到完成渲染',
+      steps: [
+        { title:'添加文件', desc:'拖放文件或自动监控文件夹。' },
+        { title:'配置设置', desc:'为每个文件或全局设置编解码器、输出和分辨率。' },
+        { title:'启动队列', desc:'点击渲染，BatchRender处理其余工作。' },
+        { title:'收集结果', desc:'完成的文件精确放置在您设定的位置。' },
+      ]
+    },
+    pricing: {
+      tag: '价格方案',
+      title: '简单透明的定价',
+      sub: '一次性授权。无需订阅。永久使用。',
+      plans: [
+        {
+          name:'入门版', price:'29', currency:'$', period:'一次性',
+          desc:'适合自由职业者和初学者。',
+          features:['最多100个文件/批次','基础编解码器预设','邮件支持','1台设备授权','1年免费更新'],
+          missing:['GPU加速','定时渲染','优先支持','高级日志'],
+          cta:'购买入门版'
+        },
+        {
+          name:'专业版', price:'79', currency:'$', period:'一次性', popular:true,
+          desc:'专业人士的最佳选择。',
+          features:['无限文件/批次','所有编解码器预设','GPU加速','定时渲染','2台设备授权','优先邮件支持','3年免费更新','详细导出日志'],
+          missing:[],
+          cta:'购买专业版'
+        },
+        {
+          name:'工作室版', price:'149', currency:'$', period:'一次性',
+          desc:'适合团队和工作室。',
+          features:['无限文件/批次','所有编解码器预设','GPU加速','定时渲染','5台设备授权','优先+电话支持','终身免费更新','高级日志+CSV','团队授权管理'],
+          missing:[],
+          cta:'购买工作室版'
+        }
+      ],
+      note: '30天退款保证。无需任何理由。'
+    },
+    tutorials: {
+      tag: '视频教程',
+      title: '快速学会BatchRender',
+      sub: '从安装到高级工作流程——面向各技能水平的清晰视频指南。',
+      items: [
+        { title:'快速入门：安装与首次渲染', dur:'4:32', level:'初级' },
+        { title:'设置第一个批量渲染队列', dur:'6:15', level:'初级' },
+        { title:'编解码器预设详解', dur:'8:44', level:'中级' },
+        { title:'GPU加速设置（NVENC）', dur:'5:20', level:'中级' },
+        { title:'定时渲染与自动化', dur:'7:01', level:'高级' },
+        { title:'高级日志记录与CSV导出', dur:'5:55', level:'高级' },
+      ]
+    },
+    testimonials: {
+      tag: '用户评价',
+      title: '深受视频专业人士喜爱',
+      items: [
+        { text:'"BatchRender将我的夜间渲染队列从8小时缩短到40分钟。现在我真的离不开它了。"', name:'Marcus H.', role:'运动设计师，柏林', init:'MH' },
+        { text:'"终于找到了一个真正好用的批量渲染器。5分钟完成设置，GPU加速是游戏规则改变者。"', name:'Sarah K.', role:'后期制作，伦敦', init:'SK' },
+        { text:'"我们整个工作室都在使用BatchRender。团队授权和定时任务功能正是我们所需要的。"', name:'Dmitri R.', role:'VFX工作室负责人，莫斯科', init:'DR' },
+      ]
+    },
+    faq: {
+      tag: '常见问题',
+      title: '常见问题解答',
+      items: [
+        { q:'支持哪些操作系统？', a:'BatchRender运行在Windows 10/11（64位）上。macOS支持计划在2025年Q3推出。' },
+        { q:'这是订阅制还是一次性购买？', a:'一次性购买。付款一次，永久使用。免费更新包含在您的计划指定期限内。' },
+        { q:'可以在多台电脑上使用吗？', a:'是的——入门版1台，专业版2台，工作室版5台。您可以通过在一台设备上停用来转移授权。' },
+        { q:'支持哪些视频格式？', a:'输入：MP4、MOV、MKV、AVI、WMV、FLV、WebM等。输出取决于已安装的编解码器和您的设置。' },
+        { q:'需要强大的GPU吗？', a:'GPU加速是可选的。BatchRender可在任何机器上运行，但兼容的NVIDIA、Intel或AMD GPU将显著加快渲染速度。' },
+        { q:'退款政策是什么？', a:'我们提供30天全额退款保证。请在购买后30天内联系support@batchrender.com。' },
+      ]
+    },
+    contact: {
+      tag: '联系我们',
+      title: '联系我们',
+      sub: '有问题、技术问题或反馈？我们将在24小时内回复您。',
+      info: [
+        { icon:'✉️', label:'电子邮件', value:'support@batchrender.com' },
+        { icon:'📍', label:'位置', value:'全球可用' },
+        { icon:'⏰', label:'支持时间', value:'周一至周五，9:00–18:00 UTC' },
+      ],
+      form: {
+        name:'全名', email:'电子邮件地址', subject:'主题',
+        subjects:['一般问题','技术支持','账单','合作','其他'],
+        message:'您的留言', send:'发送消息', success:'消息已发送！我们将在24小时内回复。'
+      }
+    },
+    cta: {
+      title:'准备好更智能地渲染了吗？',
+      sub:'加入500多位每周用BatchRender节省数小时的专业人士。',
+      btn1:'立即购买 — 从$29起', btn2:'试用免费演示'
+    },
+    footer: {
+      desc:'面向视频创作者的专业批量渲染软件。',
+      product:['功能特性','价格方案','更新日志','产品路线图'],
+      support:['使用文档','视频教程','联系支持','退款政策'],
+      legal:['隐私政策','服务条款','最终用户协议','Cookie政策'],
+      rights:'© 2025 BatchRender. 保留所有权利。',
     }
   }
 };
 
-let currentLang = 'en';
+// ─── LANG STATE ─────────────────────────────────────────────────────────────
+let lang = localStorage.getItem('br_lang') || 'en';
 
-function setLang(lang) {
-  currentLang = lang;
-  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-  document.querySelectorAll('.lang-btn').forEach(b => { if(b.textContent.trim().toLowerCase() === lang || (lang==='zh' && b.textContent.trim()==='中文')) b.classList.add('active'); });
-  const t = T[lang];
-  
-  // Update all data-key elements
-  document.querySelectorAll('[data-key]').forEach(el => {
-    const k = el.getAttribute('data-key');
-    if(t[k] !== undefined) el.innerHTML = t[k];
-  });
-  
-  document.documentElement.lang = lang;
+function setLang(l) {
+  lang = l;
+  localStorage.setItem('br_lang', l);
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === l));
+  renderPage();
 }
 
+// ─── RENDER PAGE ─────────────────────────────────────────────────────────────
+function renderPage() {
+  const t = T[lang];
+  const page = document.body.dataset.page || 'home';
+
+  // Nav
+  setT('nav-features', t.nav.features);
+  setT('nav-pricing', t.nav.pricing);
+  setT('nav-tutorials', t.nav.tutorials);
+  setT('nav-docs', t.nav.docs);
+  setT('nav-contact', t.nav.contact);
+  setT('nav-login', t.nav.login);
+  setT('nav-signup', t.nav.signup);
+
+  if (page === 'home') renderHome(t);
+  if (page === 'contact') renderContact(t);
+  if (page === 'dashboard') renderDash(t);
+}
+
+function setT(id, text) {
+  const el = document.getElementById(id);
+  if (el) el.textContent = text;
+}
+function setH(id, html) {
+  const el = document.getElementById(id);
+  if (el) el.innerHTML = html;
+}
+
+function renderHome(t) {
+  // Hero
+  setT('hero-badge-text', t.hero.badge);
+  setH('hero-title', `<span>${t.hero.title1}</span><br><span class="grad-text">${t.hero.title2} ${t.hero.title3}</span>`);
+  setT('hero-desc', t.hero.desc);
+  setT('hero-cta1', t.hero.cta1);
+  setT('hero-cta2', t.hero.cta2);
+  setT('hero-stat1-n', t.hero.stat1n); setT('hero-stat1-l', t.hero.stat1l);
+  setT('hero-stat2-n', t.hero.stat2n); setT('hero-stat2-l', t.hero.stat2l);
+  setT('hero-stat3-n', t.hero.stat3n); setT('hero-stat3-l', t.hero.stat3l);
+
+  // Features
+  setT('feat-tag', t.features.tag);
+  setT('feat-title', t.features.title);
+  setT('feat-sub', t.features.sub);
+  const featGrid = document.getElementById('features-grid');
+  if (featGrid) featGrid.innerHTML = t.features.items.map(f => `
+    <div class="card fade-up">
+      <div class="feature-icon">${f.icon}</div>
+      <div class="feature-title">${f.title}</div>
+      <p class="feature-desc">${f.desc}</p>
+    </div>`).join('');
+
+  // How it works
+  setT('how-tag', t.how.tag);
+  setT('how-title', t.how.title);
+  const stepsEl = document.getElementById('steps');
+  if (stepsEl) stepsEl.innerHTML = t.how.steps.map((s,i) => `
+    <div class="step fade-up" data-delay="${i+1}">
+      <div class="step-num">${i+1}</div>
+      <div class="step-title">${s.title}</div>
+      <p class="step-desc">${s.desc}</p>
+    </div>`).join('');
+
+  // Pricing
+  setT('pricing-tag', t.pricing.tag);
+  setT('pricing-title', t.pricing.title);
+  setT('pricing-sub', t.pricing.sub);
+  setT('pricing-note', t.pricing.note);
+  const pricingGrid = document.getElementById('pricing-grid');
+  if (pricingGrid) pricingGrid.innerHTML = t.pricing.plans.map(p => `
+    <div class="pricing-card ${p.popular?'popular':''} fade-up">
+      ${p.popular ? `<div class="popular-badge">⭐ Most Popular</div>` : ''}
+      <div class="pricing-name">${p.name}</div>
+      <div class="pricing-price">
+        <span class="currency">${p.currency}</span><span class="amount">${p.price}</span>
+        <div class="period">${p.period}</div>
+      </div>
+      <p class="pricing-desc">${p.desc}</p>
+      <ul class="pricing-features">
+        ${p.features.map(f=>`<li>${f}</li>`).join('')}
+        ${p.missing.map(f=>`<li class="no">${f}</li>`).join('')}
+      </ul>
+      <button class="btn btn-${p.popular?'primary':'secondary'}" style="width:100%;justify-content:center" onclick="goTo('checkout')">${p.cta}</button>
+    </div>`).join('');
+
+  // Tutorials
+  setT('tut-tag', t.tutorials.tag);
+  setT('tut-title', t.tutorials.title);
+  setT('tut-sub', t.tutorials.sub);
+  const tutGrid = document.getElementById('tutorials-grid');
+  if (tutGrid) tutGrid.innerHTML = t.tutorials.items.map(v => `
+    <div class="tutorial-card fade-up">
+      <div class="tutorial-thumb">
+        <div class="tutorial-thumb-bg"></div>
+        <div class="play-btn">▶</div>
+        <div class="tutorial-duration">${v.dur}</div>
+      </div>
+      <div class="tutorial-body">
+        <div class="tutorial-title">${v.title}</div>
+        <div class="tutorial-level">🎯 ${v.level}</div>
+      </div>
+    </div>`).join('');
+
+  // Testimonials
+  setT('test-tag', t.testimonials.tag);
+  setT('test-title', t.testimonials.title);
+  const testGrid = document.getElementById('testimonials-grid');
+  if (testGrid) testGrid.innerHTML = t.testimonials.items.map(r => `
+    <div class="testimonial-card fade-up">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">${r.text}</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">${r.init}</div>
+        <div>
+          <div class="author-name">${r.name}</div>
+          <div class="author-role">${r.role}</div>
+        </div>
+      </div>
+    </div>`).join('');
+
+  // FAQ
+  setT('faq-tag', t.faq.tag);
+  setT('faq-title', t.faq.title);
+  const faqList = document.getElementById('faq-list');
+  if (faqList) {
+    faqList.innerHTML = t.faq.items.map((f,i) => `
+      <div class="faq-item" id="faq-${i}">
+        <button class="faq-q" onclick="toggleFaq(${i})">
+          <span>${f.q}</span>
+          <span class="faq-q-icon">+</span>
+        </button>
+        <div class="faq-a">${f.a}</div>
+      </div>`).join('');
+  }
+
+  // Contact
+  setT('contact-tag', t.contact.tag);
+  setT('contact-title', t.contact.title);
+  setT('contact-sub', t.contact.sub);
+  const cInfo = document.getElementById('contact-info');
+  if (cInfo) cInfo.innerHTML = t.contact.info.map(c => `
+    <div class="contact-item">
+      <div class="contact-icon">${c.icon}</div>
+      <div>
+        <div class="contact-label">${c.label}</div>
+        <div class="contact-value">${c.value}</div>
+      </div>
+    </div>`).join('');
+  const cf = t.contact.form;
+  setT('cf-name', cf.name); setT('cf-email', cf.email);
+  setT('cf-subject', cf.subject); setT('cf-message', cf.message);
+  setT('cf-send', cf.send);
+  const sub = document.getElementById('form-subject');
+  if (sub) sub.innerHTML = cf.subjects.map(s=>`<option>${s}</option>`).join('');
+  const inp = document.getElementById('form-subject-inp');
+  if (inp) inp.placeholder = cf.subject;
+
+  // CTA
+  setT('cta-title', t.cta.title);
+  setT('cta-sub', t.cta.sub);
+  setT('cta-btn1', t.cta.btn1);
+  setT('cta-btn2', t.cta.btn2);
+
+  // Footer
+  setT('footer-desc', t.footer.desc);
+  ['footer-product','footer-support','footer-legal'].forEach((id,i) => {
+    const el = document.getElementById(id);
+    const arr = [t.footer.product, t.footer.support, t.footer.legal][i];
+    if (el && arr) el.innerHTML = arr.map(a=>`<a href="#">${a}</a>`).join('');
+  });
+  setT('footer-rights', t.footer.rights);
+
+  observeFadeUp();
+}
+
+function renderContact(t) {
+  // Render contact page specifics if standalone
+}
+
+function renderDash(t) {
+  // Dashboard page
+}
+
+// ─── SCROLL ANIMATIONS ───────────────────────────────────────────────────────
+function observeFadeUp() {
+  const els = document.querySelectorAll('.fade-up');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  els.forEach(el => obs.observe(el));
+}
+
+// ─── NAV SCROLL ──────────────────────────────────────────────────────────────
+window.addEventListener('scroll', () => {
+  document.querySelector('.nav')?.classList.toggle('scrolled', window.scrollY > 40);
+});
+
+// ─── FAQ ────────────────────────────────────────────────────────────────────
+function toggleFaq(i) {
+  const item = document.getElementById('faq-'+i);
+  const wasOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(el => el.classList.remove('open'));
+  if (!wasOpen) item.classList.add('open');
+}
+
+// ─── MOBILE MENU ────────────────────────────────────────────────────────────
+function toggleMenu() {
+  document.getElementById('mobile-menu')?.classList.toggle('open');
+}
+
+// ─── NAVIGATION ─────────────────────────────────────────────────────────────
+function goTo(page) {
+  const pages = { home:'index.html', login:'pages/login.html', signup:'pages/register.html', dashboard:'pages/dashboard.html', pricing:'#pricing', checkout:'pages/checkout.html', contact:'#contact', docs:'pages/docs.html', tutorials:'#tutorials', changelog:'pages/changelog.html' };
+  const dest = pages[page];
+  if (dest && dest.startsWith('#')) { document.querySelector(dest)?.scrollIntoView({behavior:'smooth'}); }
+  else if (dest) { window.location.href = dest; }
+}
+
+// ─── CONTACT FORM ───────────────────────────────────────────────────────────
+function submitContact(e) {
+  e.preventDefault();
+  showToast(T[lang].contact.form.success, 'success');
+  e.target.reset();
+}
+
+// ─── TOAST ───────────────────────────────────────────────────────────────────
+function showToast(msg, type='info') {
+  let t = document.getElementById('toast');
+  if (!t) { t = document.createElement('div'); t.id = 'toast'; t.className = 'toast'; document.body.appendChild(t); }
+  t.textContent = msg;
+  t.className = 'toast show';
+  clearTimeout(t._timer);
+  t._timer = setTimeout(() => t.classList.remove('show'), 4000);
+}
+
+// ─── INIT ────────────────────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
-  setLang('en');
+  document.querySelectorAll('.lang-btn').forEach(b => {
+    b.addEventListener('click', () => setLang(b.dataset.lang));
+  });
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+  renderPage();
 });

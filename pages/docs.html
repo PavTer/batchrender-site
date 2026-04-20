@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Documentation — BatchRender</title>
+  <link rel="icon" type="image/png" href="../img/logo.png">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-page="docs">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo"><img src="../img/logo.png" alt="BatchRender Logo"></a>
+    <div class="nav-links">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#pricing">Pricing</a>
+      <a href="changelog.html">Changelog</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-switcher">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="ru">RU</button>
+        <button class="lang-btn" data-lang="zh">中文</button>
+      </div>
+      <a href="login.html" class="nav-cta btn btn-sm">Sign In</a>
+    </div>
+  </div>
+</nav>
+
+<div style="display:grid;grid-template-columns:240px 1fr;min-height:100vh;padding-top:72px;max-width:1180px;margin:0 auto">
+  <!-- Docs sidebar -->
+  <div style="border-right:1px solid var(--border);padding:32px 16px;position:sticky;top:72px;height:calc(100vh - 72px);overflow-y:auto">
+    <div style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--text3);padding:0 12px;margin-bottom:8px" id="ds-gettingstarted">Getting Started</div>
+    <div class="dash-nav-item active" onclick="showDoc('install')"><span class="dash-nav-icon">⚙️</span><span id="ds-install">Installation</span></div>
+    <div class="dash-nav-item" onclick="showDoc('activation')"><span class="dash-nav-icon">🔑</span><span id="ds-activation">License Activation</span></div>
+    <div class="dash-nav-item" onclick="showDoc('firstrender')"><span class="dash-nav-icon">▶</span><span id="ds-firstrender">First Render</span></div>
+    <div style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--text3);padding:14px 12px 6px" id="ds-features">Features</div>
+    <div class="dash-nav-item" onclick="showDoc('queue')"><span class="dash-nav-icon">📋</span><span id="ds-queue">Queue Engine</span></div>
+    <div class="dash-nav-item" onclick="showDoc('codecs')"><span class="dash-nav-icon">🎛️</span><span id="ds-codecs">Codec Presets</span></div>
+    <div class="dash-nav-item" onclick="showDoc('gpu')"><span class="dash-nav-icon">🖥️</span><span id="ds-gpu">GPU Acceleration</span></div>
+    <div class="dash-nav-item" onclick="showDoc('schedule')"><span class="dash-nav-icon">⏱️</span><span id="ds-schedule">Scheduled Jobs</span></div>
+    <div style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--text3);padding:14px 12px 6px" id="ds-support">Support</div>
+    <div class="dash-nav-item" onclick="showDoc('troubleshoot')"><span class="dash-nav-icon">🔧</span><span id="ds-troubleshoot">Troubleshooting</span></div>
+    <div class="dash-nav-item" onclick="window.location.href='../index.html#contact'"><span class="dash-nav-icon">✉️</span><span id="ds-contact">Contact Support</span></div>
+  </div>
+
+  <!-- Docs content -->
+  <div style="padding:40px 48px;max-width:760px">
+    <div id="doc-install">
+      <h1 id="doc-install-title">Installation</h1>
+      <p class="legal-date" style="margin-bottom:24px">BatchRender v2.1.0 · Windows 10/11 (64-bit)</p>
+      <h2>System Requirements</h2>
+      <ul><li>Windows 10 or Windows 11 (64-bit)</li><li>4 GB RAM minimum (8 GB recommended)</li><li>500 MB free disk space</li><li>Optional: NVIDIA GPU (for NVENC), Intel iGPU (for QuickSync), AMD GPU (for VCE)</li></ul>
+      <h2>Installation Steps</h2>
+      <ol style="padding-left:20px;display:flex;flex-direction:column;gap:10px">
+        <li style="color:var(--text2);font-size:0.92rem">Download the installer from your <a href="dashboard.html" style="color:var(--blue-light)">Dashboard → Downloads</a></li>
+        <li style="color:var(--text2);font-size:0.92rem">Run <code style="background:var(--surface);padding:2px 8px;border-radius:4px;font-family:monospace;font-size:0.85rem">BatchRender_Setup_2.1.0.exe</code> as Administrator</li>
+        <li style="color:var(--text2);font-size:0.92rem">Follow the installer wizard — choose installation directory</li>
+        <li style="color:var(--text2);font-size:0.92rem">Launch BatchRender from the Start Menu or Desktop shortcut</li>
+        <li style="color:var(--text2);font-size:0.92rem">On first launch, enter your license key (from Dashboard or purchase email)</li>
+      </ol>
+      <h2>Uninstallation</h2>
+      <p>Go to Windows Settings → Apps → BatchRender → Uninstall. Your settings and license are preserved and can be restored after reinstallation.</p>
+    </div>
+    <div id="doc-activation" style="display:none">
+      <h1>License Activation</h1>
+      <p class="legal-date" style="margin-bottom:24px">How to activate your BatchRender license</p>
+      <h2>Finding Your License Key</h2>
+      <p>Your license key is available in two places: in the confirmation email sent after purchase, and in your <a href="dashboard.html" style="color:var(--blue-light)">Dashboard → My Purchases</a>.</p>
+      <h2>Activation Steps</h2>
+      <ol style="padding-left:20px;display:flex;flex-direction:column;gap:10px">
+        <li style="color:var(--text2);font-size:0.92rem">Open BatchRender</li>
+        <li style="color:var(--text2);font-size:0.92rem">Go to <strong style="color:var(--text)">Help → Activate License</strong></li>
+        <li style="color:var(--text2);font-size:0.92rem">Paste your license key and click <strong style="color:var(--text)">Activate</strong></li>
+        <li style="color:var(--text2);font-size:0.92rem">The software will verify online and activate within seconds</li>
+      </ol>
+      <h2>Transferring to a New Machine</h2>
+      <p>To move your license: on your old machine, go to Help → Deactivate License. Then activate on the new machine using the same key.</p>
+      <p>If you can't access your old machine, contact <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="691a1c1919061b1d290b081d0a011b0c070d0c1b470a0604">[email&#160;protected]</a> and we'll reset your activation remotely.</p>
+    </div>
+    <div id="doc-firstrender" style="display:none">
+      <h1>Your First Render</h1>
+      <p class="legal-date" style="margin-bottom:24px">Get started in under 5 minutes</p>
+      <h2>Adding Files</h2>
+      <p>Drag and drop video files onto the BatchRender window, or click <strong style="color:var(--text)">Add Files</strong> to browse. Supported formats: MP4, MOV, MKV, AVI, WMV, FLV, WebM, and more.</p>
+      <h2>Setting Output Options</h2>
+      <p>Each file shows its output settings in the queue. Click any file to edit: output format, codec, resolution, bitrate, and output folder. Or use <strong style="color:var(--text)">Apply to All</strong> to set global defaults.</p>
+      <h2>Starting the Queue</h2>
+      <p>Click <strong style="color:var(--text)">Start Render</strong>. BatchRender will process files one by one (or in parallel if GPU acceleration is enabled). Progress is shown in real time with ETA and speed.</p>
+    </div>
+    <div id="doc-queue" style="display:none">
+      <h1>Queue Engine</h1>
+      <p class="legal-date" style="margin-bottom:24px">Managing your render queue</p>
+      <p>The queue engine is the core of BatchRender. You can add unlimited files, reorder them by drag & drop, and set individual or global output settings per job.</p>
+      <h2>Folder Watch Mode</h2>
+      <p>Enable folder watching in Settings → Queue → Watch Folder. BatchRender will automatically add new files dropped into that folder to the active queue.</p>
+    </div>
+    <div id="doc-codecs" style="display:none">
+      <h1>Codec Presets</h1>
+      <p class="legal-date" style="margin-bottom:24px">Output formats and encoding settings</p>
+      <p>BatchRender includes presets for common workflows: H.264 (high compatibility), H.265/HEVC (smaller files), ProRes (editing), DNxHD (editing), VP9 (web), AV1 (web, best quality/size).</p>
+      <h2>Custom Presets</h2>
+      <p>Save your own presets in Settings → Presets → New Preset. Custom presets can be shared as .brpreset files.</p>
+    </div>
+    <div id="doc-gpu" style="display:none">
+      <h1>GPU Acceleration</h1>
+      <p class="legal-date" style="margin-bottom:24px">Hardware-accelerated encoding</p>
+      <p>GPU acceleration can provide 4–10× speedup compared to CPU encoding. Supported: NVIDIA NVENC (RTX/GTX series), Intel QuickSync (Intel iGPU), AMD VCE (Radeon).</p>
+      <h2>Enabling GPU Acceleration</h2>
+      <p>Go to Settings → Encoding → GPU Acceleration. BatchRender will automatically detect available hardware encoders. Select your preferred encoder and save.</p>
+      <h2>Troubleshooting</h2>
+      <p>If GPU is not detected: ensure your GPU drivers are up to date. For NVENC, you need driver version 522.25 or newer. For Intel QuickSync, ensure the iGPU is not disabled in BIOS.</p>
+    </div>
+    <div id="doc-schedule" style="display:none">
+      <h1>Scheduled Jobs</h1>
+      <p class="legal-date" style="margin-bottom:24px">Available in Professional and Studio plans</p>
+      <p>Scheduled rendering lets you defer a queued job to run at a specific time. This is useful for running overnight renders or during off-peak hours.</p>
+      <h2>Setting a Schedule</h2>
+      <p>Right-click any queue item → Schedule. Choose date and time. The job will start automatically even if the app is minimized, as long as BatchRender is running.</p>
+    </div>
+    <div id="doc-troubleshoot" style="display:none">
+      <h1>Troubleshooting</h1>
+      <p class="legal-date" style="margin-bottom:24px">Common issues and solutions</p>
+      <h2>App Won't Start</h2>
+      <p>Make sure you're running on Windows 10/11 64-bit. Try running as Administrator. If the issue persists, reinstall the latest version.</p>
+      <h2>License Activation Fails</h2>
+      <p>Check your internet connection. Make sure you haven't exceeded your machine limit. Contact <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="daa9afaaaab5a8ae9ab8bbaeb9b2a8bfb4bebfa8f4b9b5b7">[email&#160;protected]</a> for manual activation.</p>
+      <h2>GPU Not Detected</h2>
+      <p>Update your GPU drivers to the latest version. Restart BatchRender after updating. Check that your GPU is not disabled in Device Manager.</p>
+      <h2>Output File is Corrupted</h2>
+      <p>Check that you have enough disk space on your output drive. Try a different output codec. Check the render log for specific error messages.</p>
+      <h2>Still stuck?</h2>
+      <p><a href="../index.html#contact" style="color:var(--blue-light)">Contact our support team</a> — we respond within 24 hours.</p>
+    </div>
+  </div>
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="../js/main.js"></script>
+<script

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Account — BatchRender</title>
+  <link rel="icon" type="image/png" href="../img/logo.png">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-page="register">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo">
+      <img src="../img/logo.png" alt="BatchRender Logo">
+    </a>
+    <div class="nav-right">
+      <div class="lang-switcher">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="ru">RU</button>
+        <button class="lang-btn" data-lang="zh">中文</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="auth-wrap">
+  <div class="auth-card" style="max-width:480px">
+    <div class="auth-logo">
+      <img src="../img/logo.png" alt="BatchRender">
+    </div>
+    <h1 class="auth-title" id="reg-title">Create your account</h1>
+    <p class="auth-sub" id="reg-sub">Start rendering smarter today</p>
+
+    <form class="form" onsubmit="handleRegister(event)">
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label" id="r-fname">First name</label>
+          <input type="text" class="form-input" placeholder="John" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" id="r-lname">Last name</label>
+          <input type="text" class="form-input" placeholder="Smith" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label" id="r-email">Email address</label>
+        <input type="email" class="form-input" placeholder="you@example.com" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label" id="r-password">Password</label>
+        <input type="password" class="form-input" id="pass1" placeholder="Min. 8 characters" required minlength="8">
+      </div>
+      <div class="form-group">
+        <label class="form-label" id="r-confirm">Confirm password</label>
+        <input type="password" class="form-input" id="pass2" placeholder="Repeat password" required>
+      </div>
+      <div style="display:flex;align-items:flex-start;gap:10px;margin-top:4px">
+        <input type="checkbox" id="agree" required style="margin-top:3px;accent-color:var(--violet);flex-shrink:0">
+        <label for="agree" style="font-size:0.83rem;color:var(--text3);cursor:pointer" id="r-agree">
+          I agree to the <a href="tos.html" style="color:var(--blue-light)">Terms of Service</a> and <a href="privacy.html" style="color:var(--blue-light)">Privacy Policy</a>
+        </label>
+      </div>
+      <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:12px">
+        <span id="r-submit">Create Account</span>
+      </button>
+    </form>
+
+    <p class="auth-link" id="r-login-text">Already have an account? <a href="login.html">Sign in</a></p>
+  </div>
+</div>
+
+<script src="../js/main.js"></script>
+<script>
+const regT = {
+  en: { title:'Create your account', sub:'Start rendering smarter today', fname:'First name', lname:'Last name', email:'Email address', password:'Password', confirm:'Confirm password', agree:'I agree to the Terms of Service and Privacy Policy', submit:'Create Account', loginText:'Already have an account?' },
+  ru: { title:'Создайте аккаунт', sub:'Начните рендерить умнее сегодня', fname:'Имя', lname:'Фамилия', email:'Email адрес', password:'Пароль', confirm:'Подтвердите пароль', agree:'Я соглашаюсь с Условиями использования и Политикой конфиденциальности', submit:'Создать аккаунт', loginText:'Уже есть аккаунт?' },
+  zh: { title:'创建您的账户', sub:'立即开始更智能地渲染', fname:'名', lname:'姓', email:'电子邮件地址', password:'密码', confirm:'确认密码', agree:'我同意服务条款和隐私政策', submit:'创建账户', loginText:'已有账户？' }
+};
+function renderPage() {
+  const t = regT[lang];
+  document.getElementById('reg-title').textContent = t.title;
+  document.getElementById('reg-sub').textContent = t.sub;
+  document.getElementById('r-fname').textContent = t.fname;
+  document.getElementById('r-lname').textContent = t.lname;
+  document.getElementById('r-email').textContent = t.email;
+  document.getElementById('r-password').textContent = t.password;
+  document.getElementById('r-confirm').textContent = t.confirm;
+  document.getElementById('r-submit').textContent = t.submit;
+  document.getElementById('r-login-text').innerHTML = t.loginText + ' <a href="login.html">Sign in</a>';
+}
+function handleRegister(e) {
+  e.preventDefault();
+  const p1 = document.getElementById('pass1').value;
+  const p2 = document.getElementById('pass2').value;
+  if (p1 !== p2) { showToast('Passwords do not match', 'error'); return; }
+  showToast('Account created! Check your email to verify.', 'success');
+  setTimeout(() => window.location.href = 'verify-email.html', 2000);
+}
+</script>
+</body>
+</html>

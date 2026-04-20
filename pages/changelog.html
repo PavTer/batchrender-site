@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Changelog — BatchRender</title>
+  <link rel="icon" type="image/png" href="../img/logo.png">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-page="changelog">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo"><img src="../img/logo.png" alt="BatchRender Logo"></a>
+    <div class="nav-links">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#features">Features</a>
+      <a href="../index.html#pricing">Pricing</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-switcher">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="ru">RU</button>
+        <button class="lang-btn" data-lang="zh">中文</button>
+      </div>
+      <a href="login.html" class="nav-cta btn btn-sm">Sign In</a>
+    </div>
+  </div>
+</nav>
+
+<div class="legal-wrap" style="max-width:860px">
+  <div style="margin-bottom:48px">
+    <div class="section-tag" style="margin-bottom:14px">Changelog</div>
+    <h1 id="cl-title">Release History</h1>
+    <p style="color:var(--text2);margin-top:8px" id="cl-sub">All notable changes to BatchRender are documented here.</p>
+  </div>
+
+  <div class="changelog-list">
+    <div class="changelog-entry">
+      <div class="changelog-meta">
+        <div class="changelog-version">v2.1.0</div>
+        <div class="changelog-date">Jan 15, 2025</div>
+        <span class="badge badge-success" style="margin-top:8px;display:inline-flex">Latest</span>
+      </div>
+      <div>
+        <div class="changelog-title" id="cl-210">GPU Acceleration & Scheduled Jobs</div>
+        <ul class="changelog-items">
+          <li><span class="change-type type-new">New</span> NVENC, QuickSync, AMD VCE hardware acceleration support</li>
+          <li><span class="change-type type-new">New</span> Scheduled rendering — set jobs to run at specific time</li>
+          <li><span class="change-type type-new">New</span> Folder watch mode — auto-add new files to queue</li>
+          <li><span class="change-type type-new">New</span> CSV log export for all render jobs</li>
+          <li><span class="change-type type-imp">Improved</span> Queue engine rewritten — 40% faster job processing</li>
+          <li><span class="change-type type-imp">Improved</span> New progress UI with ETA and speed indicators</li>
+          <li><span class="change-type type-fix">Fixed</span> MKV container metadata not preserved on output</li>
+          <li><span class="change-type type-fix">Fixed</span> App crash when adding files larger than 50GB</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="changelog-entry">
+      <div class="changelog-meta">
+        <div class="changelog-version">v2.0.5</div>
+        <div class="changelog-date">Dec 1, 2024</div>
+      </div>
+      <div>
+        <div class="changelog-title" id="cl-205">Stability & Performance</div>
+        <ul class="changelog-items">
+          <li><span class="change-type type-imp">Improved</span> Memory usage reduced by 30% for large queues</li>
+          <li><span class="change-type type-imp">Improved</span> Better error messages with troubleshooting hints</li>
+          <li><span class="change-type type-fix">Fixed</span> Audio sync drift for videos over 2 hours</li>
+          <li><span class="change-type type-fix">Fixed</span> UI freeze when canceling active job</li>
+          <li><span class="change-type type-fix">Fixed</span> Output filename collision when using same source folder</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="changelog-entry">
+      <div class="changelog-meta">
+        <div class="changelog-version">v2.0.0</div>
+        <div class="changelog-date">Oct 10, 2024</div>
+      </div>
+      <div>
+        <div class="changelog-title" id="cl-200">Major Release — BatchRender 2.0</div>
+        <ul class="changelog-items">
+          <li><span class="change-type type-new">New</span> Complete UI redesign — dark mode, modern look</li>
+          <li><span class="change-type type-new">New</span> Per-file codec and resolution settings</li>
+          <li><span class="change-type type-new">New</span> Auto-retry failed jobs with configurable delay</li>
+          <li><span class="change-type type-new">New</span> Desktop notifications on job completion</li>
+          <li><span class="change-type type-new">New</span> CLI support for headless/automated workflows</li>
+          <li><span class="change-type type-imp">Improved</span> Rendering engine — 2.5× faster than v1.x</li>
+          <li><span class="change-type type-imp">Improved</span> Support for WebM, FLV output formats added</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="changelog-entry">
+      <div class="changelog-meta">
+        <div class="changelog-version">v1.4.2</div>
+        <div class="changelog-date">Jul 22, 2024</div>
+      </div>
+      <div>
+        <div class="changelog-title">Legacy — Final 1.x Release</div>
+        <ul class="changelog-items">
+          <li><span class="change-type type-fix">Fixed</span> License activation failing on VPN connections</li>
+          <li><span class="change-type type-fix">Fixed</span> Crash on Windows 11 with Secure Boot enabled</li>
+          <li><span class="change-type type-imp">Improved</span> Codec preset library updated</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top:48px;padding:28px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);text-align:center">
+    <div style="font-size:0.85rem;color:var(--text3);margin-bottom:12px" id="cl-cta-sub">Have a feature request or found a bug?</div>
+    <a href="../index.html#contact" class="btn btn-primary btn-sm">Contact Support</a>
+  </div>
+</div>
+
+<script src="../js/main.js"></script>
+<script>
+function renderPage() {
+  const cl = { en:{title:'Release History',sub:'All notable changes to BatchRender are documented here.'},ru:{title:'История версий',sub:'Все значимые изменения BatchRender задокументированы здесь.'},zh:{title:'版本历史',sub:'所有BatchRender的重要更新都记录在此。'} };
+  const t = cl[lang];
+  document.getElementById('cl-title').textContent = t.title;
+  document.getElementById('cl-sub').textContent = t.sub;
+}
+</script>
+</body>
+</html>
