@@ -20,7 +20,17 @@
       },
       media_folder: 'img',
       public_folder: '/img',
-      collections: []
+      collections: [
+        {
+          name: 'pages',
+          label: 'Pages',
+          folder: 'img',
+          create: false,
+          fields: [
+            { name: 'title', label: 'Title', widget: 'string' }
+          ]
+        }
+      ]
     }});
   </script>
 </body>
