@@ -3,10 +3,15 @@ let T = {};
 
 async function loadContent() {
   try {
-    const res = await fetch('/content.json?v=' + Date.now());
-    T = await res.json();
+    const v = '?v=' + Date.now();
+    const [en, ru, zh] = await Promise.all([
+      fetch('/content/en.json' + v).then(r => r.json()),
+      fetch('/content/ru.json' + v).then(r => r.json()),
+      fetch('/content/zh.json' + v).then(r => r.json())
+    ]);
+    T = { en, ru, zh };
   } catch (e) {
-    console.error('Failed to load content.json', e);
+    console.error('Failed to load content', e);
   }
   init();
 }
@@ -27,7 +32,6 @@ function renderPage() {
   if (!t) return;
   const page = document.body.dataset.page || 'home';
 
-  // Nav
   setT('nav-features', t.nav.features);
   setT('nav-pricing', t.nav.pricing);
   setT('nav-tutorials', t.nav.tutorials);
@@ -51,7 +55,6 @@ function setH(id, html) {
 }
 
 function renderHome(t) {
-  // Hero
   setT('hero-badge-text', t.hero.badge);
   setH('hero-title', `<span>${t.hero.title1}</span><br><span class="grad-text">${t.hero.title2} ${t.hero.title3}</span>`);
   setT('hero-desc', t.hero.desc);
@@ -61,7 +64,6 @@ function renderHome(t) {
   setT('hero-stat2-n', t.hero.stat2n); setT('hero-stat2-l', t.hero.stat2l);
   setT('hero-stat3-n', t.hero.stat3n); setT('hero-stat3-l', t.hero.stat3l);
 
-  // Features
   setT('feat-tag', t.features.tag);
   setT('feat-title', t.features.title);
   setT('feat-sub', t.features.sub);
@@ -73,7 +75,6 @@ function renderHome(t) {
       <p class="feature-desc">${f.desc}</p>
     </div>`).join('');
 
-  // How it works
   setT('how-tag', t.how.tag);
   setT('how-title', t.how.title);
   const stepsEl = document.getElementById('steps');
@@ -84,7 +85,6 @@ function renderHome(t) {
       <p class="step-desc">${s.desc}</p>
     </div>`).join('');
 
-  // Pricing
   setT('pricing-tag', t.pricing.tag);
   setT('pricing-title', t.pricing.title);
   setT('pricing-sub', t.pricing.sub);
@@ -101,12 +101,11 @@ function renderHome(t) {
       <p class="pricing-desc">${p.desc}</p>
       <ul class="pricing-features">
         ${p.features.map(f=>`<li>${f}</li>`).join('')}
-        ${p.missing.map(f=>`<li class="no">${f}</li>`).join('')}
+        ${(p.missing||[]).map(f=>`<li class="no">${f}</li>`).join('')}
       </ul>
       <button class="btn btn-${p.popular?'primary':'secondary'}" style="width:100%;justify-content:center" onclick="goTo('checkout')">${p.cta}</button>
     </div>`).join('');
 
-  // Tutorials
   setT('tut-tag', t.tutorials.tag);
   setT('tut-title', t.tutorials.title);
   setT('tut-sub', t.tutorials.sub);
@@ -124,7 +123,6 @@ function renderHome(t) {
       </div>
     </div>`).join('');
 
-  // Testimonials
   setT('test-tag', t.testimonials.tag);
   setT('test-title', t.testimonials.title);
   const testGrid = document.getElementById('testimonials-grid');
@@ -141,7 +139,6 @@ function renderHome(t) {
       </div>
     </div>`).join('');
 
-  // FAQ
   setT('faq-tag', t.faq.tag);
   setT('faq-title', t.faq.title);
   const faqList = document.getElementById('faq-list');
@@ -156,7 +153,6 @@ function renderHome(t) {
       </div>`).join('');
   }
 
-  // Contact
   setT('contact-tag', t.contact.tag);
   setT('contact-title', t.contact.title);
   setT('contact-sub', t.contact.sub);
@@ -178,13 +174,11 @@ function renderHome(t) {
   const inp = document.getElementById('form-subject-inp');
   if (inp) inp.placeholder = cf.subject;
 
-  // CTA
   setT('cta-title', t.cta.title);
   setT('cta-sub', t.cta.sub);
   setT('cta-btn1', t.cta.btn1);
   setT('cta-btn2', t.cta.btn2);
 
-  // Footer
   setT('footer-desc', t.footer.desc);
   ['footer-product','footer-support','footer-legal'].forEach((id,i) => {
     const el = document.getElementById(id);
@@ -199,7 +193,6 @@ function renderHome(t) {
 function renderContact(t) {}
 function renderDash(t) {}
 
-// ─── SCROLL ANIMATIONS ───────────────────────────────────────────────────────
 function observeFadeUp() {
   const els = document.querySelectorAll('.fade-up');
   const obs = new IntersectionObserver((entries) => {
@@ -208,12 +201,10 @@ function observeFadeUp() {
   els.forEach(el => obs.observe(el));
 }
 
-// ─── NAV SCROLL ──────────────────────────────────────────────────────────────
 window.addEventListener('scroll', () => {
   document.querySelector('.nav')?.classList.toggle('scrolled', window.scrollY > 40);
 });
 
-// ─── FAQ ────────────────────────────────────────────────────────────────────
 function toggleFaq(i) {
   const item = document.getElementById('faq-'+i);
   const wasOpen = item.classList.contains('open');
@@ -221,12 +212,10 @@ function toggleFaq(i) {
   if (!wasOpen) item.classList.add('open');
 }
 
-// ─── MOBILE MENU ────────────────────────────────────────────────────────────
 function toggleMenu() {
   document.getElementById('mobile-menu')?.classList.toggle('open');
 }
 
-// ─── NAVIGATION ─────────────────────────────────────────────────────────────
 function goTo(page) {
   const pages = { home:'index.html', login:'pages/login.html', signup:'pages/register.html', dashboard:'pages/dashboard.html', pricing:'#pricing', checkout:'pages/checkout.html', contact:'#contact', docs:'pages/docs.html', tutorials:'#tutorials', changelog:'pages/changelog.html' };
   const dest = pages[page];
@@ -234,14 +223,12 @@ function goTo(page) {
   else if (dest) { window.location.href = dest; }
 }
 
-// ─── CONTACT FORM ───────────────────────────────────────────────────────────
 function submitContact(e) {
   e.preventDefault();
   showToast(T[lang].contact.form.success, 'success');
   e.target.reset();
 }
 
-// ─── TOAST ───────────────────────────────────────────────────────────────────
 function showToast(msg, type='info') {
   let t = document.getElementById('toast');
   if (!t) { t = document.createElement('div'); t.id = 'toast'; t.className = 'toast'; document.body.appendChild(t); }
@@ -251,7 +238,6 @@ function showToast(msg, type='info') {
   t._timer = setTimeout(() => t.classList.remove('show'), 4000);
 }
 
-// ─── INIT ────────────────────────────────────────────────────────────────────
 function init() {
   document.querySelectorAll('.lang-btn').forEach(b => {
     b.addEventListener('click', () => setLang(b.dataset.lang));
@@ -261,3 +247,5 @@ function init() {
 }
 
 document.addEventListener('DOMContentLoaded', loadContent);
+
+// also remove old content.json if present (but don't fail if missing)
