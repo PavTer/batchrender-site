@@ -1459,7 +1459,7 @@ document.addEventListener('keydown', e => {
   if(e.key === 'Escape') closeTrialModal();
 });
 </script>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
 <style>
 body{padding-top:56px!important}
 .editor-bar{position:fixed;top:0;left:0;right:0;z-index:10000;height:56px;background:rgba(18,22,32,0.95);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;padding:0 20px;gap:16px;font-family:"Space Grotesk",sans-serif;color:#eaecef}
@@ -1492,37 +1492,17 @@ body{padding-top:56px!important}
 .editor-login-box p{color:#8892a0;margin-bottom:24px;font-size:15px;line-height:1.5}
 .editor-login-box button{background:linear-gradient(135deg,#1e8ee8,#7b4fd4);color:white;border:0;padding:14px 28px;border-radius:10px;font-family:inherit;font-size:15px;font-weight:600;cursor:pointer}
 .editor-login-error{color:#ef4444;margin-top:12px;font-size:13px}
-.editor-toast{position:fixed;top:76px;right:20px;z-index:10001;background:rgba(18,22,32,0.95);backdrop-filter:blur(12px);border:1px solid rgba(74,222,128,0.3);border-radius:10px;padding:12px 16px;font-size:13px;color:#4ade80;display:flex;gap:8px;align-items:center;transform:translateX(calc(100% + 40px));transition:transform .3s;font-family:"Space Grotesk",sans-serif}
+.editor-toast{position:fixed;top:76px;right:20px;z-index:10001;background:rgba(18,22,32,0.95);backdrop-filter:blur(12px);border:1px solid rgba(74,222,128,0.3);border-radius:10px;padding:12px 16px;font-size:13px;color:#4ade80;display:flex;gap:8px;align-items:center;transform:translateX(calc(100%+40px));transition:transform .3s;font-family:"Space Grotesk",sans-serif}
 .editor-toast.show{transform:translateX(0)}
 .editor-toast.error{border-color:rgba(239,68,68,0.3);color:#ef4444}
 .editor-hint{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:rgba(18,22,32,0.95);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.08);padding:10px 16px;border-radius:10px;font-size:13px;color:#8892a0;z-index:9999;display:none;gap:10px;align-items:center;font-family:"Space Grotesk",sans-serif}
 .editor-hint.show{display:flex}
 .editor-hint kbd{background:rgba(255,255,255,0.08);padding:2px 6px;border-radius:4px;font-family:"JetBrains Mono",monospace;font-size:11px;color:#eaecef}
 </style>
-<div class="editor-login-screen" id="editor-login">
-  <div class="editor-login-box">
-    <h1>BatchRender Editor</h1>
-    <p>Sign in with GitHub to edit site content inline.</p>
-    <button id="editor-login-btn">Sign in with GitHub</button>
-    <div class="editor-login-error" id="editor-login-error"></div>
-  </div>
-</div>
-<div class="editor-bar" id="editor-bar" style="display:none">
-  <div class="editor-logo">BatchRender</div>
-  <div class="editor-mode"><span class="dot"></span>Edit mode</div>
-  <div class="editor-lang-switch" id="editor-lang-switch">
-    <button class="active" data-lang="en">EN</button>
-    <button data-lang="ru">RU</button>
-    <button data-lang="zh">ZH</button>
-  </div>
-  <div class="editor-user" id="editor-user" style="margin-left:auto"></div>
-  <div class="editor-changes" id="editor-changes"><span class="dot"></span><span class="txt">No changes</span></div>
-  <button class="btn-editor" id="editor-discard-btn" disabled>Discard</button>
-  <button class="btn-editor primary" id="editor-save-btn" disabled><span>Save</span><span class="count" id="editor-count">0</span></button>
-  <button class="btn-editor" id="editor-logout-btn" style="padding:8px 10px">x</button>
-</div>
+<div class="editor-login-screen" id="editor-login"><div class="editor-login-box"><h1>BatchRender Editor</h1><p>Sign in with GitHub to edit site content inline.</p><button id="editor-login-btn">Sign in with GitHub</button><div class="editor-login-error" id="editor-login-error"></div></div></div>
+<div class="editor-bar" id="editor-bar" style="display:none"><div class="editor-logo">BatchRender</div><div class="editor-mode"><span class="dot"></span>Edit mode</div><div class="editor-lang-switch" id="editor-lang-switch"><button class="active" data-lang="en">EN</button><button data-lang="ru">RU</button><button data-lang="zh">ZH</button></div><div class="editor-user" id="editor-user" style="margin-left:auto"></div><div class="editor-changes" id="editor-changes"><span class="dot"></span><span class="txt">No changes</span></div><button class="btn-editor" id="editor-discard-btn" disabled>Discard</button><button class="btn-editor primary" id="editor-save-btn" disabled><span>Save</span><span class="count" id="editor-count">0</span></button><button class="btn-editor" id="editor-logout-btn" style="padding:8px 10px" title="Sign out">x</button></div>
 <div class="editor-toast" id="editor-toast"></div>
-<div class="editor-hint" id="editor-hint">Click any text to edit Â· Cmd+S save Â· Esc deselect</div>
+<div class="editor-hint" id="editor-hint">Click any text to edit &middot; <kbd>Cmd+S</kbd> save &middot; <kbd>Esc</kbd> deselect</div>
 <script src="/js/editor.js"></script>
 </body>
 </html>
