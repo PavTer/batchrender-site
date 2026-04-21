@@ -1,579 +1,423 @@
 /* ═══════════════════════════════════════════════════════════════════════════
- * BatchRender Inline Editor
- * - GitHub OAuth via existing proxy (batchrender-oauth.vercel.app)
- * - Loads site HTML from / and injects into #editor-site-root
- * - Loads content/{lang}.json and renders text into [data-edit] elements
- * - ContentEditable on all text nodes
- * - Save: builds updated JSON, commits via GitHub API
+ * BatchRender Inline Editor v2
+ * Architecture: edit.html = full copy of index.html + editor overlay
+ * Texts live in T{} object in the page. We make [data-key] elements
+ * contenteditable, track changes, and on Save — patch T{} in edit.html
+ * and index.html via GitHub API (using git tree to bypass 100KB limit).
  * ══════════════════════════════════════════════════════════════════════════ */
 
-const CONFIG = {
+const EDITOR_CONFIG = {
   REPO: 'PavTer/batchrender-site',
   BRANCH: 'main',
   OAUTH_URL: 'https://batchrender-oauth.vercel.app/auth',
-  ALLOWED_USERS: ['PavTer'], // только эти юзеры могут редактировать
+  ALLOWED_USERS: ['PavTer'],
 };
 
-const state = {
+const editorState = {
   token: null,
   user: null,
   lang: 'en',
-  content: { en: null, ru: null, zh: null },
-  shas: { en: null, ru: null, zh: null }, // sha файлов в репо для update
-  initial: {}, // { en: {...}, ru: {...}, zh: {...} } — начальные значения для diff
-  dirty: {},   // { en: Set<path>, ru: Set<path>, zh: Set<path> }
+  dirty: new Map(), // key -> { el, key, lang, oldVal, newVal }
+  indexSha: null,
+  editSha: null,
 };
 
-// ─── UTILITY: get/set nested property by dot-path ─────────────────────────
-function getPath(obj, path) {
-  return path.split('.').reduce((acc, key) => {
-    if (acc == null) return undefined;
-    // Поддержка массивов: items[0].title
-    const arrMatch = key.match(/^(\w+)\[(\d+)\]$/);
-    if (arrMatch) return acc[arrMatch[1]]?.[parseInt(arrMatch[2])];
-    return acc[key];
-  }, obj);
-}
-
-function setPath(obj, path, value) {
-  const parts = path.split('.');
-  let cur = obj;
-  for (let i = 0; i < parts.length - 1; i++) {
-    const key = parts[i];
-    const arrMatch = key.match(/^(\w+)\[(\d+)\]$/);
-    if (arrMatch) {
-      if (!cur[arrMatch[1]]) cur[arrMatch[1]] = [];
-      if (!cur[arrMatch[1]][parseInt(arrMatch[2])]) cur[arrMatch[1]][parseInt(arrMatch[2])] = {};
-      cur = cur[arrMatch[1]][parseInt(arrMatch[2])];
-    } else {
-      if (!cur[key]) cur[key] = {};
-      cur = cur[key];
-    }
-  }
-  const last = parts[parts.length - 1];
-  const arrMatch = last.match(/^(\w+)\[(\d+)\]$/);
-  if (arrMatch) {
-    if (!cur[arrMatch[1]]) cur[arrMatch[1]] = [];
-    cur[arrMatch[1]][parseInt(arrMatch[2])] = value;
-  } else {
-    cur[last] = value;
-  }
-}
-
-// ─── OAUTH FLOW ────────────────────────────────────────────────────────────
-function startOAuth() {
+// ─── OAUTH ────────────────────────────────────────────────────────────────
+function editorStartOAuth() {
   return new Promise((resolve, reject) => {
-    const popup = window.open(CONFIG.OAUTH_URL, 'oauth', 'width=600,height=700');
-    if (!popup) { reject(new Error('Popup blocked')); return; }
-
+    const popup = window.open(EDITOR_CONFIG.OAUTH_URL, 'br_oauth', 'width=600,height=700');
+    if (!popup) { reject(new Error('Popup blocked — allow popups for this site')); return; }
     const handler = (e) => {
       if (!e.data || typeof e.data !== 'string') return;
-      // Handshake from our proxy: 'authorizing:github'
       if (e.data === 'authorizing:github') {
-        popup.postMessage('authorizing:github', e.origin || '*');
+        try { popup.postMessage('authorizing:github', e.origin || '*'); } catch(_) {}
         return;
       }
-      // Success: 'authorization:github:success:{token,provider}'
       const m = e.data.match(/^authorization:github:success:(.+)$/);
       if (m) {
-        try {
-          const data = JSON.parse(m[1]);
-          window.removeEventListener('message', handler);
-          popup.close();
-          resolve(data.token);
-        } catch (err) { reject(err); }
+        try { const d = JSON.parse(m[1]); window.removeEventListener('message', handler); popup.close(); resolve(d.token); } catch(err) { reject(err); }
       }
-      // Error
       const em = e.data.match(/^authorization:github:error:(.+)$/);
-      if (em) {
-        window.removeEventListener('message', handler);
-        popup.close();
-        reject(new Error(em[1]));
-      }
+      if (em) { window.removeEventListener('message', handler); popup.close(); reject(new Error(em[1])); }
     };
     window.addEventListener('message', handler);
-
-    // Timeout fallback
-    setTimeout(() => {
-      if (popup && !popup.closed) {
-        window.removeEventListener('message', handler);
-        popup.close();
-        reject(new Error('OAuth timeout'));
-      }
-    }, 120000);
+    setTimeout(() => { window.removeEventListener('message', handler); if(!popup.closed) popup.close(); reject(new Error('OAuth timeout')); }, 120000);
   });
 }
 
-async function getUser(token) {
+async function editorGetUser(token) {
   const r = await fetch('https://api.github.com/user', {
     headers: { Authorization: 'token ' + token, Accept: 'application/vnd.github+json' }
   });
-  if (!r.ok) throw new Error('Failed to fetch user');
+  if (!r.ok) throw new Error('GitHub auth failed: ' + r.status);
   return r.json();
 }
 
-// ─── GITHUB API: get/put file ─────────────────────────────────────────────
-async function ghGetFile(path) {
-  const r = await fetch(`https://api.github.com/repos/${CONFIG.REPO}/contents/${path}?ref=${CONFIG.BRANCH}`, {
-    headers: { Authorization: 'token ' + state.token, Accept: 'application/vnd.github+json' }
+// ─── GITHUB API ───────────────────────────────────────────────────────────
+async function ghGet(path) {
+  const r = await fetch(`https://api.github.com/repos/${EDITOR_CONFIG.REPO}/contents/${path}?ref=${EDITOR_CONFIG.BRANCH}`, {
+    headers: { Authorization: 'token ' + editorState.token, Accept: 'application/vnd.github+json' }
   });
-  if (!r.ok) throw new Error(`GH get ${path}: ${r.status}`);
+  if (!r.ok) throw new Error(`GitHub GET ${path}: ${r.status}`);
   return r.json();
 }
 
-async function ghPutFile(path, contentObj, sha, message) {
-  const content = btoa(unescape(encodeURIComponent(JSON.stringify(contentObj, null, 2) + '\n')));
-  const r = await fetch(`https://api.github.com/repos/${CONFIG.REPO}/contents/${path}`, {
-    method: 'PUT',
-    headers: { Authorization: 'token ' + state.token, Accept: 'application/vnd.github+json', 'Content-Type': 'application/json' },
-    body: JSON.stringify({ message, content, sha, branch: CONFIG.BRANCH })
-  });
-  if (!r.ok) {
-    const err = await r.json().catch(() => ({}));
-    throw new Error(`GH put ${path}: ${err.message || r.status}`);
-  }
-  return r.json();
-}
-
-// ─── LOAD CONTENT ─────────────────────────────────────────────────────────
-async function loadAllContent() {
-  for (const lang of ['en', 'ru', 'zh']) {
-    const file = await ghGetFile(`content/${lang}.json`);
-    const json = JSON.parse(decodeURIComponent(escape(atob(file.content))));
-    state.content[lang] = json;
-    state.shas[lang] = file.sha;
-    state.initial[lang] = JSON.parse(JSON.stringify(json));
-    state.dirty[lang] = new Set();
-  }
-}
-
-// ─── INJECT THE REAL SITE ─────────────────────────────────────────────────
-async function loadSite() {
-  const r = await fetch('/index.html');
-  const html = await r.text();
-  // Extract body inner
-  const match = html.match(/<body[^>]*>([\s\S]*?)<\/body>/i);
-  if (!match) throw new Error('Cannot parse index.html');
-
-  const container = document.getElementById('editor-site-root');
-  container.innerHTML = match[1];
-
-  // Re-inject main.js-like logic inline (we'll call render ourselves)
-  // Remove original lang switcher if present in site — we use our own
-  // (не обязательно — сайт и свой переключатель может остаться)
-}
-
-// ─── RENDER CONTENT INTO DOM WITH data-edit ATTRIBUTES ────────────────────
-function renderContent() {
-  const t = state.content[state.lang];
-  if (!t) return;
-
-  const renderers = {
-    // простые строки
-    'nav.features': '#nav-features',
-    'nav.pricing': '#nav-pricing',
-    'nav.tutorials': '#nav-tutorials',
-    'nav.docs': '#nav-docs',
-    'nav.contact': '#nav-contact',
-    'nav.login': '#nav-login',
-    'nav.signup': '#nav-signup',
-
-    'hero.badge': '#hero-badge-text',
-    'hero.desc': '#hero-desc',
-    'hero.cta1': '#hero-cta1',
-    'hero.cta2': '#hero-cta2',
-    'hero.stat1n': '#hero-stat1-n',
-    'hero.stat1l': '#hero-stat1-l',
-    'hero.stat2n': '#hero-stat2-n',
-    'hero.stat2l': '#hero-stat2-l',
-    'hero.stat3n': '#hero-stat3-n',
-    'hero.stat3l': '#hero-stat3-l',
-
-    'features.tag': '#feat-tag',
-    'features.title': '#feat-title',
-    'features.sub': '#feat-sub',
-
-    'how.tag': '#how-tag',
-    'how.title': '#how-title',
-
-    'pricing.tag': '#pricing-tag',
-    'pricing.title': '#pricing-title',
-    'pricing.sub': '#pricing-sub',
-    'pricing.note': '#pricing-note',
-
-    'tutorials.tag': '#tut-tag',
-    'tutorials.title': '#tut-title',
-    'tutorials.sub': '#tut-sub',
-
-    'testimonials.tag': '#test-tag',
-    'testimonials.title': '#test-title',
-
-    'faq.tag': '#faq-tag',
-    'faq.title': '#faq-title',
-
-    'contact.tag': '#contact-tag',
-    'contact.title': '#contact-title',
-    'contact.sub': '#contact-sub',
-
-    'cta.title': '#cta-title',
-    'cta.sub': '#cta-sub',
-    'cta.btn1': '#cta-btn1',
-    'cta.btn2': '#cta-btn2',
-
-    'footer.desc': '#footer-desc',
-    'footer.rights': '#footer-rights',
+// Use git tree API to update large files (bypasses 100KB limit of contents API)
+async function ghUpdateFilesViaTree(files, message) {
+  const headers = {
+    Authorization: 'token ' + editorState.token,
+    Accept: 'application/vnd.github+json',
+    'Content-Type': 'application/json'
   };
+  const base = EDITOR_CONFIG.REPO;
+  const branch = EDITOR_CONFIG.BRANCH;
 
-  // Простые маппинги: один путь → один элемент
-  Object.entries(renderers).forEach(([path, selector]) => {
-    const el = document.querySelector('#editor-site-root ' + selector);
-    if (!el) return;
-    const val = getPath(t, path);
-    if (val == null) return;
-    el.textContent = val;
-    el.setAttribute('data-edit', '');
-    el.setAttribute('data-path', path);
+  // 1. Get current commit SHA
+  const refR = await fetch(`https://api.github.com/repos/${base}/git/refs/heads/${branch}`, { headers });
+  if (!refR.ok) throw new Error('Cannot get branch ref: ' + refR.status);
+  const ref = await refR.json();
+  const baseSha = ref.object.sha;
+
+  // 2. Get base tree SHA
+  const commitR = await fetch(`https://api.github.com/repos/${base}/git/commits/${baseSha}`, { headers });
+  if (!commitR.ok) throw new Error('Cannot get commit: ' + commitR.status);
+  const commit = await commitR.json();
+  const baseTreeSha = commit.tree.sha;
+
+  // 3. Create blobs for each file
+  const treeItems = [];
+  for (const { path, content } of files) {
+    const blobR = await fetch(`https://api.github.com/repos/${base}/git/blobs`, {
+      method: 'POST', headers,
+      body: JSON.stringify({ content, encoding: 'utf-8' })
+    });
+    if (!blobR.ok) throw new Error('Cannot create blob for ' + path + ': ' + blobR.status);
+    const blob = await blobR.json();
+    treeItems.push({ path, mode: '100644', type: 'blob', sha: blob.sha });
+  }
+
+  // 4. Create new tree
+  const treeR = await fetch(`https://api.github.com/repos/${base}/git/trees`, {
+    method: 'POST', headers,
+    body: JSON.stringify({ base_tree: baseTreeSha, tree: treeItems })
+  });
+  if (!treeR.ok) throw new Error('Cannot create tree: ' + treeR.status);
+  const tree = await treeR.json();
+
+  // 5. Create commit
+  const newCommitR = await fetch(`https://api.github.com/repos/${base}/git/commits`, {
+    method: 'POST', headers,
+    body: JSON.stringify({ message, tree: tree.sha, parents: [baseSha] })
+  });
+  if (!newCommitR.ok) throw new Error('Cannot create commit: ' + newCommitR.status);
+  const newCommit = await newCommitR.json();
+
+  // 6. Update branch ref
+  const updateR = await fetch(`https://api.github.com/repos/${base}/git/refs/heads/${branch}`, {
+    method: 'PATCH', headers,
+    body: JSON.stringify({ sha: newCommit.sha })
+  });
+  if (!updateR.ok) throw new Error('Cannot update ref: ' + updateR.status);
+  return newCommit;
+}
+
+// ─── MAKE ELEMENTS EDITABLE ───────────────────────────────────────────────
+function editorActivate() {
+  // All [data-key] elements become editable
+  document.querySelectorAll('[data-key]').forEach(el => {
+    // Skip elements whose content contains HTML tags (heroTitle etc) — too complex
+    const key = el.getAttribute('data-key');
+    const inner = el.innerHTML;
+    if (inner.includes('<') && inner.includes('>') && !inner.startsWith('"')) return;
+    // Skip buttons and links that are navigational
+    if (el.tagName === 'A' && el.closest('.lang-bar')) return;
+    if (el.classList.contains('btn-nav')) return;
+
     el.setAttribute('contenteditable', 'true');
+    el.setAttribute('data-edit', '');
+    el.setAttribute('data-path', key);
+    el.setAttribute('data-original', el.innerHTML);
+
+    el.addEventListener('input', onEditInput);
+    el.addEventListener('paste', onEditPaste);
+    el.addEventListener('keydown', onEditKeydown);
+    el.addEventListener('focus', onEditFocus);
+    el.addEventListener('blur', onEditBlur);
   });
 
-  // Hero title (special: title1 + title2 + title3 в одном <h1>)
-  const heroTitle = document.querySelector('#editor-site-root #hero-title');
-  if (heroTitle && t.hero) {
-    heroTitle.innerHTML =
-      `<span data-edit data-path="hero.title1" contenteditable="true">${t.hero.title1}</span><br>` +
-      `<span class="grad-text">` +
-        `<span data-edit data-path="hero.title2" contenteditable="true">${t.hero.title2}</span> ` +
-        `<span data-edit data-path="hero.title3" contenteditable="true">${t.hero.title3}</span>` +
-      `</span>`;
+  // Also make [data-nav-key] links editable
+  document.querySelectorAll('[data-nav-key]').forEach(el => {
+    const key = el.getAttribute('data-nav-key');
+    el.setAttribute('contenteditable', 'true');
+    el.setAttribute('data-edit', '');
+    el.setAttribute('data-path', 'nav_' + key);
+    el.setAttribute('data-original', el.textContent);
+    el.addEventListener('input', onEditInput);
+    el.addEventListener('paste', onEditPaste);
+    el.addEventListener('keydown', onEditKeydown);
+  });
+}
+
+function onEditFocus(e) {
+  // Prevent link navigation
+  e.target.closest('a')?.addEventListener('click', stopNav, { once: true });
+}
+function onEditBlur() {}
+function stopNav(e) { e.preventDefault(); }
+
+function onEditInput(e) {
+  const el = e.target;
+  const key = el.dataset.path;
+  const original = el.dataset.original;
+  const current = el.innerHTML;
+
+  if (current !== original) {
+    editorState.dirty.set(key, { el, key, lang: editorState.lang, newVal: el.textContent, newHTML: current });
+    el.classList.add('dirty');
+  } else {
+    editorState.dirty.delete(key);
+    el.classList.remove('dirty');
   }
-
-  // Списки: features, how, pricing, tutorials, testimonials, faq, contact.info
-  renderList('#features-grid', t.features?.items, (item, i) => `
-    <div class="card fade-up">
-      <div class="feature-icon" data-edit data-path="features.items[${i}].icon" contenteditable="true">${item.icon || ''}</div>
-      <div class="feature-title" data-edit data-path="features.items[${i}].title" contenteditable="true">${item.title || ''}</div>
-      <p class="feature-desc" data-edit data-path="features.items[${i}].desc" contenteditable="true">${item.desc || ''}</p>
-    </div>
-  `);
-
-  renderList('#steps', t.how?.steps, (s, i) => `
-    <div class="step fade-up">
-      <div class="step-num">${i + 1}</div>
-      <div class="step-title" data-edit data-path="how.steps[${i}].title" contenteditable="true">${s.title || ''}</div>
-      <p class="step-desc" data-edit data-path="how.steps[${i}].desc" contenteditable="true">${s.desc || ''}</p>
-    </div>
-  `);
-
-  renderList('#pricing-grid', t.pricing?.plans, (p, i) => `
-    <div class="pricing-card ${p.popular ? 'popular' : ''} fade-up">
-      ${p.popular ? `<div class="popular-badge">⭐ Most Popular</div>` : ''}
-      <div class="pricing-name" data-edit data-path="pricing.plans[${i}].name" contenteditable="true">${p.name || ''}</div>
-      <div class="pricing-price">
-        <span class="currency" data-edit data-path="pricing.plans[${i}].currency" contenteditable="true">${p.currency || ''}</span>
-        <span class="amount" data-edit data-path="pricing.plans[${i}].price" contenteditable="true">${p.price || ''}</span>
-        <div class="period" data-edit data-path="pricing.plans[${i}].period" contenteditable="true">${p.period || ''}</div>
-      </div>
-      <p class="pricing-desc" data-edit data-path="pricing.plans[${i}].desc" contenteditable="true">${p.desc || ''}</p>
-      <ul class="pricing-features">
-        ${(p.features || []).map((f, j) => `<li data-edit data-path="pricing.plans[${i}].features[${j}]" contenteditable="true">${f}</li>`).join('')}
-        ${(p.missing || []).map((f, j) => `<li class="no" data-edit data-path="pricing.plans[${i}].missing[${j}]" contenteditable="true">${f}</li>`).join('')}
-      </ul>
-      <button class="btn btn-${p.popular ? 'primary' : 'secondary'}" style="width:100%;justify-content:center">
-        <span data-edit data-path="pricing.plans[${i}].cta" contenteditable="true">${p.cta || ''}</span>
-      </button>
-    </div>
-  `);
-
-  renderList('#tutorials-grid', t.tutorials?.items, (v, i) => `
-    <div class="tutorial-card fade-up">
-      <div class="tutorial-thumb">
-        <div class="tutorial-thumb-bg"></div>
-        <div class="play-btn">▶</div>
-        <div class="tutorial-duration" data-edit data-path="tutorials.items[${i}].dur" contenteditable="true">${v.dur || ''}</div>
-      </div>
-      <div class="tutorial-body">
-        <div class="tutorial-title" data-edit data-path="tutorials.items[${i}].title" contenteditable="true">${v.title || ''}</div>
-        <div class="tutorial-level">🎯 <span data-edit data-path="tutorials.items[${i}].level" contenteditable="true">${v.level || ''}</span></div>
-      </div>
-    </div>
-  `);
-
-  renderList('#testimonials-grid', t.testimonials?.items, (r, i) => `
-    <div class="testimonial-card fade-up">
-      <div class="stars">★★★★★</div>
-      <p class="testimonial-text" data-edit data-path="testimonials.items[${i}].text" contenteditable="true">${r.text || ''}</p>
-      <div class="testimonial-author">
-        <div class="author-avatar" data-edit data-path="testimonials.items[${i}].init" contenteditable="true">${r.init || ''}</div>
-        <div>
-          <div class="author-name" data-edit data-path="testimonials.items[${i}].name" contenteditable="true">${r.name || ''}</div>
-          <div class="author-role" data-edit data-path="testimonials.items[${i}].role" contenteditable="true">${r.role || ''}</div>
-        </div>
-      </div>
-    </div>
-  `);
-
-  renderList('#faq-list', t.faq?.items, (f, i) => `
-    <div class="faq-item" id="faq-${i}">
-      <button class="faq-q" type="button">
-        <span data-edit data-path="faq.items[${i}].q" contenteditable="true">${f.q || ''}</span>
-        <span class="faq-q-icon">+</span>
-      </button>
-      <div class="faq-a" data-edit data-path="faq.items[${i}].a" contenteditable="true">${f.a || ''}</div>
-    </div>
-  `);
-
-  renderList('#contact-info', t.contact?.info, (c, i) => `
-    <div class="contact-item">
-      <div class="contact-icon" data-edit data-path="contact.info[${i}].icon" contenteditable="true">${c.icon || ''}</div>
-      <div>
-        <div class="contact-label" data-edit data-path="contact.info[${i}].label" contenteditable="true">${c.label || ''}</div>
-        <div class="contact-value" data-edit data-path="contact.info[${i}].value" contenteditable="true">${c.value || ''}</div>
-      </div>
-    </div>
-  `);
-
-  // footer lists
-  ['product', 'support', 'legal'].forEach(kind => {
-    renderList(`#footer-${kind}`, t.footer?.[kind], (link, i) => `
-      <a href="#" data-edit data-path="footer.${kind}[${i}]" contenteditable="true">${link}</a>
-    `);
-  });
-
-  // Form placeholders
-  if (t.contact?.form) {
-    const f = t.contact.form;
-    ['name', 'email', 'subject', 'message', 'send'].forEach(key => {
-      const el = document.querySelector('#editor-site-root #cf-' + key);
-      if (el && f[key]) {
-        el.textContent = f[key];
-        el.setAttribute('data-edit', '');
-        el.setAttribute('data-path', `contact.form.${key}`);
-        el.setAttribute('contenteditable', 'true');
-      }
-    });
-  }
-
-  attachEditHandlers();
-  observeFade();
+  editorUpdateUI();
 }
 
-function renderList(selector, items, fn) {
-  const el = document.querySelector('#editor-site-root ' + selector);
-  if (!el || !items) return;
-  el.innerHTML = items.map(fn).join('');
+function onEditPaste(e) {
+  e.preventDefault();
+  const text = (e.clipboardData || window.clipboardData).getData('text');
+  document.execCommand('insertText', false, text);
 }
 
-function observeFade() {
-  const els = document.querySelectorAll('#editor-site-root .fade-up');
-  const obs = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
-  }, { threshold: 0.12 });
-  els.forEach(el => obs.observe(el));
+function onEditKeydown(e) {
+  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); e.target.blur(); }
+  if (e.key === 'Escape') { e.target.blur(); }
 }
 
-// ─── EDIT HANDLERS ────────────────────────────────────────────────────────
-function attachEditHandlers() {
-  document.querySelectorAll('#editor-site-root [data-edit]').forEach(el => {
-    if (el._editorBound) return;
-    el._editorBound = true;
-
-    el.addEventListener('input', () => {
-      const path = el.dataset.path;
-      const lang = state.lang;
-      const newVal = el.textContent;
-      const initialVal = getPath(state.initial[lang], path);
-      setPath(state.content[lang], path, newVal);
-      if (String(newVal) !== String(initialVal)) {
-        state.dirty[lang].add(path);
-        el.classList.add('dirty');
-      } else {
-        state.dirty[lang].delete(path);
-        el.classList.remove('dirty');
-      }
-      updateUI();
-    });
-
-    el.addEventListener('paste', (e) => {
-      // plain-text paste only
-      e.preventDefault();
-      const text = (e.clipboardData || window.clipboardData).getData('text');
-      document.execCommand('insertText', false, text);
-    });
-
-    el.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' && !e.shiftKey) {
-        e.preventDefault();
-        el.blur();
-      }
-    });
-  });
-}
-
-// ─── UI UPDATES ──────────────────────────────────────────────────────────
-function updateUI() {
-  const totalDirty = ['en', 'ru', 'zh'].reduce((sum, l) => sum + (state.dirty[l]?.size || 0), 0);
-  document.getElementById('editor-count').textContent = totalDirty;
-  document.getElementById('editor-save-btn').disabled = totalDirty === 0;
-  document.getElementById('editor-discard-btn').disabled = totalDirty === 0;
-
+// ─── UI ───────────────────────────────────────────────────────────────────
+function editorUpdateUI() {
+  const count = editorState.dirty.size;
+  document.getElementById('editor-count').textContent = count;
+  document.getElementById('editor-save-btn').disabled = count === 0;
+  document.getElementById('editor-discard-btn').disabled = count === 0;
   const ind = document.getElementById('editor-changes');
   const txt = ind.querySelector('.txt');
-  if (totalDirty === 0) {
-    ind.classList.remove('saved');
-    txt.textContent = 'No changes';
-  } else {
-    ind.classList.remove('saved');
-    txt.textContent = totalDirty + ' unsaved';
-  }
+  if (count === 0) { ind.classList.remove('saved'); txt.textContent = 'No changes'; }
+  else { ind.classList.remove('saved'); txt.textContent = count + ' unsaved change' + (count > 1 ? 's' : ''); }
 }
 
-function showToast(msg, isError) {
-  const toast = document.getElementById('editor-toast');
-  toast.textContent = (isError ? '✗ ' : '✓ ') + msg;
-  toast.classList.toggle('error', !!isError);
-  toast.classList.add('show');
-  setTimeout(() => toast.classList.remove('show'), isError ? 5000 : 3000);
+function editorShowToast(msg, isError) {
+  const t = document.getElementById('editor-toast');
+  t.textContent = (isError ? '✗ ' : '✓ ') + msg;
+  t.classList.toggle('error', !!isError);
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), isError ? 6000 : 3500);
 }
 
-// ─── SAVE ─────────────────────────────────────────────────────────────────
-async function save() {
-  const langs = ['en', 'ru', 'zh'].filter(l => state.dirty[l]?.size > 0);
-  if (!langs.length) return;
-
-  const saveBtn = document.getElementById('editor-save-btn');
-  saveBtn.disabled = true;
-  saveBtn.querySelector('span').textContent = 'Saving...';
+// ─── SAVE ────────────────────────────────────────────────────────────────
+async function editorSave() {
+  if (editorState.dirty.size === 0) return;
+  const btn = document.getElementById('editor-save-btn');
+  btn.disabled = true;
+  btn.querySelector('span').textContent = 'Saving...';
 
   try {
-    for (const lang of langs) {
-      const paths = Array.from(state.dirty[lang]);
-      const msg = `edit(${lang}): ${paths.slice(0, 3).join(', ')}${paths.length > 3 ? ` +${paths.length - 3} more` : ''}`;
-      const result = await ghPutFile(`content/${lang}.json`, state.content[lang], state.shas[lang], msg);
-      state.shas[lang] = result.content.sha;
-      state.initial[lang] = JSON.parse(JSON.stringify(state.content[lang]));
-      state.dirty[lang].clear();
+    // Get current content of index.html and edit.html
+    const [indexFile, editFile] = await Promise.all([
+      ghGet('index.html'),
+      ghGet('edit.html'),
+    ]);
+
+    let indexContent = atob(indexFile.content.replace(/\n/g, ''));
+    let editContent = atob(editFile.content.replace(/\n/g, ''));
+
+    // For each dirty key, patch the T object string in both files
+    const changes = Array.from(editorState.dirty.values());
+    const changedKeys = [];
+
+    for (const { key, lang, newVal } of changes) {
+      const isNavKey = key.startsWith('nav_');
+      const realKey = isNavKey ? key.slice(4) : key;
+
+      // Build replacement for the T object entry
+      // Pattern: key:"oldvalue" or key:'oldvalue'
+      // We do it per-language: find the lang block and replace within it
+      // Simple approach: replace all occurrences of this key in T[lang] section
+      const escaped = newVal.replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/'/g, "\\'");
+
+      // Replace in both files
+      [indexContent, editContent] = [indexContent, editContent].map(content => {
+        // Match: realKey:"...") or realKey:'...' in the right lang section
+        // Use a regex that finds the key followed by colon and quoted string
+        const patterns = [
+          new RegExp(`(${realKey}:)"[^"]*"`, 'g'),
+          new RegExp(`(${realKey}:)'[^']*'`, 'g'),
+        ];
+        // Only replace in the correct language block
+        // Find lang block boundaries and replace only there
+        const langStart = content.indexOf(`${lang}:`);
+        const nextLangStart = ['en','ru','zh'].filter(l => l !== lang)
+          .map(l => content.indexOf(`${l}:`, langStart + 1))
+          .filter(i => i > langStart)
+          .reduce((min, i) => i < min ? i : min, Infinity);
+        
+        if (langStart === -1) return content;
+        
+        const before = content.slice(0, langStart);
+        const langBlock = nextLangStart === Infinity 
+          ? content.slice(langStart) 
+          : content.slice(langStart, nextLangStart);
+        const after = nextLangStart === Infinity ? '' : content.slice(nextLangStart);
+        
+        let newBlock = langBlock;
+        patterns.forEach(re => {
+          newBlock = newBlock.replace(re, (match, prefix) => {
+            return `${prefix}"${newVal}"`;
+          });
+        });
+        
+        return before + newBlock + after;
+      });
+      changedKeys.push(realKey);
     }
-    document.querySelectorAll('#editor-site-root [data-edit].dirty').forEach(el => el.classList.remove('dirty'));
-    updateUI();
+
+    // Commit both files
+    const commitMsg = `edit: update ${[...new Set(changedKeys)].slice(0,5).join(', ')} via inline editor`;
+    await ghUpdateFilesViaTree([
+      { path: 'index.html', content: indexContent },
+      { path: 'edit.html', content: editContent },
+    ], commitMsg);
+
+    // Clear dirty state
+    editorState.dirty.forEach(({ el }) => {
+      el.classList.remove('dirty');
+      el.dataset.original = el.innerHTML; // update baseline
+    });
+    editorState.dirty.clear();
+    editorUpdateUI();
+
     const ind = document.getElementById('editor-changes');
     ind.classList.add('saved');
-    ind.querySelector('.txt').textContent = 'Saved';
-    showToast('Committed to repo. Vercel deploying...');
-  } catch (e) {
-    showToast(e.message || 'Save failed', true);
+    ind.querySelector('.txt').textContent = 'Saved ✓';
+    editorShowToast('Committed! Vercel deploying (~30s)...');
+  } catch (err) {
+    console.error('Editor save error:', err);
+    editorShowToast(err.message || 'Save failed', true);
   } finally {
-    saveBtn.querySelector('span').textContent = 'Save';
-    saveBtn.disabled = false;
+    btn.querySelector('span').textContent = 'Save';
+    btn.disabled = editorState.dirty.size === 0;
   }
 }
 
-// ─── DISCARD ──────────────────────────────────────────────────────────────
-function discard() {
-  for (const lang of ['en', 'ru', 'zh']) {
-    state.content[lang] = JSON.parse(JSON.stringify(state.initial[lang]));
-    state.dirty[lang].clear();
-  }
-  renderContent();
-  updateUI();
-  showToast('Discarded changes');
+// ─── DISCARD ─────────────────────────────────────────────────────────────
+function editorDiscard() {
+  editorState.dirty.forEach(({ el }) => {
+    el.innerHTML = el.dataset.original;
+    el.classList.remove('dirty');
+  });
+  editorState.dirty.clear();
+  editorUpdateUI();
+  editorShowToast('Changes discarded');
 }
 
-// ─── LANG SWITCH ──────────────────────────────────────────────────────────
-function switchLang(lang) {
-  state.lang = lang;
-  document.querySelectorAll('#editor-lang-switch button').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
-  renderContent();
-}
-
-// ─── LOGOUT ───────────────────────────────────────────────────────────────
-function logout() {
-  sessionStorage.removeItem('br_edit_token');
-  sessionStorage.removeItem('br_edit_user');
+// ─── LOGOUT ──────────────────────────────────────────────────────────────
+function editorLogout() {
+  sessionStorage.removeItem('br_editor_token');
+  sessionStorage.removeItem('br_editor_user');
   location.reload();
 }
 
-// ─── BOOT ─────────────────────────────────────────────────────────────────
-async function boot() {
+// ─── BOOT ────────────────────────────────────────────────────────────────
+async function editorBoot() {
   const loginScreen = document.getElementById('editor-login');
   const bar = document.getElementById('editor-bar');
   const hint = document.getElementById('editor-hint');
   const errEl = document.getElementById('editor-login-error');
 
-  // Try cached token
-  const cachedToken = sessionStorage.getItem('br_edit_token');
-  const cachedUser = sessionStorage.getItem('br_edit_user');
+  // Restore session
+  const cachedToken = sessionStorage.getItem('br_editor_token');
+  const cachedUser = sessionStorage.getItem('br_editor_user');
   if (cachedToken && cachedUser) {
-    state.token = cachedToken;
-    state.user = JSON.parse(cachedUser);
+    editorState.token = cachedToken;
+    editorState.user = JSON.parse(cachedUser);
+    editorEnter();
+    return;
   }
 
+  // Login button
   document.getElementById('editor-login-btn').addEventListener('click', async () => {
     errEl.textContent = '';
+    const btn = document.getElementById('editor-login-btn');
+    btn.textContent = 'Connecting...';
+    btn.disabled = true;
     try {
-      const token = await startOAuth();
-      const user = await getUser(token);
-      if (!CONFIG.ALLOWED_USERS.includes(user.login)) {
-        errEl.textContent = `User @${user.login} is not authorized.`;
+      const token = await editorStartOAuth();
+      const user = await editorGetUser(token);
+      if (!EDITOR_CONFIG.ALLOWED_USERS.includes(user.login)) {
+        errEl.textContent = `@${user.login} is not authorized to edit this site.`;
+        btn.textContent = 'Sign in with GitHub';
+        btn.disabled = false;
         return;
       }
-      state.token = token;
-      state.user = user;
-      sessionStorage.setItem('br_edit_token', token);
-      sessionStorage.setItem('br_edit_user', JSON.stringify(user));
-      await enterEditor();
-    } catch (e) {
-      errEl.textContent = e.message || 'Login failed';
+      editorState.token = token;
+      editorState.user = user;
+      sessionStorage.setItem('br_editor_token', token);
+      sessionStorage.setItem('br_editor_user', JSON.stringify(user));
+      editorEnter();
+    } catch (err) {
+      errEl.textContent = err.message || 'Login failed';
+      btn.textContent = 'Sign in with GitHub';
+      btn.disabled = false;
     }
   });
-
-  document.getElementById('editor-save-btn').addEventListener('click', save);
-  document.getElementById('editor-discard-btn').addEventListener('click', discard);
-  document.getElementById('editor-logout-btn').addEventListener('click', logout);
-  document.querySelectorAll('#editor-lang-switch button').forEach(btn => {
-    btn.addEventListener('click', () => switchLang(btn.dataset.lang));
-  });
-  document.addEventListener('keydown', (e) => {
-    if ((e.metaKey || e.ctrlKey) && e.key === 's') { e.preventDefault(); save(); }
-    if (e.key === 'Escape') {
-      const active = document.activeElement;
-      if (active && active.hasAttribute('data-edit')) active.blur();
-    }
-  });
-
-  if (state.token && state.user) {
-    await enterEditor();
-  }
 }
 
-async function enterEditor() {
+function editorEnter() {
   const loginScreen = document.getElementById('editor-login');
   const bar = document.getElementById('editor-bar');
   const hint = document.getElementById('editor-hint');
 
-  try {
-    // Show user
-    const userBox = document.getElementById('editor-user');
-    userBox.innerHTML = `<img src="${state.user.avatar_url}" alt=""> @${state.user.login}`;
-
-    // Load all content
-    await loadAllContent();
-    // Load site HTML
-    await loadSite();
-    // Render
-    renderContent();
-
-    loginScreen.style.display = 'none';
-    bar.style.display = 'flex';
-    hint.style.display = 'flex';
-    updateUI();
-  } catch (e) {
-    document.getElementById('editor-login-error').textContent = 'Load failed: ' + e.message;
-    // Token may be invalid
-    if (/401|403|bad credentials/i.test(e.message)) {
-      sessionStorage.removeItem('br_edit_token');
-      sessionStorage.removeItem('br_edit_user');
-    }
+  // Show user in bar
+  const userBox = document.getElementById('editor-user');
+  if (editorState.user) {
+    userBox.innerHTML = `<img src="${editorState.user.avatar_url}" alt=""> @${editorState.user.login}`;
   }
+
+  // Wire up buttons
+  document.getElementById('editor-save-btn').addEventListener('click', editorSave);
+  document.getElementById('editor-discard-btn').addEventListener('click', editorDiscard);
+  document.getElementById('editor-logout-btn').addEventListener('click', editorLogout);
+
+  // Lang switch — sync with site's own switcher
+  document.querySelectorAll('#editor-lang-switch button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const lang = btn.dataset.lang;
+      editorState.lang = lang;
+      document.querySelectorAll('#editor-lang-switch button').forEach(b => b.classList.toggle('active', b === btn));
+      // Trigger the site's own setLang so content updates
+      if (typeof setLang === 'function') {
+        const map = { en: 'en', ru: 'ru', zh: 'zh' };
+        setLang(map[lang]);
+      }
+      // Re-activate editable elements after lang switch
+      setTimeout(() => {
+        editorActivate();
+      }, 100);
+    });
+  });
+
+  // Keyboard shortcuts
+  document.addEventListener('keydown', (e) => {
+    if ((e.metaKey || e.ctrlKey) && e.key === 's') { e.preventDefault(); editorSave(); }
+  });
+
+  // Hide login, show bar
+  loginScreen.style.display = 'none';
+  bar.style.display = 'flex';
+  hint.classList.add('show');
+
+  // Activate editing
+  editorActivate();
+  editorUpdateUI();
 }
 
-boot();
+// Start
+document.addEventListener('DOMContentLoaded', editorBoot);
