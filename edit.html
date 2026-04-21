@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>BatchRender Editor</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="/img/favicon.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;700;800&family=Space+Grotesk:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<!-- Inherit all styles from main site by loading index.html's styles. We embed them via link tag below. -->
+<link rel="stylesheet" href="/css/main.css" onerror="this.remove()">
+<style>
+  /* ─── BODY PADDING FOR EDITOR BAR ────────────────────────── */
+  body { padding-top: 56px !important; }
+
+  /* ─── EDITOR TOP BAR ─────────────────────────────────────── */
+  .editor-bar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 10000;
+    height: 56px;
+    background: rgba(18, 22, 32, 0.92);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    display: flex; align-items: center; padding: 0 20px; gap: 16px;
+    font-family: 'Space Grotesk', sans-serif; color: #eaecef;
+  }
+  .editor-logo {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 700; font-size: 17px;
+    background: linear-gradient(90deg, #1e8ee8, #7b4fd4);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    padding-right: 16px; border-right: 1px solid rgba(255,255,255,0.1);
+  }
+  .editor-mode {
+    font-size: 12px; color: #8892a0; letter-spacing: 0.5px;
+    text-transform: uppercase; font-weight: 500;
+  }
+  .editor-mode .dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #4ade80; margin-right: 6px; vertical-align: middle; }
+
+  .editor-lang-switch { display: flex; gap: 2px; background: rgba(255,255,255,0.04); padding: 3px; border-radius: 8px; margin-left: 24px; }
+  .editor-lang-switch button {
+    background: transparent; border: 0; color: #8892a0; font-family: inherit; font-size: 13px; font-weight: 500;
+    padding: 6px 12px; border-radius: 6px; cursor: pointer; transition: all .15s;
+  }
+  .editor-lang-switch button:hover { color: #eaecef; }
+  .editor-lang-switch button.active { background: rgba(59,158,255,0.15); color: #3b9eff; }
+
+  .editor-user { margin-left: auto; font-size: 13px; color: #8892a0; display: flex; align-items: center; gap: 8px; }
+  .editor-user img { width: 24px; height: 24px; border-radius: 50%; }
+
+  .editor-changes {
+    display: flex; align-items: center; gap: 8px; font-size: 13px; color: #8892a0;
+  }
+  .editor-changes .dot { width: 6px; height: 6px; border-radius: 50%; background: #fbbf24; }
+  .editor-changes.saved .dot { background: #4ade80; }
+  .editor-changes.saved .txt { color: #4ade80; }
+
+  .btn-editor {
+    background: transparent; border: 1px solid rgba(255,255,255,0.1); color: #eaecef;
+    padding: 8px 14px; border-radius: 8px; font-family: inherit; font-size: 13px; font-weight: 500;
+    cursor: pointer; transition: all .15s; display: inline-flex; align-items: center; gap: 6px;
+  }
+  .btn-editor:hover:not(:disabled) { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.2); }
+  .btn-editor.primary {
+    background: linear-gradient(135deg, #1e8ee8, #7b4fd4); border-color: transparent; color: white; font-weight: 600;
+  }
+  .btn-editor.primary:hover:not(:disabled) { box-shadow: 0 4px 16px rgba(30,142,232,0.35); transform: translateY(-1px); }
+  .btn-editor:disabled { opacity: 0.4; cursor: not-allowed; transform: none; box-shadow: none; }
+  .btn-editor .count { background: rgba(255,255,255,0.2); padding: 1px 7px; border-radius: 10px; font-size: 11px; font-weight: 600; }
+
+  /* ─── INLINE EDIT STYLES ─────────────────────────────────── */
+  [data-edit] {
+    position: relative; cursor: text; transition: outline-color .15s, background .15s;
+    outline: 2px solid transparent; outline-offset: 4px; border-radius: 4px;
+  }
+  [data-edit]:hover { outline-color: rgba(59,158,255,0.35); background: rgba(59,158,255,0.04); }
+  [data-edit]:focus { outline-color: #3b9eff; background: rgba(59,158,255,0.08); }
+  [data-edit].dirty { outline-color: #fbbf24; background: rgba(251,191,36,0.06); }
+  [data-edit].dirty:focus { outline-color: #fbbf24; }
+
+  [data-edit]::before {
+    content: attr(data-path);
+    position: absolute; top: -22px; left: 0;
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    color: #3b9eff; background: rgba(18,22,32,0.95);
+    padding: 2px 6px; border-radius: 4px;
+    opacity: 0; pointer-events: none; transition: opacity .15s;
+    white-space: nowrap; z-index: 100;
+  }
+  [data-edit]:hover::before, [data-edit]:focus::before { opacity: 1; }
+  [data-edit].dirty::before { color: #fbbf24; opacity: 1; }
+
+  /* ─── LOGIN SCREEN ───────────────────────────────────────── */
+  .editor-login-screen {
+    position: fixed; inset: 0; background: #131720; z-index: 99999;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Space Grotesk', sans-serif; color: #eaecef;
+  }
+  .editor-login-box {
+    text-align: center; max-width: 420px; padding: 40px;
+    background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 16px;
+  }
+  .editor-login-box h1 {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 28px; font-weight: 700; margin-bottom: 12px;
+    background: linear-gradient(135deg, #1e8ee8, #7b4fd4);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .editor-login-box p { color: #8892a0; margin-bottom: 24px; font-size: 15px; line-height: 1.5; }
+  .editor-login-box button {
+    background: linear-gradient(135deg, #1e8ee8, #7b4fd4); color: white; border: 0;
+    padding: 14px 28px; border-radius: 10px; font-family: inherit; font-size: 15px; font-weight: 600;
+    cursor: pointer; transition: all .15s; display: inline-flex; align-items: center; gap: 10px;
+  }
+  .editor-login-box button:hover { box-shadow: 0 8px 24px rgba(30,142,232,0.35); transform: translateY(-1px); }
+  .editor-login-error { color: #ef4444; margin-top: 12px; font-size: 13px; }
+
+  /* ─── TOAST ──────────────────────────────────────────────── */
+  .editor-toast {
+    position: fixed; top: 76px; right: 20px; z-index: 10001;
+    background: rgba(18,22,32,0.95); backdrop-filter: blur(12px);
+    border: 1px solid rgba(74,222,128,0.3); border-radius: 10px;
+    padding: 12px 16px; font-size: 13px; color: #4ade80;
+    display: flex; gap: 8px; align-items: center;
+    transform: translateX(calc(100% + 40px)); transition: transform .3s;
+    font-family: 'Space Grotesk', sans-serif;
+  }
+  .editor-toast.show { transform: translateX(0); }
+  .editor-toast.error { border-color: rgba(239,68,68,0.3); color: #ef4444; }
+
+  /* ─── HINT ───────────────────────────────────────────────── */
+  .editor-hint {
+    position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+    background: rgba(18,22,32,0.95); backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.08);
+    padding: 10px 16px; border-radius: 10px; font-size: 13px; color: #8892a0;
+    z-index: 9999; display: flex; gap: 10px; align-items: center;
+    font-family: 'Space Grotesk', sans-serif;
+  }
+  .editor-hint kbd {
+    background: rgba(255,255,255,0.08); padding: 2px 6px; border-radius: 4px;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #eaecef;
+  }
+</style>
+</head>
+<body data-page="home">
+
+<!-- ═══════ LOGIN SCREEN (shown until auth) ═══════ -->
+<div class="editor-login-screen" id="editor-login">
+  <div class="editor-login-box">
+    <h1>BatchRender Editor</h1>
+    <p>Sign in with GitHub to edit site content inline. Changes will be committed to the repo.</p>
+    <button id="editor-login-btn">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.57.1.78-.25.78-.55v-1.93c-3.2.7-3.87-1.54-3.87-1.54-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.75 2.68 1.24 3.34.95.1-.74.4-1.24.72-1.53-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.18-3.09-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.15 1.18.91-.25 1.89-.38 2.86-.38s1.95.13 2.86.38c2.19-1.49 3.15-1.18 3.15-1.18.62 1.58.23 2.75.11 3.04.73.8 1.18 1.83 1.18 3.09 0 4.42-2.69 5.4-5.25 5.68.41.36.78 1.06.78 2.13v3.16c0 .31.21.66.79.55C20.21 21.39 23.5 17.08 23.5 12 23.5 5.73 18.27.5 12 .5z"/></svg>
+      Sign in with GitHub
+    </button>
+    <div class="editor-login-error" id="editor-login-error"></div>
+  </div>
+</div>
+
+<!-- ═══════ EDITOR TOP BAR ═══════ -->
+<div class="editor-bar" id="editor-bar" style="display:none">
+  <div class="editor-logo">BatchRender</div>
+  <div class="editor-mode"><span class="dot"></span>Edit mode</div>
+
+  <div class="editor-lang-switch" id="editor-lang-switch">
+    <button class="active" data-lang="en">🇬🇧 EN</button>
+    <button data-lang="ru">🇷🇺 RU</button>
+    <button data-lang="zh">🇨🇳 ZH</button>
+  </div>
+
+  <div class="editor-user" id="editor-user"></div>
+
+  <div class="editor-changes" id="editor-changes">
+    <span class="dot"></span>
+    <span class="txt">No changes</span>
+  </div>
+
+  <button class="btn-editor" id="editor-discard-btn" disabled>Discard</button>
+  <button class="btn-editor primary" id="editor-save-btn" disabled>
+    <span>Save</span>
+    <span class="count" id="editor-count">0</span>
+  </button>
+  <button class="btn-editor" id="editor-logout-btn" title="Sign out">⎋</button>
+</div>
+
+<!-- ═══════ SITE MOUNT POINT ═══════ -->
+<div id="editor-site-root"></div>
+
+<!-- ═══════ HINT ═══════ -->
+<div class="editor-hint" id="editor-hint" style="display:none">
+  💡 Click any text to edit · <kbd>⌘S</kbd> save · <kbd>Esc</kbd> discard
+</div>
+
+<!-- ═══════ TOAST ═══════ -->
+<div class="editor-toast" id="editor-toast"></div>
+
+<script src="/js/editor.js"></script>
+</body>
+</html>
