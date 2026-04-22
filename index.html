@@ -62,6 +62,15 @@ body {
   text-decoration: none;
   display: flex; align-items: center; gap: 10px;
 }
+.logo-wordmark {
+  background: var(--grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
 .nav-links { display: flex; align-items: center; gap: 28px; }
 .nav-links a { color: var(--text2); text-decoration: none; font-size: 14px; font-weight: 400; transition: color 0.2s; }
 .nav-links a:hover { color: var(--text); }
@@ -319,7 +328,8 @@ footer { border-top: 1px solid var(--border); padding: 60px 32px 40px; max-width
 <div class="bg-glow glow2"></div>
 <nav class="lang-bar">
   <a href="#" class="logo">
-    <img src="img/logo-mark.png" alt="BatchRender" style="height:40px;width:auto;" />
+    <img src="img/logo-mark.png" alt="" style="height:32px;width:auto;" />
+    <span class="logo-wordmark">BatchRender</span>
   </a>
   <div class="nav-links">
     <a href="#features" data-nav-key="features"></a>
@@ -543,7 +553,10 @@ footer { border-top: 1px solid var(--border); padding: 60px 32px 40px; max-width
 <footer>
   <div class="footer-grid">
     <div>
-      <a href="#" class="logo"><img src="img/logo-mark.png" alt="BatchRender" style="height:34px;width:auto;" /></a>
+      <a href="#" class="logo">
+        <img src="img/logo-mark.png" alt="" style="height:28px;width:auto;" />
+        <span class="logo-wordmark">BatchRender</span>
+      </a>
       <p class="footer-desc" data-key="footerDesc">Professional batch rendering software for 3D artists, studios, and visualization teams worldwide.</p>
     </div>
     <div class="footer-col"><h4 data-key="fcProduct">Product</h4><a href="#features" data-key="fcFeatures">Features</a><a href="#pricing" data-key="fcPricing">Pricing</a><a href="#changelog" data-key="fcChangelog">Changelog</a><a href="#videos" data-key="fcTutorials">Tutorials</a></div>
