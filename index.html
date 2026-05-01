@@ -124,7 +124,12 @@ body::after {
 }
 .logo { display: flex; align-items: center; text-decoration: none; }
 .logo-img { height: 28px; width: auto; display: block; }
-.nav-links { display: flex; align-items: center; gap: 28px; }
+.nav-links {
+  position: absolute;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex; align-items: center; gap: 28px;
+}
 .nav-links a { color: var(--fg-mut); text-decoration: none; font-size: 13px; font-weight: 500; transition: color 0.15s; }
 .nav-links a:hover { color: var(--fg-strong); }
 .nav-right { display: flex; align-items: center; gap: 14px; }
@@ -1645,11 +1650,11 @@ section { padding: 100px 32px; max-width: 1280px; margin: 0 auto; }
   /* GIANT BACKGROUND TYPE */
   #pricing .megaword {
     position: absolute;
-    left: -40px;
-    bottom: -120px;
+    left: -24px;
+    bottom: -72px;
     font-family: var(--sans);
     font-weight: 900;
-    font-size: 540px;
+    font-size: 324px;
     line-height: 0.78;
     letter-spacing: -0.06em;
     color: transparent;
@@ -1672,31 +1677,31 @@ section { padding: 100px 32px; max-width: 1280px; margin: 0 auto; }
     display: grid;
     grid-template-columns: 1fr auto;
     align-items: end;
-    gap: 24px;
-    padding-bottom: 20px;
+    gap: 14px;
+    padding-bottom: 12px;
   }
-  #pricing .head-left { display: flex; flex-direction: column; gap: 16px; }
+  #pricing .head-left { display: flex; flex-direction: column; gap: 10px; }
   #pricing .eyebrow-row {
-    display: flex; align-items: center; gap: 14px;
+    display: flex; align-items: center; gap: 8px;
     animation: pr-head-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) backwards;
   }
   #pricing .eyebrow-pill {
-    display: inline-flex; align-items: center; gap: 10px;
-    padding: 10px 20px;
-    border-radius: 999px;
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 6px 12px;
+    border-radius: 599px;
     border: 1px solid rgba(94,178,255,0.45);
     color: #5EB2FF;
     font-family: var(--mono);
     font-weight: 600;
-    font-size: 22px;
+    font-size: 13px;
     letter-spacing: 0.22em;
     text-transform: uppercase;
     background: rgba(46,122,236,0.10);
   }
   #pricing .eyebrow-pill .dot {
-    width: 10px; height: 10px; border-radius: 999px;
+    width: 6px; height: 6px; border-radius: 599px;
     background: #5EE26B;
-    box-shadow: 0 0 14px #5EE26B;
+    box-shadow: 0 0 8px #5EE26B;
     animation: pr-pulse 1.6s ease-in-out infinite;
   }
   @keyframes pr-pulse{
@@ -1706,11 +1711,11 @@ section { padding: 100px 32px; max-width: 1280px; margin: 0 auto; }
   #pricing .eyebrow-line {
     height: 1px; flex: 1;
     background: linear-gradient(90deg, rgba(94,178,255,0.5), transparent);
-    max-width: 240px;
+    max-width: 144px;
   }
   #pricing .eyebrow-meta {
     font-family: var(--mono);
-    font-size: 22px;
+    font-size: 13px;
     color: rgba(255,255,255,0.5);
     letter-spacing: 0.10em;
   }
@@ -1718,7 +1723,7 @@ section { padding: 100px 32px; max-width: 1280px; margin: 0 auto; }
   #pricing .section-title {
     font-family: var(--sans);
     font-weight: 800;
-    font-size: 112px;
+    font-size: 67px;
     line-height: 0.95;
     letter-spacing: -0.035em;
     color: #fff;
@@ -1732,15 +1737,15 @@ section { padding: 100px 32px; max-width: 1280px; margin: 0 auto; }
     -webkit-background-clip: text; background-clip: text;
     color: transparent;
     position: relative;
-    padding-right: 8px;
+    padding-right: 4.8px;
   }
   #pricing .section-title .it::after {
     content: "";
     position: absolute;
-    left: 0; right: 8px; bottom: -8px;
-    height: 6px;
+    left: 0; right: 4.8px; bottom: -4.8px;
+    height: 3.6px;
     background: linear-gradient(90deg, #5EB2FF, #B488FF);
-    border-radius: 4px;
+    border-radius: 2.4px;
     transform: scaleX(0); transform-origin: left;
     animation: pr-under 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.7s forwards;
   }
@@ -1748,18 +1753,18 @@ section { padding: 100px 32px; max-width: 1280px; margin: 0 auto; }
     to { transform: scaleX(1); }
   }
   @keyframes pr-head-in{
-    from { opacity: 0; transform: translateY(-14px); }
+    from { opacity: 0; transform: translateY(-8px); }
     to   { opacity: 1; transform: translateY(0); }
   }
 
   /* Toggle on the right */
   #pricing .billing-toggle {
     display: inline-flex;
-    padding: 6px;
-    border-radius: 999px;
+    padding: 3.6px;
+    border-radius: 599px;
     background: rgba(255,255,255,0.04);
     border: 1px solid rgba(255,255,255,0.10);
-    backdrop-filter: blur(8px);
+    backdrop-filter: blur(4.8px);
     animation: pr-head-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.2s backwards;
   }
   #pricing .billing-toggle button {
@@ -1769,18 +1774,18 @@ section { padding: 100px 32px; max-width: 1280px; margin: 0 auto; }
     color: rgba(255,255,255,0.55);
     font-family: var(--mono);
     font-weight: 600;
-    font-size: 22px;
+    font-size: 13px;
     letter-spacing: 0.10em;
     text-transform: uppercase;
-    padding: 12px 26px;
-    border-radius: 999px;
+    padding: 7px 16px;
+    border-radius: 599px;
     cursor: pointer;
     transition: color 0.2s ease;
   }
   #pricing .billing-toggle button.active {
     background: linear-gradient(180deg, #2E7AEC, #1E63D6);
     color: #fff;
-    box-shadow: 0 8px 24px rgba(46,122,236,0.5);
+    box-shadow: 0 4.8px 14px rgba(46,122,236,0.5);
   }
 
   /* =========================================================
@@ -1791,10 +1796,10 @@ section { padding: 100px 32px; max-width: 1280px; margin: 0 auto; }
     z-index: 2;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 28px;
+    gap: 17px;
     align-items: stretch;
     flex: 1;
-    margin-top: 8px;
+    margin-top: 4.8px;
     transition: filter 0.45s ease, opacity 0.45s ease;
     isolation: isolate;
   }
@@ -1804,25 +1809,25 @@ section { padding: 100px 32px; max-width: 1280px; margin: 0 auto; }
   #pricing .grid::before {
     content: "";
     position: absolute;
-    inset: -40px -40px -40px -40px;
+    inset: -24px -24px -24px -24px;
     z-index: 0;
     pointer-events: none;
     background:
-      radial-gradient(420px 320px at 12% 30%,  rgba(94,178,255,0.55),  transparent 65%),
-      radial-gradient(380px 300px at 38% 70%,  rgba(180,136,255,0.55), transparent 65%),
-      radial-gradient(360px 320px at 64% 28%,  rgba(255,107,107,0.45), transparent 65%),
-      radial-gradient(420px 340px at 88% 72%,  rgba(255,177,0,0.42),   transparent 65%),
-      radial-gradient(300px 260px at 50% 50%,  rgba(94,226,107,0.30),  transparent 65%);
+      radial-gradient(252px 192px at 12% 30%,  rgba(94,178,255,0.55),  transparent 65%),
+      radial-gradient(228px 180px at 38% 70%,  rgba(180,136,255,0.55), transparent 65%),
+      radial-gradient(216px 192px at 64% 28%,  rgba(255,107,107,0.45), transparent 65%),
+      radial-gradient(252px 204px at 88% 72%,  rgba(255,177,0,0.42),   transparent 65%),
+      radial-gradient(180px 156px at 50% 50%,  rgba(94,226,107,0.30),  transparent 65%);
     filter: saturate(1.1);
     animation: pr-blobs 18s ease-in-out infinite;
   }
   @keyframes pr-blobs{
     0%, 100% { transform: translate(0, 0) scale(1); }
-    33%      { transform: translate(-30px, 20px) scale(1.04); }
-    66%      { transform: translate(24px, -16px) scale(0.97); }
+    33%      { transform: translate(-18px, 12px) scale(1.04); }
+    66%      { transform: translate(14px, -10px) scale(0.97); }
   }
   #pricing .grid.is-switching {
-    filter: blur(14px);
+    filter: blur(8px);
     opacity: 0.4;
   }
 
@@ -1830,17 +1835,17 @@ section { padding: 100px 32px; max-width: 1280px; margin: 0 auto; }
   #pricing .card {
     position: relative;
     z-index: 1;
-    border-radius: 28px;
-    padding: 40px 36px 36px;
+    border-radius: 17px;
+    padding: 24px 22px 22px;
     background:
       linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.03));
     border: 1px solid rgba(255,255,255,0.16);
     box-shadow:
-      0 22px 60px rgba(0,0,0,0.45),
+      0 13px 36px rgba(0,0,0,0.45),
       inset 0 1px 0 rgba(255,255,255,0.18);
-    backdrop-filter: blur(36px) saturate(1.4);
-    -webkit-backdrop-filter: blur(36px) saturate(1.4);
-    display: flex; flex-direction: column; gap: 22px;
+    backdrop-filter: blur(22px) saturate(1.4);
+    -webkit-backdrop-filter: blur(22px) saturate(1.4);
+    display: flex; flex-direction: column; gap: 13px;
     overflow: hidden;
     transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.45s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.45s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.4s ease, filter 0.4s ease;
     isolation: isolate;
@@ -1854,29 +1859,29 @@ section { padding: 100px 32px; max-width: 1280px; margin: 0 auto; }
   #pricing .card.entering:nth-of-type(1) { animation-delay: 0.05s; }
   #pricing .card.entering:nth-of-type(2) { animation-delay: 0.18s; }
   @keyframes pr-card-enter{
-    from { opacity: 0; transform: translateY(28px) scale(0.96); filter: blur(12px); }
+    from { opacity: 0; transform: translateY(17px) scale(0.96); filter: blur(7px); }
     to   { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
   }
   #pricing .card.intro { animation: pr-card-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) backwards; }
   #pricing .card.intro:nth-of-type(1) { animation-delay: 0.30s; }
   #pricing .card.intro:nth-of-type(2) { animation-delay: 0.42s; }
   @keyframes pr-card-in{
-    from { opacity: 0; transform: translateY(36px); }
+    from { opacity: 0; transform: translateY(22px); }
     to   { opacity: 1; transform: translateY(0); }
   }
   #pricing .card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 32px 80px rgba(0,0,0,0.55);
+    transform: translateY(-4.8px);
+    box-shadow: 0 19px 48px rgba(0,0,0,0.55);
     border-color: rgba(94,178,255,0.35);
   }
 
   /* GIANT GLYPH watermark inside each card */
   #pricing .card .glyph {
     position: absolute;
-    right: -40px; bottom: -90px;
+    right: -24px; bottom: -54px;
     font-family: var(--sans);
     font-weight: 900;
-    font-size: 360px;
+    font-size: 216px;
     line-height: 0.8;
     color: rgba(255,255,255,0.04);
     pointer-events: none;
@@ -1886,50 +1891,50 @@ section { padding: 100px 32px; max-width: 1280px; margin: 0 auto; }
   }
   #pricing .card.featured .glyph {
     color: rgba(94,178,255,0.10);
-    right: -50px; bottom: -100px;
-    font-size: 420px;
+    right: -30px; bottom: -60px;
+    font-size: 252px;
   }
 
   /* Header row inside card */
   #pricing .tier-row {
     display: flex; align-items: center; justify-content: space-between;
-    gap: 8px;
+    gap: 4.8px;
     position: relative; z-index: 2;
   }
   #pricing .tier-num {
     font-family: var(--mono);
     font-weight: 600;
-    font-size: 20px;
+    font-size: 12px;
     color: rgba(255,255,255,0.32);
     letter-spacing: 0.16em;
   }
   #pricing .tier {
     font-family: var(--sans);
     font-weight: 800;
-    font-size: 44px;
+    font-size: 26px;
     line-height: 1;
     letter-spacing: -0.02em;
     color: #fff;
-    margin: 4px 0 0;
+    margin: 2.4px 0 0;
   }
   #pricing .tier-sub {
     font-family: var(--mono);
-    font-size: 18px;
+    font-size: 11px;
     color: rgba(255,255,255,0.5);
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    margin-top: 4px;
+    margin-top: 2.4px;
   }
   #pricing .card.featured .tier-sub { color: #8EC5FF; }
 
   #pricing .kind-flag {
     font-family: var(--mono);
     font-weight: 600;
-    font-size: 20px;
+    font-size: 12px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    padding: 8px 14px;
-    border-radius: 999px;
+    padding: 4.8px 8px;
+    border-radius: 599px;
     border: 1px solid rgba(255,255,255,0.14);
     color: rgba(255,255,255,0.72);
     background: rgba(255,255,255,0.04);
@@ -1942,29 +1947,29 @@ section { padding: 100px 32px; max-width: 1280px; margin: 0 auto; }
   #pricing .price-block {
     position: relative; z-index: 2;
     display: flex; flex-direction: column;
-    gap: 4px;
-    margin-top: 8px;
+    gap: 2.4px;
+    margin-top: 4.8px;
   }
   #pricing .price-row {
     display: flex; align-items: flex-start;
-    gap: 14px;
+    gap: 8px;
     line-height: 0.9;
   }
   #pricing .amount {
     font-family: var(--sans);
     font-weight: 900;
-    font-size: 168px;
+    font-size: 101px;
     line-height: 0.85;
     letter-spacing: -0.05em;
     color: #fff;
     display: inline-flex; align-items: flex-start;
   }
   #pricing .amount .currency {
-    font-size: 56px;
+    font-size: 34px;
     font-weight: 800;
     line-height: 1;
-    margin-top: 18px;
-    margin-right: 4px;
+    margin-top: 11px;
+    margin-right: 2.4px;
     color: rgba(255,255,255,0.6);
   }
   #pricing .amount.gradient {
@@ -1976,21 +1981,21 @@ section { padding: 100px 32px; max-width: 1280px; margin: 0 auto; }
     display: inline-block;
   }
   #pricing .old-stack {
-    display: flex; flex-direction: column; gap: 6px;
-    margin-top: 24px;
+    display: flex; flex-direction: column; gap: 3.6px;
+    margin-top: 14px;
   }
   #pricing .old-price {
     font-family: var(--mono);
     font-weight: 600;
-    font-size: 28px;
+    font-size: 17px;
     color: rgba(255,255,255,0.5);
     text-decoration: line-through;
     text-decoration-color: #FF6B6B;
-    text-decoration-thickness: 3px;
+    text-decoration-thickness: 1.8px;
   }
   #pricing .old-meta {
     font-family: var(--mono);
-    font-size: 18px;
+    font-size: 11px;
     color: rgba(255,255,255,0.4);
     letter-spacing: 0.10em;
     text-transform: uppercase;
@@ -1998,30 +2003,30 @@ section { padding: 100px 32px; max-width: 1280px; margin: 0 auto; }
   #pricing .old-meta.save { color: #5EE26B; }
   #pricing .old-meta.warm-meta { color: #FFB766; }
   #pricing .featured-num { color: rgba(94,178,255,0.6); }
-  #pricing .tier.tier-large { font-size: 52px; }
+  #pricing .tier.tier-large { font-size: 31px; }
   #pricing .period {
     font-family: var(--mono);
     font-weight: 500;
-    font-size: 22px;
+    font-size: 13px;
     color: rgba(255,255,255,0.55);
     letter-spacing: 0.04em;
-    margin-top: 6px;
+    margin-top: 3.6px;
   }
 
   #pricing .savings {
-    display: inline-flex; align-items: center; gap: 10px;
+    display: inline-flex; align-items: center; gap: 6px;
     font-family: var(--mono);
     font-weight: 700;
-    font-size: 22px;
+    font-size: 13px;
     letter-spacing: 0.10em;
     text-transform: uppercase;
     color: #5EE26B;
-    padding: 10px 16px;
-    border-radius: 12px;
+    padding: 6px 10px;
+    border-radius: 7px;
     background: rgba(94,226,107,0.10);
     border: 1px solid rgba(94,226,107,0.30);
     width: max-content;
-    margin-top: 14px;
+    margin-top: 8px;
     position: relative; z-index: 2;
   }
   #pricing .savings.warm {
@@ -2036,10 +2041,10 @@ section { padding: 100px 32px; max-width: 1280px; margin: 0 auto; }
   }
   #pricing .savings::before {
     content: "";
-    width: 8px; height: 8px;
-    border-radius: 999px;
+    width: 4.8px; height: 4.8px;
+    border-radius: 599px;
     background: currentColor;
-    box-shadow: 0 0 12px currentColor;
+    box-shadow: 0 0 7px currentColor;
     animation: pr-blink 1.4s ease-in-out infinite;
   }
   @keyframes pr-blink{
@@ -2053,12 +2058,12 @@ section { padding: 100px 32px; max-width: 1280px; margin: 0 auto; }
   /* CTA */
   #pricing .cta {
     display: flex; align-items: center; justify-content: space-between;
-    gap: 8px;
-    padding: 20px 24px;
-    border-radius: 16px;
+    gap: 4.8px;
+    padding: 12px 14px;
+    border-radius: 10px;
     font-family: var(--sans);
     font-weight: 700;
-    font-size: 26px;
+    font-size: 16px;
     text-decoration: none;
     transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1), background 0.3s ease;
     cursor: pointer;
@@ -2074,16 +2079,16 @@ section { padding: 100px 32px; max-width: 1280px; margin: 0 auto; }
   #pricing .cta.ghost:hover {
     background: rgba(255,255,255,0.10);
     border-color: rgba(94,178,255,0.50);
-    transform: translateY(-3px);
+    transform: translateY(-1.8px);
   }
   #pricing .cta.primary {
     color: #fff;
     background: linear-gradient(135deg, #2E7AEC 0%, #7239C9 100%);
-    box-shadow: 0 16px 48px rgba(46,122,236,0.55);
+    box-shadow: 0 10px 29px rgba(46,122,236,0.55);
   }
   #pricing .cta.primary:hover {
-    box-shadow: 0 24px 64px rgba(46,122,236,0.75);
-    transform: translateY(-3px);
+    box-shadow: 0 14px 38px rgba(46,122,236,0.75);
+    transform: translateY(-1.8px);
   }
   #pricing .cta.primary::after {
     content: "";
@@ -2101,14 +2106,14 @@ section { padding: 100px 32px; max-width: 1280px; margin: 0 auto; }
   }
   #pricing .cta .arrow-box {
     display: inline-flex; align-items: center; justify-content: center;
-    width: 38px; height: 38px;
-    border-radius: 10px;
+    width: 23px; height: 23px;
+    border-radius: 6px;
     background: rgba(255,255,255,0.12);
     transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), background 0.3s ease;
   }
   #pricing .cta:hover .arrow-box {
     background: rgba(255,255,255,0.22);
-    transform: translateX(6px) rotate(-8deg);
+    transform: translateX(3.6px) rotate(-8deg);
   }
   #pricing .cta.primary .arrow-box { background: rgba(255,255,255,0.22); }
   #pricing .cta.primary:hover .arrow-box { background: rgba(255,255,255,0.35); }
@@ -2122,17 +2127,17 @@ section { padding: 100px 32px; max-width: 1280px; margin: 0 auto; }
       linear-gradient(180deg, rgba(46,122,236,0.20), rgba(114,57,201,0.14)),
       linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
     box-shadow:
-      0 36px 100px rgba(46,122,236,0.40),
+      0 22px 60px rgba(46,122,236,0.40),
       0 0 0 1px rgba(94,178,255,0.30) inset;
-    transform: translateY(-12px);
+    transform: translateY(-7px);
   }
-  #pricing .card.featured:hover { transform: translateY(-20px); }
+  #pricing .card.featured:hover { transform: translateY(-12px); }
 
   /* Animated gradient border */
   #pricing .card.featured::before {
     content: "";
     position: absolute; inset: -1px;
-    border-radius: 28px;
+    border-radius: 17px;
     padding: 1.5px;
     background: linear-gradient(135deg, rgba(94,178,255,0.8), rgba(180,136,255,0.8), rgba(94,178,255,0.0), rgba(94,178,255,0.8));
     background-size: 300% 300%;
@@ -2151,8 +2156,8 @@ section { padding: 100px 32px; max-width: 1280px; margin: 0 auto; }
   }
   #pricing .card.featured::after {
     content: "";
-    position: absolute; right: -160px; top: -160px;
-    width: 360px; height: 360px;
+    position: absolute; right: -96px; top: -96px;
+    width: 216px; height: 216px;
     background: radial-gradient(circle, rgba(94,178,255,0.45), transparent 70%);
     pointer-events: none;
     animation: pr-float-glow 8s ease-in-out infinite;
@@ -2160,33 +2165,33 @@ section { padding: 100px 32px; max-width: 1280px; margin: 0 auto; }
   }
   @keyframes pr-float-glow{
     0%, 100% { transform: translate(0, 0); }
-    50%      { transform: translate(-20px, 20px); }
+    50%      { transform: translate(-12px, 12px); }
   }
 
   /* Best-value flag — vertical typographic */
   #pricing .badge-popular {
     position: absolute;
-    top: -1px; right: 32px;
+    top: -1px; right: 19px;
     background: linear-gradient(180deg, #FF6B6B 0%, #FFB100 100%);
     color: #fff;
     font-family: var(--mono);
     font-weight: 800;
-    font-size: 20px;
+    font-size: 12px;
     letter-spacing: 0.24em;
     text-transform: uppercase;
-    padding: 14px 16px 18px;
-    border-radius: 0 0 12px 12px;
-    box-shadow: 0 12px 28px rgba(255,107,107,0.45);
+    padding: 8px 10px 11px;
+    border-radius: 0 0 7px 7px;
+    box-shadow: 0 7px 17px rgba(255,107,107,0.45);
     z-index: 6;
     pointer-events: none;
-    display: inline-flex; align-items: center; gap: 8px;
+    display: inline-flex; align-items: center; gap: 4.8px;
   }
   #pricing .badge-popular::after {
     content: "";
-    width: 7px; height: 7px;
-    border-radius: 999px;
+    width: 4.2px; height: 4.2px;
+    border-radius: 599px;
     background: #fff;
-    box-shadow: 0 0 10px #fff;
+    box-shadow: 0 0 6px #fff;
     animation: pr-pulse 1.4s ease-in-out infinite;
   }
 
@@ -2196,32 +2201,32 @@ section { padding: 100px 32px; max-width: 1280px; margin: 0 auto; }
     z-index: 4;
     font-family: var(--mono);
     font-weight: 700;
-    font-size: 18px;
+    font-size: 11px;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    padding: 10px 14px;
-    border-radius: 12px;
+    padding: 6px 8px;
+    border-radius: 7px;
     background: #0B0E15;
     border: 1px solid rgba(255,255,255,0.18);
     color: #fff;
-    box-shadow: 0 12px 30px rgba(0,0,0,0.5);
-    display: inline-flex; align-items: center; gap: 8px;
+    box-shadow: 0 7px 18px rgba(0,0,0,0.5);
+    display: inline-flex; align-items: center; gap: 4.8px;
     transform: rotate(var(--rot, -4deg));
     animation: pr-floaty 5s ease-in-out infinite;
   }
   #pricing .float-chip::before {
     content: "";
-    width: 8px; height: 8px;
-    border-radius: 999px;
+    width: 4.8px; height: 4.8px;
+    border-radius: 599px;
     background: var(--c, #5EE26B);
-    box-shadow: 0 0 12px var(--c, #5EE26B);
+    box-shadow: 0 0 7px var(--c, #5EE26B);
   }
   @keyframes pr-floaty{
     0%, 100% { transform: rotate(var(--rot, -4deg)) translateY(0); }
-    50%      { transform: rotate(var(--rot, -4deg)) translateY(-6px); }
+    50%      { transform: rotate(var(--rot, -4deg)) translateY(-3.6px); }
   }
-  #pricing .float-chip.tl { top: 24px; left: -12px; --rot: -6deg; --c: #5EE26B; }
-  #pricing .float-chip.br { top: 240px; right: -10px; --rot: 5deg; --c: #FFB100; animation-delay: 1.2s; }
+  #pricing .float-chip.tl { top: 14px; left: -7px; --rot: -6deg; --c: #5EE26B; }
+  #pricing .float-chip.br { top: 144px; right: -6px; --rot: 5deg; --c: #FFB100; animation-delay: 1.2s; }
 
   /* =========================================================
      MARQUEE STRIP
@@ -2229,8 +2234,8 @@ section { padding: 100px 32px; max-width: 1280px; margin: 0 auto; }
   #pricing .marquee {
     position: relative;
     z-index: 2;
-    margin-top: 14px;
-    padding: 10px 0;
+    margin-top: 8px;
+    padding: 6px 0;
     overflow: hidden;
     border-top: 1px solid rgba(255,255,255,0.08);
     border-bottom: 1px solid rgba(255,255,255,0.08);
@@ -2238,29 +2243,29 @@ section { padding: 100px 32px; max-width: 1280px; margin: 0 auto; }
   }
   #pricing .marquee-track {
     display: inline-flex;
-    gap: 48px;
+    gap: 29px;
     white-space: nowrap;
     animation: pr-scroll-x 40s linear infinite;
-    padding-right: 48px;
+    padding-right: 29px;
   }
   #pricing .marquee-item {
-    display: inline-flex; align-items: center; gap: 14px;
+    display: inline-flex; align-items: center; gap: 8px;
     font-family: var(--mono);
     font-weight: 600;
-    font-size: 22px;
+    font-size: 13px;
     letter-spacing: 0.14em;
     text-transform: uppercase;
     color: rgba(255,255,255,0.55);
   }
   #pricing .marquee-item .star {
     color: #5EB2FF;
-    font-size: 22px;
+    font-size: 13px;
   }
   #pricing .marquee-item .num {
     color: #fff;
     font-family: var(--sans);
     font-weight: 800;
-    font-size: 26px;
+    font-size: 16px;
     letter-spacing: -0.01em;
     text-transform: none;
   }
@@ -2274,18 +2279,18 @@ section { padding: 100px 32px; max-width: 1280px; margin: 0 auto; }
      ========================================================= */
   #pricing .foot {
     display: flex; align-items: center; justify-content: space-between;
-    gap: 24px;
-    margin-top: 10px;
+    gap: 14px;
+    margin-top: 6px;
     color: rgba(255,255,255,0.5);
     font-family: var(--mono);
-    font-size: 18px;
+    font-size: 11px;
     letter-spacing: 0.08em;
     z-index: 2;
     position: relative;
   }
-  #pricing .foot .left, #pricing .foot .right { display: flex; align-items: center; gap: 22px; }
-  #pricing .foot .item { display: inline-flex; align-items: center; gap: 8px; text-transform: uppercase; }
-  #pricing .foot .item svg { width: 18px; height: 18px; color: #5EB2FF; }
+  #pricing .foot .left, #pricing .foot .right { display: flex; align-items: center; gap: 13px; }
+  #pricing .foot .item { display: inline-flex; align-items: center; gap: 4.8px; text-transform: uppercase; }
+  #pricing .foot .item svg { width: 11px; height: 11px; color: #5EB2FF; }
 
 
 
@@ -2673,6 +2678,7 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
   </a>
   <div class="nav-links">
     <a href="#built-for" data-nav-key="builtFor"></a>
+    <a href="#math" data-nav-key="math"></a>
     <a href="#features" data-nav-key="features"></a>
     <a href="#pricing" data-nav-key="pricing"></a>
     <a href="#faq" data-nav-key="faq"></a>
@@ -3474,7 +3480,7 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
 <script>
 const T = {
   en: {
-    builtFor:"Built for", how:"How", features:"Nodes", pricing:"Pricing", faq:"FAQ", contact:"Contact",
+    builtFor:"Built for", math:"The Math", features:"Nodes", pricing:"Pricing", faq:"FAQ", contact:"Contact",
     getStarted:"Download Free Trial",
     version:"v0.0.15 — Active Development",
     canvasHint:"Try drag",
@@ -3612,7 +3618,7 @@ const T = {
   },
 
   ru: {
-    builtFor:"Для кого", how:"Как работает", features:"Ноды", pricing:"Цены", faq:"FAQ", contact:"Контакты",
+    builtFor:"Для кого", math:"Математика", features:"Ноды", pricing:"Цены", faq:"FAQ", contact:"Контакты",
     getStarted:"Скачать бесплатно",
     version:"v0.0.15 — Активная разработка",
     canvasHint:"Попробуй потянуть",
@@ -3750,7 +3756,7 @@ const T = {
   },
 
   zh: {
-    builtFor:"适合谁", how:"工作原理", features:"节点", pricing:"价格", faq:"常见问题", contact:"联系",
+    builtFor:"适合谁", math:"成本对比", features:"节点", pricing:"价格", faq:"常见问题", contact:"联系",
     getStarted:"免费试用",
     version:"v0.0.15 — 持续开发中",
     canvasHint:"试试拖动",
