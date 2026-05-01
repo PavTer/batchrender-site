@@ -433,9 +433,11 @@ section { padding: 100px 32px; max-width: 1280px; margin: 0 auto; }
   z-index: 2;
 }
 /* Editor chip — base state is FINAL (visible).
-   Entry: chip-in (fade + slide down from above).
-   Bounce: chip-bounce (one-time bounce up&back, runs in parallel with chip-in via comma-syntax).
-   Both animations end at transform:translateY(0) → no infinite loop, no perma-translated state. */
+   - chip-in: one-time entry (fade + slide from above), uses :nth-child entry delays.
+   - chip-bounce: INFINITE wave that travels through all 5 chips repeatedly.
+     Total cycle 2.5s. Each chip bounces during its own 0.7s slot, then idle.
+     Slot offsets: 0s, 0.4s, 0.8s, 1.2s, 1.6s → wave passes through all 5, repeats.
+     Bounce keyframes occupy 0%–28% (≈0.7s of 2.5s); 28%–100% chip rests at translateY(0). */
 .editor {
   position: relative;
   font-family: var(--mono);
@@ -448,21 +450,34 @@ section { padding: 100px 32px; max-width: 1280px; margin: 0 auto; }
   border: 1px solid rgba(255,255,255,0.10);
   backdrop-filter: blur(8px);
   white-space: nowrap;
-  /* Soft ambient glow on every chip */
   box-shadow:
     0 0 0 1px rgba(255,255,255,0.04),
     0 6px 18px rgba(46,122,236,0.10),
     0 0 24px rgba(94,178,255,0.06);
-  animation: chip-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+  /* Two animations: chip-in (one-time entry) + chip-bounce-wave (infinite).
+     animation-delay on :nth-child applies to BOTH. To control them separately
+     we set explicit per-animation delays below. */
+  animation:
+    chip-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) backwards,
+    chip-bounce-wave 2.5s ease-in-out infinite;
 }
-.editor:nth-child(1) { animation-delay: 0.1s; }
-.editor:nth-child(2) { animation-delay: 0.25s; }
-.editor:nth-child(3) { animation-delay: 0.40s; }
-.editor:nth-child(4) { animation-delay: 0.55s; }
-.editor:nth-child(5) { animation-delay: 0.70s; }
+/* chip-in entry delays (first animation): chips appear in sequence */
+.editor:nth-child(1) { animation-delay: 0.10s,  0.0s; }
+.editor:nth-child(2) { animation-delay: 0.25s,  0.4s; }
+.editor:nth-child(3) { animation-delay: 0.40s,  0.8s; }
+.editor:nth-child(4) { animation-delay: 0.55s,  1.2s; }
+.editor:nth-child(5) { animation-delay: 0.70s,  1.6s; }
 @keyframes chip-in {
   from { opacity: 0; transform: translateY(-12px); }
   to   { opacity: 1; transform: translateY(0); }
+}
+/* Wave bounce: peak at ~14% of cycle (0.35s into 2.5s),
+   fully back to rest by 28%, then idle until next cycle */
+@keyframes chip-bounce-wave {
+  0%   { transform: translateY(0); }
+  14%  { transform: translateY(-14px); }
+  28%  { transform: translateY(0); }
+  100% { transform: translateY(0); }
 }
 .editor::after {
   content: "";
@@ -478,18 +493,8 @@ section { padding: 100px 32px; max-width: 1280px; margin: 0 auto; }
   box-shadow: 0 10px 24px rgba(46,122,236,0.45), inset 0 0 0 1px rgba(94,178,255,0.35);
   background: rgba(46,122,236,0.10);
 }
-/* Bounce: runs ONCE in parallel with chip-in via comma-syntax animations.
-   Both share same animation-delay from :nth-child. End state is translateY(0). */
-.editor.bounce {
-  animation:
-    chip-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) backwards,
-    chip-bounce 0.7s ease-in-out;
-}
-@keyframes chip-bounce {
-  0%   { transform: translateY(0); }
-  50%  { transform: translateY(-14px); }
-  100% { transform: translateY(0); }
-}
+/* .bounce class kept for backwards compat — same animations as .editor base */
+.editor.bounce { /* no override needed; base .editor already has both animations */ }
 
 /* Brace SVG */
 .brace-wrap {
@@ -615,7 +620,7 @@ section { padding: 100px 32px; max-width: 1280px; margin: 0 auto; }
 /* MANIFESTO — top hero adapted from design_hero v10 reference */
 .manifesto-section {
   position: relative;
-  padding: clamp(40px, 5.5vh, 70px) 32px clamp(20px, 3vh, 36px);
+  padding: clamp(140px, 18vh, 200px) 32px clamp(70px, 9vh, 110px);
   background:
     radial-gradient(900px 700px at 18% 50%, rgba(46,122,236,0.10), transparent 65%),
     radial-gradient(700px 600px at 82% 60%, rgba(114,57,201,0.08), transparent 65%);
@@ -638,11 +643,14 @@ section { padding: 100px 32px; max-width: 1280px; margin: 0 auto; }
   column-gap: clamp(24px, 3.5vw, 50px);
   align-items: center;
   justify-content: center;
+  /* CSS var = exact height of NO letters. font-size × line-height (0.82). */
+  --no-fs: clamp(110px, 16vw, 240px);
+  --no-h: calc(var(--no-fs) * 0.82);
 }
 .manifesto-no {
   font-family: var(--sans);
   font-weight: 800;
-  font-size: clamp(110px, 16vw, 240px);
+  font-size: var(--no-fs);
   line-height: 0.82;
   letter-spacing: -0.06em;
   color: #FFFFFF;
@@ -655,14 +663,20 @@ section { padding: 100px 32px; max-width: 1280px; margin: 0 auto; }
 
 .manifesto-list {
   display: flex; flex-direction: column;
-  gap: 6px;
-  padding: 14px 0;
+  /* Height locked to NO letter height. Words space-between, with small inner padding
+     so first/last word sit comfortably inside NO bounds (not flush against edges). */
+  height: var(--no-h);
+  justify-content: space-between;
+  padding: calc(var(--no-h) * 0.04) 0;
+  box-sizing: border-box;
   text-align: left;
 }
 .manifesto-list .item {
   font-family: var(--sans);
   font-weight: 700;
-  font-size: clamp(22px, 3.2vw, 46px);
+  /* Auto-fit: 5 words fit inside (NO height − padding).
+     Available height = NO_h × 0.92. Divide by 5 with breathing room (factor 5.2). */
+  font-size: clamp(20px, calc(var(--no-fs) * 0.82 * 0.92 / 5.2), 42px);
   line-height: 1.0;
   letter-spacing: -0.02em;
   color: #FFFFFF;
