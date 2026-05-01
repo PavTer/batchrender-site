@@ -958,14 +958,6 @@ section { padding: 100px 32px; max-width: 1280px; margin: 0 auto; }
   .manifesto-brace-svg { height: 80px; }
 }
 
-/* WHY NOT AI */
-.whynot-section { background: rgba(255,255,255,0.015); border-top: 1px solid var(--bd-soft); border-bottom: 1px solid var(--bd-soft); }
-.whynot-inner { max-width: 1280px; margin: 0 auto; padding: 80px 32px; }
-.whynot-list { margin-top: 48px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px 32px; max-width: 880px; }
-.whynot-item { display: flex; align-items: flex-start; gap: 14px; font-size: 16px; color: var(--fg); line-height: 1.55; }
-.whynot-item [data-lucide] { width: 20px; height: 20px; color: var(--ok); flex-shrink: 0; margin-top: 2px; stroke-width: 2.5; }
-.whynot-bottom { margin-top: 36px; font-family: var(--mono); font-size: 14px; color: var(--info); letter-spacing: 0.06em; }
-
 /* FINAL CTA */
 .finalcta-section { padding: 100px 32px; max-width: 980px; margin: 0 auto; text-align: center; }
 .finalcta-section h2 { font-family: var(--sans); font-size: clamp(36px, 4.2vw, 52px); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 16px; color: var(--fg-strong); }
@@ -2491,16 +2483,6 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
 .reveal.delay-5 { transition-delay: 0.40s; }
 .reveal.delay-6 { transition-delay: 0.48s; }
 
-/* Stagger inside grids — each child delayed automatically.
-   Note: .usecase-card, .feature-card, .price-card are excluded — they have their own animations. */
-.whynot-list .whynot-item {
-  opacity: 0; transform: translateY(24px);
-  transition: opacity 0.7s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.25s, box-shadow 0.25s;
-}
-.in.whynot-item {
-  opacity: 1 !important; transform: translateY(0) !important;
-}
-
 /* MATH section — scroll-in animations (reference-style, no math-card wrapper) */
 /* Section enters via .math-section.in (added by IntersectionObserver) */
 .math-section.in .math-eq { animation: math-head-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.36s backwards; }
@@ -2555,30 +2537,6 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
 .math-section.in .math-col.good .math-row:nth-child(7) { animation-delay: 1.70s; }
 
 
-
-/* WHY NOT AI — checkmarks draw-in */
-.whynot-list .whynot-item {
-  opacity: 0; transform: translateX(-12px);
-  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-.whynot-section.in .whynot-list .whynot-item { opacity: 1; transform: translateX(0); }
-.whynot-section.in .whynot-list .whynot-item:nth-child(1) { transition-delay: 0.05s; }
-.whynot-section.in .whynot-list .whynot-item:nth-child(2) { transition-delay: 0.15s; }
-.whynot-section.in .whynot-list .whynot-item:nth-child(3) { transition-delay: 0.25s; }
-.whynot-section.in .whynot-list .whynot-item:nth-child(4) { transition-delay: 0.35s; }
-.whynot-section.in .whynot-list .whynot-item:nth-child(5) { transition-delay: 0.45s; }
-.whynot-section.in .whynot-list .whynot-item:nth-child(6) { transition-delay: 0.55s; }
-.whynot-item [data-lucide] { transition: transform 0.3s, color 0.3s; }
-.whynot-item:hover [data-lucide] { transform: scale(1.3) rotate(-5deg); }
-.whynot-bottom {
-  position: relative; display: inline-block;
-}
-.whynot-bottom::after {
-  content: ""; display: inline-block; width: 8px; height: 14px;
-  background: var(--info); margin-left: 4px; vertical-align: middle;
-  animation: blink 1.1s steps(2) infinite;
-}
-@keyframes blink { 0%, 50% { opacity: 1; } 51%, 100% { opacity: 0; } }
 
 /* FINAL CTA — magnetic buttons + breathing background */
 .finalcta-section { position: relative; overflow: hidden; }
@@ -2642,14 +2600,14 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
 /* RESPONSIVE */
 @media (max-width: 980px) {
   .hero-grid, .pricing-grid, .footer-grid, .contact-inner, .usecases-grid,
-  .companion-grid, .math-cols, .whynot-list { grid-template-columns: 1fr; }
+  .companion-grid, .math-cols { grid-template-columns: 1fr; }
   .usecases-grid { gap: 14px; }
   .companion-grid { gap: 28px; }
   .math-eq { font-size: 14px; padding: 14px 18px; }
   .math-col { padding: 22px 20px; }
   .math-row .lbl { font-size: 14px; }
   .math-row .val { font-size: 15px; }
-  .companion-inner, .whynot-inner { padding: 60px 20px; }
+  .companion-inner { padding: 60px 20px; }
   .finalcta-section, .math-section { padding: 70px 20px; }
   .hero { padding: 90px 20px 60px; }
   section { padding: 70px 20px; }
@@ -2684,7 +2642,6 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
     <a href="#videos" data-nav-key="videos"></a>
     <a href="#pricing" data-nav-key="pricing"></a>
     <a href="#free" data-nav-key="free"></a>
-    <a href="#whynot" data-nav-key="whynot"></a>
     <a href="#faq" data-nav-key="faq"></a>
     <a href="#contact" data-nav-key="contact"></a>
   </div>
@@ -3397,24 +3354,6 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
   </div>
 </section>
 
-<!-- WHY NOT AI -->
-<div class="whynot-section" id="whynot">
-  <div class="whynot-inner">
-    <div class="section-eyebrow" data-key="whynotLabel">Built for editors</div>
-    <h2 class="section-title" data-key="whynotTitle">Made for people who actually edit video.</h2>
-    <p class="section-sub" data-key="whynotSub">Predictable. Repeatable. Yours.</p>
-    <div class="whynot-list">
-      <div class="whynot-item"><i data-lucide="check"></i><span data-key="whynot1">Your files stay on your machine. Always.</span></div>
-      <div class="whynot-item"><i data-lucide="check"></i><span data-key="whynot2">Every step is visible before you run it.</span></div>
-      <div class="whynot-item"><i data-lucide="check"></i><span data-key="whynot3">Same input, same output. Always.</span></div>
-      <div class="whynot-item"><i data-lucide="check"></i><span data-key="whynot4">Render once or render thousands. Cost stays the same.</span></div>
-      <div class="whynot-item"><i data-lucide="check"></i><span data-key="whynot5">Works offline. Works on a plane. Works in a basement.</span></div>
-      <div class="whynot-item"><i data-lucide="check"></i><span data-key="whynot6">No "credits." No "tokens." No "tier limits."</span></div>
-    </div>
-    <div class="whynot-bottom" data-key="whynotBottom">Predictable · Repeatable · Yours</div>
-  </div>
-</div>
-
 <!-- FAQ -->
 <section id="faq">
   <div class="section-eyebrow" data-key="faqLabel">FAQ</div>
@@ -3485,7 +3424,7 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
 <script>
 const T = {
   en: {
-    companion:"Companion", builtFor:"Built for", math:"The Math", features:"Nodes", videos:"Videos", pricing:"Pricing", free:"Free", whynot:"Why not AI", faq:"FAQ", contact:"Contact",
+    companion:"Companion", builtFor:"Built for", math:"The Math", features:"Nodes", videos:"Videos", pricing:"Pricing", free:"Free", faq:"FAQ", contact:"Contact",
     getStarted:"Download Free Trial",
     version:"v0.0.15 — Active Development",
     canvasHint:"Try drag",
@@ -3552,18 +3491,6 @@ const T = {
     manifestoW1:"tokens", manifestoW2:"limits", manifestoW3:"cloud", manifestoW4:"surprises", manifestoW5:"magic",
     manifestoJust:"just",
     manifestoTagline:"<strong>Files in. Files out.</strong> On your machine.",
-
-    whynotLabel:"Built for editors",
-    whynotTitle:"Made for people who actually edit video.",
-    whynotSub:"Predictable. Repeatable. Yours.",
-    whynot1:"Your files stay on your machine. Always.",
-    whynot2:"Every step is visible before you run it.",
-    whynot3:"Same input, same output. Always.",
-    whynot4:"Render once or render thousands. Cost stays the same.",
-    whynot5:"Works offline. Works on a plane. Works in a basement.",
-    whynot6:"No credits. No tokens. No tier limits.",
-    whynotBottom:"// Predictable. Repeatable. Yours.",
-
     finalCtaTitle:"Stop losing hours to repetitive exports.",
     finalCtaSub:"Download BatchRender. Free trial, no signup, no cloud. Try every node. Build any pipeline. See if it fits how you work.",
     finalCtaMac:"Download for Mac", finalCtaWin:"Download for Windows",
@@ -3690,18 +3617,6 @@ const T = {
     manifestoW1:"токенов", manifestoW2:"лимитов", manifestoW3:"облака", manifestoW4:"сюрпризов", manifestoW5:"магии",
     manifestoJust:"просто",
     manifestoTagline:"<strong>Файлы на входе. Файлы на выходе.</strong> На твоей машине.",
-
-    whynotLabel:"Для тех, кто монтирует",
-    whynotTitle:"Сделано для тех, кто реально монтирует видео.",
-    whynotSub:"Предсказуемо. Повторяемо. Твоё.",
-    whynot1:"Файлы остаются на твоей машине. Всегда.",
-    whynot2:"Каждый шаг видно до того, как ты его запустишь.",
-    whynot3:"Один и тот же вход — один и тот же выход. Всегда.",
-    whynot4:"Один рендер или тысяча — стоимость не меняется.",
-    whynot5:"Работает офлайн. В самолёте. В подвале.",
-    whynot6:"Никаких кредитов, токенов, тарифных лимитов.",
-    whynotBottom:"// Предсказуемо. Повторяемо. Твоё.",
-
     finalCtaTitle:"Хватит терять часы на повторяющиеся экспорты.",
     finalCtaSub:"Скачивай BatchRender. Бесплатная версия, без регистрации, без облака. Попробуй все ноды. Собери любой пайплайн. Посмотри, подходит ли тебе.",
     finalCtaMac:"Скачать для Mac", finalCtaWin:"Скачать для Windows",
@@ -3828,18 +3743,6 @@ const T = {
     manifestoW1:"Token", manifestoW2:"限制", manifestoW3:"云端", manifestoW4:"意外", manifestoW5:"魔法",
     manifestoJust:"只是",
     manifestoTagline:"<strong>文件进。文件出。</strong>在你的电脑上。",
-
-    whynotLabel:"为剪辑师而做",
-    whynotTitle:"为真正剪辑视频的人而做。",
-    whynotSub:"可预期。可重复。属于你。",
-    whynot1:"文件始终留在你的电脑上。",
-    whynot2:"运行前每一步都可见。",
-    whynot3:"相同输入,始终相同输出。",
-    whynot4:"渲染一次还是上千次,成本不变。",
-    whynot5:"离线可用。飞机上可用。地下室也能跑。",
-    whynot6:"没有积分。没有 Token。没有套餐限制。",
-    whynotBottom:"// 可预期。可重复。属于你。",
-
     finalCtaTitle:"别再把时间浪费在重复导出上。",
     finalCtaSub:"下载 BatchRender。免费试用,无需注册,无云端。试用每个节点。构建任意管道。看是否适合你的工作方式。",
     finalCtaMac:"下载 Mac 版", finalCtaWin:"下载 Windows 版",
@@ -3972,7 +3875,7 @@ function setupReveal() {
   // Universal reveal: section reveals + grid stagger
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (reduce) {
-    document.querySelectorAll('.reveal, .usecase-card, .whynot-item, .math-section, .whynot-section, .companion-section, .nle-chip-anim').forEach(el => el.classList.add('in', 'visible'));
+    document.querySelectorAll('.reveal, .usecase-card, .math-section, .companion-section, .nle-chip-anim').forEach(el => el.classList.add('in', 'visible'));
     return;
   }
   const observer = new IntersectionObserver((entries) => {
@@ -3991,7 +3894,7 @@ function setupReveal() {
     });
   }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
 
-  document.querySelectorAll('.usecase-card, .whynot-item, .reveal').forEach(el => observer.observe(el));
+  document.querySelectorAll('.usecase-card, .reveal').forEach(el => observer.observe(el));
 
   // Section-level reveal — these wrappers trigger their children's .in animations
   const sectionObs = new IntersectionObserver((entries) => {
@@ -4002,7 +3905,7 @@ function setupReveal() {
       }
     });
   }, { threshold: 0.1, rootMargin: '0px 0px -10% 0px' });
-  document.querySelectorAll('.whynot-section, .companion-section, .math-section, .usecases-grid').forEach(el => sectionObs.observe(el));
+  document.querySelectorAll('.companion-section, .math-section, .usecases-grid').forEach(el => sectionObs.observe(el));
 
   // Companion NLE chips stagger
   const compObs = new IntersectionObserver((entries) => {
