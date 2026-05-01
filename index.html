@@ -357,12 +357,16 @@ section { padding: 100px 32px; max-width: 1280px; margin: 0 auto; }
 /* COMPANION — Built to fit / Works alongside your editor
    Reference: design_hero "Built to fit.html" — preserved 1:1
    Sizes scaled from 1920px reference to 1280px layout (ratio 0.66) */
-.companion-section { background: rgba(255,255,255,0.015); border-top: 1px solid var(--bd-soft); border-bottom: 1px solid var(--bd-soft); }
-.companion-inner {
-  max-width: 1280px; margin: 0 auto; padding: 90px 32px;
+.companion-section {
   background:
     radial-gradient(900px 600px at 20% 30%, rgba(46,122,236,0.10), transparent 65%),
-    radial-gradient(700px 500px at 85% 75%, rgba(114,57,201,0.10), transparent 65%);
+    radial-gradient(700px 500px at 85% 75%, rgba(114,57,201,0.10), transparent 65%),
+    rgba(255,255,255,0.015);
+  border-top: 1px solid var(--bd-soft);
+  border-bottom: 1px solid var(--bd-soft);
+}
+.companion-inner {
+  max-width: 1280px; margin: 0 auto; padding: 90px 32px;
 }
 .companion-grid {
   display: grid;
@@ -586,41 +590,170 @@ section { padding: 100px 32px; max-width: 1280px; margin: 0 auto; }
 .br-cta .mark { display: inline-flex; align-items: center; color: #fff; filter: drop-shadow(0 2px 6px rgba(0,0,0,0.3)); }
 .br-cta .mark svg { width: 32px; height: auto; }
 
-/* MATH — the comparison block */
+/* MATH — comparison block (reference: The_Math slide, scaled 0.75 for ~1440px) */
 .math-section { padding: 80px 32px; max-width: 1280px; margin: 0 auto; }
-.math-card {
-  margin-top: 48px; background: var(--bg-card); border: 1px solid var(--bd);
-  border-radius: 14px; padding: 48px 40px;
-  font-family: var(--mono);
-  position: relative; overflow: hidden;
-}
-.math-card::before {
-  content: ""; position: absolute; inset: 0; pointer-events: none;
-  background: radial-gradient(500px 300px at 50% 0%, rgba(123,79,212,0.06), transparent 60%);
-}
-.math-card > * { position: relative; }
+
+/* EQUATION */
 .math-eq {
-  text-align: center; font-size: 18px; color: var(--fg-strong);
-  margin-bottom: 36px; letter-spacing: 0.02em;
+  font-family: var(--mono);
+  font-weight: 500;
+  font-size: 24px;
+  color: rgba(255,255,255,0.85);
+  text-align: center;
+  padding: 18px 24px;
+  margin-top: 40px;
+  border-radius: 14px;
+  background: linear-gradient(180deg, rgba(94,178,255,0.06), rgba(94,178,255,0.02));
+  border: 1px solid rgba(94,178,255,0.18);
+  letter-spacing: 0.01em;
 }
-.math-eq .accent { color: var(--info); font-weight: 600; }
-.math-eq .result { color: var(--accent); font-weight: 600; }
-.math-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: stretch; }
-.math-col { padding: 24px; background: rgba(255,255,255,0.02); border: 1px solid var(--bd-soft); border-radius: 10px; }
-.math-col-title { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; margin-bottom: 18px; }
-.math-col.bad .math-col-title { color: var(--err); }
-.math-col.good .math-col-title { color: var(--ok); }
-.math-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--bd-soft); font-size: 13px; color: var(--fg); }
+.math-eq .accent { color: #fff; font-weight: 600; }
+.math-eq .result {
+  color: #5EB2FF; font-weight: 700;
+  text-shadow: 0 0 24px rgba(94,178,255,0.35);
+}
+
+/* TWO COLUMNS */
+.math-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: stretch;
+  margin-top: 32px;
+}
+.math-col {
+  position: relative;
+  border-radius: 18px;
+  padding: 26px 30px 24px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.015));
+  border: 1px solid rgba(255,255,255,0.08);
+  backdrop-filter: blur(8px);
+  overflow: hidden;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.35);
+  display: flex; flex-direction: column;
+}
+
+/* Background tint per column */
+.math-col.bad::before {
+  content: ""; position: absolute; inset: 0;
+  border-radius: 18px;
+  background: radial-gradient(700px 360px at 0% 0%, rgba(255,90,90,0.10), transparent 60%);
+  pointer-events: none;
+}
+.math-col.good::before {
+  content: ""; position: absolute; inset: 0;
+  border-radius: 18px;
+  background:
+    radial-gradient(700px 360px at 100% 0%, rgba(46,122,236,0.18), transparent 60%),
+    radial-gradient(500px 300px at 100% 100%, rgba(94,178,255,0.10), transparent 60%);
+  pointer-events: none;
+}
+.math-col.good {
+  border-color: rgba(94,178,255,0.30);
+  box-shadow:
+    0 18px 56px rgba(46,122,236,0.30),
+    0 0 0 1px rgba(94,178,255,0.18) inset;
+}
+.math-col.bad { border-color: rgba(255,120,120,0.18); }
+
+.math-col-title {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--mono);
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+  position: relative; z-index: 1;
+}
+.math-col.bad  .math-col-title { color: #FF8A8A; }
+.math-col.good .math-col-title { color: #5EB2FF; }
+.math-col-title::before {
+  content: "";
+  width: 10px; height: 10px;
+  border-radius: 999px;
+  background: currentColor;
+  box-shadow: 0 0 14px currentColor;
+}
+
+/* Rows */
+.math-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 14px;
+  padding: 11px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  position: relative; z-index: 1;
+  transition: background 0.45s ease, padding 0.45s ease;
+}
 .math-row:last-child { border-bottom: none; }
-.math-row .lbl { color: var(--fg-mut); }
-.math-row .val { color: var(--fg-strong); font-weight: 500; }
-.math-bottom { margin-top: 28px; text-align: center; font-size: 14px; color: var(--fg-mut); line-height: 1.7; }
-.math-bottom strong { color: var(--fg-strong); font-weight: 600; }
+.math-row .lbl {
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: 16px;
+  color: rgba(255,255,255,0.65);
+  transform-origin: left center;
+  display: inline-block;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), color 0.45s ease, text-shadow 0.45s ease;
+}
+.math-row .val {
+  font-family: var(--mono);
+  font-weight: 600;
+  font-size: 18px;
+  text-align: right;
+  transform-origin: right center;
+  display: inline-block;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), color 0.45s ease, text-shadow 0.45s ease;
+}
+.math-col.bad  .math-row .val { color: #FFB8B8; }
+.math-col.good .math-row .val { color: #fff; }
+
+/* Sync-pulse highlight (JS toggles .row-pulse on matching row in both columns) */
+.math-row.row-pulse {
+  padding: 14px 12px;
+  background: linear-gradient(90deg, rgba(94,178,255,0.16), rgba(94,178,255,0.04));
+  border-radius: 10px;
+}
+.math-col.bad .math-row.row-pulse {
+  background: linear-gradient(90deg, rgba(255,120,120,0.18), rgba(255,120,120,0.04));
+}
+.math-row.row-pulse .lbl {
+  color: #fff;
+  transform: scale(1.10);
+}
+.math-row.row-pulse .val {
+  transform: scale(1.14);
+}
+.math-col.good .math-row.row-pulse .val {
+  color: #fff;
+  text-shadow: 0 0 24px rgba(94,178,255,0.85), 0 0 48px rgba(94,178,255,0.4);
+}
+.math-col.bad .math-row.row-pulse .val {
+  color: #FFD0D0;
+  text-shadow: 0 0 24px rgba(255,120,120,0.7), 0 0 48px rgba(255,120,120,0.3);
+}
+
+/* Bottom takeaway */
+.math-bottom {
+  text-align: center;
+  margin: 32px 0 0 0;
+  padding: 18px 24px;
+  border-radius: 14px;
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.45;
+  color: rgba(255,255,255,0.78);
+  background: linear-gradient(90deg, rgba(46,122,236,0.10), rgba(114,57,201,0.10));
+  border: 1px solid rgba(94,178,255,0.18);
+}
+.math-bottom strong { color: #fff; font-weight: 700; }
 
 /* MANIFESTO — top hero adapted from design_hero v10 reference */
 .manifesto-section {
   position: relative;
-  padding: clamp(140px, 18vh, 200px) 32px clamp(70px, 9vh, 110px);
+  padding: clamp(80px, 10vh, 115px) 32px clamp(90px, 11vh, 140px);
   background:
     radial-gradient(900px 700px at 18% 50%, rgba(46,122,236,0.10), transparent 65%),
     radial-gradient(700px 600px at 82% 60%, rgba(114,57,201,0.08), transparent 65%);
@@ -663,20 +796,20 @@ section { padding: 100px 32px; max-width: 1280px; margin: 0 auto; }
 
 .manifesto-list {
   display: flex; flex-direction: column;
-  /* Height locked to NO letter height. Words space-between, with small inner padding
-     so first/last word sit comfortably inside NO bounds (not flush against edges). */
+  /* Height locked to NO letter height. Words space-between, with breathing padding
+     so first word ('tokens') sits noticeably below top of N and last word ('magic')
+     sits noticeably above bottom of O — symmetric breathing. */
   height: var(--no-h);
   justify-content: space-between;
-  padding: calc(var(--no-h) * 0.04) 0;
+  padding: calc(var(--no-h) * 0.10) 0;
   box-sizing: border-box;
   text-align: left;
 }
 .manifesto-list .item {
   font-family: var(--sans);
   font-weight: 700;
-  /* Auto-fit: 5 words fit inside (NO height − padding).
-     Available height = NO_h × 0.92. Divide by 5 with breathing room (factor 5.2). */
-  font-size: clamp(20px, calc(var(--no-fs) * 0.82 * 0.92 / 5.2), 42px);
+  /* Available height after padding = NO_h × 0.80. Divide by 5 with breathing factor 5.4. */
+  font-size: clamp(18px, calc(var(--no-fs) * 0.82 * 0.80 / 5.4), 38px);
   line-height: 1.0;
   letter-spacing: -0.02em;
   color: #FFFFFF;
@@ -691,18 +824,18 @@ section { padding: 100px 32px; max-width: 1280px; margin: 0 auto; }
 .manifesto-list .item:nth-child(5) { animation-delay: 0.74s; }
 @keyframes manifestoItemIn { to { opacity: 1; transform: translateX(0); } }
 
-/* Brace embracing the cluster */
+/* Brace embracing the cluster — width matches actual NO+words block width */
 .manifesto-brace-wrap {
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-top: clamp(-95px, -10.5vh, -85px);
+  margin-top: clamp(-30px, -3vh, -15px);
   margin-bottom: 0;
   pointer-events: none;
 }
 .manifesto-brace-svg {
-  width: clamp(440px, 52vw, 720px);
-  height: clamp(64px, 8vw, 110px);
+  width: clamp(300px, 34vw, 480px);
+  height: clamp(50px, 6vw, 85px);
   overflow: visible;
 }
 .manifesto-brace-svg path.brace {
@@ -837,82 +970,649 @@ section { padding: 100px 32px; max-width: 1280px; margin: 0 auto; }
 .finalcta-secondary a { color: var(--info); text-decoration: none; border-bottom: 1px dashed var(--info); }
 .finalcta-secondary a:hover { color: var(--fg-strong); border-bottom-color: var(--fg-strong); }
 
-/* BUILT FOR — use cases */
-.usecases-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 56px; }
+/* BUILT FOR — use cases (reference: For_whom slide, scaled 0.75 for ~1440px viewport) */
+.usecases-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 56px;
+  align-items: stretch;
+}
+
 .usecase-card {
-  background: var(--bg-card); border: 1px solid var(--bd); border-radius: 12px;
-  padding: 28px; position: relative; overflow: hidden;
-  transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
-  opacity: 0; transform: translateY(20px);
+  position: relative;
+  border-radius: 18px;
+  padding: 28px 26px 26px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.015) 100%);
+  border: 1px solid rgba(255,255,255,0.08);
+  backdrop-filter: blur(8px);
+  overflow: hidden;
+  box-shadow:
+    0 12px 40px rgba(0,0,0,0.35),
+    0 0 0 1px rgba(94,178,255,0.04) inset;
+  transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
 }
-.usecase-card.in { opacity: 1; transform: translateY(0); transition: opacity 0.6s ease, transform 0.6s ease, border-color 0.25s, box-shadow 0.25s; }
-.usecase-card:hover { transform: translateY(-4px); border-color: var(--bd-strong); box-shadow: 0 20px 50px rgba(0,0,0,0.3); }
-.usecase-icon { width: 42px; height: 42px; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 18px; }
-.usecase-card:nth-child(1) .usecase-icon { color: var(--node-input); background: rgba(59,158,255,0.10); border: 1px solid rgba(59,158,255,0.28); }
-.usecase-card:nth-child(2) .usecase-icon { color: var(--node-logo); background: rgba(176,123,255,0.10); border: 1px solid rgba(176,123,255,0.28); }
-.usecase-card:nth-child(3) .usecase-icon { color: var(--node-url); background: rgba(245,166,35,0.10); border: 1px solid rgba(245,166,35,0.28); }
-.usecase-icon [data-lucide] { width: 20px; height: 20px; stroke-width: 2; }
-.usecase-tag { font-family: var(--mono); font-size: 9px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--fg-mut); margin-bottom: 8px; }
-.usecase-card h3 { font-family: var(--sans); font-size: 19px; font-weight: 700; margin-bottom: 12px; color: var(--fg-strong); letter-spacing: -0.01em; }
-.usecase-card p { font-size: 14px; color: var(--fg-mut); line-height: 1.6; }
-.usecase-card p strong { color: var(--fg); font-weight: 600; }
 
-/* HOW IT WORKS */
-.how-section { background: rgba(255,255,255,0.015); border-top: 1px solid var(--bd-soft); border-bottom: 1px solid var(--bd-soft); }
-.how-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 56px; position: relative; }
-.how-step {
-  background: var(--bg-card); border: 1px solid var(--bd); border-radius: 12px;
-  padding: 32px 28px; position: relative; overflow: hidden;
+/* Conic-gradient halo border that slowly rotates */
+.usecase-card::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: 18px;
+  padding: 1px;
+  background: conic-gradient(
+    from 0deg,
+    rgba(94,178,255,0.55) 0deg,
+    rgba(46,122,236,0) 60deg,
+    rgba(46,122,236,0) 180deg,
+    rgba(114,57,201,0.45) 240deg,
+    rgba(46,122,236,0) 300deg,
+    rgba(94,178,255,0.55) 360deg
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0.6;
+  animation: usecase-halo-spin 14s linear infinite;
+  /* override global card-sheen ::before */
+  background-image: conic-gradient(
+    from 0deg,
+    rgba(94,178,255,0.55) 0deg,
+    rgba(46,122,236,0) 60deg,
+    rgba(46,122,236,0) 180deg,
+    rgba(114,57,201,0.45) 240deg,
+    rgba(46,122,236,0) 300deg,
+    rgba(94,178,255,0.55) 360deg
+  );
+  transform: none;
+  transition: none;
+  z-index: 0;
 }
-.how-num { font-family: var(--mono); font-size: 11px; font-weight: 600; color: var(--info); letter-spacing: 0.18em; margin-bottom: 14px; text-transform: uppercase; }
-.how-step h3 { font-family: var(--sans); font-size: 22px; font-weight: 700; margin-bottom: 12px; color: var(--fg-strong); letter-spacing: -0.01em; }
-.how-step p { font-size: 14px; color: var(--fg-mut); line-height: 1.65; }
-.how-step .step-icon { color: var(--info); width: 24px; height: 24px; margin-bottom: 16px; opacity: 0.85; }
-.how-step:nth-child(2) .how-num, .how-step:nth-child(2) .step-icon { color: var(--node-logo); }
-.how-step:nth-child(3) .how-num, .how-step:nth-child(3) .step-icon { color: var(--ok); }
+.usecase-card:nth-child(2)::before { animation-delay: -4.7s; }
+.usecase-card:nth-child(3)::before { animation-delay: -9.4s; }
+@keyframes usecase-halo-spin { to { transform: rotate(360deg); } }
 
-/* FEATURES — node cards */
+/* Soft inner glow that slowly breathes */
+.usecase-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  background:
+    radial-gradient(620px 320px at 0% 0%, rgba(46,122,236,0.18), transparent 55%),
+    radial-gradient(520px 280px at 100% 100%, rgba(114,57,201,0.14), transparent 55%);
+  opacity: 0.55;
+  pointer-events: none;
+  animation: usecase-card-breathe 6s ease-in-out infinite;
+  z-index: 0;
+}
+.usecase-card:nth-child(2)::after { animation-delay: -2s; }
+.usecase-card:nth-child(3)::after { animation-delay: -4s; }
+@keyframes usecase-card-breathe {
+  0%, 100% { opacity: 0.45; }
+  50%      { opacity: 0.85; }
+}
+
+/* Card content */
+.usecase-icon {
+  width: 48px; height: 48px;
+  border-radius: 12px;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: linear-gradient(135deg, #2E7AEC 0%, #6B5BE5 60%, #7239C9 100%);
+  color: #fff;
+  box-shadow:
+    0 12px 28px rgba(46,122,236,0.45),
+    0 0 0 1px rgba(255,255,255,0.10) inset;
+  margin-bottom: 18px;
+  position: relative;
+  z-index: 1;
+}
+.usecase-icon svg { width: 24px; height: 24px; stroke-width: 2; }
+.usecase-icon [data-lucide] { width: 24px; height: 24px; stroke-width: 2; }
+
+.usecase-tag {
+  display: inline-flex;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(94,178,255,0.10);
+  border: 1px solid rgba(94,178,255,0.30);
+  color: #8FCBFF;
+  font-family: var(--mono);
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  position: relative; z-index: 1;
+}
+
+.usecase-card h3 {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 1.18;
+  letter-spacing: -0.015em;
+  color: #fff;
+  margin: 0 0 14px 0;
+  text-wrap: balance;
+  position: relative; z-index: 1;
+}
+.usecase-card p {
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 1.55;
+  color: rgba(255,255,255,0.72);
+  margin: 0;
+  position: relative; z-index: 1;
+}
+.usecase-card p strong { color: #fff; font-weight: 600; }
+
+/* Highlight cycle: each card gets a stronger glow in turn (JS toggles .pulse-active) */
+.usecase-card.pulse-active {
+  border-color: rgba(94,178,255,0.45);
+  box-shadow:
+    0 18px 56px rgba(46,122,236,0.35),
+    0 0 0 1px rgba(94,178,255,0.30) inset,
+    0 0 60px rgba(94,178,255,0.12);
+  transform: translateY(-4px);
+}
+.usecase-card.pulse-active::after {
+  opacity: 1;
+  animation: none;
+}
+.usecase-card.pulse-active .usecase-icon {
+  box-shadow:
+    0 16px 40px rgba(46,122,236,0.65),
+    0 0 0 1px rgba(255,255,255,0.18) inset,
+    0 0 30px rgba(94,178,255,0.45);
+}
+
+/* Scroll-in entry animation — triggered by IntersectionObserver adding .in to grid */
+.usecases-grid .usecase-card { opacity: 0; transform: translateY(34px); }
+.usecases-grid.in .usecase-card {
+  animation: usecase-card-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+.usecases-grid.in .usecase-card:nth-child(1) { animation-delay: 0.10s; }
+.usecases-grid.in .usecase-card:nth-child(2) { animation-delay: 0.27s; }
+.usecases-grid.in .usecase-card:nth-child(3) { animation-delay: 0.44s; }
+@keyframes usecase-card-in {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* (How It Works section removed) */
+
+/* NODES — 3D carousel (reference: design_hero/Nodes.html, scoped to #features) */
 #features { padding-top: 80px; }
-.features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 56px; }
-.feature-card {
-  background: var(--bg-card); border: 1px solid var(--bd); border-radius: 10px;
-  position: relative; overflow: hidden;
-  transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
-  opacity: 0; transform: translateY(20px);
+#features .stage-wrap {
+  position: relative; margin-top: 60px;
+  height: 560px;
 }
-.feature-card.in { opacity: 1; transform: translateY(0); transition: opacity 0.6s ease, transform 0.6s ease, border-color 0.25s, box-shadow 0.25s; }
-.feature-card:hover { transform: translateY(-4px); border-color: var(--bd-strong); box-shadow: 0 20px 50px rgba(0,0,0,0.3); }
-.feature-strip { height: 6px; background: var(--node-input); }
-.feature-card:nth-child(1) .feature-strip { background: var(--node-input); }
-.feature-card:nth-child(2) .feature-strip { background: var(--node-cut); }
-.feature-card:nth-child(3) .feature-strip { background: var(--node-logo); }
-.feature-card:nth-child(4) .feature-strip { background: var(--node-audio); }
-.feature-card:nth-child(5) .feature-strip { background: var(--node-url); }
-.feature-card:nth-child(6) .feature-strip { background: var(--accent); }
-.feature-body { padding: 24px 22px 26px; }
-.feature-head { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; flex-wrap: wrap; }
-.feature-icon {
-  width: 38px; height: 38px; border-radius: 8px;
-  background: rgba(255,255,255,0.04); border: 1px solid var(--bd);
-  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-}
-.feature-card:nth-child(1) .feature-icon { color: var(--node-input); border-color: rgba(59,158,255,0.3); background: rgba(59,158,255,0.06); }
-.feature-card:nth-child(2) .feature-icon { color: var(--node-cut); border-color: rgba(236,93,161,0.3); background: rgba(236,93,161,0.06); }
-.feature-card:nth-child(3) .feature-icon { color: var(--node-logo); border-color: rgba(176,123,255,0.3); background: rgba(176,123,255,0.06); }
-.feature-card:nth-child(4) .feature-icon { color: var(--node-audio); border-color: rgba(34,211,154,0.3); background: rgba(34,211,154,0.06); }
-.feature-card:nth-child(5) .feature-icon { color: var(--node-url); border-color: rgba(245,166,35,0.3); background: rgba(245,166,35,0.06); }
-.feature-card:nth-child(6) .feature-icon { color: var(--accent); border-color: rgba(123,79,212,0.3); background: rgba(123,79,212,0.06); }
-.feature-icon [data-lucide] { width: 18px; height: 18px; stroke-width: 2; }
-.feature-tag { font-family: var(--mono); font-size: 9px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--fg-mut); }
-.feature-soon {
-  font-family: var(--mono); font-size: 9px; font-weight: 700;
-  letter-spacing: 0.18em; text-transform: uppercase;
-  color: var(--warn); padding: 2px 7px;
-  background: rgba(245,166,35,0.10); border: 1px solid rgba(245,166,35,0.28); border-radius: 4px;
-  margin-left: auto;
-}
-.feature-card h3 { font-family: var(--sans); font-size: 18px; font-weight: 700; margin-bottom: 10px; color: var(--fg-strong); letter-spacing: -0.01em; }
-.feature-card p { font-size: 14px; color: var(--fg-mut); line-height: 1.6; }
+
+  /* CAROUSEL STAGE */
+  #features .stage {
+    flex: 1;
+    position: relative;
+    perspective: 1800px;
+    display: flex; align-items: center; justify-content: center;
+    user-select: none;
+    height: 480px; /* room for cards (460) + small breathing */
+  }
+
+  #features .track {
+    position: relative;
+    width: 100%; height: 460px;
+    transform-style: preserve-3d;
+  }
+
+  #features .card {
+    position: absolute;
+    left: 50%; top: 50%;
+    width: 520px; height: 460px;
+    margin-left: -260px; margin-top: -230px;
+    border-radius: 24px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+    border: 1px solid rgba(255,255,255,0.10);
+    box-shadow: 0 24px 64px rgba(0,0,0,0.45);
+    backdrop-filter: blur(8px);
+    padding: 30px;
+    box-sizing: border-box;
+    display: flex; flex-direction: column; gap: 20px;
+    transition:
+      transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 0.7s ease,
+      box-shadow 0.7s ease,
+      border-color 0.7s ease,
+      filter 0.7s ease;
+    cursor: pointer;
+  }
+
+  #features .card.is-active {
+    border-color: rgba(94,178,255,0.45);
+    box-shadow:
+      0 36px 96px rgba(46,122,236,0.35),
+      0 0 0 1px rgba(94,178,255,0.30) inset;
+  }
+
+  #features .card-head { display: flex; align-items: center; justify-content: space-between; }
+
+  #features .card-icon {
+    width: 52px; height: 52px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, rgba(46,122,236,0.25), rgba(114,57,201,0.25));
+    border: 1px solid rgba(94,178,255,0.35);
+    display: flex; align-items: center; justify-content: center;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+  #features .card-icon svg { width: 26px; height: 26px; }
+
+  #features .tags { display: flex; gap: 8px; align-items: center; }
+  #features .tag {
+    font-family: var(--mono);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #5EB2FF;
+    padding: 5px 11px;
+    border-radius: 999px;
+    background: rgba(46,122,236,0.10);
+    border: 1px solid rgba(94,178,255,0.30);
+  }
+  #features .tag.soon {
+    color: #FFC56B;
+    background: rgba(224,161,6,0.10);
+    border-color: rgba(224,161,6,0.40);
+  }
+
+  #features .card h3 {
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 1.18;
+    letter-spacing: -0.02em;
+    color: #fff;
+    margin: 0;
+  }
+  #features .card p {
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 1.5;
+    color: rgba(255,255,255,0.72);
+    margin: 0;
+  }
+
+  /* Node visual: animated mini scene at the bottom — fixed height, never cropped */
+  #features .scene {
+    margin-top: auto;
+    height: 110px;
+    flex-shrink: 0;
+    border-radius: 14px;
+    background: rgba(0,0,0,0.35);
+    border: 1px solid rgba(255,255,255,0.06);
+    position: relative;
+    overflow: hidden;
+  }
+  #features .scene::before {
+    content: "";
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size: 16px 16px;
+    opacity: 0.5;
+  }
+
+  /* Looping animations — only run on active card to keep things calm */
+
+  /* INPUT — single folder fans into a stack */
+  #features .scene-input { display: flex; align-items: center; justify-content: center; }
+  #features .scene-input .stack {
+    position: absolute; top: 50%; left: 50%;
+    width: 80px; height: 60px;
+    transform: translate(-50%, -50%);
+  }
+  #features .scene-input .folder {
+    position: absolute;
+    inset: 0;
+    border-radius: 8px;
+    background: linear-gradient(180deg, #2E7AEC, #1E63D6);
+    box-shadow: 0 6px 20px rgba(46,122,236,0.45);
+    transform-origin: center bottom;
+  }
+  #features .scene-input .folder::before {
+    content: "";
+    position: absolute; top: -10px; left: 6px;
+    width: 36px; height: 12px;
+    background: #2E7AEC;
+    border-radius: 6px 6px 0 0;
+  }
+  #features .scene-input .folder.f1 { z-index: 3; }
+  #features .scene-input .folder.f2 { z-index: 2; opacity: 0.85; }
+  #features .scene-input .folder.f3 { z-index: 1; opacity: 0.65; }
+
+  #features .is-active .scene-input .folder.f1 { animation: input-f1 3s ease-in-out infinite; }
+  #features .is-active .scene-input .folder.f2 { animation: input-f2 3s ease-in-out infinite; }
+  #features .is-active .scene-input .folder.f3 { animation: input-f3 3s ease-in-out infinite; }
+
+  @keyframes input-f1{
+    0%, 12%   { transform: translate(0, 0) rotate(0deg); }
+    45%, 100% { transform: translate(-22px, -10px) rotate(-6deg); }
+  }
+  @keyframes input-f2{
+    0%, 12%   { transform: translate(0, 0) rotate(0deg); opacity: 0; }
+    25%       { opacity: 0.85; }
+    45%, 100% { transform: translate(0, 0) rotate(0deg); opacity: 0.85; }
+  }
+  @keyframes input-f3{
+    0%, 18%   { transform: translate(0, 0) rotate(0deg); opacity: 0; }
+    32%       { opacity: 0.65; }
+    45%, 100% { transform: translate(22px, 10px) rotate(6deg); opacity: 0.65; }
+  }
+
+  /* CUT — scrubbing playhead */
+  #features .scene-cut .strip {
+    position: absolute; top: 50%; left: 12px; right: 12px; height: 26px;
+    transform: translateY(-50%);
+    border-radius: 6px;
+    background: linear-gradient(90deg, #2E7AEC 0%, #2E7AEC 30%, transparent 30%, transparent 35%, #7239C9 35%, #7239C9 65%, transparent 65%, transparent 70%, #2E7AEC 70%, #2E7AEC 100%);
+    opacity: 0.85;
+  }
+  #features .scene-cut .playhead {
+    position: absolute; top: 12px; bottom: 12px;
+    width: 2px; background: #FF8A8A;
+    box-shadow: 0 0 12px #FF8A8A;
+    left: 12px;
+  }
+  #features .is-active .scene-cut .playhead { animation: scrub 2.4s linear infinite; }
+  @keyframes scrub{ 0% { left: 12px; } 100% { left: calc(100% - 14px); } }
+
+  /* BRAND — logo blinking on a video frame */
+  #features .scene-brand .frame {
+    position: absolute; inset: 14px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #1B2740, #2E7AEC);
+    overflow: hidden;
+  }
+  #features .scene-brand .logo {
+    position: absolute; top: 12px; right: 12px;
+    width: 40px; height: 40px;
+    border-radius: 6px;
+    background: rgba(255,255,255,0.95);
+    display: flex; align-items: center; justify-content: center;
+    color: #1E63D6; font-weight: 800; font-size: 24px; font-family: var(--mono);
+    box-shadow: 0 0 0 2px rgba(255,255,255,0.2);
+  }
+  #features .is-active .scene-brand .logo { animation: pulse 2s ease-in-out infinite; }
+  @keyframes pulse{
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50%      { transform: scale(1.15); opacity: 0.8; }
+  }
+
+  /* AUDIO — equalizer bars */
+  #features .scene-audio { display: flex; align-items: center; justify-content: center; gap: 6px; }
+  #features .scene-audio .bar {
+    width: 8px; height: 20px; border-radius: 4px;
+    background: linear-gradient(180deg, #5EB2FF, #2E7AEC);
+  }
+  #features .is-active .scene-audio .bar { animation: eq 0.9s ease-in-out infinite; }
+  #features .is-active .scene-audio .bar:nth-child(1) { animation-delay: 0.0s; }
+  #features .is-active .scene-audio .bar:nth-child(2) { animation-delay: 0.1s; }
+  #features .is-active .scene-audio .bar:nth-child(3) { animation-delay: 0.2s; }
+  #features .is-active .scene-audio .bar:nth-child(4) { animation-delay: 0.05s; }
+  #features .is-active .scene-audio .bar:nth-child(5) { animation-delay: 0.25s; }
+  #features .is-active .scene-audio .bar:nth-child(6) { animation-delay: 0.15s; }
+  #features .is-active .scene-audio .bar:nth-child(7) { animation-delay: 0.3s; }
+  #features .is-active .scene-audio .bar:nth-child(8) { animation-delay: 0.1s; }
+  #features .is-active .scene-audio .bar:nth-child(9) { animation-delay: 0.2s; }
+  #features .is-active .scene-audio .bar:nth-child(10) { animation-delay: 0.0s; }
+  #features .is-active .scene-audio .bar:nth-child(11) { animation-delay: 0.18s; }
+  #features .is-active .scene-audio .bar:nth-child(12) { animation-delay: 0.25s; }
+  @keyframes eq{
+    0%, 100% { height: 14px; }
+    50%      { height: 56px; }
+  }
+
+  /* SOURCE — URL → dashed path → folder with video file */
+  #features .scene-source .url {
+    position: absolute; top: 50%; left: 14px; transform: translateY(-50%);
+    font-family: var(--mono); font-size: 14px; color: #5EB2FF;
+    background: rgba(46,122,236,0.10);
+    padding: 5px 10px; border-radius: 6px;
+    border: 1px solid rgba(94,178,255,0.30);
+  }
+
+  #features .scene-source .path {
+    position: absolute;
+    top: 50%;
+    left: 130px;
+    right: 70px;
+    height: 2px;
+    transform: translateY(-50%);
+    background-image: linear-gradient(90deg,
+      #5EB2FF 0,
+      #5EB2FF 6px,
+      transparent 6px,
+      transparent 12px);
+    background-size: 12px 2px;
+    background-repeat: repeat-x;
+  }
+  #features .is-active .scene-source .path { animation: dash-flow 0.8s linear infinite; }
+  @keyframes dash-flow{
+    0%   { background-position: 0 0; }
+    100% { background-position: 12px 0; }
+  }
+
+  /* travelling video chip along the path */
+  #features .scene-source .chip {
+    position: absolute;
+    top: 50%;
+    left: 130px;
+    width: 22px; height: 14px;
+    border-radius: 3px;
+    background: linear-gradient(135deg, #7239C9, #2E7AEC);
+    box-shadow: 0 0 12px rgba(94,178,255,0.6);
+    transform: translate(-50%, -50%);
+  }
+  #features .is-active .scene-source .chip { animation: chip-travel 1.8s ease-in-out infinite; }
+  @keyframes chip-travel{
+    0%   { left: 130px; opacity: 0; }
+    15%  { opacity: 1; }
+    85%  { opacity: 1; }
+    100% { left: calc(100% - 70px); opacity: 0; }
+  }
+
+  /* destination folder w/ video file inside */
+  #features .scene-source .folder-dest {
+    position: absolute;
+    top: 50%; right: 14px;
+    transform: translateY(-50%);
+    width: 56px; height: 44px;
+    border-radius: 6px;
+    background: linear-gradient(180deg, #2E7AEC, #1E63D6);
+    box-shadow: 0 6px 20px rgba(46,122,236,0.45);
+  }
+  #features .scene-source .folder-dest::before {
+    content: "";
+    position: absolute; top: -8px; left: 4px;
+    width: 24px; height: 8px;
+    background: #2E7AEC;
+    border-radius: 4px 4px 0 0;
+  }
+  #features .scene-source .folder-dest::after {
+    content: "\25B6";
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 16px;
+  }
+  #features .is-active .scene-source .folder-dest { animation: folder-pop 1.8s ease-in-out infinite; }
+  @keyframes folder-pop{
+    0%, 80%   { transform: translateY(-50%) scale(1); }
+    90%       { transform: translateY(-50%) scale(1.12); }
+    100%      { transform: translateY(-50%) scale(1); }
+  }
+
+  /* TRANSFORM — horizontal video → vertical */
+  #features .scene-transform { display: flex; align-items: center; justify-content: center; gap: 18px; }
+  #features .scene-transform .horiz, #features .scene-transform .vert {
+    border-radius: 4px;
+    background: linear-gradient(135deg, #7239C9, #2E7AEC);
+    box-shadow: 0 0 12px rgba(114,57,201,0.4);
+  }
+  #features .scene-transform .horiz { width: 60px; height: 34px; }
+  #features .scene-transform .vert { width: 30px; height: 54px; opacity: 0.4; }
+  #features .is-active .scene-transform .horiz { animation: morph-h 2.4s ease-in-out infinite; }
+  #features .is-active .scene-transform .vert { animation: morph-v 2.4s ease-in-out infinite; }
+  @keyframes morph-h{
+    0%, 40%   { transform: scale(1); opacity: 1; }
+    60%, 100% { transform: scale(0.5); opacity: 0.3; }
+  }
+  @keyframes morph-v{
+    0%, 40%   { transform: scale(0.7); opacity: 0.3; }
+    60%, 100% { transform: scale(1.0); opacity: 1; }
+  }
+  #features .scene-transform .arrow-r {
+    color: rgba(255,255,255,0.5);
+    font-family: var(--mono);
+    font-size: 24px;
+  }
+
+  /* PODCAST — waveform with one silence segment highlighted red */
+  #features .scene-podcast .wave {
+    position: absolute; top: 50%; left: 14px; right: 14px; height: 60px;
+    transform: translateY(-50%);
+    display: flex; align-items: center; gap: 3px;
+  }
+  #features .scene-podcast .seg {
+    flex: 1;
+    border-radius: 2px;
+    background: linear-gradient(180deg, #5EB2FF, #2E7AEC);
+    transform-origin: center;
+    /* heights set per nth-child below to look like a waveform */
+  }
+  /* Waveform shape — each bar a different height */
+  #features .scene-podcast .seg:nth-child(1) { height: 18%; }
+  #features .scene-podcast .seg:nth-child(2) { height: 38%; }
+  #features .scene-podcast .seg:nth-child(3) { height: 62%; }
+  #features .scene-podcast .seg:nth-child(4) { height: 88%; }
+  #features .scene-podcast .seg:nth-child(5) { height: 70%; }
+  #features .scene-podcast .seg:nth-child(6) { height: 45%; }
+  #features .scene-podcast .seg:nth-child(7) { height: 28%; }
+  #features .scene-podcast .seg:nth-child(8) { height: 8%;  }   
+  #features .scene-podcast .seg:nth-child(9) { height: 6%;  }   
+  #features .scene-podcast .seg:nth-child(10) { height: 8%;  }   
+  #features .scene-podcast .seg:nth-child(11) { height: 32%; }
+  #features .scene-podcast .seg:nth-child(12) { height: 58%; }
+  #features .scene-podcast .seg:nth-child(13) { height: 80%; }
+  #features .scene-podcast .seg:nth-child(14) { height: 95%; }
+  #features .scene-podcast .seg:nth-child(15) { height: 72%; }
+  #features .scene-podcast .seg:nth-child(16) { height: 50%; }
+  #features .scene-podcast .seg:nth-child(17) { height: 78%; }
+  #features .scene-podcast .seg:nth-child(18) { height: 60%; }
+  #features .scene-podcast .seg:nth-child(19) { height: 35%; }
+  #features .scene-podcast .seg:nth-child(20) { height: 24%; }
+
+  /* Highlighted silence — red, with cut-out marker */
+  #features .scene-podcast .seg.silence {
+    background: linear-gradient(180deg, #FF6B6B, #DD3B3B);
+    box-shadow: 0 0 12px rgba(255,107,107,0.5);
+  }
+  #features .is-active .scene-podcast .seg.silence {
+    animation: silence-pulse 1.6s ease-in-out infinite;
+  }
+  @keyframes silence-pulse{
+    0%, 100% { opacity: 0.55; transform: scaleY(0.85); }
+    50%      { opacity: 1;    transform: scaleY(1.1); box-shadow: 0 0 18px rgba(255,107,107,0.8); }
+  }
+
+  /* Cut indicator — dashed red bracket above the silence span (positioned by JS) */
+  #features .scene-podcast .cut-marker {
+    position: absolute;
+    top: 6px;
+    height: 14px;
+    border: 2px dashed #FF6B6B;
+    border-bottom: none;
+    border-radius: 6px 6px 0 0;
+    pointer-events: none;
+    visibility: hidden;
+  }
+  #features .scene-podcast .cut-label {
+    position: absolute;
+    top: -2px;
+    font-family: var(--mono); font-size: 11px; font-weight: 600;
+    color: #FF6B6B;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    background: rgba(11,12,20, 0.9);
+    padding: 2px 8px; border-radius: 4px;
+    transform: translateX(-50%);
+    border: 1px solid rgba(255,107,107,0.4);
+    white-space: nowrap;
+    visibility: hidden;
+  }
+  #features .is-active .scene-podcast .cut-marker, #features .is-active .scene-podcast .cut-label {
+    animation: marker-blink 1.6s ease-in-out infinite;
+  }
+  @keyframes marker-blink{
+    0%, 100% { opacity: 0.6; }
+    50%      { opacity: 1; }
+  }
+
+  /* Voice bars — subtle bobbing */
+  #features .is-active .scene-podcast .seg:not(.silence) {
+    animation: bob 1.8s ease-in-out infinite;
+  }
+  #features .is-active .scene-podcast .seg:not(.silence):nth-child(odd) { animation-delay: 0.0s; }
+  #features .is-active .scene-podcast .seg:not(.silence):nth-child(even) { animation-delay: 0.25s; }
+  @keyframes bob{
+    0%, 100% { transform: scaleY(0.85); }
+    50%      { transform: scaleY(1.05); }
+  }
+
+  
+  #features .dots {
+    position: absolute;
+    bottom: -60px; left: 50%; transform: translateX(-50%);
+    display: flex; gap: 10px;
+    z-index: 5;
+  }
+  #features .dot {
+    width: 10px; height: 10px; border-radius: 999px;
+    background: rgba(255,255,255,0.18);
+    border: none; padding: 0; cursor: pointer;
+    transition: all 0.4s ease;
+  }
+  #features .dot.is-active {
+    background: #5EB2FF;
+    width: 32px;
+    box-shadow: 0 0 12px rgba(94,178,255,0.6);
+  }
+
+  
+  #features .nav-arrow {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    width: 56px; height: 56px;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.15);
+    background: rgba(20,23,31,0.7);
+    backdrop-filter: blur(12px);
+    color: #fff;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 5;
+    transition: all 0.2s ease;
+  }
+  #features .nav-arrow:hover {
+    background: rgba(46,122,236,0.25);
+    border-color: rgba(94,178,255,0.5);
+  }
+  #features .nav-arrow.prev { left: 24px; }
+  #features .nav-arrow.next { right: 24px; }
+  #features .nav-arrow svg { width: 24px; height: 24px; }
+
 
 /* VIDEOS */
 .video-section { background: rgba(255,255,255,0.015); border-top: 1px solid var(--bd-soft); border-bottom: 1px solid var(--bd-soft); }
@@ -927,36 +1627,667 @@ section { padding: 100px 32px; max-width: 1280px; margin: 0 auto; }
 .video-empty h3 { font-family: var(--sans); font-size: 20px; font-weight: 700; margin-bottom: 8px; color: var(--fg-strong); }
 .video-empty p { color: var(--fg-mut); font-size: 14px; }
 
-/* PRICING */
-.pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 56px; align-items: stretch; }
-.price-card {
-  background: var(--bg-card); border: 1px solid var(--bd); border-radius: 12px;
-  padding: 32px 28px 28px; position: relative;
-  transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
-  display: flex; flex-direction: column;
-}
-.price-card:hover { transform: translateY(-4px); border-color: var(--bd-strong); box-shadow: 0 20px 50px rgba(0,0,0,0.3); }
-.price-card.featured { border-color: var(--accent); background: linear-gradient(180deg, rgba(123,79,212,0.10) 0%, var(--bg-card) 30%); box-shadow: 0 0 0 1px var(--accent), 0 20px 60px rgba(123,79,212,0.20); }
-.price-card.featured:hover { box-shadow: 0 0 0 1px var(--accent), 0 30px 80px rgba(123,79,212,0.30); }
-.popular-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--grad-brand); color: #fff; font-family: var(--mono); font-size: 10px; padding: 5px 14px; border-radius: 999px; font-weight: 600; letter-spacing: 0.14em; white-space: nowrap; box-shadow: 0 6px 20px rgba(123,79,212,0.4); }
-.price-tier { font-family: var(--mono); font-size: 10px; color: var(--info); letter-spacing: 0.18em; margin-bottom: 18px; font-weight: 600; text-transform: uppercase; }
-.price-amount-row { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 4px; }
-.price-amount { font-family: var(--sans); font-size: 52px; font-weight: 800; line-height: 1; color: var(--fg-strong); letter-spacing: -0.03em; display: flex; align-items: baseline; }
-.price-amount sup { font-size: 22px; vertical-align: top; margin-top: 8px; font-weight: 500; color: var(--fg-mut); }
-.price-old { font-family: var(--sans); font-size: 20px; font-weight: 500; color: var(--fg-dim); text-decoration: line-through; }
-.price-vat { font-family: var(--mono); font-size: 11px; color: var(--fg-mut); margin-bottom: 6px; letter-spacing: 0.04em; }
-.price-period { font-size: 12px; color: var(--fg-mut); margin-bottom: 12px; font-family: var(--mono); }
-.price-savings { font-family: var(--mono); font-size: 11px; color: var(--ok); margin-bottom: 24px; letter-spacing: 0.04em; font-weight: 500; min-height: 16px; }
-.price-features { list-style: none; margin-bottom: 28px; flex: 1; }
-.price-features li { display: flex; align-items: flex-start; gap: 10px; padding: 9px 0; font-size: 13px; color: var(--fg); border-bottom: 1px solid var(--bd-soft); }
-.price-features li:last-child { border-bottom: none; }
-.price-features li [data-lucide] { width: 14px; height: 14px; color: var(--ok); flex-shrink: 0; margin-top: 2px; stroke-width: 2.5; }
-.btn-plan { width: 100%; padding: 13px; border-radius: 10px; font-size: 14px; font-weight: 600; cursor: pointer; font-family: var(--sans); transition: all 0.2s; border: none; text-align: center; text-decoration: none; display: block; }
-.btn-plan-accent { background: var(--grad-brand); color: #fff; box-shadow: 0 6px 20px rgba(59,158,255,0.3); }
-.btn-plan-accent:hover { transform: translateY(-1px); box-shadow: 0 10px 30px rgba(59,158,255,0.45); }
-.btn-plan-ghost { background: rgba(255,255,255,0.04); color: var(--fg); border: 1px solid var(--bd-mid); }
-.btn-plan-ghost:hover { background: rgba(255,255,255,0.08); border-color: var(--bd-strong); }
-.pricing-note { text-align: center; font-size: 12px; color: var(--fg-dim); margin-top: 28px; font-family: var(--mono); letter-spacing: 0.04em; }
+/* PRICING — full reference port (Pricing.html, scoped to #pricing) */
+#pricing { position: relative; isolation: isolate; }
+
+  
+  
+  
+
+  /* =========================================================
+     SLIDE
+     ========================================================= */
+  
+
+  /* Subtle grain layer */
+  
+
+  /* GIANT BACKGROUND TYPE */
+  #pricing .megaword {
+    position: absolute;
+    left: -40px;
+    bottom: -120px;
+    font-family: var(--sans);
+    font-weight: 900;
+    font-size: 540px;
+    line-height: 0.78;
+    letter-spacing: -0.06em;
+    color: transparent;
+    -webkit-text-stroke: 2px rgba(255,255,255,0.05);
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+    white-space: nowrap;
+  }
+  #pricing .megaword .accent {
+    -webkit-text-stroke: 2px rgba(94,178,255,0.25);
+  }
+
+  /* =========================================================
+     HEADER
+     ========================================================= */
+  #pricing .head {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 24px;
+    padding-bottom: 20px;
+  }
+  #pricing .head-left { display: flex; flex-direction: column; gap: 16px; }
+  #pricing .eyebrow-row {
+    display: flex; align-items: center; gap: 14px;
+    animation: pr-head-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+  }
+  #pricing .eyebrow-pill {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 10px 20px;
+    border-radius: 999px;
+    border: 1px solid rgba(94,178,255,0.45);
+    color: #5EB2FF;
+    font-family: var(--mono);
+    font-weight: 600;
+    font-size: 22px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    background: rgba(46,122,236,0.10);
+  }
+  #pricing .eyebrow-pill .dot {
+    width: 10px; height: 10px; border-radius: 999px;
+    background: #5EE26B;
+    box-shadow: 0 0 14px #5EE26B;
+    animation: pr-pulse 1.6s ease-in-out infinite;
+  }
+  @keyframes pr-pulse{
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%      { opacity: 0.5; transform: scale(1.4); }
+  }
+  #pricing .eyebrow-line {
+    height: 1px; flex: 1;
+    background: linear-gradient(90deg, rgba(94,178,255,0.5), transparent);
+    max-width: 240px;
+  }
+  #pricing .eyebrow-meta {
+    font-family: var(--mono);
+    font-size: 22px;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.10em;
+  }
+
+  #pricing .section-title {
+    font-family: var(--sans);
+    font-weight: 800;
+    font-size: 112px;
+    line-height: 0.95;
+    letter-spacing: -0.035em;
+    color: #fff;
+    margin: 0;
+    animation: pr-head-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.1s backwards;
+  }
+  #pricing .section-title .it {
+    font-style: italic;
+    font-weight: 800;
+    background: linear-gradient(180deg, #5EB2FF 0%, #B488FF 100%);
+    -webkit-background-clip: text; background-clip: text;
+    color: transparent;
+    position: relative;
+    padding-right: 8px;
+  }
+  #pricing .section-title .it::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 8px; bottom: -8px;
+    height: 6px;
+    background: linear-gradient(90deg, #5EB2FF, #B488FF);
+    border-radius: 4px;
+    transform: scaleX(0); transform-origin: left;
+    animation: pr-under 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.7s forwards;
+  }
+  @keyframes pr-under{
+    to { transform: scaleX(1); }
+  }
+  @keyframes pr-head-in{
+    from { opacity: 0; transform: translateY(-14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Toggle on the right */
+  #pricing .billing-toggle {
+    display: inline-flex;
+    padding: 6px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.10);
+    backdrop-filter: blur(8px);
+    animation: pr-head-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.2s backwards;
+  }
+  #pricing .billing-toggle button {
+    appearance: none;
+    border: 0;
+    background: transparent;
+    color: rgba(255,255,255,0.55);
+    font-family: var(--mono);
+    font-weight: 600;
+    font-size: 22px;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    padding: 12px 26px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: color 0.2s ease;
+  }
+  #pricing .billing-toggle button.active {
+    background: linear-gradient(180deg, #2E7AEC, #1E63D6);
+    color: #fff;
+    box-shadow: 0 8px 24px rgba(46,122,236,0.5);
+  }
+
+  /* =========================================================
+     GRID
+     ========================================================= */
+  #pricing .grid {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    align-items: stretch;
+    flex: 1;
+    margin-top: 8px;
+    transition: filter 0.45s ease, opacity 0.45s ease;
+    isolation: isolate;
+  }
+
+  /* Colorful blob layer that sits behind the cards.
+     The cards' backdrop-filter then blurs THIS, producing real glass. */
+  #pricing .grid::before {
+    content: "";
+    position: absolute;
+    inset: -40px -40px -40px -40px;
+    z-index: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(420px 320px at 12% 30%,  rgba(94,178,255,0.55),  transparent 65%),
+      radial-gradient(380px 300px at 38% 70%,  rgba(180,136,255,0.55), transparent 65%),
+      radial-gradient(360px 320px at 64% 28%,  rgba(255,107,107,0.45), transparent 65%),
+      radial-gradient(420px 340px at 88% 72%,  rgba(255,177,0,0.42),   transparent 65%),
+      radial-gradient(300px 260px at 50% 50%,  rgba(94,226,107,0.30),  transparent 65%);
+    filter: saturate(1.1);
+    animation: pr-blobs 18s ease-in-out infinite;
+  }
+  @keyframes pr-blobs{
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33%      { transform: translate(-30px, 20px) scale(1.04); }
+    66%      { transform: translate(24px, -16px) scale(0.97); }
+  }
+  #pricing .grid.is-switching {
+    filter: blur(14px);
+    opacity: 0.4;
+  }
+
+  /* CARDS — frosted glass */
+  #pricing .card {
+    position: relative;
+    z-index: 1;
+    border-radius: 28px;
+    padding: 40px 36px 36px;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.03));
+    border: 1px solid rgba(255,255,255,0.16);
+    box-shadow:
+      0 22px 60px rgba(0,0,0,0.45),
+      inset 0 1px 0 rgba(255,255,255,0.18);
+    backdrop-filter: blur(36px) saturate(1.4);
+    -webkit-backdrop-filter: blur(36px) saturate(1.4);
+    display: flex; flex-direction: column; gap: 22px;
+    overflow: hidden;
+    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.45s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.45s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.4s ease, filter 0.4s ease;
+    isolation: isolate;
+  }
+  #pricing .card[data-hidden="true"] {
+    display: none;
+  }
+  #pricing .card.entering {
+    animation: pr-card-enter 0.6s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+  }
+  #pricing .card.entering:nth-of-type(1) { animation-delay: 0.05s; }
+  #pricing .card.entering:nth-of-type(2) { animation-delay: 0.18s; }
+  @keyframes pr-card-enter{
+    from { opacity: 0; transform: translateY(28px) scale(0.96); filter: blur(12px); }
+    to   { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+  }
+  #pricing .card.intro { animation: pr-card-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) backwards; }
+  #pricing .card.intro:nth-of-type(1) { animation-delay: 0.30s; }
+  #pricing .card.intro:nth-of-type(2) { animation-delay: 0.42s; }
+  @keyframes pr-card-in{
+    from { opacity: 0; transform: translateY(36px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  #pricing .card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 32px 80px rgba(0,0,0,0.55);
+    border-color: rgba(94,178,255,0.35);
+  }
+
+  /* GIANT GLYPH watermark inside each card */
+  #pricing .card .glyph {
+    position: absolute;
+    right: -40px; bottom: -90px;
+    font-family: var(--sans);
+    font-weight: 900;
+    font-size: 360px;
+    line-height: 0.8;
+    color: rgba(255,255,255,0.04);
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+    letter-spacing: -0.05em;
+  }
+  #pricing .card.featured .glyph {
+    color: rgba(94,178,255,0.10);
+    right: -50px; bottom: -100px;
+    font-size: 420px;
+  }
+
+  /* Header row inside card */
+  #pricing .tier-row {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 8px;
+    position: relative; z-index: 2;
+  }
+  #pricing .tier-num {
+    font-family: var(--mono);
+    font-weight: 600;
+    font-size: 20px;
+    color: rgba(255,255,255,0.32);
+    letter-spacing: 0.16em;
+  }
+  #pricing .tier {
+    font-family: var(--sans);
+    font-weight: 800;
+    font-size: 44px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: #fff;
+    margin: 4px 0 0;
+  }
+  #pricing .tier-sub {
+    font-family: var(--mono);
+    font-size: 18px;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+  #pricing .card.featured .tier-sub { color: #8EC5FF; }
+
+  #pricing .kind-flag {
+    font-family: var(--mono);
+    font-weight: 600;
+    font-size: 20px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 8px 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.14);
+    color: rgba(255,255,255,0.72);
+    background: rgba(255,255,255,0.04);
+    white-space: nowrap;
+  }
+  #pricing .kind-flag.sub { color: #8EC5FF; border-color: rgba(94,178,255,0.40); background: rgba(46,122,236,0.10); }
+  #pricing .kind-flag.one { color: #FFB766; border-color: rgba(255,165,80,0.40); background: rgba(255,165,80,0.08); }
+
+  /* PRICE BLOCK */
+  #pricing .price-block {
+    position: relative; z-index: 2;
+    display: flex; flex-direction: column;
+    gap: 4px;
+    margin-top: 8px;
+  }
+  #pricing .price-row {
+    display: flex; align-items: flex-start;
+    gap: 14px;
+    line-height: 0.9;
+  }
+  #pricing .amount {
+    font-family: var(--sans);
+    font-weight: 900;
+    font-size: 168px;
+    line-height: 0.85;
+    letter-spacing: -0.05em;
+    color: #fff;
+    display: inline-flex; align-items: flex-start;
+  }
+  #pricing .amount .currency {
+    font-size: 56px;
+    font-weight: 800;
+    line-height: 1;
+    margin-top: 18px;
+    margin-right: 4px;
+    color: rgba(255,255,255,0.6);
+  }
+  #pricing .amount.gradient {
+    background: linear-gradient(180deg, #fff 0%, #5EB2FF 60%, #B488FF 100%);
+    -webkit-background-clip: text; background-clip: text;
+    color: transparent;
+  }
+  #pricing .amount .num {
+    display: inline-block;
+  }
+  #pricing .old-stack {
+    display: flex; flex-direction: column; gap: 6px;
+    margin-top: 24px;
+  }
+  #pricing .old-price {
+    font-family: var(--mono);
+    font-weight: 600;
+    font-size: 28px;
+    color: rgba(255,255,255,0.5);
+    text-decoration: line-through;
+    text-decoration-color: #FF6B6B;
+    text-decoration-thickness: 3px;
+  }
+  #pricing .old-meta {
+    font-family: var(--mono);
+    font-size: 18px;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+  }
+  #pricing .old-meta.save { color: #5EE26B; }
+  #pricing .old-meta.warm-meta { color: #FFB766; }
+  #pricing .featured-num { color: rgba(94,178,255,0.6); }
+  #pricing .tier.tier-large { font-size: 52px; }
+  #pricing .period {
+    font-family: var(--mono);
+    font-weight: 500;
+    font-size: 22px;
+    color: rgba(255,255,255,0.55);
+    letter-spacing: 0.04em;
+    margin-top: 6px;
+  }
+
+  #pricing .savings {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: var(--mono);
+    font-weight: 700;
+    font-size: 22px;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    color: #5EE26B;
+    padding: 10px 16px;
+    border-radius: 12px;
+    background: rgba(94,226,107,0.10);
+    border: 1px solid rgba(94,226,107,0.30);
+    width: max-content;
+    margin-top: 14px;
+    position: relative; z-index: 2;
+  }
+  #pricing .savings.warm {
+    color: #FFB766;
+    background: rgba(255,183,102,0.10);
+    border-color: rgba(255,183,102,0.30);
+  }
+  #pricing .savings.cool {
+    color: #8EC5FF;
+    background: rgba(46,122,236,0.12);
+    border-color: rgba(94,178,255,0.40);
+  }
+  #pricing .savings::before {
+    content: "";
+    width: 8px; height: 8px;
+    border-radius: 999px;
+    background: currentColor;
+    box-shadow: 0 0 12px currentColor;
+    animation: pr-blink 1.4s ease-in-out infinite;
+  }
+  @keyframes pr-blink{
+    0%,100% { opacity: 1; }
+    50%     { opacity: 0.3; }
+  }
+
+  /* Spacer to push CTA to bottom */
+  #pricing .spacer { flex: 1; }
+
+  /* CTA */
+  #pricing .cta {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 8px;
+    padding: 20px 24px;
+    border-radius: 16px;
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: 26px;
+    text-decoration: none;
+    transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1), background 0.3s ease;
+    cursor: pointer;
+    border: 1px solid transparent;
+    position: relative; z-index: 2;
+    overflow: hidden;
+  }
+  #pricing .cta.ghost {
+    color: rgba(255,255,255,0.95);
+    background: rgba(255,255,255,0.04);
+    border-color: rgba(255,255,255,0.16);
+  }
+  #pricing .cta.ghost:hover {
+    background: rgba(255,255,255,0.10);
+    border-color: rgba(94,178,255,0.50);
+    transform: translateY(-3px);
+  }
+  #pricing .cta.primary {
+    color: #fff;
+    background: linear-gradient(135deg, #2E7AEC 0%, #7239C9 100%);
+    box-shadow: 0 16px 48px rgba(46,122,236,0.55);
+  }
+  #pricing .cta.primary:hover {
+    box-shadow: 0 24px 64px rgba(46,122,236,0.75);
+    transform: translateY(-3px);
+  }
+  #pricing .cta.primary::after {
+    content: "";
+    position: absolute;
+    top: 0; left: -50%;
+    width: 60%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    transform: skewX(-25deg);
+    animation: pr-shine 3.0s ease-in-out infinite;
+  }
+  @keyframes pr-shine{
+    0%   { left: -60%; }
+    50%  { left: 130%; }
+    100% { left: 130%; }
+  }
+  #pricing .cta .arrow-box {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 38px; height: 38px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.12);
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), background 0.3s ease;
+  }
+  #pricing .cta:hover .arrow-box {
+    background: rgba(255,255,255,0.22);
+    transform: translateX(6px) rotate(-8deg);
+  }
+  #pricing .cta.primary .arrow-box { background: rgba(255,255,255,0.22); }
+  #pricing .cta.primary:hover .arrow-box { background: rgba(255,255,255,0.35); }
+
+  /* =========================================================
+     FEATURED CARD — extra visual weight
+     ========================================================= */
+  #pricing .card.featured {
+    border-color: rgba(94,178,255,0.45);
+    background:
+      linear-gradient(180deg, rgba(46,122,236,0.20), rgba(114,57,201,0.14)),
+      linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
+    box-shadow:
+      0 36px 100px rgba(46,122,236,0.40),
+      0 0 0 1px rgba(94,178,255,0.30) inset;
+    transform: translateY(-12px);
+  }
+  #pricing .card.featured:hover { transform: translateY(-20px); }
+
+  /* Animated gradient border */
+  #pricing .card.featured::before {
+    content: "";
+    position: absolute; inset: -1px;
+    border-radius: 28px;
+    padding: 1.5px;
+    background: linear-gradient(135deg, rgba(94,178,255,0.8), rgba(180,136,255,0.8), rgba(94,178,255,0.0), rgba(94,178,255,0.8));
+    background-size: 300% 300%;
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
+    pointer-events: none;
+    animation: pr-glide 6s linear infinite;
+    z-index: 1;
+  }
+  @keyframes pr-glide{
+    0%   { background-position: 0% 0%; }
+    100% { background-position: 300% 300%; }
+  }
+  #pricing .card.featured::after {
+    content: "";
+    position: absolute; right: -160px; top: -160px;
+    width: 360px; height: 360px;
+    background: radial-gradient(circle, rgba(94,178,255,0.45), transparent 70%);
+    pointer-events: none;
+    animation: pr-float-glow 8s ease-in-out infinite;
+    z-index: 0;
+  }
+  @keyframes pr-float-glow{
+    0%, 100% { transform: translate(0, 0); }
+    50%      { transform: translate(-20px, 20px); }
+  }
+
+  /* Best-value flag — vertical typographic */
+  #pricing .badge-popular {
+    position: absolute;
+    top: -1px; right: 32px;
+    background: linear-gradient(180deg, #FF6B6B 0%, #FFB100 100%);
+    color: #fff;
+    font-family: var(--mono);
+    font-weight: 800;
+    font-size: 20px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    padding: 14px 16px 18px;
+    border-radius: 0 0 12px 12px;
+    box-shadow: 0 12px 28px rgba(255,107,107,0.45);
+    z-index: 6;
+    pointer-events: none;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  #pricing .badge-popular::after {
+    content: "";
+    width: 7px; height: 7px;
+    border-radius: 999px;
+    background: #fff;
+    box-shadow: 0 0 10px #fff;
+    animation: pr-pulse 1.4s ease-in-out infinite;
+  }
+
+  /* Floating chip on featured card */
+  #pricing .float-chip {
+    position: absolute;
+    z-index: 4;
+    font-family: var(--mono);
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 10px 14px;
+    border-radius: 12px;
+    background: #0B0E15;
+    border: 1px solid rgba(255,255,255,0.18);
+    color: #fff;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.5);
+    display: inline-flex; align-items: center; gap: 8px;
+    transform: rotate(var(--rot, -4deg));
+    animation: pr-floaty 5s ease-in-out infinite;
+  }
+  #pricing .float-chip::before {
+    content: "";
+    width: 8px; height: 8px;
+    border-radius: 999px;
+    background: var(--c, #5EE26B);
+    box-shadow: 0 0 12px var(--c, #5EE26B);
+  }
+  @keyframes pr-floaty{
+    0%, 100% { transform: rotate(var(--rot, -4deg)) translateY(0); }
+    50%      { transform: rotate(var(--rot, -4deg)) translateY(-6px); }
+  }
+  #pricing .float-chip.tl { top: 24px; left: -12px; --rot: -6deg; --c: #5EE26B; }
+  #pricing .float-chip.br { top: 240px; right: -10px; --rot: 5deg; --c: #FFB100; animation-delay: 1.2s; }
+
+  /* =========================================================
+     MARQUEE STRIP
+     ========================================================= */
+  #pricing .marquee {
+    position: relative;
+    z-index: 2;
+    margin-top: 14px;
+    padding: 10px 0;
+    overflow: hidden;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  }
+  #pricing .marquee-track {
+    display: inline-flex;
+    gap: 48px;
+    white-space: nowrap;
+    animation: pr-scroll-x 40s linear infinite;
+    padding-right: 48px;
+  }
+  #pricing .marquee-item {
+    display: inline-flex; align-items: center; gap: 14px;
+    font-family: var(--mono);
+    font-weight: 600;
+    font-size: 22px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+  }
+  #pricing .marquee-item .star {
+    color: #5EB2FF;
+    font-size: 22px;
+  }
+  #pricing .marquee-item .num {
+    color: #fff;
+    font-family: var(--sans);
+    font-weight: 800;
+    font-size: 26px;
+    letter-spacing: -0.01em;
+    text-transform: none;
+  }
+  @keyframes pr-scroll-x{
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  /* =========================================================
+     FOOTNOTE
+     ========================================================= */
+  #pricing .foot {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 24px;
+    margin-top: 10px;
+    color: rgba(255,255,255,0.5);
+    font-family: var(--mono);
+    font-size: 18px;
+    letter-spacing: 0.08em;
+    z-index: 2;
+    position: relative;
+  }
+  #pricing .foot .left, #pricing .foot .right { display: flex; align-items: center; gap: 22px; }
+  #pricing .foot .item { display: inline-flex; align-items: center; gap: 8px; text-transform: uppercase; }
+  #pricing .foot .item svg { width: 18px; height: 18px; color: #5EB2FF; }
+
+
 
 /* FREE */
 .free-section { padding: 80px 32px; }
@@ -1155,88 +2486,68 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
 .reveal.delay-5 { transition-delay: 0.40s; }
 .reveal.delay-6 { transition-delay: 0.48s; }
 
-/* Stagger inside grids — each child delayed automatically */
-.usecases-grid .usecase-card,
-.how-grid .how-step,
-.features-grid .feature-card,
-.pricing-grid .price-card,
+/* Stagger inside grids — each child delayed automatically.
+   Note: .usecase-card, .feature-card, .price-card are excluded — they have their own animations. */
 .whynot-list .whynot-item {
   opacity: 0; transform: translateY(24px);
   transition: opacity 0.7s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.25s, box-shadow 0.25s;
 }
-.in.usecase-card, .in.how-step, .in.feature-card, .in.price-card, .in.whynot-item {
+.in.whynot-item {
   opacity: 1 !important; transform: translateY(0) !important;
 }
 
-/* Card 3D tilt on hover (computed from JS) */
-.feature-card, .usecase-card, .price-card, .how-step {
-  transform-style: preserve-3d;
-  will-change: transform;
-}
-.feature-card:hover, .usecase-card:hover, .price-card:hover, .how-step:hover {
-  /* Real tilt comes from JS via CSS variables --tx, --ty */
-  transform: perspective(1200px) rotateX(var(--ty, 0deg)) rotateY(var(--tx, 0deg)) translateY(-6px) translateZ(0);
+/* MATH section — scroll-in animations (reference-style, no math-card wrapper) */
+/* Section enters via .math-section.in (added by IntersectionObserver) */
+.math-section.in .math-eq { animation: math-head-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.36s backwards; }
+.math-section.in .math-bottom { animation: math-head-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) 2.1s backwards; }
+@keyframes math-head-in {
+  from { opacity: 0; transform: translateY(-14px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-/* Card sheen on hover — diagonal light pass */
-.feature-card::before, .usecase-card::before, .price-card::before, .how-step::before {
-  content: ""; position: absolute; inset: 0; pointer-events: none;
-  background: linear-gradient(115deg, transparent 30%, rgba(255,255,255,0.06) 50%, transparent 70%);
-  transform: translateX(-100%);
-  transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
-  border-radius: inherit;
-  z-index: 1;
-}
-.feature-card:hover::before, .usecase-card:hover::before, .price-card:hover::before, .how-step:hover::before {
-  transform: translateX(100%);
-}
-.feature-card > *, .usecase-card > *, .price-card > *, .how-step > * { position: relative; z-index: 2; }
-
-/* Feature icon — bigger glow on card hover */
-.feature-card .feature-icon, .usecase-card .usecase-icon { transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.4s; }
-.feature-card:hover .feature-icon, .usecase-card:hover .usecase-icon {
-  transform: scale(1.08) rotate(-3deg);
-}
-.feature-card:hover .feature-icon { box-shadow: 0 0 24px currentColor; }
-
-/* MATH section */
-.math-card { transform: scale(0.96); opacity: 0; transition: opacity 0.9s, transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1); }
-.math-card.in { transform: scale(1); opacity: 1; }
-.math-eq { display: block; }
+/* Equation accent flash on enter */
 .math-eq .accent, .math-eq .result {
   display: inline-block;
   position: relative;
-  transition: text-shadow 0.4s;
 }
-.math-card.in .math-eq .accent { animation: numFlash 0.6s ease 0.4s both; }
-.math-card.in .math-eq .result { animation: numFlash 0.8s ease 1.2s both; }
+.math-section.in .math-eq .accent { animation: numFlash 0.6s ease 0.7s both; }
+.math-section.in .math-eq .result { animation: numFlash 0.8s ease 1.5s both; }
 @keyframes numFlash {
-  0% { text-shadow: 0 0 0 currentColor; }
-  50% { text-shadow: 0 0 18px currentColor, 0 0 6px currentColor; }
+  0%   { text-shadow: 0 0 0 currentColor; }
+  50%  { text-shadow: 0 0 18px currentColor, 0 0 6px currentColor; }
   100% { text-shadow: 0 0 0 currentColor; }
 }
-.math-row { transition: background 0.3s, transform 0.25s; opacity: 0; transform: translateX(-12px); }
-.math-card.in .math-col.bad .math-row { animation: rowSlide 0.5s ease forwards; }
-.math-card.in .math-col.good .math-row { animation: rowSlide 0.5s ease forwards; transform: translateX(12px); }
-.math-card.in .math-row:nth-child(2) { animation-delay: 0.6s; }
-.math-card.in .math-row:nth-child(3) { animation-delay: 0.7s; }
-.math-card.in .math-row:nth-child(4) { animation-delay: 0.8s; }
-.math-card.in .math-row:nth-child(5) { animation-delay: 0.9s; }
-.math-card.in .math-row:nth-child(6) { animation-delay: 1.0s; }
-.math-card.in .math-row:nth-child(7) { animation-delay: 1.1s; }
-@keyframes rowSlide { to { opacity: 1; transform: translateX(0); } }
-.math-row:hover { background: rgba(255,255,255,0.04); }
-.math-col.bad { position: relative; }
-.math-col.bad::after, .math-col.good::after {
-  content: ""; position: absolute; inset: 0; pointer-events: none;
-  border-radius: 10px; opacity: 0;
-  transition: opacity 0.6s ease 0.4s;
+
+/* Columns enter staggered */
+.math-col { opacity: 0; transform: translateY(28px); }
+.math-section.in .math-col {
+  animation: math-card-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
-.math-col.bad::after { box-shadow: inset 0 0 0 1px rgba(248,113,113,0.3); }
-.math-col.good::after { box-shadow: inset 0 0 0 1px rgba(34,211,154,0.3), 0 0 30px rgba(34,211,154,0.08); }
-.math-card.in .math-col.bad::after, .math-card.in .math-col.good::after { opacity: 1; }
-.math-bottom { opacity: 0; transition: opacity 0.6s ease 1.4s; }
-.math-card.in .math-bottom { opacity: 1; }
+.math-section.in .math-col.bad  { animation-delay: 0.5s; }
+.math-section.in .math-col.good { animation-delay: 0.7s; }
+@keyframes math-card-in {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Rows: animated stagger left→right comparison (bad slides from left, good from right) */
+.math-col.bad  .math-row { opacity: 0; transform: translateX(-12px); }
+.math-col.good .math-row { opacity: 0; transform: translateX(12px); }
+.math-section.in .math-col.bad  .math-row { animation: math-row-in-left  0.5s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.math-section.in .math-col.good .math-row { animation: math-row-in-right 0.5s cubic-bezier(0.22, 1, 0.36, 1) both; }
+@keyframes math-row-in-left  { to { opacity: 1; transform: translateX(0); } }
+@keyframes math-row-in-right { to { opacity: 1; transform: translateX(0); } }
+.math-section.in .math-col.bad  .math-row:nth-child(2) { animation-delay: 1.10s; }
+.math-section.in .math-col.bad  .math-row:nth-child(3) { animation-delay: 1.18s; }
+.math-section.in .math-col.bad  .math-row:nth-child(4) { animation-delay: 1.26s; }
+.math-section.in .math-col.bad  .math-row:nth-child(5) { animation-delay: 1.34s; }
+.math-section.in .math-col.bad  .math-row:nth-child(6) { animation-delay: 1.42s; }
+.math-section.in .math-col.bad  .math-row:nth-child(7) { animation-delay: 1.50s; }
+.math-section.in .math-col.good .math-row:nth-child(2) { animation-delay: 1.30s; }
+.math-section.in .math-col.good .math-row:nth-child(3) { animation-delay: 1.38s; }
+.math-section.in .math-col.good .math-row:nth-child(4) { animation-delay: 1.46s; }
+.math-section.in .math-col.good .math-row:nth-child(5) { animation-delay: 1.54s; }
+.math-section.in .math-col.good .math-row:nth-child(6) { animation-delay: 1.62s; }
+.math-section.in .math-col.good .math-row:nth-child(7) { animation-delay: 1.70s; }
 
 
 
@@ -1301,15 +2612,6 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
 .faq-item.open .faq-q { padding-left: 8px; }
 .faq-item:hover { background: rgba(255,255,255,0.02); }
 
-/* Pricing — featured card subtle pulse */
-.price-card.featured { animation: featuredPulse 4s ease-in-out infinite; }
-@keyframes featuredPulse {
-  0%, 100% { box-shadow: 0 0 0 1px var(--accent), 0 20px 60px rgba(123,79,212,0.20); }
-  50% { box-shadow: 0 0 0 1px var(--accent), 0 28px 80px rgba(123,79,212,0.35); }
-}
-.price-amount { transition: transform 0.3s; }
-.price-card:hover .price-amount { transform: scale(1.04); }
-
 /* Lang switch — active state animation */
 .lang-btn { position: relative; }
 .lang-btn.active::before {
@@ -1334,12 +2636,14 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
 
 /* RESPONSIVE */
 @media (max-width: 980px) {
-  .hero-grid, .features-grid, .pricing-grid, .footer-grid, .contact-inner, .usecases-grid, .how-grid,
+  .hero-grid, .pricing-grid, .footer-grid, .contact-inner, .usecases-grid,
   .companion-grid, .math-cols, .whynot-list { grid-template-columns: 1fr; }
-  .features-grid, .usecases-grid, .how-grid { gap: 14px; }
+  .usecases-grid { gap: 14px; }
   .companion-grid { gap: 28px; }
-  .math-card { padding: 36px 24px; }
-  .math-eq { font-size: 15px; }
+  .math-eq { font-size: 14px; padding: 14px 18px; }
+  .math-col { padding: 22px 20px; }
+  .math-row .lbl { font-size: 14px; }
+  .math-row .val { font-size: 15px; }
   .companion-inner, .whynot-inner { padding: 60px 20px; }
   .finalcta-section, .math-section { padding: 70px 20px; }
   .hero { padding: 90px 20px 60px; }
@@ -1369,7 +2673,6 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
   </a>
   <div class="nav-links">
     <a href="#built-for" data-nav-key="builtFor"></a>
-    <a href="#how" data-nav-key="how"></a>
     <a href="#features" data-nav-key="features"></a>
     <a href="#pricing" data-nav-key="pricing"></a>
     <a href="#faq" data-nav-key="faq"></a>
@@ -1385,7 +2688,7 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
 </nav>
 
 <!-- MANIFESTO — top hero from design_hero reference -->
-<section class="manifesto-section" id="manifesto">
+<div class="manifesto-section" id="manifesto">
   <div class="manifesto-stage">
     <div class="manifesto-no-row">
       <div class="manifesto-no" data-key="manifestoNo">NO</div>
@@ -1421,7 +2724,7 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
       <div class="beam"></div>
     </div>
   </div>
-</section>
+</div>
 
 <!-- HERO -->
 <section class="hero">
@@ -1673,24 +2976,24 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
   <h2 class="section-title" data-key="builtForTitle">Whoever ships the same edit, again and again</h2>
   <p class="section-sub" data-key="builtForSub">If you process repetitive content across many files, BatchRender turns hours of manual work into one render run.</p>
   <div class="usecases-grid">
-    <div class="usecase-card">
+    <article class="usecase-card">
       <div class="usecase-icon"><i data-lucide="users"></i></div>
       <div class="usecase-tag" data-key="uc1tag">SMM &amp; Content agencies</div>
       <h3 data-key="uc1t">30 client videos. One pipeline.</h3>
       <p data-key="uc1d">Drop a folder of client clips, apply <strong>logo + intro + 9:16 crop</strong>, hit render. Same brand, same format, every time. No more tab-switching between 30 timeline edits.</p>
-    </div>
-    <div class="usecase-card">
+    </article>
+    <article class="usecase-card">
       <div class="usecase-icon"><i data-lucide="mic"></i></div>
       <div class="usecase-tag" data-key="uc2tag">Podcasters &amp; Creators</div>
       <h3 data-key="uc2t">Repurpose your archive in hours, not weeks</h3>
       <p data-key="uc2d">Old episodes, lectures, streams — feed them through one pipeline and get a folder of <strong>Shorts/Reels-ready clips</strong>. Same crop, same outro, same loudness across the whole back-catalogue.</p>
-    </div>
-    <div class="usecase-card">
+    </article>
+    <article class="usecase-card">
       <div class="usecase-icon"><i data-lucide="trending-up"></i></div>
       <div class="usecase-tag" data-key="uc3tag">Performance marketers</div>
       <h3 data-key="uc3t">100 ad-creative variations from one source</h3>
       <p data-key="uc3d">Test creative at scale. Generate <strong>dozens of variants</strong> — different cuts, overlays, audio, lengths — for Meta, TikTok and YouTube ads, all from a single base clip in one batch.</p>
-    </div>
+    </article>
   </div>
 </section>
 
@@ -1700,77 +3003,183 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
   <h2 class="section-title" data-key="mathTitle">Your time is worth more than your software.</h2>
   <p class="section-sub" data-key="mathSub">A typical client delivery, end-to-end. Same files. Same outputs. Two very different ways to get there.</p>
 
-  <div class="math-card">
-    <div class="math-eq" data-key="mathEq">
-      <span class="accent">25 source clips</span> × <span class="accent">25 outros</span> × <span class="accent">4 export formats</span> = <span class="result">2,500 final files</span>
-    </div>
-
-    <div class="math-cols">
-      <div class="math-col bad">
-        <div class="math-col-title" data-key="mathBadTitle">Without BatchRender</div>
-        <div class="math-row"><span class="lbl" data-key="mathBadR1l">Projects</span><span class="val" data-key="mathBadR1v">20+ separate</span></div>
-        <div class="math-row"><span class="lbl" data-key="mathBadR2l">Render presses</span><span class="val" data-key="mathBadR2v">100+</span></div>
-        <div class="math-row"><span class="lbl" data-key="mathBadR3l">File naming</span><span class="val" data-key="mathBadR3v">Manual</span></div>
-        <div class="math-row"><span class="lbl" data-key="mathBadR4l">Attention</span><span class="val" data-key="mathBadR4v">Constant</span></div>
-        <div class="math-row"><span class="lbl" data-key="mathBadR5l">Time</span><span class="val" data-key="mathBadR5v">~3 hours</span></div>
-        <div class="math-row"><span class="lbl" data-key="mathBadR6l">Cost in editor time</span><span class="val" data-key="mathBadR6v">$60 – $150 / project</span></div>
-      </div>
-      <div class="math-col good">
-        <div class="math-col-title" data-key="mathGoodTitle">With BatchRender</div>
-        <div class="math-row"><span class="lbl" data-key="mathGoodR1l">Projects</span><span class="val" data-key="mathGoodR1v">1 graph</span></div>
-        <div class="math-row"><span class="lbl" data-key="mathGoodR2l">Render presses</span><span class="val" data-key="mathGoodR2v">1 click</span></div>
-        <div class="math-row"><span class="lbl" data-key="mathGoodR3l">File naming</span><span class="val" data-key="mathGoodR3v">Auto-renamed</span></div>
-        <div class="math-row"><span class="lbl" data-key="mathGoodR4l">Attention</span><span class="val" data-key="mathGoodR4v">Set and forget</span></div>
-        <div class="math-row"><span class="lbl" data-key="mathGoodR5l">Time</span><span class="val" data-key="mathGoodR5v">~5 min setup</span></div>
-        <div class="math-row"><span class="lbl" data-key="mathGoodR6l">Cost</span><span class="val" data-key="mathGoodR6v">$15 / month total</span></div>
-      </div>
-    </div>
-
-    <p class="math-bottom" data-key="mathBottom"><strong>BatchRender pays for itself the first time you use it.</strong><br>Less than half the price of an Adobe CC subscription.</p>
+  <div class="math-eq" data-key="mathEq">
+    <span class="accent">25 source clips</span> × <span class="accent">25 outros</span> × <span class="accent">4 export formats</span> = <span class="result">2,500 final files</span>
   </div>
-</section>
 
-<!-- HOW IT WORKS -->
-<div class="how-section" id="how">
-  <section style="padding: 80px 32px;">
-    <div class="section-eyebrow" data-key="howLabel">How it works</div>
-    <h2 class="section-title" data-key="howTitle">Three steps. Then it just runs.</h2>
-    <p class="section-sub" data-key="howSub">No timelines, no AI guessing. You define the pipeline. BatchRender applies it to every file.</p>
-    <div class="how-grid">
-      <div class="how-step">
-        <i data-lucide="folder-input" class="step-icon"></i>
-        <div class="how-num" data-key="step1n">Step 01</div>
-        <h3 data-key="step1t">Drop a folder</h3>
-        <p data-key="step1d">Drag in 100 .mp4 files, or paste a list of URLs. BatchRender reads everything into a Video Input node — no manual import, no naming conventions.</p>
-      </div>
-      <div class="how-step">
-        <i data-lucide="git-branch" class="step-icon"></i>
-        <div class="how-num" data-key="step2n">Step 02</div>
-        <h3 data-key="step2t">Build a pipeline</h3>
-        <p data-key="step2d">Connect nodes: <strong>Video Input → Cutter → Add Audio → Add Logo → Output</strong>. Set parameters once. The graph is your edit recipe — visible, editable, reusable.</p>
-      </div>
-      <div class="how-step">
-        <i data-lucide="play" class="step-icon"></i>
-        <div class="how-num" data-key="step3n">Step 03</div>
-        <h3 data-key="step3t">Run on the whole batch</h3>
-        <p data-key="step3d">One click. Every file goes through the same pipeline. Watch progress live, get a folder of finished MP4s. Save the pipeline as a preset and reuse it next week.</p>
-      </div>
+  <div class="math-cols">
+    <div class="math-col bad">
+      <div class="math-col-title" data-key="mathBadTitle">Without BatchRender</div>
+      <div class="math-row" data-row="r1"><span class="lbl" data-key="mathBadR1l">Projects</span><span class="val" data-key="mathBadR1v">20+ separate</span></div>
+      <div class="math-row" data-row="r2"><span class="lbl" data-key="mathBadR2l">Render presses</span><span class="val" data-key="mathBadR2v">100+</span></div>
+      <div class="math-row" data-row="r3"><span class="lbl" data-key="mathBadR3l">File naming</span><span class="val" data-key="mathBadR3v">Manual</span></div>
+      <div class="math-row" data-row="r4"><span class="lbl" data-key="mathBadR4l">Attention</span><span class="val" data-key="mathBadR4v">Constant</span></div>
+      <div class="math-row" data-row="r5"><span class="lbl" data-key="mathBadR5l">Time</span><span class="val" data-key="mathBadR5v">~3 hours</span></div>
+      <div class="math-row" data-row="r6"><span class="lbl" data-key="mathBadR6l">Cost in editor time</span><span class="val" data-key="mathBadR6v">$60 – $150 / project</span></div>
     </div>
-  </section>
-</div>
+    <div class="math-col good">
+      <div class="math-col-title" data-key="mathGoodTitle">With BatchRender</div>
+      <div class="math-row" data-row="r1"><span class="lbl" data-key="mathGoodR1l">Projects</span><span class="val" data-key="mathGoodR1v">1 graph</span></div>
+      <div class="math-row" data-row="r2"><span class="lbl" data-key="mathGoodR2l">Render presses</span><span class="val" data-key="mathGoodR2v">1 click</span></div>
+      <div class="math-row" data-row="r3"><span class="lbl" data-key="mathGoodR3l">File naming</span><span class="val" data-key="mathGoodR3v">Auto-renamed</span></div>
+      <div class="math-row" data-row="r4"><span class="lbl" data-key="mathGoodR4l">Attention</span><span class="val" data-key="mathGoodR4v">Set and forget</span></div>
+      <div class="math-row" data-row="r5"><span class="lbl" data-key="mathGoodR5l">Time</span><span class="val" data-key="mathGoodR5v">~5 min setup</span></div>
+      <div class="math-row" data-row="r6"><span class="lbl" data-key="mathGoodR6l">Cost</span><span class="val" data-key="mathGoodR6v">$15 / month total</span></div>
+    </div>
+  </div>
+
+  <p class="math-bottom" data-key="mathBottom"><strong>BatchRender pays for itself the first time you use it.</strong> Less than half the price of an Adobe CC subscription.</p>
+</section>
 
 <!-- FEATURES -->
 <section id="features">
   <div class="section-eyebrow" data-key="featuresLabel">Nodes</div>
   <h2 class="section-title" data-key="featuresTitle">Every node earns its place</h2>
   <p class="section-sub" data-key="featuresSub">Six nodes covering the operations creators actually repeat: input, cut, overlay, audio, source, transform.</p>
-  <div class="features-grid">
-    <div class="feature-card"><div class="feature-strip"></div><div class="feature-body"><div class="feature-head"><div class="feature-icon"><i data-lucide="folder"></i></div><span class="feature-tag" data-key="f1tag">INPUT</span></div><h3 data-key="f1t">Folder of files in, batch out</h3><p data-key="f1d">Point Video Input at a folder of .mp4 / .mov files. The node reads metadata, durations, sizes — the rest of your pipeline applies to all of them automatically.</p></div></div>
-    <div class="feature-card"><div class="feature-strip"></div><div class="feature-body"><div class="feature-head"><div class="feature-icon"><i data-lucide="scissors"></i></div><span class="feature-tag" data-key="f2tag">EDIT</span></div><h3 data-key="f2t">Cut every file the same way</h3><p data-key="f2d">Frame-accurate Cutter with timecode input. Trim intros, slice into segments, drop the dead air — the same cut rule applied across hundreds of files in one go.</p></div></div>
-    <div class="feature-card"><div class="feature-strip"></div><div class="feature-body"><div class="feature-head"><div class="feature-icon"><i data-lucide="layers"></i></div><span class="feature-tag" data-key="f3tag">BRAND</span></div><h3 data-key="f3t">Watermarks &amp; logo overlay</h3><p data-key="f3d">Drop a logo or watermark on every video in the batch. Position, scale, opacity — set once, applied consistently. Brand the whole client folder in one render.</p></div></div>
-    <div class="feature-card"><div class="feature-strip"></div><div class="feature-body"><div class="feature-head"><div class="feature-icon"><i data-lucide="music"></i></div><span class="feature-tag" data-key="f4tag">AUDIO</span></div><h3 data-key="f4t">Music, voiceover, mute</h3><p data-key="f4d">Add background music, voiceovers, or kill the original audio. Mix multiple tracks. Volume per track. Same audio recipe across every file in the queue.</p></div></div>
-    <div class="feature-card"><div class="feature-strip"></div><div class="feature-body"><div class="feature-head"><div class="feature-icon"><i data-lucide="download"></i></div><span class="feature-tag" data-key="f5tag">SOURCE</span></div><h3 data-key="f5t">Pull source from URLs</h3><p data-key="f5d">Built-in URL downloader (yt-dlp). Paste a list of links, BatchRender pulls the source material and feeds it straight into your pipeline — no manual download step.</p></div></div>
-    <div class="feature-card"><div class="feature-strip"></div><div class="feature-body"><div class="feature-head"><div class="feature-icon"><i data-lucide="smartphone"></i></div><span class="feature-tag" data-key="f6tag">TRANSFORM</span><span class="feature-soon" data-key="soonBadge">SOON</span></div><h3 data-key="f6t">Vertical-blur for social</h3><p data-key="f6d">Convert horizontal video to 9:16 with a blurred background fill. One node, no manual After-Effects work — perfect for Reels, Shorts and TikTok in batch.</p></div></div>
+  <div class="stage-wrap">
+    <div class="stage">
+      <button class="nav-arrow prev" aria-label="Previous">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"></path></svg>
+      </button>
+      <button class="nav-arrow next" aria-label="Next">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"></path></svg>
+      </button>
+
+      <div class="track" id="nodes-track">
+        <!-- INPUT -->
+        <div class="card" data-i="0">
+          <div class="card-head">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"></path></svg>
+            </div>
+            <div class="tags"><span class="tag" data-key="f1tag">Input</span></div>
+          </div>
+          <h3 data-key="f1t">Folder of files in, batch out</h3>
+          <p data-key="f1d">Point Video Input at a folder of .mp4 / .mov files. The node reads metadata, durations, sizes — the rest of your pipeline applies to all of them automatically.</p>
+          <div class="scene scene-input">
+            <div class="stack">
+              <div class="folder f3"></div>
+              <div class="folder f2"></div>
+              <div class="folder f1"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CUT -->
+        <div class="card" data-i="1">
+          <div class="card-head">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"></circle><path d="M8.12 8.12 12 12"></path><path d="M20 4 8.12 15.88"></path><circle cx="6" cy="18" r="3"></circle><path d="M14.8 14.8 20 20"></path></svg>
+            </div>
+            <div class="tags"><span class="tag" data-key="f2tag">Cutter</span></div>
+          </div>
+          <h3 data-key="f2t">Cut every file the same way</h3>
+          <p data-key="f2d">Frame-accurate Cutter with timecode input. Trim intros, slice into segments, drop the dead air — the same cut rule applied across hundreds of files in one go.</p>
+          <div class="scene scene-cut">
+            <div class="strip"></div>
+            <div class="playhead"></div>
+          </div>
+        </div>
+
+        <!-- BRAND -->
+        <div class="card" data-i="2">
+          <div class="card-head">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z"></path><path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12"></path><path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17"></path></svg>
+            </div>
+            <div class="tags"><span class="tag" data-key="f3tag">Brand</span></div>
+          </div>
+          <h3 data-key="f3t">Watermarks &amp; logo overlay</h3>
+          <p data-key="f3d">Drop a logo or watermark on every video in the batch. Position, scale, opacity — set once, applied consistently. Brand the whole client folder in one render.</p>
+          <div class="scene scene-brand">
+            <div class="frame">
+              <div class="logo">B</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- AUDIO -->
+        <div class="card" data-i="3">
+          <div class="card-head">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg>
+            </div>
+            <div class="tags"><span class="tag" data-key="f4tag">Audio</span></div>
+          </div>
+          <h3 data-key="f4t">Music, voiceover, mute</h3>
+          <p data-key="f4d">Add background music, voiceovers, or kill the original audio. Mix multiple tracks. Volume per track. Same audio recipe across every file in the queue.</p>
+          <div class="scene scene-audio">
+            <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+            <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+            <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+            <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+          </div>
+        </div>
+
+        <!-- SOURCE -->
+        <div class="card" data-i="4">
+          <div class="card-head">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V3"></path><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><path d="m7 10 5 5 5-5"></path></svg>
+            </div>
+            <div class="tags"><span class="tag" data-key="f5tag">Source</span></div>
+          </div>
+          <h3 data-key="f5t">Pull source from URLs</h3>
+          <p data-key="f5d">Built-in URL downloader (GetVideoFromUrl). Paste a list of links, BatchRender pulls the source material and feeds it straight into your pipeline — no manual download step.</p>
+          <div class="scene scene-source">
+            <span class="url">youtube.com/…</span>
+            <div class="path"></div>
+            <div class="chip"></div>
+            <div class="folder-dest"></div>
+          </div>
+        </div>
+
+        <!-- PODCAST -->
+        <div class="card" data-i="5">
+          <div class="card-head">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3"></rect><path d="M5 10a7 7 0 0 0 14 0"></path><path d="M12 19v3"></path></svg>
+            </div>
+            <div class="tags"><span class="tag" data-key="f6tag">Podcast</span></div>
+          </div>
+          <h3 data-key="f6t">PodcastCutter — auto-remove silence</h3>
+          <p data-key="f6d">Smart automatic silence removal for video interviews and podcasts — with the ability to send projects or individual files back into your editing system.</p>
+          <div class="scene scene-podcast">
+            <div class="wave">
+              <div class="seg"></div><div class="seg"></div><div class="seg"></div>
+              <div class="seg"></div><div class="seg"></div><div class="seg"></div>
+              <div class="seg"></div>
+              <div class="seg silence"></div><div class="seg silence"></div><div class="seg silence"></div>
+              <div class="seg"></div><div class="seg"></div><div class="seg"></div>
+              <div class="seg"></div><div class="seg"></div><div class="seg"></div>
+              <div class="seg"></div><div class="seg"></div><div class="seg"></div>
+              <div class="seg"></div>
+            </div>
+            <div class="cut-marker"></div>
+            <div class="cut-label">Silence</div>
+          </div>
+        </div>
+
+        <!-- TRANSFORM -->
+        <div class="card" data-i="6">
+          <div class="card-head">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"></rect><path d="M12 18h.01"></path></svg>
+            </div>
+            <div class="tags"><span class="tag" data-key="f7tag">Transform</span></div>
+          </div>
+          <h3 data-key="f7t">Vertical-blur for social</h3>
+          <p data-key="f7d">Convert horizontal video to 9:16 with a blurred background fill. One node, no manual After-Effects work — perfect for Reels, Shorts and TikTok in batch.</p>
+          <div class="scene scene-transform">
+            <div class="horiz"></div>
+            <span class="arrow-r">→</span>
+            <div class="vert"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dots" id="nodes-dots"></div>
+    </div>
   </div>
 </section>
 
@@ -1790,69 +3199,172 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
 
 <!-- PRICING -->
 <section id="pricing">
-  <div class="section-eyebrow" data-key="pricingLabel">Pricing</div>
-  <h2 class="section-title" data-key="pricingTitle">Simple plans, real discounts</h2>
-  <p class="section-sub" data-key="pricingSub">Subscriptions auto-renew. Cancel any time. All plans include 2-machine activation.</p>
-  <div class="pricing-grid">
 
-    <div class="price-card">
-      <div class="price-tier" data-key="p1tier">MONTHLY</div>
-      <div class="price-amount-row">
-        <div class="price-amount"><sup>$</sup><span data-key="p1price">15</span></div>
-        <div class="price-old">$<span data-key="p1old">20</span></div>
+  <div class="megaword">
+    PRICING<span class="accent">·25</span>
+  </div>
+
+  <!-- HEADER -->
+  <div class="head">
+    <div class="head-left">
+      <div class="eyebrow-row">
+        <span class="eyebrow-pill"><span class="dot"></span><span data-key="pricingEyebrow">Pricing · 4 plans</span></span>
+        <span class="eyebrow-line"></span>
+        <span class="eyebrow-meta" data-key="pricingMeta">Updated · 2025</span>
       </div>
-      <div class="price-vat" data-key="p1vat">/ month + VAT</div>
-      <div class="price-period" data-key="p1period">Auto-renews monthly · 2 machines</div>
-      <div class="price-savings" data-key="p1savings">−25% off original price</div>
-      <ul class="price-features">
-        <li><i data-lucide="check"></i><span data-key="p1f1">Full node-based editor</span></li>
-        <li><i data-lucide="check"></i><span data-key="p1f2">All current and future nodes</span></li>
-        <li><i data-lucide="check"></i><span data-key="p1f3">2-machine license</span></li>
-        <li><i data-lucide="check"></i><span data-key="p1f4">No watermark</span></li>
-        <li><i data-lucide="check"></i><span data-key="p1f5">Cancel any time</span></li>
-      </ul>
-      <a href="#" class="btn-plan btn-plan-ghost" data-key="p1cta">Start Monthly</a>
+      <h2 class="section-title"><span data-key="pricingTitlePart1">Pricing that</span> <span class="it" data-key="pricingTitlePart2">pays for itself.</span></h2>
     </div>
-
-    <div class="price-card featured">
-      <div class="popular-badge" data-key="popularBadge">BEST VALUE</div>
-      <div class="price-tier" data-key="p2tier">YEARLY</div>
-      <div class="price-amount-row">
-        <div class="price-amount"><sup>$</sup><span data-key="p2price">160</span></div>
-        <div class="price-old">$<span data-key="p2old">200</span></div>
-      </div>
-      <div class="price-vat" data-key="p2vat">/ year + VAT</div>
-      <div class="price-period" data-key="p2period">Auto-renews yearly · 2 machines</div>
-      <div class="price-savings" data-key="p2savings">Save $80/yr · ~$13.33/mo</div>
-      <ul class="price-features">
-        <li><i data-lucide="check"></i><span data-key="p2f1">Everything in Monthly</span></li>
-        <li><i data-lucide="check"></i><span data-key="p2f2">12 months for the price of ~10</span></li>
-        <li><i data-lucide="check"></i><span data-key="p2f3">Priority email support</span></li>
-        <li><i data-lucide="check"></i><span data-key="p2f4">2-machine license</span></li>
-        <li><i data-lucide="check"></i><span data-key="p2f5">Cancel before renewal</span></li>
-      </ul>
-      <a href="#" class="btn-plan btn-plan-accent" data-key="p2cta">Start Yearly</a>
-    </div>
-
-    <div class="price-card">
-      <div class="price-tier" data-key="p3tier">QUARTERLY</div>
-      <div class="price-amount-row">
-        <div class="price-amount"><sup>$</sup><span data-key="p3price">40</span></div>
-        <div class="price-old">$<span data-key="p3old">50</span></div>
-      </div>
-      <div class="price-vat" data-key="p3vat">/ 3 months + VAT</div>
-      <div class="price-period" data-key="p3period">Auto-renews quarterly · 2 machines</div>
-      <div class="price-savings" data-key="p3savings">Save $10/quarter · ~$13.33/mo</div>
-      <ul class="price-features">
-        <li><i data-lucide="check"></i><span data-key="p3f1">Everything in Monthly</span></li>
-        <li><i data-lucide="check"></i><span data-key="p3f2">3 months for the price of ~2.7</span></li>
-        <li><i data-lucide="check"></i><span data-key="p3f3">2-machine license</span></li>
-        <li><i data-lucide="check"></i><span data-key="p3f4">Cancel before renewal</span></li>
-      </ul>
-      <a href="#" class="btn-plan btn-plan-ghost" data-key="p3cta">Start Quarterly</a>
+    <div class="billing-toggle">
+      <button class="active" data-mode="sub" data-key="pricingToggleSub">Subscription</button>
+      <button data-mode="one" data-key="pricingToggleOne">One-time</button>
     </div>
   </div>
-  <p class="pricing-note" data-key="pricingNote">All prices in USD. VAT added at checkout for EU customers.</p>
+
+  <!-- GRID -->
+  <div class="grid">
+
+    <!-- 1) MONTHLY -->
+    <div class="card intro" data-mode="sub">
+      <span class="glyph">€</span>
+      <div class="tier-row">
+        <div>
+          <div class="tier-num">01 / 04</div>
+          <div class="tier" data-key="p1tier">Monthly</div>
+          <div class="tier-sub" data-key="p1sub">Subscription</div>
+        </div>
+        <span class="kind-flag sub" data-key="p1kind">Sub</span>
+      </div>
+      <div class="price-block">
+        <div class="price-row">
+          <span class="amount"><span class="currency">€</span><span class="num">15</span></span>
+          <div class="old-stack">
+            <span class="old-price">€20</span>
+            <span class="old-meta">−25%</span>
+          </div>
+        </div>
+        <div class="period" data-key="p1period">per month + VAT · auto-renews</div>
+      </div>
+      <span class="savings cool" data-key="p1savings">Flexible · cancel anytime</span>
+      <div class="spacer"></div>
+      <a href="#" class="cta ghost" data-key="p1cta">Start Monthly <span class="arrow-box">→</span></a>
+    </div>
+
+    <!-- 2) YEARLY — FEATURED -->
+    <div class="card featured intro" data-mode="sub">
+      <span class="glyph">€</span>
+      <div class="badge-popular" data-key="popularBadge">Best value</div>
+      <span class="float-chip tl" data-key="p2chip">−20% off</span>
+
+      <div class="tier-row">
+        <div>
+          <div class="tier-num featured-num">02 / 04</div>
+          <div class="tier tier-large" data-key="p2tier">Yearly</div>
+          <div class="tier-sub" data-key="p2sub">Subscription · 12 months</div>
+        </div>
+      </div>
+      <div class="price-block">
+        <div class="price-row">
+          <span class="amount gradient"><span class="currency">€</span><span class="num">160</span></span>
+          <div class="old-stack">
+            <span class="old-price">€200</span>
+            <span class="old-meta save">save €40</span>
+          </div>
+        </div>
+        <div class="period" data-key="p2period">per year + VAT · ~€13.33/mo</div>
+      </div>
+      <span class="savings" data-key="p2savings">12 months for the price of 10</span>
+      <div class="spacer"></div>
+      <a href="#" class="cta primary" data-key="p2cta">Start Yearly <span class="arrow-box">→</span></a>
+    </div>
+
+    <!-- 3) ONE-TIME 1 MONTH -->
+    <div class="card" data-mode="one" data-hidden="true">
+      <span class="glyph">€</span>
+      <div class="tier-row">
+        <div>
+          <div class="tier-num">03 / 04</div>
+          <div class="tier" data-key="p3tier">1 Month</div>
+          <div class="tier-sub" data-key="p3sub">One-time payment</div>
+        </div>
+        <span class="kind-flag one" data-key="p3kind">One-off</span>
+      </div>
+      <div class="price-block">
+        <div class="price-row">
+          <span class="amount"><span class="currency">€</span><span class="num">20</span></span>
+        </div>
+        <div class="period" data-key="p3period">single payment · 30 days access</div>
+      </div>
+      <span class="savings warm" data-key="p3savings">No subscription</span>
+      <div class="spacer"></div>
+      <a href="#" class="cta ghost" data-key="p3cta">Buy 1 Month <span class="arrow-box">→</span></a>
+    </div>
+
+    <!-- 4) ONE-TIME 3 MONTHS -->
+    <div class="card" data-mode="one" data-hidden="true">
+      <span class="glyph">€</span>
+      <div class="tier-row">
+        <div>
+          <div class="tier-num">04 / 04</div>
+          <div class="tier" data-key="p4tier">3 Months</div>
+          <div class="tier-sub" data-key="p4sub">One-time payment</div>
+        </div>
+        <span class="kind-flag one" data-key="p4kind">One-off</span>
+      </div>
+      <div class="price-block">
+        <div class="price-row">
+          <span class="amount"><span class="currency">€</span><span class="num">50</span></span>
+          <div class="old-stack">
+            <span class="old-price">€60</span>
+            <span class="old-meta warm-meta">−€10</span>
+          </div>
+        </div>
+        <div class="period" data-key="p4period">single payment · 90 days access</div>
+      </div>
+      <span class="savings warm" data-key="p4savings">Save €10 vs. 3× monthly</span>
+      <div class="spacer"></div>
+      <a href="#" class="cta ghost" data-key="p4cta">Buy 3 Months <span class="arrow-box">→</span></a>
+    </div>
+
+  </div>
+
+  <!-- MARQUEE -->
+  <div class="marquee">
+    <div class="marquee-track">
+      <span class="marquee-item"><span class="star">✦</span><span data-key="mqA1">2-machine activation</span></span>
+      <span class="marquee-item"><span class="num">€0</span><span data-key="mqA2">watermark fee</span></span>
+      <span class="marquee-item"><span class="star">✦</span><span data-key="mqA3">All current and future nodes</span></span>
+      <span class="marquee-item"><span class="num">14d</span><span data-key="mqA4">refund window</span></span>
+      <span class="marquee-item"><span class="star">✦</span><span data-key="mqA5">No surprises at renewal</span></span>
+      <span class="marquee-item"><span class="num">€0</span><span data-key="mqA6">setup, ever</span></span>
+      <span class="marquee-item"><span class="star">✦</span><span data-key="mqA7">Cards · PayPal · Apple Pay</span></span>
+      <!-- duplicate for seamless loop -->
+      <span class="marquee-item"><span class="star">✦</span><span data-key="mqB1">2-machine activation</span></span>
+      <span class="marquee-item"><span class="num">€0</span><span data-key="mqB2">watermark fee</span></span>
+      <span class="marquee-item"><span class="star">✦</span><span data-key="mqB3">All current and future nodes</span></span>
+      <span class="marquee-item"><span class="num">14d</span><span data-key="mqB4">refund window</span></span>
+      <span class="marquee-item"><span class="star">✦</span><span data-key="mqB5">No surprises at renewal</span></span>
+      <span class="marquee-item"><span class="num">€0</span><span data-key="mqB6">setup, ever</span></span>
+      <span class="marquee-item"><span class="star">✦</span><span data-key="mqB7">Cards · PayPal · Apple Pay</span></span>
+    </div>
+  </div>
+
+  <div class="foot">
+    <div class="left">
+      <span class="item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        <span data-key="footPay">Secure payment</span>
+      </span>
+      <span class="item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9"/><path d="M3 4v5h5"/></svg>
+        <span data-key="footRefund">14-day refund</span>
+      </span>
+      <span class="item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 10h20"/></svg>
+        <span data-key="footMethods">Cards · PayPal · Apple Pay</span>
+      </span>
+    </div>
+    <div class="right" data-key="footVat">All prices in EUR. VAT added at checkout.</div>
+  </div>
 </section>
 
 <!-- FREE -->
@@ -1950,7 +3462,7 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
       </a>
       <p class="footer-desc" data-key="footerDesc">Node-based batch video processor for creators who deal with many files at once.</p>
     </div>
-    <div class="footer-col"><h4 data-key="fcProduct">Product</h4><a href="#built-for" data-key="fcBuiltFor">Built for</a><a href="#how" data-key="fcHow">How it works</a><a href="#features" data-key="fcFeatures">Features</a><a href="#pricing" data-key="fcPricing">Pricing</a><a href="#free" data-key="fcFree">Free download</a></div>
+    <div class="footer-col"><h4 data-key="fcProduct">Product</h4><a href="#built-for" data-key="fcBuiltFor">Built for</a><a href="#features" data-key="fcFeatures">Features</a><a href="#pricing" data-key="fcPricing">Pricing</a><a href="#free" data-key="fcFree">Free download</a></div>
     <div class="footer-col"><h4 data-key="fcSupport">Support</h4><a href="#contact" data-key="fcContact">Contact</a><a href="#faq" data-key="fcFaq">FAQ</a><a href="https://github.com/PavTer/BatchRender" data-key="fcGitHub">GitHub</a></div>
     <div class="footer-col"><h4 data-key="fcLegal">Legal</h4><a href="privacy.html" data-key="fcPrivacy">Privacy Policy</a><a href="terms.html" data-key="fcTerms">Terms of Service</a><a href="refund.html" data-key="fcRefund">Refund Policy</a><a href="eula.html" data-key="fcEula">EULA</a></div>
   </div>
@@ -2449,7 +3961,7 @@ function setupReveal() {
   // Universal reveal: section reveals + grid stagger
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (reduce) {
-    document.querySelectorAll('.reveal, .feature-card, .usecase-card, .how-step, .price-card, .whynot-item, .math-card, .whynot-section, .companion-section, .nle-chip-anim').forEach(el => el.classList.add('in', 'visible'));
+    document.querySelectorAll('.reveal, .usecase-card, .whynot-item, .math-section, .whynot-section, .companion-section, .nle-chip-anim').forEach(el => el.classList.add('in', 'visible'));
     return;
   }
   const observer = new IntersectionObserver((entries) => {
@@ -2468,7 +3980,7 @@ function setupReveal() {
     });
   }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
 
-  document.querySelectorAll('.feature-card, .usecase-card, .how-step, .price-card, .whynot-item, .math-card, .reveal').forEach(el => observer.observe(el));
+  document.querySelectorAll('.usecase-card, .whynot-item, .reveal').forEach(el => observer.observe(el));
 
   // Section-level reveal — these wrappers trigger their children's .in animations
   const sectionObs = new IntersectionObserver((entries) => {
@@ -2479,7 +3991,7 @@ function setupReveal() {
       }
     });
   }, { threshold: 0.1, rootMargin: '0px 0px -10% 0px' });
-  document.querySelectorAll('.whynot-section, .companion-section, .math-section').forEach(el => sectionObs.observe(el));
+  document.querySelectorAll('.whynot-section, .companion-section, .math-section, .usecases-grid').forEach(el => sectionObs.observe(el));
 
   // Companion NLE chips stagger
   const compObs = new IntersectionObserver((entries) => {
@@ -2605,7 +4117,7 @@ function setupHeroParallax() {
 function setupCardTilt() {
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   if (window.matchMedia('(pointer: coarse)').matches) return;
-  const cards = document.querySelectorAll('.feature-card, .usecase-card, .how-step, .price-card');
+  const cards = document.querySelectorAll('.usecase-card');
   cards.forEach(card => {
     card.addEventListener('mousemove', (e) => {
       const rect = card.getBoundingClientRect();
@@ -2675,12 +4187,12 @@ function setupCountUp() {
         if (t < 1) requestAnimationFrame(tick);
         else target.textContent = finalText;
       };
-      // Start after the math card's own .in transition kicks in
+      // Start after the math section's own .in transition kicks in
       setTimeout(() => requestAnimationFrame(tick), 1100);
       obs.unobserve(e.target);
     });
   }, { threshold: 0.4 });
-  obs.observe(target.closest('.math-card'));
+  obs.observe(target.closest('.math-section'));
 }
 
 // Live render counter — fake but eye-catching on the hero canvas overlay
@@ -2943,6 +4455,213 @@ function setupPipeline() {
   }
 }
 
+function setupPricingToggle() {
+  const root = document.querySelector('#pricing');
+  if (!root) return;
+  const grid = root.querySelector('.grid');
+  const buttons = root.querySelectorAll('.billing-toggle button');
+  if (!grid || buttons.length === 0) return;
+
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // animate the price numbers when section enters viewport
+  function animateNumbers(scope) {
+    const sc = scope || root;
+    sc.querySelectorAll('.amount .num').forEach((el) => {
+      const target = parseInt(el.dataset.target || el.textContent, 10);
+      if (Number.isNaN(target)) return;
+      el.dataset.target = String(target);
+      if (reduce) { el.textContent = String(target); return; }
+      const duration = 1100;
+      const start = performance.now();
+      const ease = (t) => 1 - Math.pow(1 - t, 3);
+      function tick(now) {
+        const t = Math.min(1, (now - start) / duration);
+        el.textContent = Math.round(target * ease(t)).toString();
+        if (t < 1) requestAnimationFrame(tick);
+        else el.textContent = target.toString();
+      }
+      el.textContent = '0';
+      requestAnimationFrame(tick);
+    });
+  }
+
+  // Run animation when section enters viewport
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        setTimeout(() => animateNumbers(), 600);
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.2 });
+  obs.observe(root);
+
+  // Toggle: blur out, swap visible cards, blur back in
+  buttons.forEach((b) => {
+    b.addEventListener('click', () => {
+      const mode = b.dataset.mode;
+      if (b.classList.contains('active')) return;
+      buttons.forEach(x => x.classList.remove('active'));
+      b.classList.add('active');
+
+      grid.classList.add('is-switching');
+      setTimeout(() => {
+        root.querySelectorAll('.card').forEach((c) => {
+          const show = c.dataset.mode === mode;
+          c.dataset.hidden = show ? 'false' : 'true';
+          c.classList.remove('intro');
+          if (show) {
+            c.classList.remove('entering');
+            void c.offsetWidth;
+            c.classList.add('entering');
+          }
+        });
+        grid.classList.remove('is-switching');
+        animateNumbers(grid);
+      }, 280);
+    });
+  });
+}
+
+function setupNodesCarousel() {
+  const root = document.querySelector('#features');
+  if (!root) return;
+  const cards = [...root.querySelectorAll('.card')];
+  const N = cards.length;
+  if (N === 0) return;
+  const dotsEl = root.querySelector('#nodes-dots');
+  const prevBtn = root.querySelector('.nav-arrow.prev');
+  const nextBtn = root.querySelector('.nav-arrow.next');
+
+  let active = 0;
+
+  // Build dots
+  cards.forEach((_, i) => {
+    const b = document.createElement('button');
+    b.className = 'dot';
+    b.addEventListener('click', () => { active = i; layout(); resetAuto(); });
+    dotsEl.appendChild(b);
+  });
+
+  function layout() {
+    cards.forEach((card, i) => {
+      // shortest signed offset on the ring
+      let off = i - active;
+      if (off >  N / 2) off -= N;
+      if (off < -N / 2) off += N;
+
+      const abs = Math.abs(off);
+      const x = off * 360;
+      const scale = abs === 0 ? 1 : abs === 1 ? 0.78 : 0.62;
+      const rotY = off * -18;
+      const z = -abs * 120;
+      const op = abs === 0 ? 1 : abs === 1 ? 0.55 : 0.18;
+      const blur = abs === 0 ? 0 : abs === 1 ? 1 : 3;
+
+      card.style.transform =
+        `translateX(${x}px) translateZ(${z}px) rotateY(${rotY}deg) scale(${scale})`;
+      card.style.opacity = op;
+      card.style.filter = `blur(${blur}px)`;
+      card.style.zIndex = 100 - abs;
+      card.classList.toggle('is-active', abs === 0);
+    });
+    [...dotsEl.children].forEach((d, i) => d.classList.toggle('is-active', i === active));
+  }
+
+  // Click any card to bring it forward
+  cards.forEach((c, i) => c.addEventListener('click', () => {
+    if (i !== active) { active = i; layout(); resetAuto(); }
+  }));
+
+  if (prevBtn) prevBtn.addEventListener('click', () => {
+    active = (active - 1 + N) % N; layout(); resetAuto();
+  });
+  if (nextBtn) nextBtn.addEventListener('click', () => {
+    active = (active + 1) % N; layout(); resetAuto();
+  });
+
+  // Auto-cycle
+  let timer;
+  function resetAuto() {
+    clearInterval(timer);
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) return;
+    timer = setInterval(() => { active = (active + 1) % N; layout(); }, 4200);
+  }
+
+  layout();
+  resetAuto();
+
+  // Position the silence marker exactly over the red segments
+  function positionSilenceMarker() {
+    const wave = root.querySelector('.scene-podcast .wave');
+    const marker = root.querySelector('.scene-podcast .cut-marker');
+    const label = root.querySelector('.scene-podcast .cut-label');
+    if (!wave || !marker || !label) return;
+    const silences = wave.querySelectorAll('.seg.silence');
+    if (!silences.length) return;
+    const waveRect = wave.getBoundingClientRect();
+    if (!waveRect.width) {
+      requestAnimationFrame(positionSilenceMarker);
+      return;
+    }
+    const first = silences[0].getBoundingClientRect();
+    const last  = silences[silences.length - 1].getBoundingClientRect();
+    const left  = first.left - waveRect.left - 4;
+    const right = waveRect.right - last.right - 4;
+    marker.style.left  = left  + 'px';
+    marker.style.right = right + 'px';
+    marker.style.visibility = 'visible';
+    const center = ((first.left + last.right) / 2) - waveRect.left;
+    label.style.left = center + 'px';
+    label.style.visibility = 'visible';
+  }
+  setTimeout(positionSilenceMarker, 50);
+  window.addEventListener('resize', positionSilenceMarker);
+}
+
+function setupMathPulse() {
+  // Sync-pulse matching rows (bad ↔ good) one pair at a time
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce) return;
+  const keys = ['r1','r2','r3','r4','r5','r6'];
+  let i = 0;
+  const allRows = document.querySelectorAll('#math .math-row');
+  if (allRows.length === 0) return;
+  function pulseRow() {
+    allRows.forEach(r => r.classList.remove('row-pulse'));
+    const k = keys[i % keys.length];
+    document.querySelectorAll('#math .math-row[data-row="' + k + '"]').forEach(r => r.classList.add('row-pulse'));
+    i++;
+  }
+  // Start after entry stagger finishes (~2.2s)
+  setTimeout(() => {
+    pulseRow();
+    setInterval(pulseRow, 2000);
+  }, 2200);
+}
+
+function setupUsecasePulse() {
+  // Sequential card highlight cycle — pulses each usecase card in turn forever
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce) return;
+  const cards = document.querySelectorAll('#built-for .usecase-card');
+  if (cards.length === 0) return;
+  let idx = 0;
+  function pulseNext() {
+    cards.forEach(c => c.classList.remove('pulse-active'));
+    const card = cards[idx % cards.length];
+    if (card) card.classList.add('pulse-active');
+    idx++;
+  }
+  // Start after card entrance animations finish (~1.6s)
+  setTimeout(() => {
+    pulseNext();
+    setInterval(pulseNext, 2400);
+  }, 1700);
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   setLang('en');
   wrapHeroWords();
@@ -2957,6 +4676,10 @@ document.addEventListener('DOMContentLoaded', () => {
   setupCountUp();
   setupRenderCounter();
   setupPipeline();
+  setupUsecasePulse();
+  setupMathPulse();
+  setupNodesCarousel();
+  setupPricingToggle();
 });
 document.addEventListener('keydown', e => { if(e.key === 'Escape') closeDemoModal(); });
 </script>
