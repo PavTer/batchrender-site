@@ -1625,7 +1625,14 @@ section { padding: 100px 32px; max-width: 1280px; margin: 0 auto; }
 .video-empty p { color: var(--fg-mut); font-size: 14px; }
 
 /* PRICING — full reference port (Pricing.html, scoped to #pricing) */
-#pricing { position: relative; isolation: isolate; }
+#pricing {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: 80px 72px;
+  margin-left: auto;
+  margin-right: auto;
+}
 
   
   
@@ -3169,7 +3176,7 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
 <section id="pricing">
 
   <div class="megaword">
-    PRICING<span class="accent">·25</span>
+    PRICING
   </div>
 
   <!-- HEADER -->
