@@ -3163,7 +3163,7 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
 <section class="hero">
   <div class="hero-grid">
     <div class="hero-left">
-      <div class="hero-eyebrow"><span class="eyebrow-dot"></span><span data-key="version">v0.0.15 — Active Development</span></div>
+      <div class="hero-eyebrow"><span class="eyebrow-dot"></span><span data-key="version">{VERSION} — Active Development</span></div>
       <h1 data-key="heroTitle"><span class="word" style="animation-delay: 0.25s;">Less</span> <span class="word" style="animation-delay: 0.31s;">repetitive</span> <span class="word" style="animation-delay: 0.37s;">work.</span><br><span class="grad"><span class="word" style="animation-delay: 0.43s;">More</span> <span class="word" style="animation-delay: 0.49s;">control.</span></span></h1>
       <p class="lead" data-key="heroSub"><strong>BatchRender saves hundreds of working hours</strong>, turning repetitive tasks into a process that takes minutes.<br><br>You stay in full control of every step: each action is configurable, and the result is always predictable.<br><br>A clean, intuitive node-based interface helps you work faster — without unnecessary complexity.</p>
       <div class="hero-btns">
@@ -3571,10 +3571,10 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
             <div class="card-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3"></rect><path d="M5 10a7 7 0 0 0 14 0"></path><path d="M12 19v3"></path></svg>
             </div>
-            <div class="tags"><span class="tag" data-key="f6tag">TRANSFORM</span></div>
+            <div class="tags"><span class="tag" data-key="f6tag">PODCAST</span></div>
           </div>
-          <h3 data-key="f6t">Vertical-blur for social</h3>
-          <p data-key="f6d">Convert horizontal video to 9:16 with a blurred background fill. One node, no manual After-Effects work — perfect for Reels, Shorts and TikTok in batch.</p>
+          <h3 data-key="f6t">Auto silence removal for podcasts</h3>
+          <p data-key="f6d">Detect and remove silence segments automatically. Tunable sensitivity, padding, threshold. Process hours of recordings into clean exports in one batch.</p>
           <div class="scene scene-podcast">
             <div class="wave">
               <div class="seg"></div><div class="seg"></div><div class="seg"></div>
@@ -3804,7 +3804,7 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
     <div class="eyebrow-row">
       <span class="eyebrow-pill"><span class="dot"></span><span data-key="freeLabel">Free forever</span></span>
       <span class="eyebrow-line"></span>
-      <span class="eyebrow-meta" data-key="downloadMeta">v2.4.1 · released 2026</span>
+      <span class="eyebrow-meta" data-key="downloadMeta">{VERSION} · released 2026</span>
     </div>
     <h2 class="section-title"><span data-key="downloadTitlePart1">Try it free,</span> <span class="it" data-key="downloadTitlePart2">with watermark.</span></h2>
     <p class="section-sub" data-key="freeSub">Download BatchRender, build pipelines, render as much as you want. A small watermark stays on output until you activate a license — no time limit, no hidden expiry.</p>
@@ -3963,11 +3963,24 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
 </footer>
 
 <script>
+/* === SITE VERSION — single source of truth.
+   Change SITE_VERSION here and it propagates to every place that uses {VERSION} placeholder. */
+const SITE_VERSION = "v0.0.15";
+
+document.addEventListener("DOMContentLoaded", () => applyVersion());
+function applyVersion() {
+  document.querySelectorAll('[data-key]').forEach(el => {
+    if (el.innerHTML && el.innerHTML.indexOf('{VERSION}') !== -1) {
+      el.innerHTML = el.innerHTML.replace(/\{VERSION\}/g, SITE_VERSION);
+    }
+  });
+}
+
 const T = {
   en: {
     builtFor:"Built for", math:"The Math", features:"Nodes", pricing:"Pricing", faq:"FAQ", contact:"Contact",
     getStarted:"Download Free Trial",
-    version:"v0.0.15 — Active Development",
+    version:"{VERSION} — Active Development",
     canvasHint:"Try drag",
     heroTitle:'Less repetitive work.<br><span class="grad">More control.</span>',
     heroSub:'<strong>BatchRender saves hundreds of working hours</strong>, turning repetitive tasks into a process that takes minutes.<br><br>You stay in full control of every step: each action is configurable, and the result is always predictable.<br><br>A clean, intuitive node-based interface helps you work faster — without unnecessary complexity.',
@@ -4007,7 +4020,8 @@ const T = {
     f3t:"Watermarks &amp; logo overlay", f3d:"Drop a logo or watermark on every video in the batch. Position, scale, opacity — set once, applied consistently. Brand the whole client folder in one render.", f3tag:"BRAND",
     f4t:"Music, voiceover, mute", f4d:"Add background music, voiceovers, or kill the original audio. Mix multiple tracks. Volume per track. Same audio recipe across every file in the queue.", f4tag:"AUDIO",
     f5t:"Pull source from URLs", f5d:"Built-in URL downloader (yt-dlp). Paste a list of links, BatchRender pulls the source material and feeds it straight into your pipeline — no manual download step.", f5tag:"SOURCE",
-    f6t:"Vertical-blur for social", f6d:"Convert horizontal video to 9:16 with a blurred background fill. One node, no manual After-Effects work — perfect for Reels, Shorts and TikTok in batch.", f6tag:"TRANSFORM", soonBadge:"SOON",
+    f6t:"Auto silence removal for podcasts", f6d:"Detect and remove silence segments automatically. Tunable sensitivity, padding, threshold. Process hours of recordings into clean exports in one batch.", f6tag:"PODCAST", soonBadge:"SOON",
+    f7t:"Vertical-blur for social", f7d:"Convert horizontal video to 9:16 with a blurred background fill. One node, no manual After-Effects work — perfect for Reels, Shorts and TikTok in batch.", f7tag:"TRANSFORM",
 
     mathLabel:"The Math", mathTitle:"Your time is worth more than your software.",
     mathSub:"A typical client delivery, end-to-end. Same files. Same outputs. Two very different ways to get there.",
@@ -4146,7 +4160,7 @@ const T = {
     footRefund:"14-day refund",
     footMethods:"Cards · PayPal · Apple Pay",
     footVat:"All prices in EUR. VAT added at checkout.",
-    downloadMeta:"v2.4.1 · released 2026",
+    downloadMeta:"{VERSION} · released 2026",
     downloadTitlePart1:"Try it free,",
     downloadTitlePart2:"with watermark.",
     dlMacChip:"Apple Silicon ready",
@@ -4178,7 +4192,7 @@ const T = {
   ru: {
     builtFor:"Для кого", math:"Математика", features:"Ноды", pricing:"Цены", faq:"FAQ", contact:"Контакты",
     getStarted:"Скачать бесплатно",
-    version:"v0.0.15 — Активная разработка",
+    version:"{VERSION} — Активная разработка",
     canvasHint:"Попробуй потянуть",
     heroTitle:'<span style="white-space:nowrap">Меньше рутины.</span><br><span class="grad">Больше контроля.</span>',
     heroSub:'<strong>BatchRender экономит сотни часов работы</strong>, превращая рутинные задачи в процесс, занимающий минуты.<br><br>Ты сохраняешь полный контроль над каждым шагом: любое действие настраивается, а результат всегда предсказуем.<br><br>Чистый, понятный нодовый интерфейс помогает работать быстрее — без лишней сложности.',
@@ -4218,7 +4232,8 @@ const T = {
     f3t:"Водяные знаки и логотипы", f3d:"Накладывай лого или вотермарку на каждое видео в батче. Позиция, масштаб, прозрачность — задал один раз, применяется консистентно. Брендирует папку клиента за один рендер.", f3tag:"БРЕНД",
     f4t:"Музыка, голос, mute", f4d:"Добавляй фоновую музыку, voiceover, отключай оригинал. Миксуй несколько дорожек. Громкость на каждый трек. Один и тот же аудио-рецепт на каждом файле в очереди.", f4tag:"АУДИО",
     f5t:"Источник из URL", f5d:"Встроенный URL-загрузчик (yt-dlp). Вставил список ссылок — BatchRender скачивает исходники и сразу прогоняет через пайплайн. Без отдельного шага загрузки.", f5tag:"ИСТОЧНИК",
-    f6t:"Vertical-blur для соцсетей", f6d:"Конвертация горизонтального видео в 9:16 с блюр-фоном. Одна нода — без ручной работы в After Effects. Подходит для Reels, Shorts и TikTok пакетно.", f6tag:"ТРАНСФОРМ", soonBadge:"СКОРО",
+    f6t:"Авто-удаление тишины в подкастах", f6d:"Автоматически находит и вырезает тишину. Настраиваемая чувствительность, паддинг, порог. Часы записей превращаются в чистые экспорты за один батч.", f6tag:"ПОДКАСТ", soonBadge:"СКОРО",
+    f7t:"Vertical-blur для соцсетей", f7d:"Конвертация горизонтального видео в 9:16 с блюр-фоном. Одна нода — без ручной работы в After Effects. Подходит для Reels, Shorts и TikTok пакетно.", f7tag:"ТРАНСФОРМ",
 
     mathLabel:"Математика", mathTitle:"Твоё время дороже твоего софта.",
     mathSub:"Типичная клиентская сдача от и до. Те же файлы. Те же выходные форматы. Два совершенно разных способа их получить.",
@@ -4357,7 +4372,7 @@ const T = {
     footRefund:"Возврат 14 дней",
     footMethods:"Карты · PayPal · Apple Pay",
     footVat:"Все цены в EUR. НДС добавляется при оплате.",
-    downloadMeta:"v2.4.1 · выпущено в 2026",
+    downloadMeta:"{VERSION} · выпущено в 2026",
     downloadTitlePart1:"Попробуй бесплатно,",
     downloadTitlePart2:"с водяным знаком.",
     dlMacChip:"Apple Silicon готов",
@@ -4389,7 +4404,7 @@ const T = {
   zh: {
     builtFor:"适合谁", math:"成本对比", features:"节点", pricing:"价格", faq:"常见问题", contact:"联系",
     getStarted:"免费试用",
-    version:"v0.0.15 — 持续开发中",
+    version:"{VERSION} — 持续开发中",
     canvasHint:"试试拖动",
     heroTitle:'少做重复的工作。<br><span class="grad">多一份掌控。</span>',
     heroSub:'<strong>BatchRender 节省数百小时工作时间</strong>,将重复任务变成几分钟就能完成的流程。<br><br>你对每一步都保持完全掌控:每个操作都可配置,结果始终可预测。<br><br>简洁直观的节点式界面让你工作得更快——没有多余的复杂性。',
@@ -4429,7 +4444,8 @@ const T = {
     f3t:"水印与 Logo 叠加", f3d:"为批次中的每个视频叠加 Logo 或水印。位置、缩放、不透明度 — 设置一次,一致应用。一次渲染为整个客户文件夹打上品牌。", f3tag:"品牌",
     f4t:"音乐、配音、静音", f4d:"添加背景音乐、配音,或关闭原始音频。混合多个轨道。每轨独立音量。同样的音频配方应用于队列中的每个文件。", f4tag:"音频",
     f5t:"从 URL 拉取来源", f5d:"内置 URL 下载器(yt-dlp)。粘贴链接列表,BatchRender 拉取源素材并直接送入你的管道 — 无需单独的下载步骤。", f5tag:"来源",
-    f6t:"社交媒体竖屏模糊", f6d:"将横屏视频转换为 9:16 带模糊背景填充。一个节点,无需手动 After Effects 工作 — 完美适配批量 Reels、Shorts 和 TikTok。", f6tag:"变换", soonBadge:"即将推出",
+    f6t:"播客自动静音移除", f6d:"自动检测并删除静音段。可调灵敏度、间距、阈值。一次批量将数小时录音处理为干净的导出文件。", f6tag:"播客", soonBadge:"即将推出",
+    f7t:"社交媒体竖屏模糊", f7d:"将横屏视频转换为 9:16 带模糊背景填充。一个节点,无需手动 After Effects 工作 — 完美适配批量 Reels、Shorts 和 TikTok。", f7tag:"变换",
 
     mathLabel:"算笔账", mathTitle:"你的时间比你的软件更值钱。",
     mathSub:"典型的客户交付,从头到尾。同样的文件。同样的输出。两种截然不同的完成方式。",
@@ -4568,7 +4584,7 @@ const T = {
     footRefund:"14 天退款",
     footMethods:"银行卡 · PayPal · Apple Pay",
     footVat:"所有价格以欧元 (EUR) 计算。结账时添加增值税。",
-    downloadMeta:"v2.4.1 · 2026 年发布",
+    downloadMeta:"{VERSION} · 2026 年发布",
     downloadTitlePart1:"免费试用,",
     downloadTitlePart2:"带水印。",
     dlMacChip:"支持 Apple Silicon",
@@ -4612,6 +4628,7 @@ function setLang(lang) {
   if (window.lucide) lucide.createIcons();
   // Re-wrap hero words after language change (innerHTML was reset by data-key replacement)
   if (typeof wrapHeroWords === 'function') wrapHeroWords();
+  applyVersion();
 }
 function buildFaq(lang) {
   const t = T[lang]; const list = document.getElementById('faqList');
