@@ -1,34 +1,28 @@
 // api/release.js
-// Vercel Edge Function — proxy to GitHub Releases API.
-// Allows the public site to read release info from a private repository
-// without exposing the GitHub token to the browser.
-//
-// Required env var: GITHUB_TOKEN (fine-grained PAT with Contents:Read for PavTer/BatchRender)
+// Vercel Edge Function — proxy to GitHub Releases API for PavTer/BatchRender-releases.
+// The public repo only contains compiled binaries (no source code).
+// Token is optional — if GITHUB_TOKEN is set in env, it's used to bump rate limit
+// from 60 req/hr (anonymous) to 5000 req/hr (authenticated). Site works without it.
 
 export const config = {
   runtime: 'edge',
 };
 
-const GITHUB_API = 'https://api.github.com/repos/PavTer/BatchRender/releases/latest';
+const GITHUB_API = 'https://api.github.com/repos/PavTer/BatchRender-releases/releases/latest';
 
 export default async function handler(request) {
   try {
-    const token = process.env.GITHUB_TOKEN;
-    if (!token) {
-      return Response.json(
-        { error: 'GITHUB_TOKEN not configured' },
-        { status: 500 }
-      );
+    const headers = {
+      Accept: 'application/vnd.github+json',
+      'X-GitHub-Api-Version': '2022-11-28',
+      'User-Agent': 'batchrender-site',
+    };
+    // Optional auth (boosts rate limit but not required)
+    if (process.env.GITHUB_TOKEN) {
+      headers.Authorization = `Bearer ${process.env.GITHUB_TOKEN}`;
     }
 
-    const ghResponse = await fetch(GITHUB_API, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-        Accept: 'application/vnd.github+json',
-        'X-GitHub-Api-Version': '2022-11-28',
-        'User-Agent': 'batchrender-site',
-      },
-    });
+    const ghResponse = await fetch(GITHUB_API, { headers });
 
     if (!ghResponse.ok) {
       return Response.json(
@@ -39,7 +33,7 @@ export default async function handler(request) {
 
     const data = await ghResponse.json();
 
-    // Return only what the site needs — never leak full GitHub response
+    // Return only what the site needs
     const assets = (data.assets || []).map((a) => ({
       name: a.name,
       size: a.size,
@@ -53,7 +47,6 @@ export default async function handler(request) {
       },
       {
         headers: {
-          // Cache on Vercel Edge for 5 minutes; browsers may cache for 1 minute.
           'Cache-Control': 's-maxage=300, max-age=60, stale-while-revalidate=600',
           'Access-Control-Allow-Origin': '*',
         },
