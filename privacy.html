@@ -1,67 +1,643 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Privacy Policy — BatchRender</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<meta name="description" content="BatchRender Privacy Policy. How we collect, use, and protect your personal data under GDPR.">
+<link rel="icon" type="image/png" href="/img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#0a0a0b;--bg2:#111114;--border:rgba(255,255,255,0.07);--accent:#e8ff47;--text:#f0efea;--text2:#8a8a8f;--text3:#555560;--mono:'DM Mono',monospace;--sans:'Inter',sans-serif;--display:'Syne',sans-serif;}
-*{box-sizing:border-box;margin:0;padding:0;}
-body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.7;}
-.topbar{background:rgba(10,10,11,0.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:16px 32px;position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;}
-.logo{font-family:var(--display);font-weight:800;font-size:18px;text-decoration:none;color:var(--text);display:flex;align-items:center;gap:10px;}
-.logo-icon{width:28px;height:28px;background:var(--accent);border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:11px;color:#000;font-weight:700;}
-.back{font-size:13px;color:var(--text2);text-decoration:none;}
-.back:hover{color:var(--text);}
-.wrap{max-width:760px;margin:0 auto;padding:64px 32px;}
-h1{font-family:var(--display);font-size:42px;font-weight:800;margin-bottom:8px;letter-spacing:-0.02em;}
-.meta{font-family:var(--mono);font-size:12px;color:var(--text3);margin-bottom:48px;}
-h2{font-family:var(--display);font-size:22px;font-weight:700;margin:40px 0 12px;}
-p{color:var(--text2);margin-bottom:16px;font-size:15px;}
-ul{color:var(--text2);padding-left:24px;margin-bottom:16px;}
-li{margin-bottom:8px;font-size:15px;}
-a{color:var(--accent);}
-.lang-switch{display:flex;gap:4px;}
-.lb{background:none;border:none;cursor:pointer;font-family:var(--mono);font-size:11px;color:var(--text3);padding:4px 8px;border-radius:4px;}
-.lb.active,.lb:hover{color:var(--accent);background:rgba(232,255,71,0.08);}
+:root {
+  --bg-page:#1a2030; --bg-card:#252f46; --bg-deep:#131927;
+  --bd:rgba(255,255,255,0.10); --bd-mid:rgba(255,255,255,0.18); --bd-soft:rgba(255,255,255,0.06);
+  --fg:#e3e5e8; --fg-strong:#ffffff; --fg-mut:#7a8394; --fg-dim:#4a5268;
+  --accent:#7b4fd4; --info:#3b9eff;
+  --grad-brand:linear-gradient(135deg,#3b9eff 0%,#7b4fd4 100%);
+  --grad-text:linear-gradient(90deg,#3b9eff 0%,#b07bff 60%,#ec5da1 100%);
+  --mono:'JetBrains Mono',ui-monospace,'SF Mono',Menlo,monospace;
+  --sans:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+  --display:'Bricolage Grotesque','Inter',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;}html{scroll-behavior:smooth;}
+body{background:var(--bg-page);color:var(--fg);font-family:var(--sans);font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
+.nav-bar{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(20,26,40,0.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--bd-soft);height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 32px;}
+.logo{display:flex;align-items:center;text-decoration:none;}
+.logo-img{height:28px;width:auto;display:block;}
+.logo-fallback{font-family:var(--display);font-weight:800;font-size:18px;color:var(--fg-strong);letter-spacing:-0.02em;}
+.nav-links{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:flex;align-items:center;gap:28px;}
+.nav-links a{color:var(--fg-mut);text-decoration:none;font-size:13px;font-weight:500;transition:color 0.15s;}
+.nav-links a:hover{color:var(--fg-strong);}
+.nav-right{display:flex;align-items:center;gap:14px;}
+.lang-switch{display:flex;gap:2px;background:rgba(255,255,255,0.04);padding:3px;border-radius:8px;}
+.lang-btn{background:none;border:none;cursor:pointer;font-family:var(--mono);font-size:11px;font-weight:500;color:var(--fg-mut);padding:5px 10px;border-radius:6px;transition:all 0.15s;letter-spacing:0.04em;}
+.lang-btn.active{color:var(--info);background:rgba(59,158,255,0.12);}
+.lang-btn:hover:not(.active){color:var(--fg);}
+.btn-nav{background:var(--grad-brand);color:#fff;border:none;padding:9px 18px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:var(--sans);text-decoration:none;transition:transform 0.15s,box-shadow 0.15s;box-shadow:0 4px 14px rgba(59,158,255,0.25);}
+.btn-nav:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(59,158,255,0.4);}
+@media(max-width:760px){.nav-links{display:none;}.nav-bar{padding:0 18px;}.btn-nav{padding:8px 12px;font-size:12px;}}
+.page-wrap{max-width:820px;margin:0 auto;padding:120px 32px 80px;}
+.page-eyebrow{display:inline-block;font-family:var(--mono);font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--info);background:rgba(59,158,255,0.10);border:1px solid rgba(59,158,255,0.22);padding:6px 14px;border-radius:6px;margin-bottom:24px;}
+h1{font-family:var(--display);font-size:clamp(36px,5vw,56px);font-weight:800;line-height:1.05;letter-spacing:-0.03em;color:var(--fg-strong);margin-bottom:14px;}
+.meta{font-family:var(--mono);font-size:12px;color:var(--fg-dim);letter-spacing:0.04em;margin-bottom:56px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.meta-dot{width:6px;height:6px;background:var(--info);border-radius:50%;box-shadow:0 0 10px rgba(59,158,255,0.6);}
+.meta-sep{color:var(--bd-mid);}
+h2{font-family:var(--display);font-size:24px;font-weight:700;margin:48px 0 14px;color:var(--fg-strong);letter-spacing:-0.01em;}
+h3{font-family:var(--display);font-size:18px;font-weight:600;margin:24px 0 10px;color:var(--fg-strong);}
+p{color:var(--fg);margin-bottom:16px;font-size:15.5px;line-height:1.75;}
+p strong{color:var(--fg-strong);font-weight:600;}
+ul{color:var(--fg);padding-left:24px;margin-bottom:16px;}
+li{margin-bottom:8px;font-size:15.5px;line-height:1.7;}
+li::marker{color:var(--info);}
+a{color:var(--info);text-decoration:none;transition:color 0.15s;}
+a:hover{color:#5fb1ff;text-decoration:underline;}
+.email-link{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:14px;background:rgba(59,158,255,0.08);border:1px solid rgba(59,158,255,0.20);padding:4px 10px;border-radius:6px;color:var(--info);text-decoration:none;}
+.email-link:hover{background:rgba(59,158,255,0.14);text-decoration:none;}
+.callout{background:rgba(123,79,212,0.06);border:1px solid rgba(123,79,212,0.22);border-radius:10px;padding:18px 22px;margin:24px 0;font-size:14.5px;color:var(--fg);}
+.callout strong{color:var(--fg-strong);}
+.disclaimer-note{background:rgba(245,166,35,0.05);border-left:3px solid rgba(245,166,35,0.5);padding:14px 18px;margin:20px 0;font-size:13.5px;color:var(--fg-mut);font-style:italic;}
+table.proc{width:100%;border-collapse:collapse;margin:18px 0;font-size:14px;}
+table.proc th,table.proc td{padding:12px 14px;text-align:left;border-bottom:1px solid var(--bd-soft);vertical-align:top;}
+table.proc th{font-family:var(--mono);font-size:11px;letter-spacing:0.10em;text-transform:uppercase;color:var(--fg-mut);font-weight:600;background:rgba(255,255,255,0.02);}
+table.proc td{color:var(--fg);}
+table.proc td:first-child{font-weight:600;color:var(--fg-strong);white-space:nowrap;}
+table.proc td a{font-size:13px;}
+@media(max-width:760px){table.proc th,table.proc td{padding:10px 8px;font-size:13px;}table.proc td:first-child{font-size:13.5px;}}
+footer{border-top:1px solid var(--bd-soft);padding:56px 32px 36px;max-width:1280px;margin:0 auto;}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:40px;}
+.footer-desc{font-size:14px;color:var(--fg-mut);line-height:1.65;margin-top:14px;max-width:320px;}
+.footer-col h4{font-family:var(--mono);font-size:10px;letter-spacing:0.18em;color:var(--fg-mut);margin-bottom:16px;text-transform:uppercase;font-weight:600;}
+.footer-col a{display:block;font-size:14px;color:var(--fg);text-decoration:none;margin-bottom:10px;transition:color 0.15s;}
+.footer-col a:hover{color:var(--info);}
+.footer-bottom{border-top:1px solid var(--bd-soft);padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+.footer-bottom p{font-size:12px;color:var(--fg-dim);font-family:var(--mono);}
+@media(max-width:760px){.footer-grid{grid-template-columns:1fr 1fr;gap:32px;}.page-wrap{padding:100px 22px 60px;}}
 </style>
 </head>
 <body>
-<div class="topbar">
-  <a href="index.html" class="logo"><div class="logo-icon">BR</div>BatchRender</a>
-  <div style="display:flex;align-items:center;gap:16px">
-    <div class="lang-switch">
-      <button class="lb active" onclick="setL('en')">EN</button>
-      <button class="lb" onclick="setL('ru')">RU</button>
-      <button class="lb" onclick="setL('zh')">中文</button>
-    </div>
-    <a href="index.html" class="back">← Back to Home</a>
+
+<nav class="nav-bar">
+  <a href="/" class="logo">
+    <img src="/img/logo-long.png" alt="BatchRender" class="logo-img" onerror="this.outerHTML='<span class=&quot;logo-fallback&quot;>BatchRender</span>'">
+  </a>
+  <div class="nav-links">
+    <a href="/#built-for" data-nav-key="builtFor">Built for</a>
+    <a href="/#math" data-nav-key="math">The Math</a>
+    <a href="/#features" data-nav-key="features">Nodes</a>
+    <a href="/#pricing" data-nav-key="pricing">Pricing</a>
+    <a href="/#faq" data-nav-key="faq">FAQ</a>
   </div>
-</div>
-<div class="wrap">
+  <div class="nav-right">
+    <div class="lang-switch">
+      <button class="lang-btn active" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" onclick="setLang('ru')">RU</button>
+      <button class="lang-btn" onclick="setLang('zh')">中文</button>
+    </div>
+    <a href="/#pricing" class="btn-nav" data-nav-key="getStarted">Download Free Trial</a>
+  </div>
+</nav>
+
+<main class="page-wrap">
+  <div class="page-eyebrow" data-k="eyebrow">Legal · Privacy</div>
   <h1 data-k="title">Privacy Policy</h1>
-  <p class="meta" data-k="updated">Last updated: November 10, 2024</p>
-  <p data-k="intro">BatchRender ("we", "us", or "our") is committed to protecting your personal information. This Privacy Policy explains how we collect, use, and safeguard your data when you use our software and website.</p>
-  <h2 data-k="h1">1. Information We Collect</h2>
+  <div class="meta">
+    <span class="meta-dot"></span>
+    <span data-k="version">Privacy Policy v1.1</span>
+    <span class="meta-sep">·</span>
+    <span data-k="updated">Effective May 2, 2026</span>
+  </div>
+
+  <div class="callout" data-k="who">
+    <strong>Data Controller:</strong> BatchRender, a software product operated by an independent software developer based in Nicosia, Cyprus. For all privacy matters: <a href="mailto:support@batchrender.com">support@batchrender.com</a>.
+  </div>
+
+  <p data-k="intro">This Privacy Policy explains how BatchRender (the "Software" and the "Website" together, the "Service") collects, uses, shares, and protects your personal data. We aim to collect as little personal data as possible and to be transparent about every category we handle. This Policy is written to comply with the EU General Data Protection Regulation (Regulation (EU) 2016/679, "GDPR") and equivalent laws.</p>
+
+  <h2 data-k="h1">1. Summary at a Glance</h2>
   <ul>
-    <li data-k="c1">Account information: name, email address, password (hashed)</li>
-    <li data-k="c2">Purchase data: transaction ID, license key, purchase date</li>
-    <li data-k="c3">Usage data: software version, OS type, activation events</li>
-    <li data-k="c4">Support communications: messages sent through the contact form</li>
+    <li data-k="s1">The Software runs <strong>locally on your device</strong> and processes your media files only on your device. We never receive, store, or have access to the files you process.</li>
+    <li data-k="s2">We do not sell or rent your personal data to anyone, ever.</li>
+    <li data-k="s3">We use a small number of trusted service providers (listed in Section 5) for payments, license keys, hosting, and email forwarding.</li>
+    <li data-k="s4">We do not use advertising trackers or behavioural-profiling cookies.</li>
+    <li data-k="s5">You have full GDPR rights including access, correction, deletion, and the right to lodge a complaint with a supervisory authority.</li>
   </ul>
-  <h2 data-k="h2">2. How We Use Your Information</h2>
-  <p data-k="u1">We use collected information to: process payments and issue licenses, provide software updates and technical support, send important account notifications, and improve our software and services.</p>
-  <h2 data-k="h3">3. Data Sharing</h2>
-  <p data-k="ds">We do not sell your personal data. We share data only with trusted service providers necessary to operate our service (Stripe for payments, email providers for transactional emails). All third-party providers are bound by data protection agreements.</p>
-  <h2 data-k="h4">4. Data Retention</h2>
-  <p data-k="dr">We retain your account and purchase data for as long as your account is active and for 5 years after account deletion for legal compliance purposes.</p>
-  <h2 data-k="h5">5. Your Rights</h2>
-  <p data-k="yr">You have the right to access, correct, or delete your personal data. Contact us at <a href="/cdn-cgi/l/email-protection#2555574c5344465c65474451464d57404b4140570b464a48"><span class="__cf_email__" data-cfemail="3444465d4255574d74565540575c46515a5051461a575b59">[email&#160;protected]</span></a> to exercise these rights.</p>
-  <h2 data-k="h6">6. Cookies</h2>
-  <p data-k="ck">Our website uses essential cookies for authentication and session management only. We do not use advertising or tracking cookies.</p>
-  <h2 data-k="h7">7. Contact</h2>
-  <p data-k="ct">For privacy-related questions, contact us at <a href="/cdn-cgi/l/email-protection#aadad8c3dccbc9d3eac8cbdec9c2d8cfc4cecfd884c9c5c7"><span class="__cf_email__" data-cfemail="ee9e9c87988f8d97ae8c8f9a8d869c8b808a8b9cc08d8183">[email&#160;protected]</span></a></p>
-</div>
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-const T={en:{title:"Privacy Policy",updated:"Last updated: November 10, 2024",intro:'BatchRender ("we", "us", or "our") is committed to protecting your personal information. This Privacy Policy explains how we collect, use, and safeguard your data when you use our software and website.',h1:"1. Information We Collect",c1:"Account information: name, email address, password (hashed)",c2:"Purchase data: transaction ID, license key, purchase date",c3:"Usage data: software version, OS type, activation events",c4:"Support communications: messages sent through the contact form",h2:"2. How We Use Your Information",u1:"We use collected information to: process payments and issue licenses, provide software updates and technical support, send important account notifications, and improve our software and services.",h3:"3. Data Sharing",ds:"We do not sell your personal data. We share data only with trusted service providers necessary to operate our service (Stripe for payments, email providers for transactional emails). All third-party providers are bound by data protection agreements.",h4:"4. Data Retention",dr:"We retain your account and purchase data for as long as your account is active and for 5 years after account deletion for legal compliance purposes.",h5:"5. Your Rights",yr:'You have the right to access, correct, or delete your personal data. Contact us at <a href="mailto:privacy@batchrender.com">privacy@batchrender.com</a> to exercise these rights.',h6:"6. Cookies",ck:"Our website uses essential cookies for authentication and session management only. We do not use advertising or tracking cookies.",h7:"7. Contact",ct:'For privacy-related questions, contact us at <a href="mailto:privacy@batchrender.com">privacy@batchrender.com</a>'},ru:{title:"Политика конфиденциальности",updated:"Последнее обновление: 10 ноября 2024",intro:'BatchRender обязуется защищать вашу личную информацию. Данная политика конфиденциальности объясняет, как мы собираем, используем и защищаем ваши данные при использовании нашего программного обеспечения и сайта.',h1:"1. Собираемая информация",c1:"Данные аккаунта: имя, email, пароль (хэшированный)",c2:"Данные о покупке: ID транзакции, лицензионный ключ, дата покупки",c3:"Данные об использовании: версия ПО, тип ОС, события активации",c4:"Обращения в поддержку: сообщения через форму обратной связи",h2:"2. Использование информации",u1:"Мы используем собранную информацию для: обработки платежей и выдачи лицензий, предоставления обновлений и технической поддержки, отправки важных уведомлений по аккаунту, улучшения нашего ПО и сервисов.",h3:"3. Передача данных",ds:'Мы не продаём ваши персональные данные. Данные передаются только доверенным поставщикам услуг, необходимых для работы сервиса (Stripe для платежей, email-провайдеры). Все сторонние провайдеры связаны соглашениями о защите данных.',h4:"4. Хранение данных",dr:"Данные аккаунта и покупок хранятся в течение срока действия аккаунта и 5 лет после его удаления в соответствии с требованиями законодательства.",h5:"5. Ваши права",yr:'Вы вправе запросить доступ, исправление или удаление ваших персональных данных. Напишите нам на <a href="mailto:privacy@batchrender.com">privacy@batchrender.com</a>.',h6:"6. Cookies",ck:"Наш сайт использует только необходимые cookies для аутентификации и управления сессиями. Мы не используем рекламные или отслеживающие cookies.",h7:"7. Контакты",ct:'По вопросам конфиденциальности: <a href="mailto:privacy@batchrender.com">privacy@batchrender.com</a>'},zh:{title:"隐私政策",updated:"最后更新：2024年11月10日",intro:"BatchRender致力于保护您的个人信息。本隐私政策说明我们在您使用软件和网站时如何收集、使用和保护您的数据。",h1:"1. 我们收集的信息",c1:"账户信息：姓名、电子邮件地址、密码（已哈希）",c2:"购买数据：交易ID、许可证密钥、购买日期",c3:"使用数据：软件版本、操作系统类型、激活事件",c4:"支持通信：通过联系表单发送的消息",h2:"2. 我们如何使用您的信息",u1:"我们使用收集的信息来：处理付款并颁发许可证、提供软件更新和技术支持、发送重要账户通知、改进我们的软件和服务。",h3:"3. 数据共享",ds:"我们不出售您的个人数据。我们仅与运营服务所必需的可信服务提供商共享数据（Stripe用于付款，电子邮件提供商用于事务性邮件）。所有第三方提供商均受数据保护协议约束。",h4:"4. 数据保留",dr:"我们在您的账户处于活动状态期间以及账户删除后5年内保留您的账户和购买数据，以符合法律合规要求。",h5:"5. 您的权利",yr:'您有权访问、更正或删除您的个人数据。请通过 <a href="mailto:privacy@batchrender.com">privacy@batchrender.com</a> 联系我们行使这些权利。',h6:"6. Cookie",ck:"我们的网站仅使用必要的Cookie进行身份验证和会话管理。我们不使用广告或跟踪Cookie。",h7:"7. 联系",ct:'隐私相关问题请联系：<a href="mailto:privacy@batchrender.com">privacy@batchrender.com</a>'}};
-function se
+
+  <h2 data-k="h2">2. Personal Data We Collect</h2>
+  <p data-k="d_intro">We collect only the categories of personal data that are necessary for the purposes described in this Policy.</p>
+
+  <h3 data-k="d1h">2.1 Data you provide directly</h3>
+  <ul>
+    <li data-k="d1a"><strong>Purchase data</strong> — name, email address, billing country, and the last four digits of your payment method or transaction reference. This data is collected by our Merchant of Record (Lemon Squeezy) and shared with us in summary form to issue your licence.</li>
+    <li data-k="d1b"><strong>Licence-key data</strong> — an opaque licence-key string and the email address you provided at purchase, used to activate the Software.</li>
+    <li data-k="d1c"><strong>Support communications</strong> — the content of any email or message you send to <a href="mailto:support@batchrender.com">support@batchrender.com</a>, including your email address and any information you choose to share.</li>
+  </ul>
+
+  <h3 data-k="d2h">2.2 Data collected automatically by the Software</h3>
+  <ul>
+    <li data-k="d2a"><strong>Licence-activation requests</strong> — when you activate or re-validate your licence, the Software contacts our licence-management provider with your licence key, a non-personal device fingerprint generated locally on your device for the sole purpose of enforcing the per-device limit of your plan, and the public IP address of the request (collected automatically by the network, retained briefly for fraud-prevention).</li>
+    <li data-k="d2b"><strong>Update checks</strong> — the Software may query a public release endpoint to inform you of new versions. The endpoint receives only the public IP address and standard HTTP headers, which it retains in standard server logs.</li>
+    <li data-k="d2c"><strong>No telemetry, no analytics, no crash reports.</strong> The Software does not contain any analytics SDK, telemetry collector, or automatic crash-reporting tool. We do not track how you use the Software, the names of files you process, or the contents of your projects. If we ever introduce optional telemetry, it will be off by default and require your prior opt-in consent.</li>
+  </ul>
+
+  <h3 data-k="d3h">2.3 Data collected automatically by the Website</h3>
+  <ul>
+    <li data-k="d3a"><strong>Server logs</strong> — our hosting provider receives standard HTTP request information (IP address, user agent, requested URL, timestamp) for security and reliability. These logs are retained for short periods by the provider in accordance with their own policies.</li>
+    <li data-k="d3b"><strong>Privacy-friendly visitor measurement</strong> — we may use a cookieless, privacy-friendly analytics service (currently <a href="https://www.cloudflare.com/web-analytics/" target="_blank" rel="noopener">Cloudflare Web Analytics</a>) to count page views and measure aggregate site performance. This service does not set cookies, does not track users across sites, and does not build individual profiles. Because no individual user is identified, no consent banner is required under EU ePrivacy rules.</li>
+    <li data-k="d3c"><strong>Local browser storage</strong> — we store your selected interface language (e.g. "en", "ru", "zh") in your browser's <code>localStorage</code> so the site loads in your preferred language on return visits. This data never leaves your browser.</li>
+  </ul>
+
+  <h2 data-k="h3">3. Why We Process Your Data and Legal Bases</h2>
+  <p data-k="lb_intro">Under Article 6 GDPR, every processing activity must rely on a specific legal basis. The table below maps each purpose to its basis.</p>
+  <table class="proc">
+    <thead>
+      <tr><th data-k="lb_th1">Purpose</th><th data-k="lb_th2">Data</th><th data-k="lb_th3">Legal Basis (GDPR Art. 6)</th></tr>
+    </thead>
+    <tbody>
+      <tr><td data-k="lb_r1a">Process your purchase and deliver your licence</td><td data-k="lb_r1b">Purchase data, licence-key data</td><td data-k="lb_r1c">Performance of a contract — Art. 6(1)(b)</td></tr>
+      <tr><td data-k="lb_r2a">Validate your licence on activation</td><td data-k="lb_r2b">Licence key, device fingerprint, IP</td><td data-k="lb_r2c">Performance of a contract — Art. 6(1)(b)</td></tr>
+      <tr><td data-k="lb_r3a">Comply with tax, accounting and consumer-protection law</td><td data-k="lb_r3b">Purchase records</td><td data-k="lb_r3c">Legal obligation — Art. 6(1)(c)</td></tr>
+      <tr><td data-k="lb_r4a">Provide support and respond to your enquiries</td><td data-k="lb_r4b">Support communications</td><td data-k="lb_r4c">Performance of a contract / legitimate interest — Art. 6(1)(b)/(f)</td></tr>
+      <tr><td data-k="lb_r5a">Operate, secure, and improve the Website</td><td data-k="lb_r5b">Server logs, aggregate analytics</td><td data-k="lb_r5c">Legitimate interest — Art. 6(1)(f)</td></tr>
+      <tr><td data-k="lb_r6a">Detect and prevent fraud or abuse</td><td data-k="lb_r6b">Licence-key activity, IP</td><td data-k="lb_r6c">Legitimate interest — Art. 6(1)(f)</td></tr>
+    </tbody>
+  </table>
+  <p data-k="lb_outro">Where we rely on legitimate interest, we have weighed our interest against your fundamental rights and considered that the processing is limited to what is strictly necessary, that no profiling occurs, and that you can object at any time (see Section 8).</p>
+
+  <h2 data-k="h4">4. Data We Never Collect</h2>
+  <ul>
+    <li data-k="n1"><strong>The contents of your media files.</strong> All rendering happens on your device; your videos, audio and images are never uploaded to our servers.</li>
+    <li data-k="n2"><strong>Project metadata.</strong> File names, durations, codecs, render queues, and pipeline configurations stay on your device.</li>
+    <li data-k="n3"><strong>Special-category data.</strong> We do not knowingly process health, biometric, racial, religious, political, or sexual-orientation data.</li>
+    <li data-k="n4"><strong>Children's data.</strong> The Service is not directed at children under 16 and we do not knowingly collect personal data from children.</li>
+  </ul>
+
+  <h2 data-k="h5">5. Service Providers (Sub-processors)</h2>
+  <p data-k="sp_intro">We rely on the following service providers to operate the Service. Each provider is bound by a data-processing agreement and processes data only on documented instructions from us. Data may be transferred to providers based outside the European Economic Area (typically the United States) under appropriate safeguards, including the EU Standard Contractual Clauses and, where applicable, the EU-US Data Privacy Framework.</p>
+  <table class="proc">
+    <thead>
+      <tr><th data-k="sp_th1">Provider</th><th data-k="sp_th2">Purpose</th><th data-k="sp_th3">Region</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Lemon Squeezy</td>
+        <td data-k="sp_r1b">Payments and Merchant of Record. Collects purchase data and processes payment.</td>
+        <td data-k="sp_r1c">USA (<a href="https://www.lemonsqueezy.com/privacy" target="_blank" rel="noopener">privacy</a>)</td>
+      </tr>
+      <tr>
+        <td>Keygen</td>
+        <td data-k="sp_r2b">Licence key generation, validation, and per-device activation enforcement.</td>
+        <td data-k="sp_r2c">USA (<a href="https://keygen.sh/privacy/" target="_blank" rel="noopener">privacy</a>)</td>
+      </tr>
+      <tr>
+        <td>Vercel</td>
+        <td data-k="sp_r3b">Website hosting and content delivery.</td>
+        <td data-k="sp_r3c">USA (<a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener">privacy</a>)</td>
+      </tr>
+      <tr>
+        <td>Cloudflare</td>
+        <td data-k="sp_r4b">DNS, email forwarding for the support@ inbox, and (optionally) cookieless website analytics.</td>
+        <td data-k="sp_r4c">USA (<a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">privacy</a>)</td>
+      </tr>
+      <tr>
+        <td>GitHub</td>
+        <td data-k="sp_r5b">Public hosting of installer downloads (.dmg, .exe) and release notes. Receives only standard request data when you download.</td>
+        <td data-k="sp_r5c">USA (<a href="https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">privacy</a>)</td>
+      </tr>
+      <tr>
+        <td>Google</td>
+        <td data-k="sp_r6b">Receives the support@ inbox via Cloudflare Email Routing (forwarding destination). Subject to Gmail's privacy terms.</td>
+        <td data-k="sp_r6c">USA (<a href="https://policies.google.com/privacy" target="_blank" rel="noopener">privacy</a>)</td>
+      </tr>
+    </tbody>
+  </table>
+  <p data-k="sp_outro">We will update this list when we add or change a service provider. If we ever need to introduce a new category of provider that materially changes how we process your data, we will notify you in advance.</p>
+
+  <h2 data-k="h6">6. Retention Periods</h2>
+  <ul>
+    <li data-k="r1"><strong>Purchase records</strong> — retained for as long as required by Cyprus and EU tax and accounting law (typically up to seven years from the end of the relevant financial year).</li>
+    <li data-k="r2"><strong>Licence-key records</strong> — retained for the lifetime of the licence and for a reasonable period thereafter to honour eligible re-activations and refund requests.</li>
+    <li data-k="r3"><strong>Support communications</strong> — retained for up to 24 months after the issue is closed, for quality and warranty purposes.</li>
+    <li data-k="r4"><strong>Server logs</strong> — retained for short periods set by each hosting provider in their own privacy policies.</li>
+    <li data-k="r5"><strong>Aggregate analytics</strong> — retained without identifying you individually; no individual profile is retained.</li>
+  </ul>
+  <p data-k="r_outro">When the retention period ends, we delete or irreversibly anonymise the data, subject to our legal obligations to keep specific records for longer.</p>
+
+  <h2 data-k="h7">7. International Data Transfers</h2>
+  <p data-k="it">Some of our service providers (Section 5) are based in the United States. When we transfer personal data outside the European Economic Area, we rely on the following safeguards under Articles 44–49 GDPR: (a) the EU Standard Contractual Clauses (2021/914/EU); (b) where the recipient has self-certified, the EU-US Data Privacy Framework adequacy decision; and (c) supplementary technical and organisational measures where appropriate. You may request a copy of the relevant transfer mechanism by contacting us.</p>
+
+  <h2 data-k="h8">8. Your Rights under GDPR</h2>
+  <p data-k="rt_intro">If you are located in the European Economic Area, the United Kingdom, or another jurisdiction with comparable laws, you have the following rights regarding your personal data:</p>
+  <ul>
+    <li data-k="rt1"><strong>Access</strong> (Art. 15) — request a copy of the personal data we hold about you.</li>
+    <li data-k="rt2"><strong>Rectification</strong> (Art. 16) — ask us to correct inaccurate or incomplete data.</li>
+    <li data-k="rt3"><strong>Erasure</strong> (Art. 17) — ask us to delete your personal data, subject to legal-retention obligations.</li>
+    <li data-k="rt4"><strong>Restriction of processing</strong> (Art. 18) — ask us to limit how we use your data while a request is reviewed.</li>
+    <li data-k="rt5"><strong>Data portability</strong> (Art. 20) — receive your data in a structured, machine-readable format and have it transferred to another controller where technically feasible.</li>
+    <li data-k="rt6"><strong>Object</strong> (Art. 21) — object to processing based on legitimate interest, including the right to object at any time and free of charge.</li>
+    <li data-k="rt7"><strong>Withdraw consent</strong> (Art. 7) — where processing is based on consent, withdraw it at any time without affecting the lawfulness of prior processing.</li>
+    <li data-k="rt8"><strong>Lodge a complaint</strong> (Art. 77) — file a complaint with a supervisory authority. The competent authority for Cyprus is the <a href="https://www.dataprotection.gov.cy/" target="_blank" rel="noopener">Office of the Commissioner for Personal Data Protection</a>; you may also contact the supervisory authority of your country of residence or work.</li>
+  </ul>
+  <p data-k="rt_how">To exercise any of these rights, write to <a class="email-link" href="mailto:support@batchrender.com">support@batchrender.com</a>. We will respond within one month and we do not charge for normal requests. We may need to verify your identity before disclosing personal data.</p>
+
+  <h2 data-k="h9">9. California Residents (CCPA / CPRA)</h2>
+  <p data-k="cal">If you are a California resident, you have the right to know what personal information we collect, to request deletion, and to opt out of the "sale" or "sharing" of personal information. <strong>We do not sell or share personal information</strong> in the meaning of the CCPA or CPRA. To exercise your California rights, write to <a href="mailto:support@batchrender.com">support@batchrender.com</a>.</p>
+
+  <h2 data-k="h10">10. Security</h2>
+  <p data-k="sec">We implement appropriate technical and organisational measures to protect your personal data, including encryption in transit (HTTPS/TLS), restricted access to administrative interfaces, the use of established service providers with industry-recognised security certifications (e.g. SOC 2), and the principle of data minimisation. No system is completely secure; if we ever become aware of a personal-data breach that is likely to result in a risk to your rights, we will notify the competent supervisory authority within 72 hours and, where required, also notify you.</p>
+
+  <h2 data-k="h11">11. Cookies and Local Storage</h2>
+  <p data-k="ck">The Website does not set advertising or behavioural-tracking cookies. The only client-side storage we use is browser <code>localStorage</code> to remember your selected language; this is strictly necessary for the language switcher to work and is not shared with anyone. The optional cookieless analytics described in Section 2.3 does not set cookies and does not require consent under EU ePrivacy rules.</p>
+
+  <h2 data-k="h12">12. Automated Decision-Making</h2>
+  <p data-k="auto">We do not subject you to decisions based solely on automated processing that produce legal effects or similarly significantly affect you. Automatic licence-key validation is technical enforcement of the contract you entered into and does not result in such effects.</p>
+
+  <h2 data-k="h13">13. Changes to this Policy</h2>
+  <p data-k="ch">We may update this Privacy Policy from time to time. The version number and effective date are shown at the top. Material changes will be communicated through the Software or Website at least thirty (30) days before they take effect. Continued use of the Service after the effective date constitutes acceptance of the revised Policy.</p>
+
+  <h2 data-k="h14">14. Contact</h2>
+  <p data-k="ct">For any privacy-related question, request, or complaint: <a class="email-link" href="mailto:support@batchrender.com">support@batchrender.com</a>. The Service is small and operated by an independent developer; we will respond personally and promptly.</p>
+
+  <div class="disclaimer-note" data-k="disc">
+    BatchRender is operated by an independent software developer based in Cyprus and is not currently a registered legal entity. The legal contact for all privacy matters is <a href="mailto:support@batchrender.com">support@batchrender.com</a>; the operator's full identifying details are available on written request to that address. This Policy does not constitute legal advice. The English version of this Policy prevails in case of any discrepancy with the Russian or Chinese translations.
+  </div>
+</main>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <a href="/" class="logo">
+        <img src="/img/logo-long.png" alt="BatchRender" class="logo-img" onerror="this.outerHTML='<span class=&quot;logo-fallback&quot;>BatchRender</span>'">
+      </a>
+      <p class="footer-desc" data-key="footerDesc">Companion tool for DaVinci, Premiere, Final Cut and CapCut. Local batch video processing for editors who deliver client work in volume.</p>
+    </div>
+    <div class="footer-col"><h4 data-key="fcProduct">Product</h4><a href="/#built-for" data-key="fcBuiltFor">Built for</a><a href="/#features" data-key="fcFeatures">Features</a><a href="/#pricing" data-key="fcPricing">Pricing</a><a href="/#download" data-key="fcFree">Free download</a></div>
+    <div class="footer-col"><h4 data-key="fcSupport">Support</h4><a href="mailto:support@batchrender.com" data-key="fcContact">Contact</a><a href="/#faq" data-key="fcFaq">FAQ</a><a href="https://github.com/PavTer/BatchRender" data-key="fcGitHub">GitHub</a></div>
+    <div class="footer-col"><h4 data-key="fcLegal">Legal</h4><a href="/privacy.html" data-key="fcPrivacy">Privacy Policy</a><a href="/terms.html" data-key="fcTerms">Terms of Service</a><a href="/refund.html" data-key="fcRefund">Refund Policy</a><a href="/eula.html" data-key="fcEula">EULA</a></div>
+  </div>
+  <div class="footer-bottom">
+    <p data-key="copyright">© 2026 BatchRender · Operated by an independent developer · Nicosia, Cyprus</p>
+  </div>
+</footer>
+
+<script>
+const T = {
+  en: {
+    builtFor:"Built for", math:"The Math", features:"Nodes", pricing:"Pricing", faq:"FAQ",
+    getStarted:"Download Free Trial",
+    eyebrow:"Legal · Privacy",
+    title:"Privacy Policy",
+    version:"Privacy Policy v1.1",
+    updated:"Effective May 2, 2026",
+    who:'<strong>Data Controller:</strong> BatchRender, a software product operated by an independent software developer based in Nicosia, Cyprus. For all privacy matters: <a href="mailto:support@batchrender.com">support@batchrender.com</a>.',
+    intro:'This Privacy Policy explains how BatchRender (the "Software" and the "Website" together, the "Service") collects, uses, shares, and protects your personal data. We aim to collect as little personal data as possible and to be transparent about every category we handle. This Policy is written to comply with the EU General Data Protection Regulation (Regulation (EU) 2016/679, "GDPR") and equivalent laws.',
+    h1:"1. Summary at a Glance",
+    s1:"The Software runs <strong>locally on your device</strong> and processes your media files only on your device. We never receive, store, or have access to the files you process.",
+    s2:"We do not sell or rent your personal data to anyone, ever.",
+    s3:"We use a small number of trusted service providers (listed in Section 5) for payments, license keys, hosting, and email forwarding.",
+    s4:"We do not use advertising trackers or behavioural-profiling cookies.",
+    s5:"You have full GDPR rights including access, correction, deletion, and the right to lodge a complaint with a supervisory authority.",
+    h2:"2. Personal Data We Collect",
+    d_intro:"We collect only the categories of personal data that are necessary for the purposes described in this Policy.",
+    d1h:"2.1 Data you provide directly",
+    d1a:'<strong>Purchase data</strong> — name, email address, billing country, and the last four digits of your payment method or transaction reference. This data is collected by our Merchant of Record (Lemon Squeezy) and shared with us in summary form to issue your licence.',
+    d1b:"<strong>Licence-key data</strong> — an opaque licence-key string and the email address you provided at purchase, used to activate the Software.",
+    d1c:'<strong>Support communications</strong> — the content of any email or message you send to <a href="mailto:support@batchrender.com">support@batchrender.com</a>, including your email address and any information you choose to share.',
+    d2h:"2.2 Data collected automatically by the Software",
+    d2a:"<strong>Licence-activation requests</strong> — when you activate or re-validate your licence, the Software contacts our licence-management provider with your licence key, a non-personal device fingerprint generated locally on your device for the sole purpose of enforcing the per-device limit of your plan, and the public IP address of the request (collected automatically by the network, retained briefly for fraud-prevention).",
+    d2b:"<strong>Update checks</strong> — the Software may query a public release endpoint to inform you of new versions. The endpoint receives only the public IP address and standard HTTP headers, which it retains in standard server logs.",
+    d2c:"<strong>No telemetry, no analytics, no crash reports.</strong> The Software does not contain any analytics SDK, telemetry collector, or automatic crash-reporting tool. We do not track how you use the Software, the names of files you process, or the contents of your projects. If we ever introduce optional telemetry, it will be off by default and require your prior opt-in consent.",
+    d3h:"2.3 Data collected automatically by the Website",
+    d3a:"<strong>Server logs</strong> — our hosting provider receives standard HTTP request information (IP address, user agent, requested URL, timestamp) for security and reliability. These logs are retained for short periods by the provider in accordance with their own policies.",
+    d3b:'<strong>Privacy-friendly visitor measurement</strong> — we may use a cookieless, privacy-friendly analytics service (currently <a href="https://www.cloudflare.com/web-analytics/" target="_blank" rel="noopener">Cloudflare Web Analytics</a>) to count page views and measure aggregate site performance. This service does not set cookies, does not track users across sites, and does not build individual profiles. Because no individual user is identified, no consent banner is required under EU ePrivacy rules.',
+    d3c:'<strong>Local browser storage</strong> — we store your selected interface language (e.g. "en", "ru", "zh") in your browser\'s <code>localStorage</code> so the site loads in your preferred language on return visits. This data never leaves your browser.',
+    h3:"3. Why We Process Your Data and Legal Bases",
+    lb_intro:"Under Article 6 GDPR, every processing activity must rely on a specific legal basis. The table below maps each purpose to its basis.",
+    lb_th1:"Purpose", lb_th2:"Data", lb_th3:"Legal Basis (GDPR Art. 6)",
+    lb_r1a:"Process your purchase and deliver your licence",
+    lb_r1b:"Purchase data, licence-key data",
+    lb_r1c:"Performance of a contract — Art. 6(1)(b)",
+    lb_r2a:"Validate your licence on activation",
+    lb_r2b:"Licence key, device fingerprint, IP",
+    lb_r2c:"Performance of a contract — Art. 6(1)(b)",
+    lb_r3a:"Comply with tax, accounting and consumer-protection law",
+    lb_r3b:"Purchase records",
+    lb_r3c:"Legal obligation — Art. 6(1)(c)",
+    lb_r4a:"Provide support and respond to your enquiries",
+    lb_r4b:"Support communications",
+    lb_r4c:"Performance of a contract / legitimate interest — Art. 6(1)(b)/(f)",
+    lb_r5a:"Operate, secure, and improve the Website",
+    lb_r5b:"Server logs, aggregate analytics",
+    lb_r5c:"Legitimate interest — Art. 6(1)(f)",
+    lb_r6a:"Detect and prevent fraud or abuse",
+    lb_r6b:"Licence-key activity, IP",
+    lb_r6c:"Legitimate interest — Art. 6(1)(f)",
+    lb_outro:"Where we rely on legitimate interest, we have weighed our interest against your fundamental rights and considered that the processing is limited to what is strictly necessary, that no profiling occurs, and that you can object at any time (see Section 8).",
+    h4:"4. Data We Never Collect",
+    n1:"<strong>The contents of your media files.</strong> All rendering happens on your device; your videos, audio and images are never uploaded to our servers.",
+    n2:"<strong>Project metadata.</strong> File names, durations, codecs, render queues, and pipeline configurations stay on your device.",
+    n3:"<strong>Special-category data.</strong> We do not knowingly process health, biometric, racial, religious, political, or sexual-orientation data.",
+    n4:"<strong>Children's data.</strong> The Service is not directed at children under 16 and we do not knowingly collect personal data from children.",
+    h5:"5. Service Providers (Sub-processors)",
+    sp_intro:"We rely on the following service providers to operate the Service. Each provider is bound by a data-processing agreement and processes data only on documented instructions from us. Data may be transferred to providers based outside the European Economic Area (typically the United States) under appropriate safeguards, including the EU Standard Contractual Clauses and, where applicable, the EU-US Data Privacy Framework.",
+    sp_th1:"Provider", sp_th2:"Purpose", sp_th3:"Region",
+    sp_r1b:"Payments and Merchant of Record. Collects purchase data and processes payment.",
+    sp_r1c:'USA (<a href="https://www.lemonsqueezy.com/privacy" target="_blank" rel="noopener">privacy</a>)',
+    sp_r2b:"Licence key generation, validation, and per-device activation enforcement.",
+    sp_r2c:'USA (<a href="https://keygen.sh/privacy/" target="_blank" rel="noopener">privacy</a>)',
+    sp_r3b:"Website hosting and content delivery.",
+    sp_r3c:'USA (<a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener">privacy</a>)',
+    sp_r4b:"DNS, email forwarding for the support@ inbox, and (optionally) cookieless website analytics.",
+    sp_r4c:'USA (<a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">privacy</a>)',
+    sp_r5b:"Public hosting of installer downloads (.dmg, .exe) and release notes. Receives only standard request data when you download.",
+    sp_r5c:'USA (<a href="https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">privacy</a>)',
+    sp_r6b:"Receives the support@ inbox via Cloudflare Email Routing (forwarding destination). Subject to Gmail's privacy terms.",
+    sp_r6c:'USA (<a href="https://policies.google.com/privacy" target="_blank" rel="noopener">privacy</a>)',
+    sp_outro:"We will update this list when we add or change a service provider. If we ever need to introduce a new category of provider that materially changes how we process your data, we will notify you in advance.",
+    h6:"6. Retention Periods",
+    r1:"<strong>Purchase records</strong> — retained for as long as required by Cyprus and EU tax and accounting law (typically up to seven years from the end of the relevant financial year).",
+    r2:"<strong>Licence-key records</strong> — retained for the lifetime of the licence and for a reasonable period thereafter to honour eligible re-activations and refund requests.",
+    r3:"<strong>Support communications</strong> — retained for up to 24 months after the issue is closed, for quality and warranty purposes.",
+    r4:"<strong>Server logs</strong> — retained for short periods set by each hosting provider in their own privacy policies.",
+    r5:"<strong>Aggregate analytics</strong> — retained without identifying you individually; no individual profile is retained.",
+    r_outro:"When the retention period ends, we delete or irreversibly anonymise the data, subject to our legal obligations to keep specific records for longer.",
+    h7:"7. International Data Transfers",
+    it:"Some of our service providers (Section 5) are based in the United States. When we transfer personal data outside the European Economic Area, we rely on the following safeguards under Articles 44–49 GDPR: (a) the EU Standard Contractual Clauses (2021/914/EU); (b) where the recipient has self-certified, the EU-US Data Privacy Framework adequacy decision; and (c) supplementary technical and organisational measures where appropriate. You may request a copy of the relevant transfer mechanism by contacting us.",
+    h8:"8. Your Rights under GDPR",
+    rt_intro:"If you are located in the European Economic Area, the United Kingdom, or another jurisdiction with comparable laws, you have the following rights regarding your personal data:",
+    rt1:"<strong>Access</strong> (Art. 15) — request a copy of the personal data we hold about you.",
+    rt2:"<strong>Rectification</strong> (Art. 16) — ask us to correct inaccurate or incomplete data.",
+    rt3:"<strong>Erasure</strong> (Art. 17) — ask us to delete your personal data, subject to legal-retention obligations.",
+    rt4:"<strong>Restriction of processing</strong> (Art. 18) — ask us to limit how we use your data while a request is reviewed.",
+    rt5:"<strong>Data portability</strong> (Art. 20) — receive your data in a structured, machine-readable format and have it transferred to another controller where technically feasible.",
+    rt6:"<strong>Object</strong> (Art. 21) — object to processing based on legitimate interest, including the right to object at any time and free of charge.",
+    rt7:"<strong>Withdraw consent</strong> (Art. 7) — where processing is based on consent, withdraw it at any time without affecting the lawfulness of prior processing.",
+    rt8:'<strong>Lodge a complaint</strong> (Art. 77) — file a complaint with a supervisory authority. The competent authority for Cyprus is the <a href="https://www.dataprotection.gov.cy/" target="_blank" rel="noopener">Office of the Commissioner for Personal Data Protection</a>; you may also contact the supervisory authority of your country of residence or work.',
+    rt_how:'To exercise any of these rights, write to <a class="email-link" href="mailto:support@batchrender.com">support@batchrender.com</a>. We will respond within one month and we do not charge for normal requests. We may need to verify your identity before disclosing personal data.',
+    h9:"9. California Residents (CCPA / CPRA)",
+    cal:'If you are a California resident, you have the right to know what personal information we collect, to request deletion, and to opt out of the "sale" or "sharing" of personal information. <strong>We do not sell or share personal information</strong> in the meaning of the CCPA or CPRA. To exercise your California rights, write to <a href="mailto:support@batchrender.com">support@batchrender.com</a>.',
+    h10:"10. Security",
+    sec:"We implement appropriate technical and organisational measures to protect your personal data, including encryption in transit (HTTPS/TLS), restricted access to administrative interfaces, the use of established service providers with industry-recognised security certifications (e.g. SOC 2), and the principle of data minimisation. No system is completely secure; if we ever become aware of a personal-data breach that is likely to result in a risk to your rights, we will notify the competent supervisory authority within 72 hours and, where required, also notify you.",
+    h11:"11. Cookies and Local Storage",
+    ck:"The Website does not set advertising or behavioural-tracking cookies. The only client-side storage we use is browser <code>localStorage</code> to remember your selected language; this is strictly necessary for the language switcher to work and is not shared with anyone. The optional cookieless analytics described in Section 2.3 does not set cookies and does not require consent under EU ePrivacy rules.",
+    h12:"12. Automated Decision-Making",
+    auto:"We do not subject you to decisions based solely on automated processing that produce legal effects or similarly significantly affect you. Automatic licence-key validation is technical enforcement of the contract you entered into and does not result in such effects.",
+    h13:"13. Changes to this Policy",
+    ch:"We may update this Privacy Policy from time to time. The version number and effective date are shown at the top. Material changes will be communicated through the Software or Website at least thirty (30) days before they take effect. Continued use of the Service after the effective date constitutes acceptance of the revised Policy.",
+    h14:"14. Contact",
+    ct:'For any privacy-related question, request, or complaint: <a class="email-link" href="mailto:support@batchrender.com">support@batchrender.com</a>. The Service is small and operated by an independent developer; we will respond personally and promptly.',
+    disc:'BatchRender is operated by an independent software developer based in Cyprus and is not currently a registered legal entity. The legal contact for all privacy matters is <a href="mailto:support@batchrender.com">support@batchrender.com</a>; the operator\'s full identifying details are available on written request to that address. This Policy does not constitute legal advice. The English version of this Policy prevails in case of any discrepancy with the Russian or Chinese translations.',
+    footerDesc:"Companion tool for DaVinci, Premiere, Final Cut and CapCut. Local batch video processing for editors who deliver client work in volume.",
+    fcProduct:"Product", fcBuiltFor:"Built for", fcFeatures:"Features", fcPricing:"Pricing", fcFree:"Free download",
+    fcSupport:"Support", fcContact:"Contact", fcFaq:"FAQ", fcGitHub:"GitHub",
+    fcLegal:"Legal", fcPrivacy:"Privacy Policy", fcTerms:"Terms of Service", fcRefund:"Refund Policy", fcEula:"EULA",
+    copyright:"© 2026 BatchRender · Operated by an independent developer · Nicosia, Cyprus"
+  },
+  ru: {
+    builtFor:"Для кого", math:"Математика", features:"Ноды", pricing:"Цены", faq:"FAQ",
+    getStarted:"Скачать бесплатно",
+    eyebrow:"Юридические · Конфиденциальность",
+    title:"Политика конфиденциальности",
+    version:"Политика конфиденциальности v1.1",
+    updated:"Действует с 2 мая 2026",
+    who:'<strong>Контролёр данных:</strong> BatchRender — программный продукт, разрабатываемый независимым разработчиком ПО в Никосии, Кипр. По всем вопросам конфиденциальности: <a href="mailto:support@batchrender.com">support@batchrender.com</a>.',
+    intro:'Настоящая Политика конфиденциальности объясняет, как BatchRender (далее «ПО» и «Сайт» совместно — «Сервис») собирает, использует, передаёт и защищает ваши персональные данные. Мы стремимся собирать как можно меньше персональных данных и быть прозрачными в отношении каждой категории. Политика составлена в соответствии с Общим регламентом ЕС по защите данных (Регламент (ЕС) 2016/679, «GDPR») и аналогичными законами.',
+    h1:"1. Краткое резюме",
+    s1:"ПО работает <strong>локально на вашем устройстве</strong> и обрабатывает медиафайлы только на нём. Мы никогда не получаем, не храним и не имеем доступа к файлам, которые вы обрабатываете.",
+    s2:"Мы никогда не продаём и не сдаём в аренду ваши персональные данные.",
+    s3:"Мы используем небольшое число доверенных поставщиков услуг (перечислены в Разделе 5) для платежей, лицензионных ключей, хостинга и пересылки email.",
+    s4:"Мы не используем рекламные трекеры или поведенческие профилирующие cookies.",
+    s5:"Вы обладаете полным набором прав по GDPR, включая доступ, исправление, удаление и право подать жалобу в надзорный орган.",
+    h2:"2. Какие персональные данные мы собираем",
+    d_intro:"Мы собираем только те категории персональных данных, которые необходимы для целей, описанных в настоящей Политике.",
+    d1h:"2.1 Данные, которые вы предоставляете напрямую",
+    d1a:'<strong>Данные о покупке</strong> — имя, адрес электронной почты, страна выставления счёта и последние четыре цифры платёжного метода или номер транзакции. Эти данные собираются нашим Merchant of Record (Lemon Squeezy) и передаются нам в обобщённом виде для выдачи лицензии.',
+    d1b:"<strong>Данные лицензионного ключа</strong> — непрозрачная строка лицензионного ключа и адрес электронной почты, который вы указали при покупке, используются для активации ПО.",
+    d1c:'<strong>Сообщения в поддержку</strong> — содержание любого письма или сообщения, которое вы отправляете на <a href="mailto:support@batchrender.com">support@batchrender.com</a>, включая ваш email и любую информацию, которой вы решите поделиться.',
+    d2h:"2.2 Данные, собираемые автоматически программным обеспечением",
+    d2a:"<strong>Запросы активации лицензии</strong> — при активации или повторной валидации лицензии ПО обращается к нашему провайдеру управления лицензиями, передавая лицензионный ключ, неперсональный отпечаток устройства, генерируемый локально на вашем устройстве исключительно для обеспечения лимита по количеству устройств вашего тарифа, и публичный IP-адрес запроса (собирается автоматически сетью, кратко удерживается для предотвращения мошенничества).",
+    d2b:"<strong>Проверка обновлений</strong> — ПО может запрашивать публичный endpoint выпуска версий, чтобы информировать вас о новых версиях. Endpoint получает только публичный IP-адрес и стандартные HTTP-заголовки, которые сохраняются в стандартных серверных журналах.",
+    d2c:"<strong>Никакой телеметрии, аналитики или отчётов о сбоях.</strong> ПО не содержит SDK аналитики, сборщика телеметрии или инструмента автоматической отправки отчётов о сбоях. Мы не отслеживаем, как вы используете ПО, имена обрабатываемых файлов или содержание ваших проектов. Если в будущем будет введена опциональная телеметрия, она будет выключена по умолчанию и потребует вашего предварительного согласия (opt-in).",
+    d3h:"2.3 Данные, собираемые автоматически Сайтом",
+    d3a:"<strong>Серверные логи</strong> — наш хостинг-провайдер получает стандартную информацию о HTTP-запросах (IP-адрес, user agent, запрошенный URL, временная метка) для целей безопасности и стабильности. Эти логи хранятся короткое время в соответствии с политиками самого провайдера.",
+    d3b:'<strong>Дружественное к приватности измерение посещаемости</strong> — мы можем использовать аналитический сервис без cookie (в настоящее время <a href="https://www.cloudflare.com/web-analytics/" target="_blank" rel="noopener">Cloudflare Web Analytics</a>) для подсчёта просмотров страниц и измерения общей производительности сайта. Этот сервис не устанавливает cookie, не отслеживает пользователей между сайтами и не строит индивидуальные профили. Поскольку индивидуальные пользователи не идентифицируются, баннер согласия по правилам ePrivacy ЕС не требуется.',
+    d3c:'<strong>Локальное хранилище браузера</strong> — мы сохраняем выбранный язык интерфейса (например, "en", "ru", "zh") в <code>localStorage</code> вашего браузера, чтобы сайт открывался на предпочитаемом языке при повторных визитах. Эти данные никогда не покидают ваш браузер.',
+    h3:"3. Цели обработки и правовые основания",
+    lb_intro:"Согласно статье 6 GDPR, каждая операция обработки должна опираться на конкретное правовое основание. Таблица ниже соотносит каждую цель с её основанием.",
+    lb_th1:"Цель", lb_th2:"Данные", lb_th3:"Правовое основание (ст. 6 GDPR)",
+    lb_r1a:"Обработка покупки и выдача лицензии",
+    lb_r1b:"Данные о покупке, данные лицензионного ключа",
+    lb_r1c:"Исполнение договора — ст. 6(1)(b)",
+    lb_r2a:"Валидация лицензии при активации",
+    lb_r2b:"Лицензионный ключ, отпечаток устройства, IP",
+    lb_r2c:"Исполнение договора — ст. 6(1)(b)",
+    lb_r3a:"Соблюдение налогового, бухгалтерского и потребительского законодательства",
+    lb_r3b:"Записи о покупках",
+    lb_r3c:"Юридическая обязанность — ст. 6(1)(c)",
+    lb_r4a:"Поддержка пользователей и ответы на запросы",
+    lb_r4b:"Сообщения в поддержку",
+    lb_r4c:"Исполнение договора / законный интерес — ст. 6(1)(b)/(f)",
+    lb_r5a:"Эксплуатация, защита и улучшение Сайта",
+    lb_r5b:"Серверные логи, агрегированная аналитика",
+    lb_r5c:"Законный интерес — ст. 6(1)(f)",
+    lb_r6a:"Выявление и предотвращение мошенничества или злоупотреблений",
+    lb_r6b:"Активность лицензионного ключа, IP",
+    lb_r6c:"Законный интерес — ст. 6(1)(f)",
+    lb_outro:"Опираясь на законный интерес, мы взвесили его против ваших основных прав и учли, что обработка ограничена строго необходимым, что профилирование не происходит и что вы можете возразить против обработки в любой момент (см. Раздел 8).",
+    h4:"4. Какие данные мы НЕ собираем",
+    n1:"<strong>Содержимое ваших медиафайлов.</strong> Весь рендеринг происходит на вашем устройстве; ваши видео, аудио и изображения никогда не загружаются на наши серверы.",
+    n2:"<strong>Метаданные проекта.</strong> Имена файлов, длительности, кодеки, очереди рендеринга и конфигурации pipeline остаются на вашем устройстве.",
+    n3:"<strong>Данные особых категорий.</strong> Мы сознательно не обрабатываем данные о здоровье, биометрические, расовые, религиозные, политические данные или данные о сексуальной ориентации.",
+    n4:"<strong>Данные детей.</strong> Сервис не предназначен для детей младше 16 лет, и мы сознательно не собираем персональные данные детей.",
+    h5:"5. Поставщики услуг (Sub-processors)",
+    sp_intro:"Мы полагаемся на следующих поставщиков услуг для эксплуатации Сервиса. Каждый поставщик связан соглашением об обработке данных и обрабатывает данные только на основании задокументированных инструкций от нас. Данные могут передаваться поставщикам, расположенным за пределами Европейской экономической зоны (как правило, в США), при наличии надлежащих гарантий, включая Стандартные договорные положения ЕС и, при применимости, EU-US Data Privacy Framework.",
+    sp_th1:"Поставщик", sp_th2:"Цель", sp_th3:"Регион",
+    sp_r1b:"Платежи и Merchant of Record. Собирает данные о покупке и обрабатывает платёж.",
+    sp_r1c:'США (<a href="https://www.lemonsqueezy.com/privacy" target="_blank" rel="noopener">privacy</a>)',
+    sp_r2b:"Генерация лицензионных ключей, валидация и контроль активаций по устройствам.",
+    sp_r2c:'США (<a href="https://keygen.sh/privacy/" target="_blank" rel="noopener">privacy</a>)',
+    sp_r3b:"Хостинг сайта и доставка контента.",
+    sp_r3c:'США (<a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener">privacy</a>)',
+    sp_r4b:"DNS, пересылка email для адреса support@ и (опционально) аналитика сайта без cookie.",
+    sp_r4c:'США (<a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">privacy</a>)',
+    sp_r5b:"Публичный хостинг скачивания установщиков (.dmg, .exe) и release notes. Получает только стандартные данные запроса при скачивании.",
+    sp_r5c:'США (<a href="https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">privacy</a>)',
+    sp_r6b:"Принимает почту support@ через Cloudflare Email Routing (адрес назначения пересылки). Подпадает под условия конфиденциальности Gmail.",
+    sp_r6c:'США (<a href="https://policies.google.com/privacy" target="_blank" rel="noopener">privacy</a>)',
+    sp_outro:"Мы будем обновлять этот список при добавлении или замене поставщиков услуг. Если когда-либо появится необходимость ввести новую категорию поставщика, существенно меняющую способ обработки ваших данных, мы уведомим вас заранее.",
+    h6:"6. Сроки хранения",
+    r1:"<strong>Записи о покупках</strong> — хранятся в течение срока, требуемого налоговым и бухгалтерским законодательством Кипра и ЕС (как правило, до семи лет с конца соответствующего финансового года).",
+    r2:"<strong>Записи о лицензионных ключах</strong> — хранятся в течение срока действия лицензии и разумного срока после, чтобы обрабатывать допустимые повторные активации и запросы возврата.",
+    r3:"<strong>Сообщения в поддержку</strong> — хранятся до 24 месяцев после закрытия обращения для целей качества и гарантии.",
+    r4:"<strong>Серверные логи</strong> — хранятся короткое время согласно политикам хостинг-провайдеров.",
+    r5:"<strong>Агрегированная аналитика</strong> — хранится без идентификации индивидуального пользователя; индивидуальный профиль не сохраняется.",
+    r_outro:"По окончании срока хранения мы удаляем или необратимо анонимизируем данные, с учётом юридических обязательств хранить определённые записи дольше.",
+    h7:"7. Международная передача данных",
+    it:"Часть наших поставщиков услуг (Раздел 5) расположена в США. При передаче персональных данных за пределы Европейской экономической зоны мы опираемся на следующие гарантии согласно статьям 44–49 GDPR: (a) Стандартные договорные положения ЕС (2021/914/EU); (b) при наличии у получателя самосертификации — решение о адекватности EU-US Data Privacy Framework; (c) дополнительные технические и организационные меры при необходимости. Вы можете запросить копию соответствующего механизма передачи, обратившись к нам.",
+    h8:"8. Ваши права по GDPR",
+    rt_intro:"Если вы находитесь в Европейской экономической зоне, Соединённом Королевстве или другой юрисдикции с сопоставимыми законами, у вас есть следующие права в отношении ваших персональных данных:",
+    rt1:"<strong>Доступ</strong> (ст. 15) — запросить копию персональных данных, которые мы храним о вас.",
+    rt2:"<strong>Исправление</strong> (ст. 16) — попросить нас исправить неточные или неполные данные.",
+    rt3:"<strong>Удаление</strong> (ст. 17) — попросить нас удалить ваши персональные данные с учётом обязательных сроков хранения.",
+    rt4:"<strong>Ограничение обработки</strong> (ст. 18) — попросить нас ограничить использование данных на время рассмотрения запроса.",
+    rt5:"<strong>Переносимость данных</strong> (ст. 20) — получить ваши данные в структурированном машиночитаемом формате и передать их другому контролёру, если это технически возможно.",
+    rt6:"<strong>Возражение</strong> (ст. 21) — возразить против обработки на основании законного интереса в любой момент бесплатно.",
+    rt7:"<strong>Отзыв согласия</strong> (ст. 7) — если обработка основана на согласии, отозвать его в любой момент без влияния на правомерность ранее проведённой обработки.",
+    rt8:'<strong>Подать жалобу</strong> (ст. 77) — подать жалобу в надзорный орган. Компетентный орган для Кипра — <a href="https://www.dataprotection.gov.cy/" target="_blank" rel="noopener">Уполномоченный по защите персональных данных</a>; вы также можете обратиться в надзорный орган своей страны проживания или работы.',
+    rt_how:'Чтобы воспользоваться любым из этих прав, напишите на <a class="email-link" href="mailto:support@batchrender.com">support@batchrender.com</a>. Мы ответим в течение одного месяца, обычные запросы обрабатываются бесплатно. Возможно, нам потребуется удостоверить вашу личность перед раскрытием персональных данных.',
+    h9:"9. Жители Калифорнии (CCPA / CPRA)",
+    cal:'Если вы житель Калифорнии, у вас есть право знать, какую персональную информацию мы собираем, требовать удаления и отказаться от «продажи» или «передачи» персональной информации. <strong>Мы не продаём и не передаём персональную информацию</strong> в значении CCPA или CPRA. Чтобы воспользоваться правами в соответствии с законами Калифорнии, напишите на <a href="mailto:support@batchrender.com">support@batchrender.com</a>.',
+    h10:"10. Безопасность",
+    sec:"Мы применяем надлежащие технические и организационные меры для защиты ваших персональных данных, включая шифрование при передаче (HTTPS/TLS), ограниченный доступ к административным интерфейсам, использование признанных поставщиков услуг с отраслевыми сертификациями безопасности (например, SOC 2) и принцип минимизации данных. Ни одна система не является полностью защищённой; если нам станет известно об утечке персональных данных, способной создать риск для ваших прав, мы уведомим компетентный надзорный орган в течение 72 часов и, при необходимости, также уведомим вас.",
+    h11:"11. Cookies и локальное хранилище",
+    ck:"Сайт не устанавливает рекламные или поведенческие cookies. Единственное клиентское хранилище, которое мы используем — браузерный <code>localStorage</code> для запоминания выбранного языка; это строго необходимо для работы переключателя языка и не передаётся никому. Опциональная аналитика без cookie, описанная в Разделе 2.3, не устанавливает cookie и не требует согласия по правилам ePrivacy ЕС.",
+    h12:"12. Автоматизированное принятие решений",
+    auto:"Мы не подвергаем вас решениям, основанным исключительно на автоматизированной обработке, имеющим юридические последствия или существенно затрагивающим вас аналогичным образом. Автоматическая валидация лицензионного ключа является техническим обеспечением заключённого вами договора и не приводит к таким последствиям.",
+    h13:"13. Изменения настоящей Политики",
+    ch:"Мы можем время от времени обновлять настоящую Политику конфиденциальности. Номер версии и дата вступления в силу указаны в начале документа. Существенные изменения будут сообщены через ПО или Сайт не менее чем за тридцать (30) дней до их вступления в силу. Продолжение использования Сервиса после вступления в силу означает принятие пересмотренной Политики.",
+    h14:"14. Контакт",
+    ct:'По любым вопросам, запросам или жалобам, связанным с конфиденциальностью: <a class="email-link" href="mailto:support@batchrender.com">support@batchrender.com</a>. Сервис небольшой и обслуживается независимым разработчиком; мы ответим лично и оперативно.',
+    disc:'BatchRender разрабатывается независимым разработчиком ПО, базирующимся на Кипре, и в настоящее время не является зарегистрированным юридическим лицом. Контакт по всем вопросам конфиденциальности: <a href="mailto:support@batchrender.com">support@batchrender.com</a>; полные идентификационные данные оператора предоставляются по письменному запросу на указанный адрес. Настоящая Политика не является юридической консультацией. Английская версия Политики имеет преимущественную силу в случае расхождений с переводом на русский или китайский.',
+    footerDesc:"Дополнительный инструмент для DaVinci, Premiere, Final Cut и CapCut. Локальная пакетная обработка видео для редакторов, работающих с большими объёмами клиентских проектов.",
+    fcProduct:"Продукт", fcBuiltFor:"Для кого", fcFeatures:"Возможности", fcPricing:"Цены", fcFree:"Бесплатная версия",
+    fcSupport:"Поддержка", fcContact:"Связаться", fcFaq:"FAQ", fcGitHub:"GitHub",
+    fcLegal:"Юридическое", fcPrivacy:"Политика конфиденциальности", fcTerms:"Условия использования", fcRefund:"Политика возврата", fcEula:"EULA",
+    copyright:"© 2026 BatchRender · Разработка независимого разработчика · Никосия, Кипр"
+  },
+  zh: {
+    builtFor:"适用对象", math:"运算逻辑", features:"节点", pricing:"价格", faq:"常见问题",
+    getStarted:"免费试用版下载",
+    eyebrow:"法律 · 隐私",
+    title:"隐私政策",
+    version:"隐私政策 v1.1",
+    updated:"自2026年5月2日起生效",
+    who:'<strong>数据控制者：</strong>BatchRender是由位于塞浦路斯尼科西亚的独立软件开发者运营的软件产品。所有隐私事宜请联系：<a href="mailto:support@batchrender.com">support@batchrender.com</a>。',
+    intro:'本隐私政策说明BatchRender（"软件"和"网站"合称"服务"）如何收集、使用、共享和保护您的个人数据。我们力求收集尽可能少的个人数据，并对所处理的每一类数据保持透明。本政策遵循欧盟《通用数据保护条例》（《条例》(EU) 2016/679，"GDPR"）和同等法律编写。',
+    h1:"1. 概要",
+    s1:"软件在<strong>您的设备上本地运行</strong>，仅在您的设备上处理您的媒体文件。我们绝不接收、存储或访问您处理的文件。",
+    s2:"我们绝不向任何人出售或出租您的个人数据。",
+    s3:"我们使用少量受信任的服务提供商（详见第5节）来处理付款、许可证密钥、托管和邮件转发。",
+    s4:"我们不使用广告跟踪或行为画像Cookie。",
+    s5:"您拥有完整的GDPR权利，包括访问、更正、删除以及向监管机构投诉的权利。",
+    h2:"2. 我们收集的个人数据",
+    d_intro:"我们仅收集本政策所述目的所必需的个人数据类别。",
+    d1h:"2.1 您直接提供的数据",
+    d1a:'<strong>购买数据</strong>——姓名、电子邮件地址、账单国家以及付款方式后四位或交易参考号。这些数据由我方注册商户（Lemon Squeezy）收集，并以摘要形式与我们共享以颁发您的许可证。',
+    d1b:"<strong>许可证密钥数据</strong>——一串不透明的许可证密钥字符串和您在购买时提供的电子邮件地址，用于激活软件。",
+    d1c:'<strong>支持通信</strong>——您发送至 <a href="mailto:support@batchrender.com">support@batchrender.com</a> 的任何电子邮件或消息内容，包括您的电子邮件地址和您选择分享的任何信息。',
+    d2h:"2.2 软件自动收集的数据",
+    d2a:"<strong>许可证激活请求</strong>——当您激活或重新验证许可证时，软件会与我方许可证管理提供商联系，传送您的许可证密钥、在您设备上本地生成的非个人设备指纹（仅用于强制执行您计划的每设备限制）以及请求的公共IP地址（由网络自动收集，用于防欺诈而短暂保留）。",
+    d2b:"<strong>更新检查</strong>——软件可能查询公共发布端点以告知您新版本。该端点仅接收公共IP地址和标准HTTP请求头，并将其保留在标准服务器日志中。",
+    d2c:"<strong>无遥测、无分析、无崩溃报告。</strong>软件不包含任何分析SDK、遥测收集器或自动崩溃报告工具。我们不跟踪您如何使用软件、您处理文件的名称或您项目的内容。如果未来引入可选遥测，将默认关闭并需要您事先选择启用同意。",
+    d3h:"2.3 网站自动收集的数据",
+    d3a:"<strong>服务器日志</strong>——我们的托管提供商出于安全和可靠性目的接收标准HTTP请求信息（IP地址、用户代理、请求URL、时间戳）。这些日志由提供商根据其自身政策保留较短时间。",
+    d3b:'<strong>友好隐私的访客统计</strong>——我们可能使用无Cookie的隐私友好分析服务（目前为<a href="https://www.cloudflare.com/web-analytics/" target="_blank" rel="noopener">Cloudflare Web Analytics</a>）来统计页面浏览量和测量网站综合性能。该服务不设置Cookie、不跨站点跟踪用户、不构建个人画像。由于不识别个人用户，根据欧盟ePrivacy规则不需要同意横幅。',
+    d3c:'<strong>本地浏览器存储</strong>——我们将您选择的界面语言（如"en"、"ru"、"zh"）存储在浏览器的<code>localStorage</code>中，以便在您再次访问时使用您偏好的语言加载网站。这些数据从不离开您的浏览器。',
+    h3:"3. 我们处理您数据的目的及法律依据",
+    lb_intro:"根据GDPR第6条，每项处理活动必须依据特定的法律依据。下表将每个目的与其依据相对应。",
+    lb_th1:"目的", lb_th2:"数据", lb_th3:"法律依据（GDPR第6条）",
+    lb_r1a:"处理您的购买并交付您的许可证",
+    lb_r1b:"购买数据、许可证密钥数据",
+    lb_r1c:"履行合同——第6(1)(b)条",
+    lb_r2a:"激活时验证您的许可证",
+    lb_r2b:"许可证密钥、设备指纹、IP",
+    lb_r2c:"履行合同——第6(1)(b)条",
+    lb_r3a:"遵守税务、会计和消费者保护法律",
+    lb_r3b:"购买记录",
+    lb_r3c:"法律义务——第6(1)(c)条",
+    lb_r4a:"提供支持并回复您的咨询",
+    lb_r4b:"支持通信",
+    lb_r4c:"履行合同/正当利益——第6(1)(b)/(f)条",
+    lb_r5a:"运营、保护和改进网站",
+    lb_r5b:"服务器日志、汇总分析",
+    lb_r5c:"正当利益——第6(1)(f)条",
+    lb_r6a:"发现和预防欺诈或滥用",
+    lb_r6b:"许可证密钥活动、IP",
+    lb_r6c:"正当利益——第6(1)(f)条",
+    lb_outro:"在依赖正当利益时，我们已将我方利益与您的基本权利进行权衡，确认处理仅限于严格必要范围、不进行画像分析，且您可随时反对（参见第8节）。",
+    h4:"4. 我们绝不收集的数据",
+    n1:"<strong>您媒体文件的内容。</strong>所有渲染都在您的设备上进行；您的视频、音频和图像绝不会上传到我们的服务器。",
+    n2:"<strong>项目元数据。</strong>文件名、时长、编解码器、渲染队列和pipeline配置都保留在您的设备上。",
+    n3:"<strong>特殊类别数据。</strong>我们不会有意处理健康、生物特征、种族、宗教、政治或性取向数据。",
+    n4:"<strong>儿童数据。</strong>本服务不面向16岁以下儿童，我们不会有意收集儿童的个人数据。",
+    h5:"5. 服务提供商（次级处理者）",
+    sp_intro:"我们依靠以下服务提供商运营本服务。每个提供商均受数据处理协议约束，仅根据我们的书面指示处理数据。数据可能传输给位于欧洲经济区之外（通常为美国）的提供商，依据适当的保护措施，包括欧盟标准合同条款，及在适用情况下的欧盟-美国数据隐私框架。",
+    sp_th1:"提供商", sp_th2:"目的", sp_th3:"地区",
+    sp_r1b:"付款和注册商户。收集购买数据并处理付款。",
+    sp_r1c:'美国（<a href="https://www.lemonsqueezy.com/privacy" target="_blank" rel="noopener">隐私</a>）',
+    sp_r2b:"许可证密钥生成、验证和按设备激活强制执行。",
+    sp_r2c:'美国（<a href="https://keygen.sh/privacy/" target="_blank" rel="noopener">隐私</a>）',
+    sp_r3b:"网站托管和内容分发。",
+    sp_r3c:'美国（<a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener">隐私</a>）',
+    sp_r4b:"DNS、support@邮箱的邮件转发，以及（可选）无Cookie的网站分析。",
+    sp_r4c:'美国（<a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">隐私</a>）',
+    sp_r5b:"安装程序下载（.dmg、.exe）和发布说明的公共托管。下载时仅接收标准请求数据。",
+    sp_r5c:'美国（<a href="https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">隐私</a>）',
+    sp_r6b:"通过Cloudflare Email Routing接收support@邮箱（转发目的地）。受Gmail隐私条款约束。",
+    sp_r6c:'美国（<a href="https://policies.google.com/privacy" target="_blank" rel="noopener">隐私</a>）',
+    sp_outro:"我们将在添加或更换服务提供商时更新此列表。如果未来需要引入实质性改变数据处理方式的新类别提供商，我们将提前通知您。",
+    h6:"6. 保留期限",
+    r1:"<strong>购买记录</strong>——保留塞浦路斯和欧盟税务及会计法律所要求的期限（通常自相关财政年度结束起最多七年）。",
+    r2:"<strong>许可证密钥记录</strong>——在许可证期限内保留，并在合理期限后保留以处理符合条件的重新激活和退款请求。",
+    r3:"<strong>支持通信</strong>——为质量和保修目的，问题解决后保留长达24个月。",
+    r4:"<strong>服务器日志</strong>——根据各托管提供商自身的隐私政策保留较短时间。",
+    r5:"<strong>汇总分析</strong>——保留时不识别个人；不保留个人画像。",
+    r_outro:"保留期满后，我们将删除或不可逆地匿名化数据，但须遵守保留特定记录更长时间的法律义务。",
+    h7:"7. 国际数据传输",
+    it:"我们部分服务提供商（第5节）位于美国。当我们将个人数据传输至欧洲经济区以外时，我们依据GDPR第44–49条采取以下保障措施：(a)欧盟标准合同条款（2021/914/EU）；(b)在接收方已自我认证的情况下采用欧盟-美国数据隐私框架充分性决议；(c)在适当情况下采取补充技术和组织措施。您可联系我们索取相关传输机制的副本。",
+    h8:"8. 您在GDPR下的权利",
+    rt_intro:"如果您位于欧洲经济区、英国或具有可比法律的其他司法管辖区，您对个人数据享有以下权利：",
+    rt1:"<strong>访问</strong>（第15条）——请求获得我们持有的关于您的个人数据副本。",
+    rt2:"<strong>更正</strong>（第16条）——要求我们更正不准确或不完整的数据。",
+    rt3:"<strong>删除</strong>（第17条）——要求我们删除您的个人数据，但须遵守法律保留义务。",
+    rt4:"<strong>限制处理</strong>（第18条）——要求我们在审查请求期间限制使用您的数据。",
+    rt5:"<strong>数据可携带性</strong>（第20条）——以结构化、机器可读格式接收您的数据，并在技术可行的情况下转移至另一控制者。",
+    rt6:"<strong>反对</strong>（第21条）——可随时免费反对基于正当利益的处理。",
+    rt7:"<strong>撤回同意</strong>（第7条）——若处理基于同意，可随时撤回，不影响此前处理的合法性。",
+    rt8:'<strong>提出投诉</strong>（第77条）——向监管机构提出投诉。塞浦路斯主管机关为<a href="https://www.dataprotection.gov.cy/" target="_blank" rel="noopener">个人数据保护专员办公室</a>；您也可联系您居住或工作所在国家的监管机构。',
+    rt_how:'如需行使任何权利，请发送邮件至<a class="email-link" href="mailto:support@batchrender.com">support@batchrender.com</a>。我们将在一个月内回复，常规请求免费。在披露个人数据前，我们可能需要核实您的身份。',
+    h9:"9. 加州居民（CCPA / CPRA）",
+    cal:'如果您是加州居民，您有权知晓我们收集了哪些个人信息、要求删除以及选择退出个人信息的"出售"或"共享"。<strong>我们不出售或共享CCPA或CPRA定义下的个人信息</strong>。如需行使加州权利，请发送邮件至<a href="mailto:support@batchrender.com">support@batchrender.com</a>。',
+    h10:"10. 安全",
+    sec:"我们采取适当的技术和组织措施保护您的个人数据，包括传输加密（HTTPS/TLS）、限制管理界面访问、使用具有行业认可安全认证（如SOC 2）的成熟服务提供商以及数据最小化原则。任何系统都无法做到完全安全；如果我们意识到可能对您权利造成风险的个人数据泄露，我们将在72小时内通知主管监管机构，并在需要时通知您。",
+    h11:"11. Cookie与本地存储",
+    ck:"网站不设置广告或行为跟踪Cookie。我们使用的唯一客户端存储是浏览器<code>localStorage</code>，用于记住您选择的语言；这是语言切换器工作所严格必需的，不与任何人共享。第2.3节中描述的可选无Cookie分析不设置Cookie，根据欧盟ePrivacy规则不需要同意。",
+    h12:"12. 自动化决策",
+    auto:"我们不会对您实施仅基于自动化处理且产生法律效果或对您具有类似重大影响的决策。许可证密钥的自动验证是您所签订合同的技术实施，不会产生此类影响。",
+    h13:"13. 本政策的变更",
+    ch:"我们可能会不时更新本隐私政策。版本号和生效日期显示在顶部。重大变更将通过软件或网站在生效前至少三十（30）天通知。生效日期之后继续使用本服务即视为接受修订后的政策。",
+    h14:"14. 联系",
+    ct:'隐私相关的任何问题、请求或投诉请联系：<a class="email-link" href="mailto:support@batchrender.com">support@batchrender.com</a>。本服务规模较小，由独立开发者运营；我们将亲自及时回复。',
+    disc:'BatchRender由位于塞浦路斯的独立软件开发者运营，目前不是注册法律实体。所有隐私事宜的法律联系方式为<a href="mailto:support@batchrender.com">support@batchrender.com</a>；运营者完整身份信息可通过书面请求向上述地址索取。本政策不构成法律建议。如英文版与俄文或中文译文有任何差异，以英文版为准。',
+    footerDesc:"为DaVinci、Premiere、Final Cut和CapCut提供配套工具。本地批量视频处理，专为大量交付客户作品的剪辑师设计。",
+    fcProduct:"产品", fcBuiltFor:"适用对象", fcFeatures:"功能", fcPricing:"价格", fcFree:"免费下载",
+    fcSupport:"支持", fcContact:"联系", fcFaq:"常见问题", fcGitHub:"GitHub",
+    fcLegal:"法律", fcPrivacy:"隐私政策", fcTerms:"服务条款", fcRefund:"退款政策", fcEula:"EULA",
+    copyright:"© 2026 BatchRender · 独立开发者运营 · 塞浦路斯尼科西亚"
+  }
+};
+
+function setLang(lang) {
+  if (!T[lang]) return;
+  const dict = T[lang];
+  document.querySelectorAll('[data-k]').forEach(el => { const k = el.dataset.k; if (dict[k] !== undefined) el.innerHTML = dict[k]; });
+  document.querySelectorAll('[data-key]').forEach(el => { const k = el.dataset.key; if (dict[k] !== undefined) el.innerHTML = dict[k]; });
+  document.querySelectorAll('[data-nav-key]').forEach(el => { const k = el.dataset.navKey; if (dict[k] !== undefined) el.textContent = dict[k]; });
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  const idx = {en:0,ru:1,zh:2}[lang];
+  const btns = document.querySelectorAll('.lang-btn');
+  if (btns[idx]) btns[idx].classList.add('active');
+  document.documentElement.lang = lang;
+  try { localStorage.setItem('lang', lang); } catch(e){}
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  let saved = 'en';
+  try { saved = localStorage.getItem('lang') || 'en'; } catch(e){}
+  if (saved !== 'en') setLang(saved);
+});
+</script>
+<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "4e7c521caacb46a59028f5d8524cf659"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>

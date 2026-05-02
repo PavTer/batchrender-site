@@ -1,43 +1,322 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Refund Policy — BatchRender</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-<style>:root{--bg:#0a0a0b;--bg2:#111114;--border:rgba(255,255,255,0.07);--accent:#e8ff47;--text:#f0efea;--text2:#8a8a8f;--text3:#555560;--mono:'DM Mono',monospace;--sans:'Inter',sans-serif;--display:'Syne',sans-serif;}*{box-sizing:border-box;margin:0;padding:0;}body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.7;}.topbar{background:rgba(10,10,11,0.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:16px 32px;position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;}.logo{font-family:var(--display);font-weight:800;font-size:18px;text-decoration:none;color:var(--text);display:flex;align-items:center;gap:10px;}.logo-icon{width:28px;height:28px;background:var(--accent);border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:11px;color:#000;font-weight:700;}.back{font-size:13px;color:var(--text2);text-decoration:none;}.back:hover{color:var(--text);}.wrap{max-width:760px;margin:0 auto;padding:64px 32px;}h1{font-family:var(--display);font-size:42px;font-weight:800;margin-bottom:8px;letter-spacing:-0.02em;}.meta{font-family:var(--mono);font-size:12px;color:var(--text3);margin-bottom:48px;}h2{font-family:var(--display);font-size:22px;font-weight:700;margin:40px 0 12px;}p{color:var(--text2);margin-bottom:16px;font-size:15px;}ul{color:var(--text2);padding-left:24px;margin-bottom:16px;}li{margin-bottom:8px;font-size:15px;}a{color:var(--accent);}.highlight{background:rgba(232,255,71,0.06);border:1px solid rgba(232,255,71,0.15);border-radius:10px;padding:20px 24px;margin:20px 0;}.lb{background:none;border:none;cursor:pointer;font-family:var(--mono);font-size:11px;color:var(--text3);padding:4px 8px;border-radius:4px;}.lb.active,.lb:hover{color:var(--accent);background:rgba(232,255,71,0.08);}</style>
+<meta name="description" content="14-day money-back guarantee. How to request a refund for BatchRender.">
+<link rel="icon" type="image/png" href="/img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-page:#1a2030; --bg-card:#252f46; --bg-deep:#131927;
+  --bd:rgba(255,255,255,0.10); --bd-mid:rgba(255,255,255,0.18); --bd-soft:rgba(255,255,255,0.06);
+  --fg:#e3e5e8; --fg-strong:#ffffff; --fg-mut:#7a8394; --fg-dim:#4a5268;
+  --accent:#7b4fd4; --info:#3b9eff; --ok:#22d39a;
+  --grad-brand:linear-gradient(135deg,#3b9eff 0%,#7b4fd4 100%);
+  --grad-text:linear-gradient(90deg,#3b9eff 0%,#b07bff 60%,#ec5da1 100%);
+  --mono:'JetBrains Mono',ui-monospace,'SF Mono',Menlo,monospace;
+  --sans:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+  --display:'Bricolage Grotesque','Inter',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;}html{scroll-behavior:smooth;}
+body{background:var(--bg-page);color:var(--fg);font-family:var(--sans);font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
+.nav-bar{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(20,26,40,0.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--bd-soft);height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 32px;}
+.logo{display:flex;align-items:center;text-decoration:none;}
+.logo-img{height:28px;width:auto;display:block;}
+.logo-fallback{font-family:var(--display);font-weight:800;font-size:18px;color:var(--fg-strong);letter-spacing:-0.02em;}
+.nav-links{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:flex;align-items:center;gap:28px;}
+.nav-links a{color:var(--fg-mut);text-decoration:none;font-size:13px;font-weight:500;transition:color 0.15s;}
+.nav-links a:hover{color:var(--fg-strong);}
+.nav-right{display:flex;align-items:center;gap:14px;}
+.lang-switch{display:flex;gap:2px;background:rgba(255,255,255,0.04);padding:3px;border-radius:8px;}
+.lang-btn{background:none;border:none;cursor:pointer;font-family:var(--mono);font-size:11px;font-weight:500;color:var(--fg-mut);padding:5px 10px;border-radius:6px;transition:all 0.15s;letter-spacing:0.04em;}
+.lang-btn.active{color:var(--info);background:rgba(59,158,255,0.12);}
+.lang-btn:hover:not(.active){color:var(--fg);}
+.btn-nav{background:var(--grad-brand);color:#fff;border:none;padding:9px 18px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:var(--sans);text-decoration:none;transition:transform 0.15s,box-shadow 0.15s;box-shadow:0 4px 14px rgba(59,158,255,0.25);}
+.btn-nav:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(59,158,255,0.4);}
+@media(max-width:760px){.nav-links{display:none;}.nav-bar{padding:0 18px;}.btn-nav{padding:8px 12px;font-size:12px;}}
+.page-wrap{max-width:820px;margin:0 auto;padding:120px 32px 80px;}
+.page-eyebrow{display:inline-block;font-family:var(--mono);font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--info);background:rgba(59,158,255,0.10);border:1px solid rgba(59,158,255,0.22);padding:6px 14px;border-radius:6px;margin-bottom:24px;}
+h1{font-family:var(--display);font-size:clamp(36px,5vw,56px);font-weight:800;line-height:1.05;letter-spacing:-0.03em;color:var(--fg-strong);margin-bottom:14px;}
+.meta{font-family:var(--mono);font-size:12px;color:var(--fg-dim);letter-spacing:0.04em;margin-bottom:40px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.meta-dot{width:6px;height:6px;background:var(--info);border-radius:50%;box-shadow:0 0 10px rgba(59,158,255,0.6);}
+.meta-sep{color:var(--fg-dim);}
+h2{font-family:var(--display);font-size:24px;font-weight:700;margin:48px 0 14px;color:var(--fg-strong);letter-spacing:-0.01em;}
+p{color:var(--fg);margin-bottom:16px;font-size:15.5px;line-height:1.75;}
+p strong{color:var(--fg-strong);font-weight:600;}
+ul{color:var(--fg);padding-left:24px;margin-bottom:16px;}
+li{margin-bottom:8px;font-size:15.5px;line-height:1.7;}
+li::marker{color:var(--info);}
+a{color:var(--info);text-decoration:none;transition:color 0.15s;}
+a:hover{color:#5fb1ff;text-decoration:underline;}
+.email-link{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:14px;background:rgba(59,158,255,0.08);border:1px solid rgba(59,158,255,0.20);padding:4px 10px;border-radius:6px;color:var(--info);text-decoration:none;}
+.email-link:hover{background:rgba(59,158,255,0.14);text-decoration:none;}
+.guarantee-box{background:linear-gradient(135deg,rgba(34,211,154,0.08),rgba(59,158,255,0.06));border:1px solid rgba(34,211,154,0.25);border-radius:14px;padding:28px 32px;margin:32px 0 48px;display:flex;align-items:center;gap:20px;}
+.guarantee-icon{flex-shrink:0;width:56px;height:56px;border-radius:14px;background:rgba(34,211,154,0.15);display:flex;align-items:center;justify-content:center;border:1px solid rgba(34,211,154,0.35);}
+.guarantee-icon svg{width:28px;height:28px;stroke:var(--ok);}
+.guarantee-text{color:var(--fg-strong);font-size:16px;line-height:1.5;}
+.guarantee-text strong{color:var(--ok);font-weight:700;font-family:var(--display);font-size:18px;display:block;margin-bottom:4px;}
+li.eligible::marker{color:var(--ok);}
+li.not-eligible::marker{color:#f87171;}
+.note-box{background:rgba(123,79,212,0.06);border:1px solid rgba(123,79,212,0.20);border-radius:10px;padding:18px 22px;margin:20px 0;}
+.note-box p{margin-bottom:0;font-size:14.5px;color:var(--fg);}
+.note-box p strong{color:#b07bff;}
+footer{border-top:1px solid var(--bd-soft);padding:56px 32px 36px;max-width:1280px;margin:0 auto;}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:40px;}
+.footer-desc{font-size:14px;color:var(--fg-mut);line-height:1.65;margin-top:14px;max-width:320px;}
+.footer-col h4{font-family:var(--mono);font-size:10px;letter-spacing:0.18em;color:var(--fg-mut);margin-bottom:16px;text-transform:uppercase;font-weight:600;}
+.footer-col a{display:block;font-size:14px;color:var(--fg);text-decoration:none;margin-bottom:10px;transition:color 0.15s;}
+.footer-col a:hover{color:var(--info);}
+.footer-bottom{border-top:1px solid var(--bd-soft);padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+.footer-bottom p{font-size:12px;color:var(--fg-dim);font-family:var(--mono);}
+@media(max-width:760px){.footer-grid{grid-template-columns:1fr 1fr;gap:32px;}.page-wrap{padding:100px 22px 60px;}.guarantee-box{flex-direction:column;text-align:center;padding:22px;}}
+</style>
 </head>
 <body>
-<div class="topbar">
-  <a href="index.html" class="logo"><div class="logo-icon">BR</div>BatchRender</a>
-  <div style="display:flex;align-items:center;gap:16px">
-    <div style="display:flex;gap:4px"><button class="lb active" onclick="setL('en')">EN</button><button class="lb" onclick="setL('ru')">RU</button><button class="lb" onclick="setL('zh')">中文</button></div>
-    <a href="index.html" class="back">← Back</a>
+
+<nav class="nav-bar">
+  <a href="/" class="logo">
+    <img src="/img/logo-long.png" alt="BatchRender" class="logo-img" onerror="this.outerHTML='<span class=&quot;logo-fallback&quot;>BatchRender</span>'">
+  </a>
+  <div class="nav-links">
+    <a href="/#built-for" data-nav-key="builtFor">Built for</a>
+    <a href="/#math" data-nav-key="math">The Math</a>
+    <a href="/#features" data-nav-key="features">Nodes</a>
+    <a href="/#pricing" data-nav-key="pricing">Pricing</a>
+    <a href="/#faq" data-nav-key="faq">FAQ</a>
   </div>
-</div>
-<div class="wrap">
+  <div class="nav-right">
+    <div class="lang-switch">
+      <button class="lang-btn active" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" onclick="setLang('ru')">RU</button>
+      <button class="lang-btn" onclick="setLang('zh')">中文</button>
+    </div>
+    <a href="/#pricing" class="btn-nav" data-nav-key="getStarted">Download Free Trial</a>
+  </div>
+</nav>
+
+<main class="page-wrap">
+  <div class="page-eyebrow" data-k="eyebrow">Legal · Refund</div>
   <h1 data-k="title">Refund Policy</h1>
-  <p class="meta" data-k="updated">Last updated: November 10, 2024</p>
-  <div class="highlight">
-    <p data-k="main" style="color:#f0efea;margin:0"><strong>14-day money-back guarantee.</strong> If BatchRender doesn't work for you, contact us within 14 days for a full refund — no questions asked.</p>
+  <div class="meta">
+    <span class="meta-dot"></span>
+    <span data-k="updated">Last updated: May 2, 2026</span>
+    <span class="meta-sep">·</span>
+    <span data-k="version">Version 1.1</span>
   </div>
-  <h2 data-k="h1">How to Request a Refund</h2>
-  <p data-k="how">Send an email to <a href="/cdn-cgi/l/email-protection#1a696f6a6a75686e5a787b6e7972687f747e7f6834797577"><span class="__cf_email__" data-cfemail="1e6d6b6e6e716c6a5e7c7f6a7d766c7b707a7b6c307d7173">[email&#160;protected]</span></a> with: your order ID or email used for purchase, and a brief reason (optional). We process refunds within 3–5 business days.</p>
-  <h2 data-k="h2">Eligible Situations</h2>
+
+  <div class="guarantee-box">
+    <div class="guarantee-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M9 12l2 2 4-4"></path>
+        <circle cx="12" cy="12" r="10"></circle>
+      </svg>
+    </div>
+    <div class="guarantee-text" data-k="main"><strong>14-day money-back guarantee</strong>If BatchRender doesn't work for you, we'll refund you in full within 14 days of purchase — no extensive justification required.</div>
+  </div>
+
+  <div class="note-box">
+    <p data-k="who"><strong>Who handles refunds:</strong> BatchRender is sold via Lemon Squeezy, which acts as the merchant of record. Refunds are processed by Lemon Squeezy on our behalf, returned to your original payment method. Once approved, refunds typically appear in 3–10 business days depending on your bank or card issuer.</p>
+  </div>
+
+  <h2 data-k="h1">1. How to Request a Refund</h2>
+  <p data-k="how">Send an email to <a class="email-link" href="mailto:support@batchrender.com">support@batchrender.com</a> within 14 days of your purchase, including:</p>
   <ul>
-    <li data-k="e1">Software does not function as described on our website</li>
-    <li data-k="e2">Technical issues that we are unable to resolve within 7 days</li>
-    <li data-k="e3">Accidental duplicate purchase</li>
-    <li data-k="e4">Request within 14 days of purchase, license not extensively used</li>
+    <li data-k="step1">your order ID (from the Lemon Squeezy receipt email), or the email address used for purchase;</li>
+    <li data-k="step2">a brief reason (optional, but it helps us improve the product).</li>
   </ul>
-  <h2 data-k="h3">Non-Eligible Situations</h2>
+  <p data-k="how-time">We aim to respond within 2 business days. Approved refunds are processed via Lemon Squeezy within 3–5 business days; the funds may take an additional 3–10 business days to appear in your account depending on your bank.</p>
+
+  <h2 data-k="h2">2. Eligible Situations</h2>
+  <p data-k="el-intro">A refund will be granted in any of the following situations, provided the request is made within 14 days of purchase:</p>
   <ul>
-    <li data-k="n1">More than 14 days have passed since purchase</li>
-    <li data-k="n2">License key has been shared or misused</li>
-    <li data-k="n3">Change of mind after extensive use</li>
+    <li class="eligible" data-k="e1">the software does not function as described on our website;</li>
+    <li class="eligible" data-k="e2">a technical issue prevents you from using the software, and we are unable to resolve it within 7 days of being notified;</li>
+    <li class="eligible" data-k="e3">you accidentally purchased the wrong plan or made a duplicate purchase;</li>
+    <li class="eligible" data-k="e4">you simply changed your mind, and the license has not been used to render a substantial volume of output.</li>
   </ul>
-  <h2 data-k="h4">Contact</h2>
-  <p data-k="ct">Refund requests: <a href="/cdn-cgi/l/email-protection#40333530302f323400222134232832252e2425326e232f2d"><span class="__cf_email__" data-cfemail="86f5f3f6f6e9f4f2c6e4e7f2e5eef4e3e8e2e3f4a8e5e9eb">[email&#160;protected]</span></a></p>
-</div>
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-const T={en:{title:"Refund Policy",updated:"Last updated: November 10, 2024",main:"<strong>14-day money-back guarantee.</strong> If BatchRender doesn't work for you, contact us within 14 days for a full refund — no questions asked.",h1:"How to Request a Refund",how:'Send an email to <a href="mailto:support@batchrender.com">support@batchrender.com</a> with your order ID or email used for purchase. Refunds processed within 3–5 business days.',h2:"Eligible Situations",e1:"Software does not function as described",e2:"Technical issues unresolvable within 7 days",e3:"Accidental duplicate purchase",e4:"Request within 14 days, license not extensively used",h3:"Non-Eligible Situations",n1:"More than 14 days since purchase",n2:"License key has been shared or misused",n3:"Change of mind after extensive use",h4:"Contact",ct:'Refund requests: <a href="mailto:support@batchrender.com">support@batchrender.com</a>'},ru:{title:"Политика возврата",updated:"Последнее обновление: 10 ноября 2024",main:"<strong>14-дневная гарантия возврата денег.</strong> Если BatchRender вам не подошёл, свяжитесь с нами в течение 14 дней — вернём деньги без лишних вопросов.",h1:"Как запросить возврат",how:'Отправьте письмо на <a href="mailto:support@batchrender.com">support@batchrender.com</a> с ID заказа или email покупки. Возврат в течение 3–5 рабочих дней.',h2:"Случаи возврата",e1:"ПО не работает как описано",e2:"Технические проблемы, не решённые в течение 7 дней",e3:"Случайная двойная покупка",e4:"Запрос в течение 14 дней, лицензия не использовалась активно",h3:"Случаи без возврата",n1:"Прошло более 14 дней с момента покупки",n2:"Лицензионный ключ был передан или использован неправомерно",n3:"Смена мнения после длительного использования",h4:"Контакты",ct:'Запросы на возврат: <a href="mailto:support@batchrender.com">support@batchrender.com</a>'},zh:{title:"退款政策",updated:"最后更新：2024年11月10日",main:"<strong>14天退款保证。</strong>如果BatchRender不适合您，请在14天内联系我们获得全额退款——无需解释。",h1:"如何申请退款",how:'请发送电子邮件至 <a href="mailto:support@batchrender.com">support@batchrender.com</a>，附上您的订单ID或购买时使用的邮箱。退款在3-5个工作日内处理。',h2:"符合退款条件的情况",e1:"软件功能与网站描述不符",e2:"7天内无法解决的技术问题",e3:"意外重复购买",e4:"购买后14天内提出申请，许可证未大量使用",h3:"不符合退款条件的情况",n1:"购买后超过14天",n2:"许可证密钥已被共享或滥用",n3:"大量使用后改变主意",h4:"联系",ct:'退款申请：<a href="mailto:support@batchrender.com">support@batchrender.com</a>'}};
-function se
+
+  <h2 data-k="h3">3. Non-Eligible Situations</h2>
+  <p data-k="ne-intro">A refund will not be granted in the following situations:</p>
+  <ul>
+    <li class="not-eligible" data-k="n1">more than 14 calendar days have passed since the date of purchase;</li>
+    <li class="not-eligible" data-k="n2">the license key has been shared, published, leaked, or otherwise misused in violation of our <a href="/terms.html">Terms of Service</a>;</li>
+    <li class="not-eligible" data-k="n3">the license has been used to render a substantial volume of output, indicating effective use of the product;</li>
+    <li class="not-eligible" data-k="n4">the request is based on a feature being absent that was not advertised on our website at the time of purchase;</li>
+    <li class="not-eligible" data-k="n5">the issue is caused by hardware not meeting the published system requirements, after we have informed you of the discrepancy.</li>
+  </ul>
+
+  <h2 data-k="h4">4. EU Consumer Rights</h2>
+  <p data-k="eu">If you are an EU consumer, applicable EU law grants you a 14-day cooling-off period for distance contracts. For digital content delivered immediately upon purchase, you expressly consent at checkout to immediate delivery and acknowledge that the statutory cooling-off right is waived once the license is delivered. Notwithstanding this waiver, the discretionary 14-day money-back guarantee described in this policy applies. Nothing in this policy limits any non-waivable consumer rights you may have under your local law.</p>
+
+  <h2 data-k="h5">5. Chargebacks</h2>
+  <p data-k="cb">We strongly encourage you to contact us first before initiating a chargeback through your bank or card issuer. Most issues can be resolved directly and faster via email. Chargebacks initiated without first contacting us may result in the immediate revocation of your license and being declined for future purchases.</p>
+
+  <h2 data-k="h6">6. Contact</h2>
+  <p data-k="ct">All refund-related questions: <a class="email-link" href="mailto:support@batchrender.com">support@batchrender.com</a></p>
+</main>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <a href="/" class="logo">
+        <img src="/img/logo-long.png" alt="BatchRender" class="logo-img" onerror="this.outerHTML='<span class=&quot;logo-fallback&quot;>BatchRender</span>'">
+      </a>
+      <p class="footer-desc" data-key="footerDesc">Companion tool for DaVinci, Premiere, Final Cut and CapCut. Local batch video processing for editors who deliver client work in volume.</p>
+    </div>
+    <div class="footer-col"><h4 data-key="fcProduct">Product</h4><a href="/#built-for" data-key="fcBuiltFor">Built for</a><a href="/#features" data-key="fcFeatures">Features</a><a href="/#pricing" data-key="fcPricing">Pricing</a><a href="/#download" data-key="fcFree">Free download</a></div>
+    <div class="footer-col"><h4 data-key="fcSupport">Support</h4><a href="mailto:support@batchrender.com" data-key="fcContact">Contact</a><a href="/#faq" data-key="fcFaq">FAQ</a><a href="https://github.com/PavTer/BatchRender" data-key="fcGitHub">GitHub</a></div>
+    <div class="footer-col"><h4 data-key="fcLegal">Legal</h4><a href="/privacy.html" data-key="fcPrivacy">Privacy Policy</a><a href="/terms.html" data-key="fcTerms">Terms of Service</a><a href="/refund.html" data-key="fcRefund">Refund Policy</a><a href="/eula.html" data-key="fcEula">EULA</a></div>
+  </div>
+  <div class="footer-bottom">
+    <p data-key="copyright">© 2026 BatchRender · Operated by an independent developer · Nicosia, Cyprus</p>
+  </div>
+</footer>
+
+<script>
+const T = {
+  en: {
+    builtFor:"Built for", math:"The Math", features:"Nodes", pricing:"Pricing", faq:"FAQ",
+    getStarted:"Download Free Trial",
+    eyebrow:"Legal · Refund",
+    title:"Refund Policy",
+    updated:"Last updated: May 2, 2026",
+    version:"Version 1.1",
+    main:"<strong>14-day money-back guarantee</strong>If BatchRender doesn't work for you, we'll refund you in full within 14 days of purchase — no extensive justification required.",
+    who:"<strong>Who handles refunds:</strong> BatchRender is sold via Lemon Squeezy, which acts as the merchant of record. Refunds are processed by Lemon Squeezy on our behalf, returned to your original payment method. Once approved, refunds typically appear in 3–10 business days depending on your bank or card issuer.",
+    h1:"1. How to Request a Refund",
+    how:'Send an email to <a class="email-link" href="mailto:support@batchrender.com">support@batchrender.com</a> within 14 days of your purchase, including:',
+    step1:"your order ID (from the Lemon Squeezy receipt email), or the email address used for purchase;",
+    step2:"a brief reason (optional, but it helps us improve the product).",
+    "how-time":"We aim to respond within 2 business days. Approved refunds are processed via Lemon Squeezy within 3–5 business days; the funds may take an additional 3–10 business days to appear in your account depending on your bank.",
+    h2:"2. Eligible Situations",
+    "el-intro":"A refund will be granted in any of the following situations, provided the request is made within 14 days of purchase:",
+    e1:"the software does not function as described on our website;",
+    e2:"a technical issue prevents you from using the software, and we are unable to resolve it within 7 days of being notified;",
+    e3:"you accidentally purchased the wrong plan or made a duplicate purchase;",
+    e4:"you simply changed your mind, and the license has not been used to render a substantial volume of output.",
+    h3:"3. Non-Eligible Situations",
+    "ne-intro":"A refund will not be granted in the following situations:",
+    n1:"more than 14 calendar days have passed since the date of purchase;",
+    n2:'the license key has been shared, published, leaked, or otherwise misused in violation of our <a href="/terms.html">Terms of Service</a>;',
+    n3:"the license has been used to render a substantial volume of output, indicating effective use of the product;",
+    n4:"the request is based on a feature being absent that was not advertised on our website at the time of purchase;",
+    n5:"the issue is caused by hardware not meeting the published system requirements, after we have informed you of the discrepancy.",
+    h4:"4. EU Consumer Rights",
+    eu:"If you are an EU consumer, applicable EU law grants you a 14-day cooling-off period for distance contracts. For digital content delivered immediately upon purchase, you expressly consent at checkout to immediate delivery and acknowledge that the statutory cooling-off right is waived once the license is delivered. Notwithstanding this waiver, the discretionary 14-day money-back guarantee described in this policy applies. Nothing in this policy limits any non-waivable consumer rights you may have under your local law.",
+    h5:"5. Chargebacks",
+    cb:"We strongly encourage you to contact us first before initiating a chargeback through your bank or card issuer. Most issues can be resolved directly and faster via email. Chargebacks initiated without first contacting us may result in the immediate revocation of your license and being declined for future purchases.",
+    h6:"6. Contact",
+    ct:'All refund-related questions: <a class="email-link" href="mailto:support@batchrender.com">support@batchrender.com</a>',
+    footerDesc:"Companion tool for DaVinci, Premiere, Final Cut and CapCut. Local batch video processing for editors who deliver client work in volume.",
+    fcProduct:"Product", fcBuiltFor:"Built for", fcFeatures:"Features", fcPricing:"Pricing", fcFree:"Free download",
+    fcSupport:"Support", fcContact:"Contact", fcFaq:"FAQ", fcGitHub:"GitHub",
+    fcLegal:"Legal", fcPrivacy:"Privacy Policy", fcTerms:"Terms of Service", fcRefund:"Refund Policy", fcEula:"EULA",
+    copyright:"© 2026 BatchRender · Operated by an independent developer · Nicosia, Cyprus"
+  },
+  ru: {
+    builtFor:"Для кого", math:"Математика", features:"Ноды", pricing:"Цены", faq:"FAQ",
+    getStarted:"Скачать бесплатно",
+    eyebrow:"Юридические · Возврат",
+    title:"Политика возврата",
+    updated:"Последнее обновление: 2 мая 2026",
+    version:"Версия 1.1",
+    main:"<strong>14-дневная гарантия возврата денег</strong>Если BatchRender вам не подошёл, мы вернём полную сумму в течение 14 дней с момента покупки — без длительного обоснования.",
+    who:"<strong>Кто обрабатывает возвраты:</strong> BatchRender продаётся через Lemon Squeezy, выступающего продавцом на учёте (merchant of record). Возвраты обрабатываются Lemon Squeezy от нашего имени и возвращаются на исходный способ оплаты. После одобрения возвраты обычно поступают в течение 3–10 рабочих дней в зависимости от вашего банка или эмитента карты.",
+    h1:"1. Как запросить возврат",
+    how:'Отправьте письмо на <a class="email-link" href="mailto:support@batchrender.com">support@batchrender.com</a> в течение 14 дней с момента покупки, указав:',
+    step1:"ID заказа (из письма-чека Lemon Squeezy) или email, использованный при покупке;",
+    step2:"краткую причину (необязательно, но это помогает нам улучшать продукт).",
+    "how-time":"Мы стремимся ответить в течение 2 рабочих дней. Одобренные возвраты обрабатываются через Lemon Squeezy в течение 3–5 рабочих дней; средства могут поступить на счёт в течение дополнительных 3–10 рабочих дней в зависимости от вашего банка.",
+    h2:"2. Случаи возврата",
+    "el-intro":"Возврат будет предоставлен в любой из следующих ситуаций при условии, что запрос подан в течение 14 дней с момента покупки:",
+    e1:"ПО не работает так, как описано на нашем сайте;",
+    e2:"техническая проблема препятствует использованию ПО, и мы не можем решить её в течение 7 дней с момента уведомления;",
+    e3:"вы случайно купили не тот тариф или совершили дублирующую покупку;",
+    e4:"вы просто передумали, и лицензия не использовалась для рендеринга значительного объёма материала.",
+    h3:"3. Случаи без возврата",
+    "ne-intro":"Возврат не будет предоставлен в следующих ситуациях:",
+    n1:"прошло более 14 календарных дней с момента покупки;",
+    n2:'лицензионный ключ был передан, опубликован, утёк или использован неправомерно в нарушение наших <a href="/terms.html">Условий использования</a>;',
+    n3:"лицензия использовалась для рендеринга значительного объёма материала, что свидетельствует об эффективном использовании продукта;",
+    n4:"запрос основан на отсутствии функции, которая не была заявлена на нашем сайте в момент покупки;",
+    n5:"проблема вызвана несоответствием оборудования заявленным системным требованиям после того, как мы уведомили вас об этом расхождении.",
+    h4:"4. Права потребителей ЕС",
+    eu:"Если вы являетесь потребителем из ЕС, применимое право ЕС предоставляет вам 14-дневный период охлаждения (cooling-off) для дистанционных договоров. Для цифрового содержимого, доставляемого немедленно после покупки, вы прямо соглашаетесь при оформлении заказа на немедленную доставку и подтверждаете, что установленное законом право на отзыв отказывается после доставки лицензии. Несмотря на этот отказ, действует добровольная 14-дневная гарантия возврата средств, описанная в настоящей Политике. Ничто в настоящей Политике не ограничивает неотъемлемые права потребителей, которыми вы можете обладать по местному законодательству.",
+    h5:"5. Чарджбэки",
+    cb:"Мы настоятельно рекомендуем сначала связаться с нами, прежде чем инициировать чарджбэк через ваш банк или эмитента карты. Большинство вопросов можно решить напрямую и быстрее по email. Чарджбэки, инициированные без предварительного обращения к нам, могут привести к немедленному отзыву вашей лицензии и отказу в будущих покупках.",
+    h6:"6. Контакты",
+    ct:'Все вопросы по возвратам: <a class="email-link" href="mailto:support@batchrender.com">support@batchrender.com</a>',
+    footerDesc:"Дополнительный инструмент для DaVinci, Premiere, Final Cut и CapCut. Локальная пакетная обработка видео для редакторов, работающих с большими объёмами клиентских проектов.",
+    fcProduct:"Продукт", fcBuiltFor:"Для кого", fcFeatures:"Возможности", fcPricing:"Цены", fcFree:"Бесплатная версия",
+    fcSupport:"Поддержка", fcContact:"Связаться", fcFaq:"FAQ", fcGitHub:"GitHub",
+    fcLegal:"Юридическое", fcPrivacy:"Политика конфиденциальности", fcTerms:"Условия использования", fcRefund:"Политика возврата", fcEula:"EULA",
+    copyright:"© 2026 BatchRender · Разработка независимого разработчика · Никосия, Кипр"
+  },
+  zh: {
+    builtFor:"适用对象", math:"运算逻辑", features:"节点", pricing:"价格", faq:"常见问题",
+    getStarted:"免费试用版下载",
+    eyebrow:"法律 · 退款",
+    title:"退款政策",
+    updated:"最后更新：2026年5月2日",
+    version:"版本 1.1",
+    main:"<strong>14天退款保证</strong>如果BatchRender不适合您，我们将在购买后14天内全额退款——无需详细解释。",
+    who:"<strong>谁处理退款：</strong>BatchRender通过Lemon Squeezy销售，Lemon Squeezy作为记录商家（merchant of record）。退款由Lemon Squeezy代表我们处理，退还至您的原始付款方式。批准后，退款通常在3-10个工作日内到账，具体取决于您的银行或发卡机构。",
+    h1:"1. 如何申请退款",
+    how:'请在购买后14天内发送电子邮件至 <a class="email-link" href="mailto:support@batchrender.com">support@batchrender.com</a>，并附上：',
+    step1:"您的订单ID（来自Lemon Squeezy收据邮件）或购买时使用的邮箱地址；",
+    step2:"简要原因（可选，但有助于我们改进产品）。",
+    "how-time":"我们力争在2个工作日内回复。批准的退款通过Lemon Squeezy在3-5个工作日内处理；资金可能需要额外3-10个工作日才能显示在您的账户中，具体取决于您的银行。",
+    h2:"2. 符合退款条件的情况",
+    "el-intro":"在以下任一情况下，只要在购买后14天内提出请求，将获得退款：",
+    e1:"软件功能与我们网站上的描述不符；",
+    e2:"技术问题阻止您使用软件，且我们在收到通知后7天内无法解决；",
+    e3:"您意外购买了错误的计划或进行了重复购买；",
+    e4:"您只是改变了主意，且许可证未用于渲染大量输出。",
+    h3:"3. 不符合退款条件的情况",
+    "ne-intro":"在以下情况下不会获得退款：",
+    n1:"购买日期已超过14个日历日；",
+    n2:'许可证密钥已被共享、发布、泄露或以违反我们 <a href="/terms.html">服务条款</a> 的方式被滥用；',
+    n3:"许可证已被用于渲染大量输出，表明有效使用产品；",
+    n4:"请求基于购买时我们网站上未宣传的某项功能缺失；",
+    n5:"问题由硬件不符合已发布的系统要求引起，且我们已告知您此差异。",
+    h4:"4. 欧盟消费者权利",
+    eu:"如果您是欧盟消费者，适用的欧盟法律授予您14天的远程合同冷静期。对于购买后立即交付的数字内容，您在结账时明确同意立即交付并确认许可证交付后法定冷静期权利被放弃。尽管有此放弃，本政策所述的自愿14天退款保证仍然适用。本政策中的任何内容均不限制您在当地法律下可能享有的不可放弃的消费者权利。",
+    h5:"5. 拒付",
+    cb:"我们强烈建议您在通过银行或发卡机构发起拒付之前先与我们联系。大多数问题可通过电子邮件直接更快解决。未先与我们联系而发起的拒付可能导致您的许可证立即被撤销，并在未来购买中被拒绝。",
+    h6:"6. 联系",
+    ct:'所有退款相关问题：<a class="email-link" href="mailto:support@batchrender.com">support@batchrender.com</a>',
+    footerDesc:"为DaVinci、Premiere、Final Cut和CapCut提供配套工具。本地批量视频处理，专为大量交付客户作品的剪辑师设计。",
+    fcProduct:"产品", fcBuiltFor:"适用对象", fcFeatures:"功能", fcPricing:"价格", fcFree:"免费下载",
+    fcSupport:"支持", fcContact:"联系", fcFaq:"常见问题", fcGitHub:"GitHub",
+    fcLegal:"法律", fcPrivacy:"隐私政策", fcTerms:"服务条款", fcRefund:"退款政策", fcEula:"EULA",
+    copyright:"© 2026 BatchRender · 独立开发者运营 · 塞浦路斯尼科西亚"
+  }
+};
+
+function setLang(lang) {
+  if (!T[lang]) return;
+  const dict = T[lang];
+  document.querySelectorAll('[data-k]').forEach(el => { const k = el.dataset.k; if (dict[k] !== undefined) el.innerHTML = dict[k]; });
+  document.querySelectorAll('[data-key]').forEach(el => { const k = el.dataset.key; if (dict[k] !== undefined) el.innerHTML = dict[k]; });
+  document.querySelectorAll('[data-nav-key]').forEach(el => { const k = el.dataset.navKey; if (dict[k] !== undefined) el.textContent = dict[k]; });
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  const idx = {en:0,ru:1,zh:2}[lang];
+  const btns = document.querySelectorAll('.lang-btn');
+  if (btns[idx]) btns[idx].classList.add('active');
+  document.documentElement.lang = lang;
+  try { localStorage.setItem('lang', lang); } catch(e){}
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  let saved = 'en';
+  try { saved = localStorage.getItem('lang') || 'en'; } catch(e){}
+  if (saved !== 'en') setLang(saved);
+});
+</script>
+<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "4e7c521caacb46a59028f5d8524cf659"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>

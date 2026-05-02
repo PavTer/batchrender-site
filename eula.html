@@ -1,38 +1,461 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>EULA — BatchRender</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-<style>:root{--bg:#0a0a0b;--bg2:#111114;--border:rgba(255,255,255,0.07);--accent:#e8ff47;--text:#f0efea;--text2:#8a8a8f;--text3:#555560;--mono:'DM Mono',monospace;--sans:'Inter',sans-serif;--display:'Syne',sans-serif;}*{box-sizing:border-box;margin:0;padding:0;}body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.7;}.topbar{background:rgba(10,10,11,0.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:16px 32px;position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;}.logo{font-family:var(--display);font-weight:800;font-size:18px;text-decoration:none;color:var(--text);display:flex;align-items:center;gap:10px;}.logo-icon{width:28px;height:28px;background:var(--accent);border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:11px;color:#000;font-weight:700;}.back{font-size:13px;color:var(--text2);text-decoration:none;}.back:hover{color:var(--text);}.wrap{max-width:760px;margin:0 auto;padding:64px 32px;}h1{font-family:var(--display);font-size:42px;font-weight:800;margin-bottom:8px;letter-spacing:-0.02em;}.meta{font-family:var(--mono);font-size:12px;color:var(--text3);margin-bottom:48px;}h2{font-family:var(--display);font-size:20px;font-weight:700;margin:36px 0 10px;}p{color:var(--text2);margin-bottom:14px;font-size:15px;}a{color:var(--accent);}.lb{background:none;border:none;cursor:pointer;font-family:var(--mono);font-size:11px;color:var(--text3);padding:4px 8px;border-radius:4px;}.lb.active,.lb:hover{color:var(--accent);background:rgba(232,255,71,0.08);}</style>
+<meta name="description" content="BatchRender End User License Agreement. License terms governing use of the software.">
+<link rel="icon" type="image/png" href="/img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-page:#1a2030; --bg-card:#252f46; --bg-deep:#131927;
+  --bd:rgba(255,255,255,0.10); --bd-mid:rgba(255,255,255,0.18); --bd-soft:rgba(255,255,255,0.06);
+  --fg:#e3e5e8; --fg-strong:#ffffff; --fg-mut:#7a8394; --fg-dim:#4a5268;
+  --accent:#7b4fd4; --info:#3b9eff;
+  --grad-brand:linear-gradient(135deg,#3b9eff 0%,#7b4fd4 100%);
+  --grad-text:linear-gradient(90deg,#3b9eff 0%,#b07bff 60%,#ec5da1 100%);
+  --mono:'JetBrains Mono',ui-monospace,'SF Mono',Menlo,monospace;
+  --sans:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+  --display:'Bricolage Grotesque','Inter',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;}html{scroll-behavior:smooth;}
+body{background:var(--bg-page);color:var(--fg);font-family:var(--sans);font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
+.nav-bar{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(20,26,40,0.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--bd-soft);height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 32px;}
+.logo{display:flex;align-items:center;text-decoration:none;}
+.logo-img{height:28px;width:auto;display:block;}
+.logo-fallback{font-family:var(--display);font-weight:800;font-size:18px;color:var(--fg-strong);letter-spacing:-0.02em;}
+.nav-links{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:flex;align-items:center;gap:28px;}
+.nav-links a{color:var(--fg-mut);text-decoration:none;font-size:13px;font-weight:500;transition:color 0.15s;}
+.nav-links a:hover{color:var(--fg-strong);}
+.nav-right{display:flex;align-items:center;gap:14px;}
+.lang-switch{display:flex;gap:2px;background:rgba(255,255,255,0.04);padding:3px;border-radius:8px;}
+.lang-btn{background:none;border:none;cursor:pointer;font-family:var(--mono);font-size:11px;font-weight:500;color:var(--fg-mut);padding:5px 10px;border-radius:6px;transition:all 0.15s;letter-spacing:0.04em;}
+.lang-btn.active{color:var(--info);background:rgba(59,158,255,0.12);}
+.lang-btn:hover:not(.active){color:var(--fg);}
+.btn-nav{background:var(--grad-brand);color:#fff;border:none;padding:9px 18px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:var(--sans);text-decoration:none;transition:transform 0.15s,box-shadow 0.15s;box-shadow:0 4px 14px rgba(59,158,255,0.25);}
+.btn-nav:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(59,158,255,0.4);}
+@media(max-width:760px){.nav-links{display:none;}.nav-bar{padding:0 18px;}.btn-nav{padding:8px 12px;font-size:12px;}}
+.page-wrap{max-width:820px;margin:0 auto;padding:120px 32px 80px;}
+.page-eyebrow{display:inline-block;font-family:var(--mono);font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--info);background:rgba(59,158,255,0.10);border:1px solid rgba(59,158,255,0.22);padding:6px 14px;border-radius:6px;margin-bottom:24px;}
+h1{font-family:var(--display);font-size:clamp(36px,5vw,56px);font-weight:800;line-height:1.05;letter-spacing:-0.03em;color:var(--fg-strong);margin-bottom:14px;}
+h1 .grad{background:var(--grad-text);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+.meta{font-family:var(--mono);font-size:12px;color:var(--fg-dim);letter-spacing:0.04em;margin-bottom:56px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.meta-dot{width:6px;height:6px;background:var(--info);border-radius:50%;box-shadow:0 0 10px rgba(59,158,255,0.6);}
+.meta-sep{color:var(--bd-mid);}
+h2{font-family:var(--display);font-size:24px;font-weight:700;margin:48px 0 14px;color:var(--fg-strong);letter-spacing:-0.01em;}
+p{color:var(--fg);margin-bottom:16px;font-size:15.5px;line-height:1.75;}
+p strong{color:var(--fg-strong);font-weight:600;}
+ul{color:var(--fg);padding-left:24px;margin-bottom:16px;}
+li{margin-bottom:8px;font-size:15.5px;line-height:1.7;}
+li::marker{color:var(--info);}
+a{color:var(--info);text-decoration:none;transition:color 0.15s;}
+a:hover{color:#5fb1ff;text-decoration:underline;}
+.email-link{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:14px;background:rgba(59,158,255,0.08);border:1px solid rgba(59,158,255,0.20);padding:4px 10px;border-radius:6px;color:var(--info);text-decoration:none;}
+.email-link:hover{background:rgba(59,158,255,0.14);text-decoration:none;}
+.callout{background:rgba(123,79,212,0.06);border:1px solid rgba(123,79,212,0.22);border-radius:10px;padding:18px 22px;margin:24px 0;font-size:14.5px;color:var(--fg);}
+.callout strong{color:var(--fg-strong);}
+.disclaimer-note{background:rgba(245,166,35,0.05);border-left:3px solid rgba(245,166,35,0.5);padding:14px 18px;margin:20px 0;font-size:13.5px;color:var(--fg-mut);font-style:italic;}
+footer{border-top:1px solid var(--bd-soft);padding:56px 32px 36px;max-width:1280px;margin:0 auto;}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:40px;}
+.footer-desc{font-size:14px;color:var(--fg-mut);line-height:1.65;margin-top:14px;max-width:320px;}
+.footer-col h4{font-family:var(--mono);font-size:10px;letter-spacing:0.18em;color:var(--fg-mut);margin-bottom:16px;text-transform:uppercase;font-weight:600;}
+.footer-col a{display:block;font-size:14px;color:var(--fg);text-decoration:none;margin-bottom:10px;transition:color 0.15s;}
+.footer-col a:hover{color:var(--info);}
+.footer-bottom{border-top:1px solid var(--bd-soft);padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+.footer-bottom p{font-size:12px;color:var(--fg-dim);font-family:var(--mono);}
+@media(max-width:760px){.footer-grid{grid-template-columns:1fr 1fr;gap:32px;}.page-wrap{padding:100px 22px 60px;}}
+</style>
 </head>
 <body>
-<div class="topbar">
-  <a href="index.html" class="logo"><div class="logo-icon">BR</div>BatchRender</a>
-  <div style="display:flex;align-items:center;gap:16px">
-    <div style="display:flex;gap:4px"><button class="lb active" onclick="setL('en')">EN</button><button class="lb" onclick="setL('ru')">RU</button><button class="lb" onclick="setL('zh')">中文</button></div>
-    <a href="index.html" class="back">← Back</a>
+
+<nav class="nav-bar">
+  <a href="/" class="logo">
+    <img src="/img/logo-long.png" alt="BatchRender" class="logo-img" onerror="this.outerHTML='<span class=&quot;logo-fallback&quot;>BatchRender</span>'">
+  </a>
+  <div class="nav-links">
+    <a href="/#built-for" data-nav-key="builtFor">Built for</a>
+    <a href="/#math" data-nav-key="math">The Math</a>
+    <a href="/#features" data-nav-key="features">Nodes</a>
+    <a href="/#pricing" data-nav-key="pricing">Pricing</a>
+    <a href="/#faq" data-nav-key="faq">FAQ</a>
   </div>
-</div>
-<div class="wrap">
+  <div class="nav-right">
+    <div class="lang-switch">
+      <button class="lang-btn active" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" onclick="setLang('ru')">RU</button>
+      <button class="lang-btn" onclick="setLang('zh')">中文</button>
+    </div>
+    <a href="/#pricing" class="btn-nav" data-nav-key="getStarted">Download Free Trial</a>
+  </div>
+</nav>
+
+<main class="page-wrap">
+  <div class="page-eyebrow" data-k="eyebrow">Legal · EULA</div>
   <h1 data-k="title">End User License Agreement</h1>
-  <p class="meta" data-k="updated">EULA v1.0 · Effective November 10, 2024</p>
-  <p data-k="intro">This End User License Agreement ("EULA") is a legal agreement between you and BatchRender ("Licensor") governing your use of the BatchRender software application.</p>
+  <div class="meta">
+    <span class="meta-dot"></span>
+    <span data-k="version">EULA v1.1</span>
+    <span class="meta-sep">·</span>
+    <span data-k="updated">Effective May 2, 2026</span>
+  </div>
+
+  <div class="callout" data-k="who">
+    <strong>Licensor:</strong> BatchRender, a software product operated by an independent software developer based in Nicosia, Cyprus (the "Licensor"). Contact: <a href="mailto:support@batchrender.com">support@batchrender.com</a>.
+  </div>
+
+  <p data-k="intro">This End User License Agreement ("EULA", "Agreement") is a binding legal agreement between you ("you", "Licensee") and the Licensor identified above, governing your installation, access, and use of the BatchRender desktop software application and any associated documentation or updates ("Software"). By downloading, installing, activating, or otherwise using the Software, you confirm that you have read, understood, and agree to be bound by this Agreement. If you do not agree, do not install or use the Software.</p>
+
   <h2 data-k="h1">1. Grant of License</h2>
-  <p data-k="g1">Subject to the terms of this EULA and payment of applicable fees, Licensor grants you a limited, non-exclusive, non-transferable license to install and use BatchRender on machines as permitted by your purchased plan.</p>
-  <h2 data-k="h2">2. Permitted Uses</h2>
-  <p data-k="p1">You may use the software for personal, commercial, or professional rendering projects. You may install the software on the number of machines specified by your license tier.</p>
-  <h2 data-k="h3">3. Prohibited Uses</h2>
-  <p data-k="pr1">You may not: copy, modify, or distribute the software; reverse engineer or decompile the software; rent, lease, or lend the software; transfer your license to another party without written consent.</p>
-  <h2 data-k="h4">4. Intellectual Property</h2>
-  <p data-k="ip">BatchRender and all associated intellectual property rights remain the exclusive property of the Licensor. This EULA does not transfer any ownership rights.</p>
-  <h2 data-k="h5">5. Term and Termination</h2>
-  <p data-k="tt">This license is effective until terminated. It terminates automatically if you breach any term. Upon termination, you must destroy all copies of the software.</p>
-  <h2 data-k="h6">6. Governing Law</h2>
-  <p data-k="gl">This EULA shall be governed by applicable law. Any disputes shall be resolved through good-faith negotiation or, if necessary, binding arbitration.</p>
-  <h2 data-k="h7">7. Contact</h2>
-  <p data-k="ct">Questions about this EULA: <a href="/cdn-cgi/l/email-protection#a5c9c0c2c4c9e5c7c4d1c6cdd7c0cbc1c0d78bc6cac8"><span class="__cf_email__" data-cfemail="670b0200060b27050613040f1502090302154904080a">[email&#160;protected]</span></a></p>
-</div>
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-const T={en:{title:"End User License Agreement",updated:"EULA v1.0 · Effective November 10, 2024",intro:'This End User License Agreement ("EULA") is a legal agreement between you and BatchRender governing your use of the software.',h1:"1. Grant of License",g1:"Subject to the terms of this EULA and payment of applicable fees, Licensor grants you a limited, non-exclusive, non-transferable license to install and use BatchRender on machines as permitted by your purchased plan.",h2:"2. Permitted Uses",p1:"You may use the software for personal, commercial, or professional rendering projects on the number of machines specified by your license tier.",h3:"3. Prohibited Uses",pr1:"You may not: copy, modify, or distribute the software; reverse engineer or decompile it; rent or lend it; or transfer your license without written consent.",h4:"4. Intellectual Property",ip:"BatchRender and all associated intellectual property rights remain the exclusive property of the Licensor.",h5:"5. Term and Termination",tt:"This license is effective until terminated. It terminates automatically if you breach any term.",h6:"6. Governing Law",gl:"This EULA shall be governed by applicable law. Disputes resolved through good-faith negotiation or binding arbitration.",h7:"7. Contact",ct:'Questions: <a href="mailto:legal@batchrender.com">legal@batchrender.com</a>'},ru:{title:"Лицензионное соглашение с конечным пользователем",updated:"EULA v1.0 · Вступает в силу 10 ноября 2024",intro:"Настоящее Лицензионное соглашение с конечным пользователем (\"EULA\") является юридическим соглашением между вами и BatchRender об использовании программного обеспечения.",h1:"1. Предоставление лицензии",g1:"При соблюдении условий настоящего EULA и оплате соответствующих сборов, Лицензиар предоставляет вам ограниченную, неисключительную, непередаваемую лицензию на установку и использование BatchRender.",h2:"2. Разрешённое использование",p1:"Вы можете использовать ПО для личных, коммерческих или профессиональных проектов рендеринга на количестве машин, указанном вашим тарифом.",h3:"3. Запрещённое использование",pr1:"Вам запрещается: копировать, изменять или распространять ПО; проводить обратную разработку; сдавать в аренду или передавать лицензию без письменного согласия.",h4:"4. Интеллектуальная собственность",ip:"BatchRender и все связанные права интеллектуальной собственности остаются исключительной собственностью Лицензиара.",h5:"5. Срок и расторжение",tt:"Лицензия действует до её расторжения. Она автоматически прекращается при нарушении любого условия.",h6:"6. Применимое право",gl:"Настоящее EULA регулируется применимым законодательством. Споры разрешаются путём переговоров или обязательного арбитража.",h7:"7. Контакты",ct:'Вопросы: <a href="mailto:legal@batchrender.com">legal@batchrender.com</a>'},zh:{title:"最终用户许可协议",updated:"EULA v1.0 · 2024年11月10日生效",intro:'本最终用户许可协议（"EULA"）是您与BatchRender之间关于使用该软件的法律协议。',h1:"1. 许可授予",g1:"在遵守本EULA条款并支付相应费用的前提下，许可方授予您有限、非独占、不可转让的许可，可在您购买计划所允许的机器数量上安装和使用BatchRender。",h2:"2. 许可使用",p1:"您可以将软件用于个人、商业或专业渲染项目，使用机器数量以您的许可级别为准。",h3:"3. 禁止使用",pr1:"您不得：复制、修改或分发软件；对软件进行逆向工程；出租或出借软件；未经书面同意转让许可证。",h4:"4. 知识产权",ip:"BatchRender及所有相关知识产权仍为许可方的专有财产。",h5:"5. 期限与终止",tt:"本许可在终止前持续有效。如违反任何条款，将自动终止。",h6:"6. 适用法律",gl:"本EULA受适用法律管辖。争议通过善意协商或约束性仲裁解决。",h7:"7. 联系",ct:'问题请联系：<a href="mailto:legal@batchrender.com">legal@batchrender.com</a>'}};
-function setL(l){document.querySelectorAll('[data-k]').forEach(e=>{if(T[l]&&T[l][e.dataset.k])e.innerHTML=T[l][e.dataset.k];});document.querySelectorAll('.lb'
+  <p data-k="g1">Subject to your compliance with this Agreement and timely payment of any applicable fees, the Licensor grants you a limited, non-exclusive, non-transferable, non-sublicensable, revocable license to install and use the Software on the number of devices permitted by your purchased plan or trial, solely for your own personal or internal business purposes. The Software is licensed, not sold. All rights not expressly granted are reserved by the Licensor.</p>
+
+  <h2 data-k="h2">2. Trial and Watermark Mode</h2>
+  <p data-k="t1">The Software is available in a free trial mode that operates without time limit but applies a visible watermark to all rendered output. Removing the watermark requires activation with a valid license key purchased through our authorized reseller. The trial mode is provided for evaluation purposes only; rendering output produced in trial mode for commercial use without a license is permitted, but the watermark may not be removed, edited, masked, or circumvented by any means.</p>
+
+  <h2 data-k="h3">3. Permitted Uses</h2>
+  <p data-k="p1">You may:</p>
+  <ul>
+    <li data-k="p1a">install and use the Software on the number of devices specified by your purchased plan;</li>
+    <li data-k="p1b">use the Software to process and render media files for personal, commercial, or professional projects, including for paying clients;</li>
+    <li data-k="p1c">make a reasonable number of backup copies of the installer for archival purposes only.</li>
+  </ul>
+
+  <h2 data-k="h4">4. Prohibited Uses</h2>
+  <p data-k="pr0">You may not, and may not permit any third party to:</p>
+  <ul>
+    <li data-k="pr1a">copy, reproduce, modify, adapt, translate, or create derivative works of the Software, except as expressly permitted by mandatory applicable law;</li>
+    <li data-k="pr1b">reverse engineer, decompile, disassemble, or otherwise attempt to derive the source code, underlying algorithms, or any non-public components of the Software, except to the limited extent that such activity is expressly permitted by applicable law notwithstanding this limitation;</li>
+    <li data-k="pr1c">redistribute, resell, sublicense, rent, lease, lend, or commercially exploit the Software or your license key;</li>
+    <li data-k="pr1d">share, publish, or transfer your license key to any third party;</li>
+    <li data-k="pr1e">remove, obscure, alter, or circumvent any proprietary notices, watermarks, license-checks, activation mechanisms, or technical protections;</li>
+    <li data-k="pr1f">use the Software to develop or train any competing software product, machine-learning model, or large-language model;</li>
+    <li data-k="pr1g">use the Software in violation of any applicable law, including export-control, sanctions, intellectual-property, and privacy laws.</li>
+  </ul>
+
+  <h2 data-k="h5">5. License Key and Activation</h2>
+  <p data-k="lk">License activation is performed via an online check at first activation and periodically thereafter. The Software may store an activation token locally to enable offline use between checks. You are responsible for keeping your license key confidential. The Licensor reserves the right to deactivate license keys that have been shared, leaked publicly, used in excess of permitted device counts, or obtained through fraudulent means.</p>
+
+  <h2 data-k="h6">6. Updates and Modifications</h2>
+  <p data-k="up">The Licensor may, at its sole discretion, release updates, patches, or new versions of the Software ("Updates"). Updates may be installed manually by you. Updates may add, modify, or remove features. Where a security or compatibility issue requires it, the Licensor may push a mandatory update; continued use of the Software constitutes acceptance of such Updates. The Licensor is not obligated to provide Updates indefinitely.</p>
+
+  <h2 data-k="h7">7. Third-Party Components and Services</h2>
+  <p data-k="tp">The Software bundles or integrates open-source and third-party components ("Third-Party Components"). Each Third-Party Component is licensed under its own terms, which apply in addition to (and, in case of conflict, prevail over) this Agreement with respect to that component only. A list of Third-Party Components and the texts of their respective licenses are made available within the Software or upon written request to the contact address below. The Software may also communicate with online services operated by the Licensor or its providers (including, without limitation, an activation/license server and an update server) for the purposes described in the <a href="/privacy.html">Privacy Policy</a>.</p>
+
+  <h2 data-k="h8">8. Intellectual Property</h2>
+  <p data-k="ip">The Software and all related intellectual property rights, including copyrights, trademarks, trade secrets, and any modifications or derivative works thereof, are and shall remain the exclusive property of the Licensor and its licensors. This Agreement grants you only the limited license expressly stated in Section 1; no other rights, by implication or estoppel, are granted. The "BatchRender" name and logo are trademarks of the Licensor.</p>
+
+  <h2 data-k="h9">9. Your Content</h2>
+  <p data-k="yc">You retain all ownership rights in any media files, projects, or other content you process with the Software ("Your Content"). The Software processes Your Content locally on your device. The Licensor does not receive, store, or claim any rights in Your Content.</p>
+
+  <h2 data-k="h10">10. Disclaimer of Warranties</h2>
+  <p data-k="dw1">TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, THE SOFTWARE IS PROVIDED <strong>"AS IS"</strong> AND <strong>"AS AVAILABLE"</strong>, WITHOUT WARRANTY OF ANY KIND, WHETHER EXPRESS, IMPLIED, STATUTORY, OR OTHERWISE. THE LICENSOR EXPRESSLY DISCLAIMS ALL IMPLIED WARRANTIES, INCLUDING WITHOUT LIMITATION WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, NON-INFRINGEMENT, ACCURACY, AND QUIET ENJOYMENT.</p>
+  <p data-k="dw2">The Licensor does not warrant that the Software will be uninterrupted, error-free, secure, or free of viruses, that defects will be corrected, that any specific results will be obtained, or that the Software will be compatible with any particular hardware, operating-system version, or third-party software. You assume all risk arising from use of the Software, including loss of data and damage to systems.</p>
+  <p data-k="dw3">Some jurisdictions do not allow the exclusion of certain warranties; in such jurisdictions the foregoing exclusions apply to the maximum extent permitted by law and your statutory rights as a consumer remain unaffected.</p>
+
+  <h2 data-k="h11">11. Limitation of Liability</h2>
+  <p data-k="ll1">TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL THE LICENSOR BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, EXEMPLARY, OR PUNITIVE DAMAGES, OR FOR ANY LOSS OF PROFITS, REVENUE, BUSINESS, GOODWILL, DATA, OR ANTICIPATED SAVINGS, ARISING OUT OF OR IN CONNECTION WITH THIS AGREEMENT OR YOUR USE OF (OR INABILITY TO USE) THE SOFTWARE, EVEN IF THE LICENSOR HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.</p>
+  <p data-k="ll2">THE LICENSOR'S TOTAL AGGREGATE LIABILITY UNDER OR IN CONNECTION WITH THIS AGREEMENT, FROM ALL CAUSES OF ACTION AND UNDER ALL THEORIES OF LIABILITY, SHALL NOT EXCEED THE AMOUNT YOU ACTUALLY PAID TO THE AUTHORIZED RESELLER FOR YOUR LICENSE OF THE SOFTWARE IN THE TWELVE (12) MONTHS PRECEDING THE EVENT GIVING RISE TO LIABILITY, OR FIFTY EUROS (€50), WHICHEVER IS GREATER.</p>
+  <p data-k="ll3">Nothing in this Agreement excludes or limits liability that cannot be excluded or limited under applicable law, including liability for fraud, gross negligence, willful misconduct, or death or personal injury caused by negligence.</p>
+
+  <h2 data-k="h12">12. Indemnification</h2>
+  <p data-k="ind">You agree to defend, indemnify, and hold harmless the Licensor from and against any claims, damages, liabilities, costs, and expenses (including reasonable legal fees) arising out of or related to: (a) your use of the Software in breach of this Agreement; (b) your violation of any applicable law; or (c) your infringement of any third-party right, including any intellectual-property right, in connection with content you process using the Software.</p>
+
+  <h2 data-k="h13">13. Term and Termination</h2>
+  <p data-k="tt1">This Agreement is effective from the moment you first install or use the Software and continues until terminated. You may terminate at any time by uninstalling and ceasing all use of the Software.</p>
+  <p data-k="tt2">The Licensor may suspend or terminate this Agreement and your license, with or without notice, if you materially breach this Agreement, including any prohibited use or non-payment. Upon termination, all rights granted to you cease immediately and you must uninstall and destroy all copies of the Software in your possession or control. Sections that by their nature should survive termination (including Sections 4, 8, 10, 11, 12, 14, 15, and 16) shall survive.</p>
+
+  <h2 data-k="h14">14. Refunds and Consumer Rights</h2>
+  <p data-k="ref">Refunds are handled by our authorized reseller (currently <a href="https://lemonsqueezy.com" target="_blank" rel="noopener">Lemon Squeezy</a>, our Merchant of Record) in accordance with the <a href="/refund.html">Refund Policy</a>. Where you purchase as a consumer in the European Union, certain mandatory consumer protections may apply; nothing in this Agreement is intended to limit or exclude rights you have under such mandatory law.</p>
+
+  <h2 data-k="h15">15. Export Controls and Sanctions</h2>
+  <p data-k="exp">You represent that you are not located in, and will not export or re-export the Software to, any country or to any person on a sanctions or denied-parties list maintained by the European Union, the United Nations, the United States, or the United Kingdom, where such export would be prohibited by applicable law.</p>
+
+  <h2 data-k="h16">16. Governing Law and Dispute Resolution</h2>
+  <p data-k="gl1">This Agreement and any dispute or claim arising out of or in connection with it (including non-contractual disputes) shall be governed by and construed in accordance with the laws of the Republic of Cyprus, without regard to its conflict-of-law principles. The United Nations Convention on Contracts for the International Sale of Goods does not apply.</p>
+  <p data-k="gl2">The parties shall first attempt in good faith to resolve any dispute by direct negotiation. If a dispute cannot be resolved within sixty (60) days of written notice, it shall be submitted to the exclusive jurisdiction of the competent courts of Nicosia, Cyprus, except that, where you act as a consumer, you may also bring proceedings before the courts of your country of residence to the extent required by mandatory applicable law.</p>
+
+  <h2 data-k="h17">17. General Provisions</h2>
+  <p data-k="gen1"><strong>Entire Agreement.</strong> This Agreement, together with the <a href="/terms.html">Terms of Service</a>, the <a href="/privacy.html">Privacy Policy</a>, and the <a href="/refund.html">Refund Policy</a>, constitutes the entire agreement between the parties regarding its subject matter and supersedes all prior or contemporaneous communications, whether written or oral.</p>
+  <p data-k="gen2"><strong>Severability.</strong> If any provision of this Agreement is held invalid or unenforceable, the remaining provisions shall remain in full force and effect, and the invalid provision shall be interpreted to come as close as possible to the parties' original intention.</p>
+  <p data-k="gen3"><strong>No waiver.</strong> Failure or delay by the Licensor in enforcing any right shall not constitute a waiver of that right.</p>
+  <p data-k="gen4"><strong>Assignment.</strong> You may not assign or transfer this Agreement or your license without the Licensor's prior written consent. The Licensor may assign this Agreement to any successor in interest.</p>
+  <p data-k="gen5"><strong>Force Majeure.</strong> Neither party shall be liable for any failure or delay in performance caused by events beyond its reasonable control, including acts of God, natural disasters, war, terrorism, riots, government actions, internet or utility outages, or pandemics.</p>
+  <p data-k="gen6"><strong>Changes.</strong> The Licensor may update this Agreement from time to time. Material changes will be communicated through the Software or website at least thirty (30) days before they take effect. Continued use after the effective date constitutes acceptance of the revised Agreement.</p>
+  <p data-k="gen7"><strong>Language.</strong> This Agreement is provided in English, Russian, and Chinese for convenience. In the event of any discrepancy between language versions, the English version shall prevail.</p>
+
+  <h2 data-k="h18">18. Contact</h2>
+  <p data-k="ct">Questions about this EULA should be directed to <a class="email-link" href="mailto:support@batchrender.com">support@batchrender.com</a>.</p>
+
+  <div class="disclaimer-note" data-k="disc">
+    BatchRender is operated by an independent software developer based in Cyprus and is not currently a registered legal entity. The legal contact for all matters relating to this Agreement is <a href="mailto:support@batchrender.com">support@batchrender.com</a>; the operator's full identifying details are available on written request to that address. This Agreement does not constitute legal advice.
+  </div>
+</main>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <a href="/" class="logo">
+        <img src="/img/logo-long.png" alt="BatchRender" class="logo-img" onerror="this.outerHTML='<span class=&quot;logo-fallback&quot;>BatchRender</span>'">
+      </a>
+      <p class="footer-desc" data-key="footerDesc">Companion tool for DaVinci, Premiere, Final Cut and CapCut. Local batch video processing for editors who deliver client work in volume.</p>
+    </div>
+    <div class="footer-col"><h4 data-key="fcProduct">Product</h4><a href="/#built-for" data-key="fcBuiltFor">Built for</a><a href="/#features" data-key="fcFeatures">Features</a><a href="/#pricing" data-key="fcPricing">Pricing</a><a href="/#download" data-key="fcFree">Free download</a></div>
+    <div class="footer-col"><h4 data-key="fcSupport">Support</h4><a href="mailto:support@batchrender.com" data-key="fcContact">Contact</a><a href="/#faq" data-key="fcFaq">FAQ</a><a href="https://github.com/PavTer/BatchRender" data-key="fcGitHub">GitHub</a></div>
+    <div class="footer-col"><h4 data-key="fcLegal">Legal</h4><a href="/privacy.html" data-key="fcPrivacy">Privacy Policy</a><a href="/terms.html" data-key="fcTerms">Terms of Service</a><a href="/refund.html" data-key="fcRefund">Refund Policy</a><a href="/eula.html" data-key="fcEula">EULA</a></div>
+  </div>
+  <div class="footer-bottom">
+    <p data-key="copyright">© 2026 BatchRender · Operated by an independent developer · Nicosia, Cyprus</p>
+  </div>
+</footer>
+
+<script>
+const T = {
+  en: {
+    builtFor:"Built for", math:"The Math", features:"Nodes", pricing:"Pricing", faq:"FAQ",
+    getStarted:"Download Free Trial",
+    eyebrow:"Legal · EULA",
+    title:"End User License Agreement",
+    version:"EULA v1.1",
+    updated:"Effective May 2, 2026",
+    who:'<strong>Licensor:</strong> BatchRender, a software product operated by an independent software developer based in Nicosia, Cyprus (the "Licensor"). Contact: <a href="mailto:support@batchrender.com">support@batchrender.com</a>.',
+    intro:'This End User License Agreement ("EULA", "Agreement") is a binding legal agreement between you ("you", "Licensee") and the Licensor identified above, governing your installation, access, and use of the BatchRender desktop software application and any associated documentation or updates ("Software"). By downloading, installing, activating, or otherwise using the Software, you confirm that you have read, understood, and agree to be bound by this Agreement. If you do not agree, do not install or use the Software.',
+    h1:"1. Grant of License",
+    g1:"Subject to your compliance with this Agreement and timely payment of any applicable fees, the Licensor grants you a limited, non-exclusive, non-transferable, non-sublicensable, revocable license to install and use the Software on the number of devices permitted by your purchased plan or trial, solely for your own personal or internal business purposes. The Software is licensed, not sold. All rights not expressly granted are reserved by the Licensor.",
+    h2:"2. Trial and Watermark Mode",
+    t1:"The Software is available in a free trial mode that operates without time limit but applies a visible watermark to all rendered output. Removing the watermark requires activation with a valid license key purchased through our authorized reseller. The trial mode is provided for evaluation purposes only; rendering output produced in trial mode for commercial use without a license is permitted, but the watermark may not be removed, edited, masked, or circumvented by any means.",
+    h3:"3. Permitted Uses",
+    p1:"You may:",
+    p1a:"install and use the Software on the number of devices specified by your purchased plan;",
+    p1b:"use the Software to process and render media files for personal, commercial, or professional projects, including for paying clients;",
+    p1c:"make a reasonable number of backup copies of the installer for archival purposes only.",
+    h4:"4. Prohibited Uses",
+    pr0:"You may not, and may not permit any third party to:",
+    pr1a:"copy, reproduce, modify, adapt, translate, or create derivative works of the Software, except as expressly permitted by mandatory applicable law;",
+    pr1b:"reverse engineer, decompile, disassemble, or otherwise attempt to derive the source code, underlying algorithms, or any non-public components of the Software, except to the limited extent that such activity is expressly permitted by applicable law notwithstanding this limitation;",
+    pr1c:"redistribute, resell, sublicense, rent, lease, lend, or commercially exploit the Software or your license key;",
+    pr1d:"share, publish, or transfer your license key to any third party;",
+    pr1e:"remove, obscure, alter, or circumvent any proprietary notices, watermarks, license-checks, activation mechanisms, or technical protections;",
+    pr1f:"use the Software to develop or train any competing software product, machine-learning model, or large-language model;",
+    pr1g:"use the Software in violation of any applicable law, including export-control, sanctions, intellectual-property, and privacy laws.",
+    h5:"5. License Key and Activation",
+    lk:"License activation is performed via an online check at first activation and periodically thereafter. The Software may store an activation token locally to enable offline use between checks. You are responsible for keeping your license key confidential. The Licensor reserves the right to deactivate license keys that have been shared, leaked publicly, used in excess of permitted device counts, or obtained through fraudulent means.",
+    h6:"6. Updates and Modifications",
+    up:'The Licensor may, at its sole discretion, release updates, patches, or new versions of the Software ("Updates"). Updates may be installed manually by you. Updates may add, modify, or remove features. Where a security or compatibility issue requires it, the Licensor may push a mandatory update; continued use of the Software constitutes acceptance of such Updates. The Licensor is not obligated to provide Updates indefinitely.',
+    h7:"7. Third-Party Components and Services",
+    tp:'The Software bundles or integrates open-source and third-party components ("Third-Party Components"). Each Third-Party Component is licensed under its own terms, which apply in addition to (and, in case of conflict, prevail over) this Agreement with respect to that component only. A list of Third-Party Components and the texts of their respective licenses are made available within the Software or upon written request to the contact address below. The Software may also communicate with online services operated by the Licensor or its providers (including, without limitation, an activation/license server and an update server) for the purposes described in the <a href="/privacy.html">Privacy Policy</a>.',
+    h8:"8. Intellectual Property",
+    ip:'The Software and all related intellectual property rights, including copyrights, trademarks, trade secrets, and any modifications or derivative works thereof, are and shall remain the exclusive property of the Licensor and its licensors. This Agreement grants you only the limited license expressly stated in Section 1; no other rights, by implication or estoppel, are granted. The "BatchRender" name and logo are trademarks of the Licensor.',
+    h9:"9. Your Content",
+    yc:'You retain all ownership rights in any media files, projects, or other content you process with the Software ("Your Content"). The Software processes Your Content locally on your device. The Licensor does not receive, store, or claim any rights in Your Content.',
+    h10:"10. Disclaimer of Warranties",
+    dw1:'TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, THE SOFTWARE IS PROVIDED <strong>"AS IS"</strong> AND <strong>"AS AVAILABLE"</strong>, WITHOUT WARRANTY OF ANY KIND, WHETHER EXPRESS, IMPLIED, STATUTORY, OR OTHERWISE. THE LICENSOR EXPRESSLY DISCLAIMS ALL IMPLIED WARRANTIES, INCLUDING WITHOUT LIMITATION WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, NON-INFRINGEMENT, ACCURACY, AND QUIET ENJOYMENT.',
+    dw2:"The Licensor does not warrant that the Software will be uninterrupted, error-free, secure, or free of viruses, that defects will be corrected, that any specific results will be obtained, or that the Software will be compatible with any particular hardware, operating-system version, or third-party software. You assume all risk arising from use of the Software, including loss of data and damage to systems.",
+    dw3:"Some jurisdictions do not allow the exclusion of certain warranties; in such jurisdictions the foregoing exclusions apply to the maximum extent permitted by law and your statutory rights as a consumer remain unaffected.",
+    h11:"11. Limitation of Liability",
+    ll1:"TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL THE LICENSOR BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, EXEMPLARY, OR PUNITIVE DAMAGES, OR FOR ANY LOSS OF PROFITS, REVENUE, BUSINESS, GOODWILL, DATA, OR ANTICIPATED SAVINGS, ARISING OUT OF OR IN CONNECTION WITH THIS AGREEMENT OR YOUR USE OF (OR INABILITY TO USE) THE SOFTWARE, EVEN IF THE LICENSOR HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.",
+    ll2:"THE LICENSOR'S TOTAL AGGREGATE LIABILITY UNDER OR IN CONNECTION WITH THIS AGREEMENT, FROM ALL CAUSES OF ACTION AND UNDER ALL THEORIES OF LIABILITY, SHALL NOT EXCEED THE AMOUNT YOU ACTUALLY PAID TO THE AUTHORIZED RESELLER FOR YOUR LICENSE OF THE SOFTWARE IN THE TWELVE (12) MONTHS PRECEDING THE EVENT GIVING RISE TO LIABILITY, OR FIFTY EUROS (€50), WHICHEVER IS GREATER.",
+    ll3:"Nothing in this Agreement excludes or limits liability that cannot be excluded or limited under applicable law, including liability for fraud, gross negligence, willful misconduct, or death or personal injury caused by negligence.",
+    h12:"12. Indemnification",
+    ind:"You agree to defend, indemnify, and hold harmless the Licensor from and against any claims, damages, liabilities, costs, and expenses (including reasonable legal fees) arising out of or related to: (a) your use of the Software in breach of this Agreement; (b) your violation of any applicable law; or (c) your infringement of any third-party right, including any intellectual-property right, in connection with content you process using the Software.",
+    h13:"13. Term and Termination",
+    tt1:"This Agreement is effective from the moment you first install or use the Software and continues until terminated. You may terminate at any time by uninstalling and ceasing all use of the Software.",
+    tt2:"The Licensor may suspend or terminate this Agreement and your license, with or without notice, if you materially breach this Agreement, including any prohibited use or non-payment. Upon termination, all rights granted to you cease immediately and you must uninstall and destroy all copies of the Software in your possession or control. Sections that by their nature should survive termination (including Sections 4, 8, 10, 11, 12, 14, 15, and 16) shall survive.",
+    h14:"14. Refunds and Consumer Rights",
+    ref:'Refunds are handled by our authorized reseller (currently <a href="https://lemonsqueezy.com" target="_blank" rel="noopener">Lemon Squeezy</a>, our Merchant of Record) in accordance with the <a href="/refund.html">Refund Policy</a>. Where you purchase as a consumer in the European Union, certain mandatory consumer protections may apply; nothing in this Agreement is intended to limit or exclude rights you have under such mandatory law.',
+    h15:"15. Export Controls and Sanctions",
+    exp:"You represent that you are not located in, and will not export or re-export the Software to, any country or to any person on a sanctions or denied-parties list maintained by the European Union, the United Nations, the United States, or the United Kingdom, where such export would be prohibited by applicable law.",
+    h16:"16. Governing Law and Dispute Resolution",
+    gl1:"This Agreement and any dispute or claim arising out of or in connection with it (including non-contractual disputes) shall be governed by and construed in accordance with the laws of the Republic of Cyprus, without regard to its conflict-of-law principles. The United Nations Convention on Contracts for the International Sale of Goods does not apply.",
+    gl2:"The parties shall first attempt in good faith to resolve any dispute by direct negotiation. If a dispute cannot be resolved within sixty (60) days of written notice, it shall be submitted to the exclusive jurisdiction of the competent courts of Nicosia, Cyprus, except that, where you act as a consumer, you may also bring proceedings before the courts of your country of residence to the extent required by mandatory applicable law.",
+    h17:"17. General Provisions",
+    gen1:'<strong>Entire Agreement.</strong> This Agreement, together with the <a href="/terms.html">Terms of Service</a>, the <a href="/privacy.html">Privacy Policy</a>, and the <a href="/refund.html">Refund Policy</a>, constitutes the entire agreement between the parties regarding its subject matter and supersedes all prior or contemporaneous communications, whether written or oral.',
+    gen2:"<strong>Severability.</strong> If any provision of this Agreement is held invalid or unenforceable, the remaining provisions shall remain in full force and effect, and the invalid provision shall be interpreted to come as close as possible to the parties' original intention.",
+    gen3:"<strong>No waiver.</strong> Failure or delay by the Licensor in enforcing any right shall not constitute a waiver of that right.",
+    gen4:"<strong>Assignment.</strong> You may not assign or transfer this Agreement or your license without the Licensor's prior written consent. The Licensor may assign this Agreement to any successor in interest.",
+    gen5:"<strong>Force Majeure.</strong> Neither party shall be liable for any failure or delay in performance caused by events beyond its reasonable control, including acts of God, natural disasters, war, terrorism, riots, government actions, internet or utility outages, or pandemics.",
+    gen6:"<strong>Changes.</strong> The Licensor may update this Agreement from time to time. Material changes will be communicated through the Software or website at least thirty (30) days before they take effect. Continued use after the effective date constitutes acceptance of the revised Agreement.",
+    gen7:"<strong>Language.</strong> This Agreement is provided in English, Russian, and Chinese for convenience. In the event of any discrepancy between language versions, the English version shall prevail.",
+    h18:"18. Contact",
+    ct:'Questions about this EULA should be directed to <a class="email-link" href="mailto:support@batchrender.com">support@batchrender.com</a>.',
+    disc:'BatchRender is operated by an independent software developer based in Cyprus and is not currently a registered legal entity. The legal contact for all matters relating to this Agreement is <a href="mailto:support@batchrender.com">support@batchrender.com</a>; the operator\'s full identifying details are available on written request to that address. This Agreement does not constitute legal advice.',
+    footerDesc:"Companion tool for DaVinci, Premiere, Final Cut and CapCut. Local batch video processing for editors who deliver client work in volume.",
+    fcProduct:"Product", fcBuiltFor:"Built for", fcFeatures:"Features", fcPricing:"Pricing", fcFree:"Free download",
+    fcSupport:"Support", fcContact:"Contact", fcFaq:"FAQ", fcGitHub:"GitHub",
+    fcLegal:"Legal", fcPrivacy:"Privacy Policy", fcTerms:"Terms of Service", fcRefund:"Refund Policy", fcEula:"EULA",
+    copyright:"© 2026 BatchRender · Operated by an independent developer · Nicosia, Cyprus"
+  },
+  ru: {
+    builtFor:"Для кого", math:"Математика", features:"Ноды", pricing:"Цены", faq:"FAQ",
+    getStarted:"Скачать бесплатно",
+    eyebrow:"Юридические · EULA",
+    title:"Лицензионное соглашение с конечным пользователем",
+    version:"EULA v1.1",
+    updated:"Действует с 2 мая 2026",
+    who:'<strong>Лицензиар:</strong> BatchRender — программный продукт, разрабатываемый независимым разработчиком ПО, базирующимся в Никосии, Кипр («Лицензиар»). Контакт: <a href="mailto:support@batchrender.com">support@batchrender.com</a>.',
+    intro:'Настоящее Лицензионное соглашение с конечным пользователем («EULA», «Соглашение») является обязательным юридическим соглашением между вами («вы», «Лицензиат») и указанным выше Лицензиаром, регулирующим установку, доступ и использование настольного приложения BatchRender и любой сопутствующей документации или обновлений («ПО»). Загружая, устанавливая, активируя или иным образом используя ПО, вы подтверждаете, что прочитали, поняли и согласны соблюдать настоящее Соглашение. Если вы не согласны — не устанавливайте и не используйте ПО.',
+    h1:"1. Предоставление лицензии",
+    g1:"При условии соблюдения вами настоящего Соглашения и своевременной оплаты применимых сборов Лицензиар предоставляет вам ограниченную, неисключительную, непередаваемую, не подлежащую сублицензированию, отзывную лицензию на установку и использование ПО на количестве устройств, разрешённом приобретённым тарифом или пробной версией, исключительно для ваших собственных личных или внутренних бизнес-целей. ПО лицензируется, а не продаётся. Все права, прямо не предоставленные, сохраняются за Лицензиаром.",
+    h2:"2. Пробный режим и водяной знак",
+    t1:"ПО доступно в виде бесплатной пробной версии, работающей без ограничения по времени, но накладывающей видимый водяной знак на все обработанные файлы. Удаление водяного знака требует активации с помощью действительного лицензионного ключа, приобретённого через нашего авторизованного реселлера. Использование пробной версии для коммерческих целей разрешено, но водяной знак не может быть удалён, изменён, замаскирован или обойдён каким-либо способом.",
+    h3:"3. Разрешённое использование",
+    p1:"Вы вправе:",
+    p1a:"устанавливать и использовать ПО на количестве устройств, указанном вашим тарифом;",
+    p1b:"использовать ПО для обработки и рендеринга медиафайлов для личных, коммерческих или профессиональных проектов, включая работу для платных клиентов;",
+    p1c:"создавать разумное количество резервных копий установщика исключительно в архивных целях.",
+    h4:"4. Запрещённое использование",
+    pr0:"Вы не имеете права (и не вправе разрешать третьим лицам):",
+    pr1a:"копировать, воспроизводить, изменять, адаптировать, переводить или создавать производные произведения от ПО, за исключением случаев, прямо разрешённых императивными нормами применимого права;",
+    pr1b:"проводить обратную разработку, декомпиляцию, дизассемблирование или иным образом пытаться получить исходный код, базовые алгоритмы или непубличные компоненты ПО, за исключением ограниченных случаев, когда такая деятельность прямо разрешена применимым правом, несмотря на настоящее ограничение;",
+    pr1c:"перераспространять, перепродавать, сублицензировать, сдавать в аренду, в лизинг, одалживать или коммерчески эксплуатировать ПО или ваш лицензионный ключ;",
+    pr1d:"передавать, публиковать или передавать ваш лицензионный ключ третьим лицам;",
+    pr1e:"удалять, скрывать, изменять или обходить любые уведомления о правах собственности, водяные знаки, проверки лицензий, механизмы активации или технические средства защиты;",
+    pr1f:"использовать ПО для разработки или обучения какого-либо конкурирующего программного продукта, модели машинного обучения или большой языковой модели;",
+    pr1g:"использовать ПО с нарушением любого применимого закона, включая законы об экспортном контроле, санкциях, интеллектуальной собственности и конфиденциальности.",
+    h5:"5. Лицензионный ключ и активация",
+    lk:"Активация лицензии осуществляется через онлайн-проверку при первой активации и периодически впоследствии. ПО может локально хранить токен активации для обеспечения работы офлайн между проверками. Вы несёте ответственность за конфиденциальность вашего лицензионного ключа. Лицензиар оставляет за собой право деактивировать лицензионные ключи, которыми поделились, которые публично утекли, использовались на превышающем разрешённом количестве устройств или были получены мошенническим путём.",
+    h6:"6. Обновления и изменения",
+    up:'Лицензиар может по собственному усмотрению выпускать обновления, патчи или новые версии ПО («Обновления»). Обновления могут устанавливаться вами вручную. Обновления могут добавлять, изменять или удалять функции. При наличии проблем безопасности или совместимости Лицензиар может выпускать обязательные обновления; продолжение использования ПО означает принятие таких Обновлений. Лицензиар не обязан предоставлять Обновления бессрочно.',
+    h7:"7. Сторонние компоненты и сервисы",
+    tp:'ПО включает или интегрирует компоненты с открытым исходным кодом и сторонние компоненты («Сторонние компоненты»). Каждый Сторонний компонент лицензируется на собственных условиях, которые применяются в дополнение к настоящему Соглашению (а в случае противоречия — преобладают над ним) в отношении данного компонента. Перечень Сторонних компонентов и тексты их соответствующих лицензий доступны в ПО или по письменному запросу на указанный ниже контактный адрес. ПО может также взаимодействовать с онлайн-сервисами, управляемыми Лицензиаром или его поставщиками (включая, без ограничения, сервер активации/лицензирования и сервер обновлений) в целях, описанных в <a href="/privacy.html">Политике конфиденциальности</a>.',
+    h8:"8. Интеллектуальная собственность",
+    ip:'ПО и все связанные права интеллектуальной собственности, включая авторские права, товарные знаки, коммерческие тайны и любые их модификации или производные произведения, являются и остаются исключительной собственностью Лицензиара и его лицензиаров. Настоящее Соглашение предоставляет вам только ограниченную лицензию, прямо указанную в Разделе 1; никакие иные права, по подразумеванию или эстоппелю, не предоставляются. Название и логотип «BatchRender» являются товарными знаками Лицензиара.',
+    h9:"9. Ваш контент",
+    yc:'Вы сохраняете все права собственности на любые медиафайлы, проекты или иной контент, обрабатываемый вами с помощью ПО («Ваш контент»). ПО обрабатывает Ваш контент локально на вашем устройстве. Лицензиар не получает, не хранит и не претендует на какие-либо права на Ваш контент.',
+    h10:"10. Отказ от гарантий",
+    dw1:'В МАКСИМАЛЬНО РАЗРЕШЁННОЙ ПРИМЕНИМЫМ ПРАВОМ СТЕПЕНИ ПО ПРЕДОСТАВЛЯЕТСЯ <strong>«КАК ЕСТЬ»</strong> И <strong>«ПО МЕРЕ ДОСТУПНОСТИ»</strong>, БЕЗ КАКИХ-ЛИБО ГАРАНТИЙ, ВЫРАЖЕННЫХ, ПОДРАЗУМЕВАЕМЫХ, УСТАНОВЛЕННЫХ ЗАКОНОМ ИЛИ ИНЫХ. ЛИЦЕНЗИАР ПРЯМО ОТКАЗЫВАЕТСЯ ОТ ВСЕХ ПОДРАЗУМЕВАЕМЫХ ГАРАНТИЙ, ВКЛЮЧАЯ, БЕЗ ОГРАНИЧЕНИЙ, ГАРАНТИИ ТОВАРНОЙ ПРИГОДНОСТИ, ПРИГОДНОСТИ ДЛЯ КОНКРЕТНОЙ ЦЕЛИ, НЕНАРУШЕНИЯ ПРАВ, ТОЧНОСТИ И ТИХОГО ПОЛЬЗОВАНИЯ.',
+    dw2:"Лицензиар не гарантирует, что ПО будет работать без перерывов, без ошибок, безопасно или без вирусов, что дефекты будут исправлены, что будут получены какие-либо конкретные результаты или что ПО будет совместимо с каким-либо конкретным оборудованием, версией операционной системы или сторонним программным обеспечением. Вы принимаете на себя весь риск, связанный с использованием ПО, включая потерю данных и повреждение систем.",
+    dw3:"Некоторые юрисдикции не допускают исключения определённых гарантий; в таких юрисдикциях вышеуказанные исключения применяются в максимально разрешённой законом степени, а ваши установленные законом права как потребителя не затрагиваются.",
+    h11:"11. Ограничение ответственности",
+    ll1:"В МАКСИМАЛЬНО РАЗРЕШЁННОЙ ПРИМЕНИМЫМ ПРАВОМ СТЕПЕНИ НИ ПРИ КАКИХ ОБСТОЯТЕЛЬСТВАХ ЛИЦЕНЗИАР НЕ НЕСЁТ ОТВЕТСТВЕННОСТИ ЗА ЛЮБЫЕ КОСВЕННЫЕ, СЛУЧАЙНЫЕ, ОСОБЫЕ, КОНСЕКВЕНЦИАЛЬНЫЕ, ОБРАЗЦОВЫЕ ИЛИ ШТРАФНЫЕ УБЫТКИ, А ТАКЖЕ ЗА ЛЮБУЮ ПОТЕРЮ ПРИБЫЛИ, ВЫРУЧКИ, БИЗНЕСА, ДЕЛОВОЙ РЕПУТАЦИИ, ДАННЫХ ИЛИ ОЖИДАЕМЫХ СБЕРЕЖЕНИЙ, ВОЗНИКАЮЩИЕ ИЗ ИЛИ В СВЯЗИ С НАСТОЯЩИМ СОГЛАШЕНИЕМ ИЛИ ВАШИМ ИСПОЛЬЗОВАНИЕМ (ИЛИ НЕВОЗМОЖНОСТЬЮ ИСПОЛЬЗОВАНИЯ) ПО, ДАЖЕ ЕСЛИ ЛИЦЕНЗИАР БЫЛ ПРЕДУПРЕЖДЁН О ВОЗМОЖНОСТИ ТАКИХ УБЫТКОВ.",
+    ll2:"СОВОКУПНАЯ ОТВЕТСТВЕННОСТЬ ЛИЦЕНЗИАРА ПО НАСТОЯЩЕМУ СОГЛАШЕНИЮ ИЛИ В СВЯЗИ С НИМ, ПО ВСЕМ ОСНОВАНИЯМ ИСКА И ВСЕМ ТЕОРИЯМ ОТВЕТСТВЕННОСТИ, НЕ ПРЕВЫШАЕТ СУММЫ, ФАКТИЧЕСКИ УПЛАЧЕННОЙ ВАМИ АВТОРИЗОВАННОМУ РЕСЕЛЛЕРУ ЗА ВАШУ ЛИЦЕНЗИЮ НА ПО ЗА ПОСЛЕДНИЕ ДВЕНАДЦАТЬ (12) МЕСЯЦЕВ, ПРЕДШЕСТВОВАВШИХ СОБЫТИЮ, ПОВЛЁКШЕМУ ОТВЕТСТВЕННОСТЬ, ИЛИ ПЯТИДЕСЯТИ ЕВРО (€50), В ЗАВИСИМОСТИ ОТ ТОГО, ЧТО БОЛЬШЕ.",
+    ll3:"Ничто в настоящем Соглашении не исключает и не ограничивает ответственность, которая не может быть исключена или ограничена применимым правом, включая ответственность за мошенничество, грубую небрежность, умышленное неправомерное поведение или причинение смерти либо вреда здоровью вследствие небрежности.",
+    h12:"12. Возмещение убытков",
+    ind:"Вы соглашаетесь защищать, возмещать и ограждать Лицензиара от любых претензий, ущерба, обязательств, расходов и затрат (включая разумные юридические расходы), возникающих из или связанных с: (а) вашим использованием ПО в нарушение настоящего Соглашения; (б) вашим нарушением любого применимого закона; или (в) вашим нарушением каких-либо прав третьих лиц, включая права интеллектуальной собственности, в связи с контентом, который вы обрабатываете с помощью ПО.",
+    h13:"13. Срок и расторжение",
+    tt1:"Настоящее Соглашение действует с момента первой установки или использования вами ПО и продолжается до его расторжения. Вы можете расторгнуть его в любое время путём удаления и прекращения всякого использования ПО.",
+    tt2:"Лицензиар может приостановить или расторгнуть настоящее Соглашение и вашу лицензию, с уведомлением или без него, если вы существенно нарушите настоящее Соглашение, включая любое запрещённое использование или неуплату. После расторжения все предоставленные вам права прекращаются немедленно, и вы должны удалить и уничтожить все копии ПО, находящиеся в вашем владении или под вашим контролем. Разделы, которые по своей природе должны действовать после расторжения (включая Разделы 4, 8, 10, 11, 12, 14, 15 и 16), сохраняют силу.",
+    h14:"14. Возврат средств и права потребителей",
+    ref:'Возврат средств обрабатывается нашим авторизованным реселлером (в настоящее время — <a href="https://lemonsqueezy.com" target="_blank" rel="noopener">Lemon Squeezy</a>, наш Merchant of Record) в соответствии с <a href="/refund.html">Политикой возврата</a>. Если вы покупаете как потребитель в Европейском Союзе, могут применяться определённые императивные средства защиты прав потребителя; настоящее Соглашение не имеет целью ограничить или исключить ваши права согласно таким императивным нормам.',
+    h15:"15. Экспортный контроль и санкции",
+    exp:"Вы заявляете, что не находитесь в стране и не будете экспортировать или реэкспортировать ПО в любую страну или любому лицу из санкционного списка или списка запрещённых сторон, ведущегося Европейским Союзом, Организацией Объединённых Наций, Соединёнными Штатами Америки или Соединённым Королевством, если такой экспорт запрещён применимым правом.",
+    h16:"16. Применимое право и разрешение споров",
+    gl1:"Настоящее Соглашение и любой спор или претензия, возникающие из или в связи с ним (включая внедоговорные споры), регулируются и толкуются в соответствии с законодательством Республики Кипр, без учёта норм коллизионного права. Конвенция ООН о договорах международной купли-продажи товаров не применяется.",
+    gl2:"Стороны должны сначала добросовестно попытаться разрешить любой спор путём прямых переговоров. Если спор не может быть разрешён в течение шестидесяти (60) дней с момента письменного уведомления, он передаётся в исключительную юрисдикцию компетентных судов Никосии, Кипр, за исключением случаев, когда вы действуете как потребитель — тогда вы можете также подать иск в суды по месту вашего проживания в той мере, в какой это требуется императивным применимым правом.",
+    h17:"17. Общие положения",
+    gen1:'<strong>Полнота соглашения.</strong> Настоящее Соглашение вместе с <a href="/terms.html">Условиями использования</a>, <a href="/privacy.html">Политикой конфиденциальности</a> и <a href="/refund.html">Политикой возврата</a> составляет полное соглашение между сторонами в отношении его предмета и заменяет все предыдущие или одновременные сообщения, как письменные, так и устные.',
+    gen2:"<strong>Делимость.</strong> Если какое-либо положение настоящего Соглашения признаётся недействительным или неисполнимым, остальные положения сохраняют полную силу и действие, а недействительное положение должно толковаться как можно ближе к первоначальному намерению сторон.",
+    gen3:"<strong>Отсутствие отказа.</strong> Невыполнение или задержка Лицензиара в осуществлении какого-либо права не означает отказа от такого права.",
+    gen4:"<strong>Уступка.</strong> Вы не можете уступить или передать настоящее Соглашение или вашу лицензию без предварительного письменного согласия Лицензиара. Лицензиар может уступить настоящее Соглашение любому правопреемнику.",
+    gen5:"<strong>Форс-мажор.</strong> Ни одна из сторон не несёт ответственности за любое неисполнение или задержку исполнения, вызванные событиями вне её разумного контроля, включая стихийные бедствия, природные катастрофы, войну, терроризм, беспорядки, действия правительства, перебои в работе интернета или коммунальных услуг, или пандемии.",
+    gen6:"<strong>Изменения.</strong> Лицензиар может время от времени обновлять настоящее Соглашение. Существенные изменения будут сообщены через ПО или сайт не менее чем за тридцать (30) дней до их вступления в силу. Продолжение использования после даты вступления в силу означает принятие пересмотренного Соглашения.",
+    gen7:"<strong>Язык.</strong> Настоящее Соглашение предоставляется на английском, русском и китайском языках для удобства. В случае любого расхождения между языковыми версиями преимущественную силу имеет английская версия.",
+    h18:"18. Контакты",
+    ct:'Вопросы по настоящему EULA направляйте на <a class="email-link" href="mailto:support@batchrender.com">support@batchrender.com</a>.',
+    disc:'BatchRender разрабатывается независимым разработчиком ПО, базирующимся на Кипре, и в настоящее время не является зарегистрированным юридическим лицом. Контакт по всем вопросам, связанным с настоящим Соглашением: <a href="mailto:support@batchrender.com">support@batchrender.com</a>; полные идентификационные данные оператора предоставляются по письменному запросу на указанный адрес. Настоящее Соглашение не является юридической консультацией.',
+    footerDesc:"Дополнительный инструмент для DaVinci, Premiere, Final Cut и CapCut. Локальная пакетная обработка видео для редакторов, работающих с большими объёмами клиентских проектов.",
+    fcProduct:"Продукт", fcBuiltFor:"Для кого", fcFeatures:"Возможности", fcPricing:"Цены", fcFree:"Бесплатная версия",
+    fcSupport:"Поддержка", fcContact:"Связаться", fcFaq:"FAQ", fcGitHub:"GitHub",
+    fcLegal:"Юридическое", fcPrivacy:"Политика конфиденциальности", fcTerms:"Условия использования", fcRefund:"Политика возврата", fcEula:"EULA",
+    copyright:"© 2026 BatchRender · Разработка независимого разработчика · Никосия, Кипр"
+  },
+  zh: {
+    builtFor:"适用对象", math:"运算逻辑", features:"节点", pricing:"价格", faq:"常见问题",
+    getStarted:"免费试用版下载",
+    eyebrow:"法律 · EULA",
+    title:"最终用户许可协议",
+    version:"EULA v1.1",
+    updated:"自2026年5月2日起生效",
+    who:'<strong>许可方：</strong>BatchRender是由一位独立软件开发者开发的软件产品，所在地为塞浦路斯尼科西亚（"许可方"）。联系方式：<a href="mailto:support@batchrender.com">support@batchrender.com</a>。',
+    intro:'本最终用户许可协议（"EULA"、"协议"）是您（"您"、"被许可方"）与上述许可方之间具有法律约束力的协议，约束您对BatchRender桌面软件应用程序及任何相关文档或更新（"软件"）的安装、访问和使用。下载、安装、激活或以其他方式使用软件，即表示您确认已阅读、理解并同意受本协议约束。如果您不同意，请勿安装或使用本软件。',
+    h1:"1. 许可授予",
+    g1:"在您遵守本协议并及时支付任何适用费用的前提下，许可方授予您有限的、非独占的、不可转让的、不可再许可的、可撤销的许可，可在您购买计划或试用版允许的设备数量上安装和使用本软件，仅用于您自己的个人或内部业务目的。本软件以授权而非销售形式提供。所有未明确授予的权利均由许可方保留。",
+    h2:"2. 试用模式与水印",
+    t1:"本软件提供免费试用模式，无时间限制，但会在所有渲染输出中添加可见水印。移除水印需要使用通过我方授权经销商购买的有效许可证密钥进行激活。试用模式仅用于评估目的；试用模式下生成的渲染输出可用于商业用途，但水印不得以任何方式被移除、编辑、遮挡或规避。",
+    h3:"3. 许可使用",
+    p1:"您可以：",
+    p1a:"在您购买计划指定数量的设备上安装和使用本软件；",
+    p1b:"使用本软件处理和渲染媒体文件，用于个人、商业或专业项目，包括为付费客户提供的工作；",
+    p1c:"出于存档目的，制作合理数量的安装程序备份副本。",
+    h4:"4. 禁止使用",
+    pr0:"您不得（且不得允许任何第三方）：",
+    pr1a:"复制、再现、修改、改编、翻译或创建本软件的衍生作品，除非适用法律的强制规定明确允许；",
+    pr1b:"对本软件进行逆向工程、反编译、反汇编，或以其他方式尝试获取源代码、底层算法或本软件的任何非公开组件，除非适用法律明确允许此类活动（不受本限制约束）；",
+    pr1c:"重新分发、转售、再许可、出租、租赁、出借或商业利用本软件或您的许可证密钥；",
+    pr1d:"与第三方共享、发布或转让您的许可证密钥；",
+    pr1e:"删除、模糊、更改或规避任何专有声明、水印、许可检查、激活机制或技术保护措施；",
+    pr1f:"使用本软件开发或训练任何竞争性软件产品、机器学习模型或大型语言模型；",
+    pr1g:"违反任何适用法律使用本软件，包括出口管制、制裁、知识产权和隐私法。",
+    h5:"5. 许可证密钥与激活",
+    lk:"许可证激活在首次激活时和此后定期通过在线检查执行。本软件可在本地存储激活令牌，以便在检查期间离线使用。您有责任对您的许可证密钥保密。许可方保留停用以下许可证密钥的权利：被共享的、公开泄露的、超出允许设备数量使用的，或通过欺诈手段获得的。",
+    h6:"6. 更新与修改",
+    up:'许可方可全权决定发布软件的更新、补丁或新版本（"更新"）。更新可由您手动安装。更新可能添加、修改或删除功能。如果安全或兼容性问题需要，许可方可以推送强制性更新；继续使用本软件即视为接受此类更新。许可方没有义务无限期提供更新。',
+    h7:"7. 第三方组件与服务",
+    tp:'本软件捆绑或集成开源及第三方组件（"第三方组件"）。每个第三方组件均受其自身许可条款约束，该等条款在涉及该组件的范围内补充本协议（如有冲突，以该等条款为准）。第三方组件清单及其各自许可证文本可在软件内或通过书面请求发送至下方联系地址获取。本软件还可能与许可方或其服务提供商运营的在线服务（包括但不限于激活/许可服务器和更新服务器）进行通信，用途详见<a href="/privacy.html">隐私政策</a>。',
+    h8:"8. 知识产权",
+    ip:'本软件及所有相关知识产权，包括版权、商标、商业秘密及其任何修改或衍生作品，均为且仍为许可方及其许可方的专有财产。本协议仅授予您第1节明确规定的有限许可；不通过暗示或禁反言授予任何其他权利。"BatchRender"名称和徽标是许可方的商标。',
+    h9:"9. 您的内容",
+    yc:'您保留对您使用本软件处理的任何媒体文件、项目或其他内容（"您的内容"）的全部所有权。本软件在您的设备上本地处理您的内容。许可方不接收、不存储、不主张对您的内容的任何权利。',
+    h10:"10. 免责声明",
+    dw1:'在适用法律允许的最大范围内，本软件按<strong>"现状"</strong>和<strong>"可用"</strong>提供，不附带任何明示、暗示、法定或其他形式的保证。许可方明确声明拒绝所有暗示保证，包括但不限于适销性、特定用途适用性、不侵权、准确性和不受干扰使用的保证。',
+    dw2:"许可方不保证本软件运行不间断、无错误、安全或无病毒，不保证缺陷将得到纠正，不保证将取得任何特定结果，也不保证本软件与任何特定硬件、操作系统版本或第三方软件兼容。您承担因使用本软件而产生的所有风险，包括数据丢失和系统损坏。",
+    dw3:"某些司法管辖区不允许排除某些保证；在此类司法管辖区，上述排除条款在法律允许的最大范围内适用，您作为消费者的法定权利不受影响。",
+    h11:"11. 责任限制",
+    ll1:"在适用法律允许的最大范围内，无论在何种情况下，许可方均不对任何间接、附带、特殊、相应、惩戒性或惩罚性损害承担责任，也不对任何利润、收入、业务、商誉、数据或预期节余的损失承担责任，无论这些损害是因本协议或您使用（或无法使用）本软件而产生或与之相关，即使许可方已被告知此类损害的可能性。",
+    ll2:"在本协议下或与本协议相关的任何诉因和任何责任理论下，许可方的总累计责任不应超过您在引起责任的事件发生前十二（12）个月内实际向授权经销商支付的本软件许可费金额，或五十欧元（€50），以较高者为准。",
+    ll3:"本协议中的任何内容均不排除或限制根据适用法律不能排除或限制的责任，包括因欺诈、重大过失、故意不当行为或因疏忽造成的死亡或人身伤害的责任。",
+    h12:"12. 赔偿",
+    ind:"您同意为以下情况引起或与之相关的任何索赔、损害、责任、成本和费用（包括合理的法律费用）辩护、赔偿并使许可方免受损害：(a)您违反本协议使用本软件；(b)您违反任何适用法律；或(c)您在使用本软件处理内容方面侵犯任何第三方权利，包括知识产权。",
+    h13:"13. 期限与终止",
+    tt1:"本协议自您首次安装或使用本软件之时起生效，至终止时止。您可随时通过卸载并停止所有使用来终止协议。",
+    tt2:"如果您实质性违反本协议（包括任何禁止使用或未付款），许可方可在通知或不通知的情况下暂停或终止本协议及您的许可。终止后，授予您的所有权利立即终止，您必须卸载并销毁您拥有或控制的所有软件副本。按其性质应在终止后继续有效的条款（包括第4、8、10、11、12、14、15和16节）应继续有效。",
+    h14:"14. 退款与消费者权利",
+    ref:'退款由我方授权经销商（目前为<a href="https://lemonsqueezy.com" target="_blank" rel="noopener">Lemon Squeezy</a>，即我方注册商户/Merchant of Record）根据<a href="/refund.html">退款政策</a>处理。如果您作为欧盟消费者购买，可能适用某些强制性消费者保护；本协议无意限制或排除您根据此类强制性法律享有的权利。',
+    h15:"15. 出口管制与制裁",
+    exp:"您声明，您不在欧盟、联合国、美国或英国维护的制裁或被拒绝方名单上的任何国家或对任何人士所在的位置，也不会将本软件出口或再出口至此类国家或个人，前提是此类出口受适用法律禁止。",
+    h16:"16. 适用法律与争议解决",
+    gl1:"本协议及与本协议相关或由其引起的任何争议或索赔（包括非合同争议）应受塞浦路斯共和国法律管辖并据此解释，不考虑其法律冲突原则。《联合国国际货物销售合同公约》不适用。",
+    gl2:"双方应首先尝试通过直接协商真诚解决任何争议。如果争议在书面通知后六十（60）天内无法解决，则应提交塞浦路斯尼科西亚有管辖权的法院专属管辖，但当您作为消费者时，您也可以在您居住国的法院提起诉讼，前提是适用法律的强制规定要求如此。",
+    h17:"17. 一般规定",
+    gen1:'<strong>完整协议。</strong>本协议连同<a href="/terms.html">服务条款</a>、<a href="/privacy.html">隐私政策</a>和<a href="/refund.html">退款政策</a>，构成双方之间关于其主题事项的完整协议，并取代所有先前或同期的书面或口头通信。',
+    gen2:"<strong>可分割性。</strong>如本协议任何条款被认定为无效或无法执行，其余条款仍具有完全效力，无效条款应解释为尽可能接近双方原意。",
+    gen3:"<strong>不放弃。</strong>许可方未能或延迟行使任何权利不构成对该权利的放弃。",
+    gen4:"<strong>转让。</strong>未经许可方事先书面同意，您不得转让或转移本协议或您的许可。许可方可将本协议转让给任何继任者。",
+    gen5:"<strong>不可抗力。</strong>对于因超出其合理控制范围的事件（包括天灾、自然灾害、战争、恐怖主义、骚乱、政府行动、互联网或公用事业中断或流行病）造成的任何不履行或延迟履行，任何一方均不承担责任。",
+    gen6:"<strong>变更。</strong>许可方可不时更新本协议。重大变更将通过软件或网站在生效前至少三十（30）天告知。生效日期之后继续使用即视为接受修订后的协议。",
+    gen7:"<strong>语言。</strong>本协议提供英文、俄文和中文版本以方便参考。如语言版本之间存在任何差异，以英文版本为准。",
+    h18:"18. 联系",
+    ct:'关于本EULA的问题请联系：<a class="email-link" href="mailto:support@batchrender.com">support@batchrender.com</a>。',
+    disc:'BatchRender由位于塞浦路斯的独立软件开发者运营，目前不是注册法律实体。本协议相关一切事宜的法律联系方式为<a href="mailto:support@batchrender.com">support@batchrender.com</a>；运营者完整身份信息可通过书面请求向上述地址索取。本协议不构成法律建议。',
+    footerDesc:"为DaVinci、Premiere、Final Cut和CapCut提供配套工具。本地批量视频处理，专为大量交付客户作品的剪辑师设计。",
+    fcProduct:"产品", fcBuiltFor:"适用对象", fcFeatures:"功能", fcPricing:"价格", fcFree:"免费下载",
+    fcSupport:"支持", fcContact:"联系", fcFaq:"常见问题", fcGitHub:"GitHub",
+    fcLegal:"法律", fcPrivacy:"隐私政策", fcTerms:"服务条款", fcRefund:"退款政策", fcEula:"EULA",
+    copyright:"© 2026 BatchRender · 独立开发者运营 · 塞浦路斯尼科西亚"
+  }
+};
+
+function setLang(lang) {
+  if (!T[lang]) return;
+  const dict = T[lang];
+  document.querySelectorAll('[data-k]').forEach(el => { const k = el.dataset.k; if (dict[k] !== undefined) el.innerHTML = dict[k]; });
+  document.querySelectorAll('[data-key]').forEach(el => { const k = el.dataset.key; if (dict[k] !== undefined) el.innerHTML = dict[k]; });
+  document.querySelectorAll('[data-nav-key]').forEach(el => { const k = el.dataset.navKey; if (dict[k] !== undefined) el.textContent = dict[k]; });
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  const idx = {en:0,ru:1,zh:2}[lang];
+  const btns = document.querySelectorAll('.lang-btn');
+  if (btns[idx]) btns[idx].classList.add('active');
+  document.documentElement.lang = lang;
+  try { localStorage.setItem('lang', lang); } catch(e){}
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  let saved = 'en';
+  try { saved = localStorage.getItem('lang') || 'en'; } catch(e){}
+  if (saved !== 'en') setLang(saved);
+});
+</script>
+<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "4e7c521caacb46a59028f5d8524cf659"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>

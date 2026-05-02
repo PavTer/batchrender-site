@@ -1,38 +1,381 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Terms of Service — BatchRender</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-<style>:root{--bg:#0a0a0b;--bg2:#111114;--border:rgba(255,255,255,0.07);--accent:#e8ff47;--text:#f0efea;--text2:#8a8a8f;--text3:#555560;--mono:'DM Mono',monospace;--sans:'Inter',sans-serif;--display:'Syne',sans-serif;}*{box-sizing:border-box;margin:0;padding:0;}body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.7;}.topbar{background:rgba(10,10,11,0.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:16px 32px;position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;}.logo{font-family:var(--display);font-weight:800;font-size:18px;text-decoration:none;color:var(--text);display:flex;align-items:center;gap:10px;}.logo-icon{width:28px;height:28px;background:var(--accent);border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:11px;color:#000;font-weight:700;}.back{font-size:13px;color:var(--text2);text-decoration:none;}.back:hover{color:var(--text);}.wrap{max-width:760px;margin:0 auto;padding:64px 32px;}h1{font-family:var(--display);font-size:42px;font-weight:800;margin-bottom:8px;letter-spacing:-0.02em;}.meta{font-family:var(--mono);font-size:12px;color:var(--text3);margin-bottom:48px;}h2{font-family:var(--display);font-size:22px;font-weight:700;margin:40px 0 12px;}p{color:var(--text2);margin-bottom:16px;font-size:15px;}ul{color:var(--text2);padding-left:24px;margin-bottom:16px;}li{margin-bottom:8px;font-size:15px;}a{color:var(--accent);}.lb{background:none;border:none;cursor:pointer;font-family:var(--mono);font-size:11px;color:var(--text3);padding:4px 8px;border-radius:4px;}.lb.active,.lb:hover{color:var(--accent);background:rgba(232,255,71,0.08);}</style>
+<meta name="description" content="BatchRender Terms of Service. License terms, limitations, refund policy, governing law.">
+<link rel="icon" type="image/png" href="/img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-page:#1a2030; --bg-card:#252f46; --bg-deep:#131927;
+  --bd:rgba(255,255,255,0.10); --bd-mid:rgba(255,255,255,0.18); --bd-soft:rgba(255,255,255,0.06);
+  --fg:#e3e5e8; --fg-strong:#ffffff; --fg-mut:#7a8394; --fg-dim:#4a5268;
+  --accent:#7b4fd4; --info:#3b9eff;
+  --grad-brand:linear-gradient(135deg,#3b9eff 0%,#7b4fd4 100%);
+  --grad-text:linear-gradient(90deg,#3b9eff 0%,#b07bff 60%,#ec5da1 100%);
+  --mono:'JetBrains Mono',ui-monospace,'SF Mono',Menlo,monospace;
+  --sans:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+  --display:'Bricolage Grotesque','Inter',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;}html{scroll-behavior:smooth;}
+body{background:var(--bg-page);color:var(--fg);font-family:var(--sans);font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
+.nav-bar{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(20,26,40,0.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--bd-soft);height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 32px;}
+.logo{display:flex;align-items:center;text-decoration:none;}
+.logo-img{height:28px;width:auto;display:block;}
+.logo-fallback{font-family:var(--display);font-weight:800;font-size:18px;color:var(--fg-strong);letter-spacing:-0.02em;}
+.nav-links{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:flex;align-items:center;gap:28px;}
+.nav-links a{color:var(--fg-mut);text-decoration:none;font-size:13px;font-weight:500;transition:color 0.15s;}
+.nav-links a:hover{color:var(--fg-strong);}
+.nav-right{display:flex;align-items:center;gap:14px;}
+.lang-switch{display:flex;gap:2px;background:rgba(255,255,255,0.04);padding:3px;border-radius:8px;}
+.lang-btn{background:none;border:none;cursor:pointer;font-family:var(--mono);font-size:11px;font-weight:500;color:var(--fg-mut);padding:5px 10px;border-radius:6px;transition:all 0.15s;letter-spacing:0.04em;}
+.lang-btn.active{color:var(--info);background:rgba(59,158,255,0.12);}
+.lang-btn:hover:not(.active){color:var(--fg);}
+.btn-nav{background:var(--grad-brand);color:#fff;border:none;padding:9px 18px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:var(--sans);text-decoration:none;transition:transform 0.15s,box-shadow 0.15s;box-shadow:0 4px 14px rgba(59,158,255,0.25);}
+.btn-nav:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(59,158,255,0.4);}
+@media(max-width:760px){.nav-links{display:none;}.nav-bar{padding:0 18px;}.btn-nav{padding:8px 12px;font-size:12px;}}
+.page-wrap{max-width:820px;margin:0 auto;padding:120px 32px 80px;}
+.page-eyebrow{display:inline-block;font-family:var(--mono);font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--info);background:rgba(59,158,255,0.10);border:1px solid rgba(59,158,255,0.22);padding:6px 14px;border-radius:6px;margin-bottom:24px;}
+h1{font-family:var(--display);font-size:clamp(36px,5vw,56px);font-weight:800;line-height:1.05;letter-spacing:-0.03em;color:var(--fg-strong);margin-bottom:14px;}
+.meta{font-family:var(--mono);font-size:12px;color:var(--fg-dim);letter-spacing:0.04em;margin-bottom:48px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.meta-dot{width:6px;height:6px;background:var(--info);border-radius:50%;box-shadow:0 0 10px rgba(59,158,255,0.6);}
+.meta-sep{color:var(--fg-dim);}
+h2{font-family:var(--display);font-size:24px;font-weight:700;margin:48px 0 14px;color:var(--fg-strong);letter-spacing:-0.01em;}
+p{color:var(--fg);margin-bottom:16px;font-size:15.5px;line-height:1.75;}
+p strong{color:var(--fg-strong);font-weight:600;}
+ul{color:var(--fg);padding-left:24px;margin-bottom:16px;}
+li{margin-bottom:8px;font-size:15.5px;line-height:1.7;}
+li::marker{color:var(--info);}
+a{color:var(--info);text-decoration:none;transition:color 0.15s;}
+a:hover{color:#5fb1ff;text-decoration:underline;}
+.email-link{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:14px;background:rgba(59,158,255,0.08);border:1px solid rgba(59,158,255,0.20);padding:4px 10px;border-radius:6px;color:var(--info);text-decoration:none;}
+.email-link:hover{background:rgba(59,158,255,0.14);text-decoration:none;}
+.note-box{background:rgba(123,79,212,0.06);border:1px solid rgba(123,79,212,0.20);border-radius:10px;padding:18px 22px;margin:20px 0;}
+.note-box p{margin-bottom:0;font-size:14.5px;color:var(--fg);}
+.note-box p strong{color:#b07bff;}
+.warn-box{background:rgba(245,166,35,0.06);border:1px solid rgba(245,166,35,0.25);border-radius:10px;padding:18px 22px;margin:20px 0;}
+.warn-box p{margin-bottom:0;font-size:14.5px;color:var(--fg);}
+.warn-box p strong{color:#f5a623;}
+footer{border-top:1px solid var(--bd-soft);padding:56px 32px 36px;max-width:1280px;margin:0 auto;}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:40px;}
+.footer-desc{font-size:14px;color:var(--fg-mut);line-height:1.65;margin-top:14px;max-width:320px;}
+.footer-col h4{font-family:var(--mono);font-size:10px;letter-spacing:0.18em;color:var(--fg-mut);margin-bottom:16px;text-transform:uppercase;font-weight:600;}
+.footer-col a{display:block;font-size:14px;color:var(--fg);text-decoration:none;margin-bottom:10px;transition:color 0.15s;}
+.footer-col a:hover{color:var(--info);}
+.footer-bottom{border-top:1px solid var(--bd-soft);padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+.footer-bottom p{font-size:12px;color:var(--fg-dim);font-family:var(--mono);}
+@media(max-width:760px){.footer-grid{grid-template-columns:1fr 1fr;gap:32px;}.page-wrap{padding:100px 22px 60px;}}
+</style>
 </head>
 <body>
-<div class="topbar">
-  <a href="index.html" class="logo"><div class="logo-icon">BR</div>BatchRender</a>
-  <div style="display:flex;align-items:center;gap:16px">
-    <div style="display:flex;gap:4px"><button class="lb active" onclick="setL('en')">EN</button><button class="lb" onclick="setL('ru')">RU</button><button class="lb" onclick="setL('zh')">中文</button></div>
-    <a href="index.html" class="back">← Back</a>
+
+<nav class="nav-bar">
+  <a href="/" class="logo">
+    <img src="/img/logo-long.png" alt="BatchRender" class="logo-img" onerror="this.outerHTML='<span class=&quot;logo-fallback&quot;>BatchRender</span>'">
+  </a>
+  <div class="nav-links">
+    <a href="/#built-for" data-nav-key="builtFor">Built for</a>
+    <a href="/#math" data-nav-key="math">The Math</a>
+    <a href="/#features" data-nav-key="features">Nodes</a>
+    <a href="/#pricing" data-nav-key="pricing">Pricing</a>
+    <a href="/#faq" data-nav-key="faq">FAQ</a>
   </div>
-</div>
-<div class="wrap">
+  <div class="nav-right">
+    <div class="lang-switch">
+      <button class="lang-btn active" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" onclick="setLang('ru')">RU</button>
+      <button class="lang-btn" onclick="setLang('zh')">中文</button>
+    </div>
+    <a href="/#pricing" class="btn-nav" data-nav-key="getStarted">Download Free Trial</a>
+  </div>
+</nav>
+
+<main class="page-wrap">
+  <div class="page-eyebrow" data-k="eyebrow">Legal · Terms</div>
   <h1 data-k="title">Terms of Service</h1>
-  <p class="meta" data-k="updated">Last updated: November 10, 2024</p>
-  <p data-k="intro">By purchasing and using BatchRender software, you agree to the following terms. Please read them carefully.</p>
-  <h2 data-k="h1">1. License Grant</h2>
-  <p data-k="l1">Upon purchase, BatchRender grants you a non-exclusive, non-transferable license to install and use the software on the number of machines specified by your plan (Indie: 1, Studio: 3, Enterprise: unlimited).</p>
-  <h2 data-k="h2">2. Restrictions</h2>
-  <p data-k="r1">You may not: redistribute, resell, or sublicense the software; reverse engineer, decompile, or disassemble the software; share your license key with others; use the software for illegal purposes.</p>
-  <h2 data-k="h3">3. Updates</h2>
-  <p data-k="u1">Free updates are included for 1 year from purchase date (2 years for Enterprise). After this period, the software continues to work but new updates require a renewal purchase at a discounted rate.</p>
-  <h2 data-k="h4">4. Refund Policy</h2>
-  <p data-k="rf">We offer a full refund within 14 days of purchase if the software does not work as described. Contact <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="4a393f3a3a25383e0a282b3e2922382f242e2f3864292527">[email&#160;protected]</a> with your order ID to request a refund.</p>
-  <h2 data-k="h5">5. Disclaimer of Warranties</h2>
-  <p data-k="dw">BatchRender is provided "as is" without warranty of any kind. We do not guarantee uninterrupted or error-free operation.</p>
-  <h2 data-k="h6">6. Limitation of Liability</h2>
-  <p data-k="ll">Our liability is limited to the amount paid for the software. We are not liable for indirect, incidental, or consequential damages.</p>
-  <h2 data-k="h7">7. Contact</h2>
-  <p data-k="ct">Questions: <a href="/cdn-cgi/l/email-protection#05696062646945676471666d77606b6160772b666a68"><span class="__cf_email__" data-cfemail="4d21282a2c210d2f2c392e253f282329283f632e2220">[email&#160;protected]</span></a></p>
-</div>
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-const T={en:{title:"Terms of Service",updated:"Last updated: November 10, 2024",intro:"By purchasing and using BatchRender software, you agree to the following terms.",h1:"1. License Grant",l1:"Upon purchase, BatchRender grants you a non-exclusive, non-transferable license to install and use the software on the number of machines specified by your plan (Indie: 1, Studio: 3, Enterprise: unlimited).",h2:"2. Restrictions",r1:"You may not: redistribute, resell, or sublicense the software; reverse engineer or decompile the software; share your license key; use the software for illegal purposes.",h3:"3. Updates",u1:"Free updates are included for 1 year from purchase (2 years for Enterprise). After this period, the software continues working but new updates require a renewal at a discounted rate.",h4:"4. Refund Policy",rf:"We offer a full refund within 14 days of purchase if the software does not work as described. Contact support@batchrender.com with your order ID.",h5:"5. Disclaimer of Warranties",dw:'BatchRender is provided "as is" without warranty. We do not guarantee uninterrupted or error-free operation.',h6:"6. Limitation of Liability",ll:"Our liability is limited to the amount paid for the software.",h7:"7. Contact",ct:'Questions: <a href="mailto:legal@batchrender.com">legal@batchrender.com</a>'},ru:{title:"Условия использования",updated:"Последнее обновление: 10 ноября 2024",intro:"Приобретая и используя BatchRender, вы соглашаетесь со следующими условиями.",h1:"1. Предоставление лицензии",l1:"После покупки BatchRender предоставляет вам неисключительную, непередаваемую лицензию на установку и использование ПО на количестве машин, указанном вашим тарифом (Инди: 1, Студия: 3, Корпоратив: неограниченно).",h2:"2. Ограничения",r1:"Вам запрещается: распространять, перепродавать или сублицензировать ПО; проводить обратную разработку; делиться лицензионным ключом; использовать ПО в незаконных целях.",h3:"3. Обновления",u1:"Бесплатные обновления включены на 1 год с даты покупки (2 года для корпоративного тарифа). После этого периода ПО продолжает работать, но новые обновления требуют продления со скидкой.",h4:"4. Политика возврата",rf:"Мы предоставляем полный возврат средств в течение 14 дней с момента покупки, если ПО не работает как описано. Обратитесь на support@batchrender.com с ID заказа.",h5:"5. Отказ от гарантий",dw:'BatchRender предоставляется «как есть» без какой-либо гарантии.',h6:"6. Ограничение ответственности",ll:"Наша ответственность ограничена суммой, уплаченной за ПО.",h7:"7. Контакты",ct:'Вопросы: <a href="mailto:legal@batchrender.com">legal@batchrender.com</a>'},zh:{title:"服务条款",updated:"最后更新：2024年11月10日",intro:"购买和使用BatchRender软件即表示您同意以下条款。",h1:"1. 许可授予",l1:"购买后，BatchRender授予您非独占、不可转让的许可，可在您计划指定数量的机器上安装和使用软件（独立版：1台，工作室版：3台，企业版：无限制）。",h2:"2. 限制",r1:"您不得：重新分发、转售或再许可软件；对软件进行逆向工程；与他人共享许可证密钥；将软件用于非法目的。",h3:"3. 更新",u1:"自购买之日起1年内免费更新（企业版2年）。此后软件继续运行，但新更新需要以折扣价续费购买。",h4:"4. 退款政策",rf:"如果软件与描述不符，我们在购买后14天内提供全额退款。请携带订单ID联系support@batchrender.com。",h5:"5. 免责声明",dw:'BatchRender按"现状"提供，不提供任何形式的保证。',h6:"6. 责任限制",ll:"我们的责任限于为软件支付的金额。",h7:"7. 联系",ct:'问题请联系：<a href="mailto:legal@batchrender.com">legal@batchrender.com</a>'}};
-function setL(l){document.queryS
+  <div class="meta">
+    <span class="meta-dot"></span>
+    <span data-k="updated">Last updated: May 2, 2026</span>
+    <span class="meta-sep">·</span>
+    <span data-k="version">Version 1.1</span>
+  </div>
+
+  <div class="note-box">
+    <p data-k="who"><strong>Who you are dealing with:</strong> BatchRender is a software product operated by an independent software developer based in Nicosia, Cyprus (the "developer"). In these Terms, "we", "us", or "our" refers to the developer; "you" refers to the individual or entity using the software.</p>
+  </div>
+
+  <p data-k="intro">By downloading, installing, or using the BatchRender software, or by completing a purchase via batchrender.com, you agree to be bound by these Terms of Service. If you do not agree, do not use the software.</p>
+
+  <h2 data-k="h1">1. Eligibility</h2>
+  <p data-k="el">You must be at least 16 years old to use BatchRender. If you are using the software on behalf of an organisation, you represent that you have the authority to bind that organisation to these Terms.</p>
+
+  <h2 data-k="h2">2. Purchases and Merchant of Record</h2>
+  <p data-k="mor">Purchases of BatchRender licenses are processed by <strong>Lemon Squeezy</strong>, which acts as the merchant of record for the transaction. Lemon Squeezy is responsible for collecting payment, handling applicable VAT or sales tax, issuing invoices, and managing payment-related disputes. By completing a purchase, you also agree to Lemon Squeezy's terms and privacy policy. We deliver the software license you purchase and provide technical support directly.</p>
+
+  <h2 data-k="h3">3. License Grant</h2>
+  <p data-k="lg">Subject to your compliance with these Terms and payment of applicable fees, we grant you a limited, non-exclusive, non-transferable, revocable license to install and use BatchRender on the number of machines specified in your purchased plan or, in the case of the trial version, on a single machine for evaluation purposes. The license is granted for personal or commercial use within your own business; it is not a sale of the software.</p>
+
+  <h2 data-k="h4">4. Restrictions</h2>
+  <p data-k="rs-intro">You may not, except to the extent expressly permitted by mandatory applicable law:</p>
+  <ul>
+    <li data-k="rs1">redistribute, resell, sublicense, rent, or lease the software;</li>
+    <li data-k="rs2">reverse-engineer, decompile, or disassemble the software, except where such activity is permitted by mandatory law (for example, EU Directive 2009/24/EC for interoperability);</li>
+    <li data-k="rs3">share, publish, or otherwise disclose your license key to any third party;</li>
+    <li data-k="rs4">remove or alter any proprietary notices, watermarks (where applicable to the trial), or branding embedded in the software;</li>
+    <li data-k="rs5">use the software in a manner that violates applicable law or infringes the rights of others.</li>
+  </ul>
+
+  <h2 data-k="h5">5. Trial Version</h2>
+  <p data-k="tr">A free trial version of BatchRender is available without charge. The trial is fully functional except that exported videos contain a visible watermark. The trial may be used for an unlimited duration; upgrading to a paid license removes the watermark. We may modify or discontinue the trial at any time.</p>
+
+  <h2 data-k="h6">6. Updates</h2>
+  <p data-k="up">Free updates are included for the period stated in your purchased plan (typically one year for indie plans, two years for higher tiers). After the included update period, the software you purchased continues to function for the licensed machines, but new releases require a renewal. We reserve the right to release updates that change or remove non-essential features.</p>
+
+  <h2 data-k="h7">7. Refunds and Cancellation</h2>
+  <p data-k="rf">Refund requests are handled in accordance with our <a href="/refund.html">Refund Policy</a>. EU consumers have a statutory right to withdraw from distance contracts within 14 days. For digital content delivered immediately upon purchase, you expressly acknowledge at checkout that the right of withdrawal is waived once the license is delivered. Notwithstanding this waiver, we offer a discretionary 14-day money-back guarantee as set out in our Refund Policy.</p>
+
+  <h2 data-k="h8">8. Intellectual Property</h2>
+  <p data-k="ip">BatchRender, including its source code, binaries, documentation, branding, and all related intellectual property, remains the exclusive property of the developer. These Terms do not transfer any ownership rights. You retain full ownership of any media files, projects, and outputs you create using the software.</p>
+
+  <h2 data-k="h9">9. Disclaimer of Warranties</h2>
+  <p data-k="dw">To the maximum extent permitted by applicable law, BatchRender is provided <strong>"AS IS"</strong> and <strong>"AS AVAILABLE"</strong>, without warranty of any kind, whether express, implied, or statutory, including but not limited to implied warranties of merchantability, fitness for a particular purpose, accuracy, or non-infringement. We do not warrant that the software will be uninterrupted, error-free, or compatible with all hardware or third-party software. You bear the entire risk as to the quality and performance of the software. This section does not limit any rights you may have as a consumer under mandatory applicable law.</p>
+
+  <h2 data-k="h10">10. Limitation of Liability</h2>
+  <p data-k="ll">To the maximum extent permitted by applicable law, in no event will the developer be liable for any indirect, incidental, special, consequential, or punitive damages, including but not limited to loss of profits, loss of data, loss of business, or loss of goodwill, arising out of or in connection with your use of (or inability to use) the software, even if advised of the possibility of such damages. Our total cumulative liability arising under or in connection with these Terms shall not exceed the amount you paid to us (or to Lemon Squeezy on our behalf) for the software during the twelve (12) months preceding the event giving rise to the claim, or fifty euros (EUR 50), whichever is greater. Nothing in these Terms excludes or limits liability for fraud, gross negligence, wilful misconduct, or any other liability that cannot be excluded by applicable law.</p>
+
+  <h2 data-k="h11">11. Indemnification</h2>
+  <p data-k="ind">You agree to indemnify and hold harmless the developer from any claims, damages, or expenses (including reasonable legal fees) arising from your breach of these Terms or your unlawful use of the software.</p>
+
+  <h2 data-k="h12">12. Termination</h2>
+  <p data-k="term">We may suspend or terminate your license if you materially breach these Terms. Upon termination, you must cease all use of the software and destroy any copies in your possession. Sections 8, 9, 10, 11, 13, and 14 survive termination.</p>
+
+  <h2 data-k="h13">13. Governing Law and Jurisdiction</h2>
+  <p data-k="gl">These Terms are governed by the laws of the Republic of Cyprus, without regard to its conflict-of-law principles. Any dispute arising out of or in connection with these Terms shall be subject to the exclusive jurisdiction of the competent courts of Nicosia, Cyprus, except that EU consumers retain the right to bring proceedings in the courts of their country of residence under applicable mandatory consumer-protection law.</p>
+
+  <h2 data-k="h14">14. Miscellaneous</h2>
+  <ul>
+    <li data-k="ms1"><strong>Entire agreement.</strong> These Terms, together with the Privacy Policy, EULA, and Refund Policy, constitute the entire agreement between you and the developer regarding the software and supersede all prior or contemporaneous communications.</li>
+    <li data-k="ms2"><strong>Severability.</strong> If any provision is held unenforceable, the remaining provisions remain in full force and effect.</li>
+    <li data-k="ms3"><strong>No waiver.</strong> A failure to enforce any right does not constitute a waiver of that right.</li>
+    <li data-k="ms4"><strong>Force majeure.</strong> We are not liable for any failure or delay caused by events beyond our reasonable control, including network outages, third-party service failures, natural disasters, or government actions.</li>
+    <li data-k="ms5"><strong>Assignment.</strong> You may not assign these Terms without our prior written consent. We may assign these Terms in connection with a sale, merger, or transfer of the BatchRender product.</li>
+    <li data-k="ms6"><strong>Changes to these Terms.</strong> We may update these Terms from time to time. Material changes will be communicated via the website. Continued use after changes constitutes acceptance.</li>
+  </ul>
+
+  <h2 data-k="h15">15. Contact</h2>
+  <p data-k="ct">Questions about these Terms: <a class="email-link" href="mailto:support@batchrender.com">support@batchrender.com</a></p>
+</main>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <a href="/" class="logo">
+        <img src="/img/logo-long.png" alt="BatchRender" class="logo-img" onerror="this.outerHTML='<span class=&quot;logo-fallback&quot;>BatchRender</span>'">
+      </a>
+      <p class="footer-desc" data-key="footerDesc">Companion tool for DaVinci, Premiere, Final Cut and CapCut. Local batch video processing for editors who deliver client work in volume.</p>
+    </div>
+    <div class="footer-col"><h4 data-key="fcProduct">Product</h4><a href="/#built-for" data-key="fcBuiltFor">Built for</a><a href="/#features" data-key="fcFeatures">Features</a><a href="/#pricing" data-key="fcPricing">Pricing</a><a href="/#download" data-key="fcFree">Free download</a></div>
+    <div class="footer-col"><h4 data-key="fcSupport">Support</h4><a href="mailto:support@batchrender.com" data-key="fcContact">Contact</a><a href="/#faq" data-key="fcFaq">FAQ</a><a href="https://github.com/PavTer/BatchRender" data-key="fcGitHub">GitHub</a></div>
+    <div class="footer-col"><h4 data-key="fcLegal">Legal</h4><a href="/privacy.html" data-key="fcPrivacy">Privacy Policy</a><a href="/terms.html" data-key="fcTerms">Terms of Service</a><a href="/refund.html" data-key="fcRefund">Refund Policy</a><a href="/eula.html" data-key="fcEula">EULA</a></div>
+  </div>
+  <div class="footer-bottom">
+    <p data-key="copyright">© 2026 BatchRender · Operated by an independent developer · Nicosia, Cyprus</p>
+  </div>
+</footer>
+
+<script>
+const T = {
+  en: {
+    builtFor:"Built for", math:"The Math", features:"Nodes", pricing:"Pricing", faq:"FAQ",
+    getStarted:"Download Free Trial",
+    eyebrow:"Legal · Terms",
+    title:"Terms of Service",
+    updated:"Last updated: May 2, 2026",
+    version:"Version 1.1",
+    who:'<strong>Who you are dealing with:</strong> BatchRender is a software product operated by an independent software developer based in Nicosia, Cyprus (the "developer"). In these Terms, "we", "us", or "our" refers to the developer; "you" refers to the individual or entity using the software.',
+    intro:"By downloading, installing, or using the BatchRender software, or by completing a purchase via batchrender.com, you agree to be bound by these Terms of Service. If you do not agree, do not use the software.",
+    h1:"1. Eligibility",
+    el:"You must be at least 16 years old to use BatchRender. If you are using the software on behalf of an organisation, you represent that you have the authority to bind that organisation to these Terms.",
+    h2:"2. Purchases and Merchant of Record",
+    mor:"Purchases of BatchRender licenses are processed by <strong>Lemon Squeezy</strong>, which acts as the merchant of record for the transaction. Lemon Squeezy is responsible for collecting payment, handling applicable VAT or sales tax, issuing invoices, and managing payment-related disputes. By completing a purchase, you also agree to Lemon Squeezy's terms and privacy policy. We deliver the software license you purchase and provide technical support directly.",
+    h3:"3. License Grant",
+    lg:"Subject to your compliance with these Terms and payment of applicable fees, we grant you a limited, non-exclusive, non-transferable, revocable license to install and use BatchRender on the number of machines specified in your purchased plan or, in the case of the trial version, on a single machine for evaluation purposes. The license is granted for personal or commercial use within your own business; it is not a sale of the software.",
+    h4:"4. Restrictions",
+    "rs-intro":"You may not, except to the extent expressly permitted by mandatory applicable law:",
+    rs1:"redistribute, resell, sublicense, rent, or lease the software;",
+    rs2:"reverse-engineer, decompile, or disassemble the software, except where such activity is permitted by mandatory law (for example, EU Directive 2009/24/EC for interoperability);",
+    rs3:"share, publish, or otherwise disclose your license key to any third party;",
+    rs4:"remove or alter any proprietary notices, watermarks (where applicable to the trial), or branding embedded in the software;",
+    rs5:"use the software in a manner that violates applicable law or infringes the rights of others.",
+    h5:"5. Trial Version",
+    tr:"A free trial version of BatchRender is available without charge. The trial is fully functional except that exported videos contain a visible watermark. The trial may be used for an unlimited duration; upgrading to a paid license removes the watermark. We may modify or discontinue the trial at any time.",
+    h6:"6. Updates",
+    up:"Free updates are included for the period stated in your purchased plan (typically one year for indie plans, two years for higher tiers). After the included update period, the software you purchased continues to function for the licensed machines, but new releases require a renewal. We reserve the right to release updates that change or remove non-essential features.",
+    h7:"7. Refunds and Cancellation",
+    rf:'Refund requests are handled in accordance with our <a href="/refund.html">Refund Policy</a>. EU consumers have a statutory right to withdraw from distance contracts within 14 days. For digital content delivered immediately upon purchase, you expressly acknowledge at checkout that the right of withdrawal is waived once the license is delivered. Notwithstanding this waiver, we offer a discretionary 14-day money-back guarantee as set out in our Refund Policy.',
+    h8:"8. Intellectual Property",
+    ip:"BatchRender, including its source code, binaries, documentation, branding, and all related intellectual property, remains the exclusive property of the developer. These Terms do not transfer any ownership rights. You retain full ownership of any media files, projects, and outputs you create using the software.",
+    h9:"9. Disclaimer of Warranties",
+    dw:'To the maximum extent permitted by applicable law, BatchRender is provided <strong>"AS IS"</strong> and <strong>"AS AVAILABLE"</strong>, without warranty of any kind, whether express, implied, or statutory, including but not limited to implied warranties of merchantability, fitness for a particular purpose, accuracy, or non-infringement. We do not warrant that the software will be uninterrupted, error-free, or compatible with all hardware or third-party software. You bear the entire risk as to the quality and performance of the software. This section does not limit any rights you may have as a consumer under mandatory applicable law.',
+    h10:"10. Limitation of Liability",
+    ll:"To the maximum extent permitted by applicable law, in no event will the developer be liable for any indirect, incidental, special, consequential, or punitive damages, including but not limited to loss of profits, loss of data, loss of business, or loss of goodwill, arising out of or in connection with your use of (or inability to use) the software, even if advised of the possibility of such damages. Our total cumulative liability arising under or in connection with these Terms shall not exceed the amount you paid to us (or to Lemon Squeezy on our behalf) for the software during the twelve (12) months preceding the event giving rise to the claim, or fifty euros (EUR 50), whichever is greater. Nothing in these Terms excludes or limits liability for fraud, gross negligence, wilful misconduct, or any other liability that cannot be excluded by applicable law.",
+    h11:"11. Indemnification",
+    ind:"You agree to indemnify and hold harmless the developer from any claims, damages, or expenses (including reasonable legal fees) arising from your breach of these Terms or your unlawful use of the software.",
+    h12:"12. Termination",
+    term:"We may suspend or terminate your license if you materially breach these Terms. Upon termination, you must cease all use of the software and destroy any copies in your possession. Sections 8, 9, 10, 11, 13, and 14 survive termination.",
+    h13:"13. Governing Law and Jurisdiction",
+    gl:"These Terms are governed by the laws of the Republic of Cyprus, without regard to its conflict-of-law principles. Any dispute arising out of or in connection with these Terms shall be subject to the exclusive jurisdiction of the competent courts of Nicosia, Cyprus, except that EU consumers retain the right to bring proceedings in the courts of their country of residence under applicable mandatory consumer-protection law.",
+    h14:"14. Miscellaneous",
+    ms1:"<strong>Entire agreement.</strong> These Terms, together with the Privacy Policy, EULA, and Refund Policy, constitute the entire agreement between you and the developer regarding the software and supersede all prior or contemporaneous communications.",
+    ms2:"<strong>Severability.</strong> If any provision is held unenforceable, the remaining provisions remain in full force and effect.",
+    ms3:"<strong>No waiver.</strong> A failure to enforce any right does not constitute a waiver of that right.",
+    ms4:"<strong>Force majeure.</strong> We are not liable for any failure or delay caused by events beyond our reasonable control, including network outages, third-party service failures, natural disasters, or government actions.",
+    ms5:"<strong>Assignment.</strong> You may not assign these Terms without our prior written consent. We may assign these Terms in connection with a sale, merger, or transfer of the BatchRender product.",
+    ms6:"<strong>Changes to these Terms.</strong> We may update these Terms from time to time. Material changes will be communicated via the website. Continued use after changes constitutes acceptance.",
+    h15:"15. Contact",
+    ct:'Questions about these Terms: <a class="email-link" href="mailto:support@batchrender.com">support@batchrender.com</a>',
+    footerDesc:"Companion tool for DaVinci, Premiere, Final Cut and CapCut. Local batch video processing for editors who deliver client work in volume.",
+    fcProduct:"Product", fcBuiltFor:"Built for", fcFeatures:"Features", fcPricing:"Pricing", fcFree:"Free download",
+    fcSupport:"Support", fcContact:"Contact", fcFaq:"FAQ", fcGitHub:"GitHub",
+    fcLegal:"Legal", fcPrivacy:"Privacy Policy", fcTerms:"Terms of Service", fcRefund:"Refund Policy", fcEula:"EULA",
+    copyright:"© 2026 BatchRender · Operated by an independent developer · Nicosia, Cyprus"
+  },
+  ru: {
+    builtFor:"Для кого", math:"Математика", features:"Ноды", pricing:"Цены", faq:"FAQ",
+    getStarted:"Скачать бесплатно",
+    eyebrow:"Юридические · Условия",
+    title:"Условия использования",
+    updated:"Последнее обновление: 2 мая 2026",
+    version:"Версия 1.1",
+    who:'<strong>С кем вы имеете дело:</strong> BatchRender — программный продукт, разрабатываемый и поддерживаемый независимым разработчиком ПО, базирующимся в Никосии, Кипр («разработчик»). В настоящих Условиях «мы», «нас» или «наш» означает разработчика; «вы» означает физическое или юридическое лицо, использующее программное обеспечение.',
+    intro:"Загружая, устанавливая или используя программное обеспечение BatchRender, либо совершая покупку через batchrender.com, вы соглашаетесь соблюдать настоящие Условия использования. Если вы не согласны — не используйте программное обеспечение.",
+    h1:"1. Право на использование",
+    el:"Вам должно быть не менее 16 лет для использования BatchRender. Если вы используете ПО от имени организации, вы заявляете, что обладаете полномочиями обязать эту организацию настоящими Условиями.",
+    h2:"2. Покупки и продавец на учёте",
+    mor:"Покупки лицензий BatchRender обрабатываются <strong>Lemon Squeezy</strong>, выступающим продавцом на учёте (merchant of record) по сделке. Lemon Squeezy несёт ответственность за приём платежа, начисление применимого НДС или налога с продаж, выставление счетов и урегулирование платёжных споров. Совершая покупку, вы также соглашаетесь с условиями и политикой конфиденциальности Lemon Squeezy. Мы доставляем приобретённую вами лицензию и оказываем техническую поддержку напрямую.",
+    h3:"3. Предоставление лицензии",
+    lg:"При условии соблюдения настоящих Условий и оплаты соответствующих сборов мы предоставляем вам ограниченную, неисключительную, непередаваемую, отзывную лицензию на установку и использование BatchRender на количестве машин, указанном в вашем тарифе, либо — для пробной версии — на одной машине для целей оценки. Лицензия предоставляется для личного или коммерческого использования в рамках собственного бизнеса; это не продажа программного обеспечения.",
+    h4:"4. Ограничения",
+    "rs-intro":"Вам запрещается, за исключением случаев, прямо разрешённых императивными нормами применимого права:",
+    rs1:"распространять, перепродавать, сублицензировать, сдавать в аренду или одалживать программное обеспечение;",
+    rs2:"проводить обратную разработку, декомпиляцию или дизассемблирование, кроме случаев, разрешённых императивными нормами (например, Директива ЕС 2009/24/EC об интероперабельности);",
+    rs3:"делиться, публиковать или иным образом раскрывать ваш лицензионный ключ третьим лицам;",
+    rs4:"удалять или изменять какие-либо уведомления о правах собственности, водяные знаки (применительно к пробной версии) или фирменные элементы, встроенные в ПО;",
+    rs5:"использовать ПО способом, нарушающим применимое право или права третьих лиц.",
+    h5:"5. Пробная версия",
+    tr:"Бесплатная пробная версия BatchRender предоставляется без оплаты. Пробная версия полностью функциональна, за исключением видимого водяного знака на экспортируемых видео. Пробная версия может использоваться неограниченно по времени; переход на платную лицензию убирает водяной знак. Мы можем изменять или прекращать предоставление пробной версии в любое время.",
+    h6:"6. Обновления",
+    up:"Бесплатные обновления включены на срок, указанный в вашем тарифе (обычно один год для инди-тарифов, два года для старших). После окончания включённого периода обновлений ранее приобретённое ПО продолжает работать на лицензированных машинах, но новые релизы требуют продления лицензии. Мы оставляем за собой право выпускать обновления, изменяющие или удаляющие несущественные функции.",
+    h7:"7. Возврат и отмена",
+    rf:'Запросы на возврат рассматриваются согласно нашей <a href="/refund.html">Политике возврата</a>. Потребители из ЕС имеют установленное законом право отказаться от дистанционного договора в течение 14 дней. Для цифрового содержимого, доставляемого немедленно после покупки, вы прямо подтверждаете на оформлении заказа, что отказываетесь от права на отзыв после доставки лицензии. Несмотря на этот отказ, мы предоставляем добровольную 14-дневную гарантию возврата средств в соответствии с Политикой возврата.',
+    h8:"8. Интеллектуальная собственность",
+    ip:"BatchRender, включая исходный код, бинарные файлы, документацию, бренд и все связанные права интеллектуальной собственности, остаётся исключительной собственностью разработчика. Настоящие Условия не передают никаких прав собственности. Вы сохраняете полные права на любые медиафайлы, проекты и результаты, создаваемые вами с использованием ПО.",
+    h9:"9. Отказ от гарантий",
+    dw:'В максимальной степени, разрешённой применимым правом, BatchRender предоставляется <strong>«КАК ЕСТЬ»</strong> и <strong>«ПО ДОСТУПНОСТИ»</strong>, без каких-либо гарантий, выраженных, подразумеваемых или установленных законом, включая, помимо прочего, подразумеваемые гарантии товарной пригодности, пригодности для определённой цели, точности или ненарушения прав. Мы не гарантируем бесперебойной или безошибочной работы ПО, либо его совместимости со всем оборудованием и сторонним ПО. Вы полностью принимаете на себя риск, связанный с качеством и работой ПО. Настоящий раздел не ограничивает права, которые могут принадлежать вам как потребителю по императивным нормам применимого права.',
+    h10:"10. Ограничение ответственности",
+    ll:"В максимальной степени, разрешённой применимым правом, разработчик ни при каких обстоятельствах не несёт ответственности за любые косвенные, случайные, специальные, последующие или штрафные убытки, включая, помимо прочего, упущенную выгоду, потерю данных, потерю бизнеса или потерю деловой репутации, возникающие в связи с использованием (или невозможностью использования) ПО, даже если был предупреждён о возможности таких убытков. Совокупная ответственность разработчика по настоящим Условиям не превышает суммы, уплаченной вами разработчику (или Lemon Squeezy от его имени) за ПО в течение двенадцати (12) месяцев, предшествующих событию, послужившему основанием для требования, либо пятидесяти евро (50 EUR), в зависимости от того, что больше. Ничто в настоящих Условиях не исключает и не ограничивает ответственность за обман, грубую неосторожность, умышленное нарушение либо иную ответственность, которую невозможно исключить по применимому праву.",
+    h11:"11. Возмещение",
+    ind:"Вы обязуетесь возместить разработчику и оградить его от любых требований, ущерба или расходов (включая разумные судебные издержки), возникающих в связи с вашим нарушением настоящих Условий или незаконным использованием ПО.",
+    h12:"12. Прекращение",
+    term:"Мы можем приостановить или прекратить действие вашей лицензии при существенном нарушении настоящих Условий. После прекращения вы обязаны прекратить использование ПО и уничтожить все имеющиеся у вас копии. Разделы 8, 9, 10, 11, 13 и 14 продолжают действовать после прекращения.",
+    h13:"13. Применимое право и юрисдикция",
+    gl:"Настоящие Условия регулируются законодательством Республики Кипр без учёта норм коллизионного права. Любые споры, возникающие из настоящих Условий или в связи с ними, подсудны исключительно компетентным судам Никосии, Кипр, за исключением случаев, когда потребители из ЕС сохраняют право обращаться в суды страны своего проживания на основании применимого императивного законодательства о защите прав потребителей.",
+    h14:"14. Прочее",
+    ms1:"<strong>Полнота соглашения.</strong> Настоящие Условия вместе с Политикой конфиденциальности, EULA и Политикой возврата составляют полное соглашение между вами и разработчиком в отношении ПО и заменяют все предыдущие или одновременные коммуникации.",
+    ms2:"<strong>Делимость.</strong> Если какое-либо положение признано не имеющим юридической силы, остальные положения сохраняют полную силу и действие.",
+    ms3:"<strong>Отсутствие отказа.</strong> Неосуществление какого-либо права не означает отказа от этого права.",
+    ms4:"<strong>Форс-мажор.</strong> Мы не несём ответственности за неисполнение или задержку, вызванные событиями, находящимися вне разумного контроля, включая сбои сети, сбои сторонних сервисов, стихийные бедствия или действия государственных органов.",
+    ms5:"<strong>Уступка.</strong> Вы не вправе уступать права по настоящим Условиям без нашего предварительного письменного согласия. Мы вправе уступать настоящие Условия в связи с продажей, слиянием или передачей продукта BatchRender.",
+    ms6:"<strong>Изменения настоящих Условий.</strong> Мы можем периодически обновлять настоящие Условия. О существенных изменениях будет сообщено через сайт. Продолжение использования после изменений означает их принятие.",
+    h15:"15. Контакты",
+    ct:'Вопросы по настоящим Условиям: <a class="email-link" href="mailto:support@batchrender.com">support@batchrender.com</a>',
+    footerDesc:"Дополнительный инструмент для DaVinci, Premiere, Final Cut и CapCut. Локальная пакетная обработка видео для редакторов, работающих с большими объёмами клиентских проектов.",
+    fcProduct:"Продукт", fcBuiltFor:"Для кого", fcFeatures:"Возможности", fcPricing:"Цены", fcFree:"Бесплатная версия",
+    fcSupport:"Поддержка", fcContact:"Связаться", fcFaq:"FAQ", fcGitHub:"GitHub",
+    fcLegal:"Юридическое", fcPrivacy:"Политика конфиденциальности", fcTerms:"Условия использования", fcRefund:"Политика возврата", fcEula:"EULA",
+    copyright:"© 2026 BatchRender · Разработка независимого разработчика · Никосия, Кипр"
+  },
+  zh: {
+    builtFor:"适用对象", math:"运算逻辑", features:"节点", pricing:"价格", faq:"常见问题",
+    getStarted:"免费试用版下载",
+    eyebrow:"法律 · 条款",
+    title:"服务条款",
+    updated:"最后更新：2026年5月2日",
+    version:"版本 1.1",
+    who:'<strong>您的交易对象：</strong>BatchRender是由位于塞浦路斯尼科西亚的独立软件开发者运营的软件产品（"开发者"）。在本条款中，"我们"、"我方"或"我们的"指开发者；"您"指使用本软件的个人或实体。',
+    intro:"通过下载、安装或使用BatchRender软件，或通过batchrender.com完成购买，即表示您同意受本服务条款约束。如不同意，请勿使用本软件。",
+    h1:"1. 使用资格",
+    el:"您必须年满16岁才能使用BatchRender。如果您代表组织使用本软件，即表示您拥有约束该组织遵守本条款的权限。",
+    h2:"2. 购买与记录商家",
+    mor:"BatchRender许可证的购买由 <strong>Lemon Squeezy</strong> 处理，作为该交易的记录商家（merchant of record）。Lemon Squeezy负责收取付款、处理适用的增值税或销售税、开具发票以及处理与付款相关的争议。完成购买即表示您同意Lemon Squeezy的条款和隐私政策。我们直接交付您购买的软件许可证并提供技术支持。",
+    h3:"3. 许可授予",
+    lg:"在您遵守本条款并支付适用费用的前提下，我们授予您有限、非独占、不可转让、可撤销的许可，可在购买计划指定数量的机器上安装和使用BatchRender，或对于试用版，在一台机器上用于评估目的。该许可授予供您个人或在您自己的企业内商业使用；这不是软件的销售。",
+    h4:"4. 限制",
+    "rs-intro":"除非适用强制性法律明确允许，您不得：",
+    rs1:"重新分发、转售、再许可、出租或租赁软件；",
+    rs2:"对软件进行逆向工程、反编译或反汇编，除非该活动符合强制性法律允许（例如欧盟指令2009/24/EC关于互操作性的规定）；",
+    rs3:"与任何第三方共享、发布或以其他方式披露您的许可证密钥；",
+    rs4:"删除或更改软件中嵌入的任何专有声明、水印（适用于试用版）或品牌标识；",
+    rs5:"以违反适用法律或侵犯他人权利的方式使用软件。",
+    h5:"5. 试用版",
+    tr:"BatchRender免费试用版无需付费。试用版功能齐全，但导出的视频会包含可见的水印。试用版可无限期使用；升级到付费许可证可去除水印。我们可随时修改或停止试用版。",
+    h6:"6. 更新",
+    up:"在您购买计划规定的期限内（独立版通常为一年，更高级别为两年）包含免费更新。在包含的更新期结束后，您购买的软件在已许可的机器上继续运行，但新版本需要续费。我们保留发布更新的权利，以更改或删除非必要功能。",
+    h7:"7. 退款与取消",
+    rf:'退款请求按照我们的 <a href="/refund.html">退款政策</a> 处理。欧盟消费者享有在14天内撤销远程合同的法定权利。对于购买后立即交付的数字内容，您在结账时明确确认许可证交付后撤销权将被放弃。尽管有此放弃，我们仍按退款政策提供自愿的14天退款保证。',
+    h8:"8. 知识产权",
+    ip:"BatchRender，包括其源代码、二进制文件、文档、品牌及所有相关知识产权，仍为开发者的专有财产。本条款不转让任何所有权。您完全保留使用本软件创建的任何媒体文件、项目和输出的所有权。",
+    h9:"9. 免责声明",
+    dw:'在适用法律允许的最大范围内，BatchRender按 <strong>"现状"</strong> 和 <strong>"可用性"</strong> 提供，不提供任何明示、暗示或法定的担保，包括但不限于适销性、特定用途适用性、准确性或不侵权的暗示担保。我们不保证软件不间断、无错误，或与所有硬件或第三方软件兼容。您自行承担软件质量和性能的全部风险。本节不限制您作为消费者根据适用强制性法律可能享有的任何权利。',
+    h10:"10. 责任限制",
+    ll:"在适用法律允许的最大范围内，开发者在任何情况下均不对任何间接、附带、特殊、后果性或惩罚性损害承担责任，包括但不限于因使用（或无法使用）软件而产生或与之相关的利润损失、数据丢失、业务损失或商誉损失，即使被告知此类损害的可能性也是如此。在事件发生前的十二（12）个月内，您向我们（或Lemon Squeezy代表我们）支付的软件费用与五十欧元（EUR 50）中较高者，将构成开发者根据或与本条款相关的全部累积责任的上限。本条款中的任何内容均不排除或限制对欺诈、重大过失、故意不当行为或任何根据适用法律不能排除的其他责任。",
+    h11:"11. 赔偿",
+    ind:"您同意就因您违反本条款或非法使用软件而产生的任何索赔、损害或费用（包括合理的法律费用），赔偿开发者并使其免受损害。",
+    h12:"12. 终止",
+    term:"如您实质性违反本条款，我们可暂停或终止您的许可证。终止后，您必须停止使用软件并销毁您拥有的所有副本。第8、9、10、11、13和14节在终止后继续有效。",
+    h13:"13. 适用法律与管辖",
+    gl:"本条款受塞浦路斯共和国法律管辖，不考虑其法律冲突原则。因本条款产生或与之相关的任何争议，应受塞浦路斯尼科西亚有管辖权法院的专属管辖，但欧盟消费者根据适用强制性消费者保护法保留向其居住国法院提起诉讼的权利。",
+    h14:"14. 其他",
+    ms1:"<strong>完整协议。</strong>本条款连同隐私政策、EULA和退款政策构成您与开发者之间关于软件的完整协议，取代所有先前或同时的沟通。",
+    ms2:"<strong>可分割性。</strong>如任何条款被认定为不可执行，其余条款仍保持完全效力。",
+    ms3:"<strong>不放弃。</strong>未行使任何权利不构成对该权利的放弃。",
+    ms4:"<strong>不可抗力。</strong>对于因合理控制范围之外的事件造成的任何失败或延迟，包括网络中断、第三方服务故障、自然灾害或政府行为，我们概不负责。",
+    ms5:"<strong>转让。</strong>未经我们事先书面同意，您不得转让本条款。我们可在出售、合并或转让BatchRender产品时转让本条款。",
+    ms6:"<strong>本条款的变更。</strong>我们可不时更新本条款。重大变更将通过网站传达。变更后继续使用即表示接受。",
+    h15:"15. 联系",
+    ct:'有关本条款的问题：<a class="email-link" href="mailto:support@batchrender.com">support@batchrender.com</a>',
+    footerDesc:"为DaVinci、Premiere、Final Cut和CapCut提供配套工具。本地批量视频处理，专为大量交付客户作品的剪辑师设计。",
+    fcProduct:"产品", fcBuiltFor:"适用对象", fcFeatures:"功能", fcPricing:"价格", fcFree:"免费下载",
+    fcSupport:"支持", fcContact:"联系", fcFaq:"常见问题", fcGitHub:"GitHub",
+    fcLegal:"法律", fcPrivacy:"隐私政策", fcTerms:"服务条款", fcRefund:"退款政策", fcEula:"EULA",
+    copyright:"© 2026 BatchRender · 独立开发者运营 · 塞浦路斯尼科西亚"
+  }
+};
+
+function setLang(lang) {
+  if (!T[lang]) return;
+  const dict = T[lang];
+  document.querySelectorAll('[data-k]').forEach(el => { const k = el.dataset.k; if (dict[k] !== undefined) el.innerHTML = dict[k]; });
+  document.querySelectorAll('[data-key]').forEach(el => { const k = el.dataset.key; if (dict[k] !== undefined) el.innerHTML = dict[k]; });
+  document.querySelectorAll('[data-nav-key]').forEach(el => { const k = el.dataset.navKey; if (dict[k] !== undefined) el.textContent = dict[k]; });
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  const idx = {en:0,ru:1,zh:2}[lang];
+  const btns = document.querySelectorAll('.lang-btn');
+  if (btns[idx]) btns[idx].classList.add('active');
+  document.documentElement.lang = lang;
+  try { localStorage.setItem('lang', lang); } catch(e){}
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  let saved = 'en';
+  try { saved = localStorage.getItem('lang') || 'en'; } catch(e){}
+  if (saved !== 'en') setLang(saved);
+});
+</script>
+<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "4e7c521caacb46a59028f5d8524cf659"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>
