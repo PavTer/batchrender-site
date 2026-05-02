@@ -3107,6 +3107,7 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
     <a href="#built-for" data-nav-key="builtFor">Built for</a>
     <a href="#math" data-nav-key="math">The Math</a>
     <a href="#features" data-nav-key="features">Nodes</a>
+    <a href="#videos" data-nav-key="videos">Tutorials</a>
     <a href="#pricing" data-nav-key="pricing">Pricing</a>
     <a href="#faq" data-nav-key="faq">FAQ</a>
   </div>
@@ -3116,7 +3117,7 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
       <button class="lang-btn" onclick="setLang(&#39;ru&#39;)">RU</button>
       <button class="lang-btn" onclick="setLang(&#39;zh&#39;)">中文</button>
     </div>
-    <a href="#pricing" class="btn-nav" data-key="getStarted">Download Free Trial</a>
+    <a href="#download" class="btn-nav" data-key="getStarted">Download Free Trial</a>
   </div>
 </nav>
 
@@ -3677,7 +3678,7 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
       </div>
       <span class="savings cool" data-key="p1savings">−25% off original price</span>
       <div class="spacer"></div>
-      <a href="#" class="cta ghost" data-key="p1cta">Start Monthly</a>
+      <a href="#" data-buy="monthly" class="cta ghost" data-key="p1cta">Start Monthly</a>
     </div>
 
     <!-- 2) YEARLY — FEATURED -->
@@ -3705,7 +3706,7 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
       </div>
       <span class="savings" data-key="p2savings">Save $80/yr · ~$13.33/mo</span>
       <div class="spacer"></div>
-      <a href="#" class="cta primary" data-key="p2cta">Start Yearly</a>
+      <a href="#" data-buy="yearly" class="cta primary" data-key="p2cta">Start Yearly</a>
     </div>
 
     <!-- 3) ONE-TIME 1 MONTH -->
@@ -3727,7 +3728,7 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
       </div>
       <span class="savings warm" data-key="p3savings">Save $10/quarter · ~$13.33/mo</span>
       <div class="spacer"></div>
-      <a href="#" class="cta ghost" data-key="p3cta">Start Quarterly</a>
+      <a href="#" data-buy="quarterly" class="cta ghost" data-key="p3cta">Start Quarterly</a>
     </div>
 
     <!-- 4) ONE-TIME 3 MONTHS -->
@@ -3753,7 +3754,7 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
       </div>
       <span class="savings warm" data-key="p4savings">Save €10 vs. 3× monthly</span>
       <div class="spacer"></div>
-      <a href="#" class="cta ghost" data-key="p4cta">Buy 3 Months <span class="arrow-box">→</span></a>
+      <a href="#" data-buy="3months" class="cta ghost" data-key="p4cta">Buy 3 Months <span class="arrow-box">→</span></a>
     </div>
 
   </div>
@@ -3978,7 +3979,7 @@ function applyVersion() {
 
 const T = {
   en: {
-    builtFor:"Built for", math:"The Math", features:"Nodes", pricing:"Pricing", faq:"FAQ", contact:"Contact",
+    builtFor:"Built for", math:"The Math", features:"Nodes", videos:"Tutorials", pricing:"Pricing", faq:"FAQ", contact:"Contact",
     getStarted:"Download Free Trial",
     version:"{VERSION} — Active Development",
     canvasHint:"Try drag",
@@ -4190,7 +4191,7 @@ const T = {
   },
 
   ru: {
-    builtFor:"Для кого", math:"Математика", features:"Ноды", pricing:"Цены", faq:"FAQ", contact:"Контакты",
+    builtFor:"Для кого", math:"Математика", features:"Ноды", videos:"Уроки", pricing:"Цены", faq:"FAQ", contact:"Контакты",
     getStarted:"Скачать бесплатно",
     version:"{VERSION} — Активная разработка",
     canvasHint:"Попробуй потянуть",
@@ -4402,7 +4403,7 @@ const T = {
   },
 
   zh: {
-    builtFor:"适合谁", math:"成本对比", features:"节点", pricing:"价格", faq:"常见问题", contact:"联系",
+    builtFor:"适合谁", math:"成本对比", features:"节点", videos:"教程", pricing:"价格", faq:"常见问题", contact:"联系",
     getStarted:"免费试用",
     version:"{VERSION} — 持续开发中",
     canvasHint:"试试拖动",
@@ -5251,6 +5252,35 @@ function setupPricingToggle() {
   });
 }
 
+// Buy buttons: when LemonSqueezy URLs are not yet configured, intercept clicks
+// and gracefully scroll to download section instead of jumping to top.
+// To enable real checkout, fill BUY_URLS with LemonSqueezy URLs.
+const BUY_URLS = {
+  monthly:   '',  // e.g. 'https://batchrender.lemonsqueezy.com/buy/xxxx-monthly'
+  yearly:    '',
+  quarterly: '',
+  '3months': ''
+};
+function setupBuyButtons() {
+  document.querySelectorAll('a[data-buy]').forEach((a) => {
+    a.addEventListener('click', (e) => {
+      const plan = a.dataset.buy;
+      const url = BUY_URLS[plan];
+      if (url && url.length > 0) {
+        // Real checkout configured — let the link work normally
+        a.setAttribute('href', url);
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener');
+        return;
+      }
+      // No checkout yet — scroll to download section
+      e.preventDefault();
+      const dl = document.getElementById('download');
+      if (dl) dl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+}
+
 function setupNodesCarousel() {
   const root = document.querySelector('#features');
   if (!root) return;
@@ -5407,6 +5437,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setupMathPulse();
   setupNodesCarousel();
   setupPricingToggle();
+  setupBuyButtons();
 });
 document.addEventListener('keydown', e => { if(e.key === 'Escape') closeDemoModal(); });
 </script>
