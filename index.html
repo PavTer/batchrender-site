@@ -3830,13 +3830,13 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
             <span class="sub" data-key="dlMacSub">12 Monterey or newer</span>
           </div>
         </div>
-        <span class="arch-flag" data-key="dlMacArch">Universal</span>
+        <span class="arch-flag" data-key="dlMacArch">Apple Silicon</span>
       </div>
 
       <div class="stats">
         <div class="stat">
           <span class="k" data-key="dlStatSize">Size</span>
-          <span class="v mono">84 MB</span>
+          <span class="v mono" data-size-target="mac">84 MB</span>
         </div>
         <div class="stat">
           <span class="k" data-key="dlStatFormat">Format</span>
@@ -3877,7 +3877,7 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
       <div class="stats">
         <div class="stat">
           <span class="k" data-key="dlStatSize2">Size</span>
-          <span class="v mono">96 MB</span>
+          <span class="v mono" data-size-target="win">96 MB</span>
         </div>
         <div class="stat">
           <span class="k" data-key="dlStatFormat2">Format</span>
@@ -3885,7 +3885,7 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
         </div>
         <div class="stat">
           <span class="k" data-key="dlWinStatNote">Signed</span>
-          <span class="v" data-key="dlWinStatNoteVal">Yes</span>
+          <span class="v" data-key="dlWinStatNoteVal">No</span>
         </div>
       </div>
 
@@ -3964,17 +3964,59 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
 </footer>
 
 <script>
-/* === SITE VERSION — single source of truth.
-   Change SITE_VERSION here and it propagates to every place that uses {VERSION} placeholder. */
-const SITE_VERSION = "v0.0.15";
+/* === SITE VERSION & RELEASE INFO ===
+   Live values pulled from GitHub Releases API on page load.
+   SITE_VERSION starts as a fallback, then gets overwritten by fetchReleaseInfo().
+   Used to populate {VERSION} placeholder via applyVersion(). */
+let SITE_VERSION = "v0.0.15";
 
-document.addEventListener("DOMContentLoaded", () => applyVersion());
+document.addEventListener("DOMContentLoaded", () => {
+  applyVersion();
+  fetchReleaseInfo();
+});
+
 function applyVersion() {
   document.querySelectorAll('[data-key]').forEach(el => {
     if (el.innerHTML && el.innerHTML.indexOf('{VERSION}') !== -1) {
       el.innerHTML = el.innerHTML.replace(/\{VERSION\}/g, SITE_VERSION);
     }
   });
+}
+
+async function fetchReleaseInfo() {
+  try {
+    const r = await fetch('https://api.github.com/repos/PavTer/BatchRender/releases/latest');
+    if (!r.ok) return;
+    const data = await r.json();
+
+    // Update version
+    if (data.tag_name) {
+      const oldVersion = SITE_VERSION;
+      SITE_VERSION = data.tag_name;
+      // Re-apply to all {VERSION} placeholders (in case they were already substituted with old value)
+      document.querySelectorAll('[data-key]').forEach(el => {
+        if (el.innerHTML && el.innerHTML.indexOf(oldVersion) !== -1) {
+          el.innerHTML = el.innerHTML.split(oldVersion).join(SITE_VERSION);
+        }
+      });
+    }
+
+    // Update file sizes
+    const fmt = (bytes) => `${Math.round(bytes / (1024 * 1024))} MB`;
+    const assets = data.assets || [];
+    const macAsset = assets.find(a => a.name === 'BatchRender-mac-arm64.dmg');
+    const winAsset = assets.find(a => a.name === 'BatchRender-win.exe');
+    if (macAsset) {
+      const el = document.querySelector('[data-size-target="mac"]');
+      if (el) el.textContent = fmt(macAsset.size);
+    }
+    if (winAsset) {
+      const el = document.querySelector('[data-size-target="win"]');
+      if (el) el.textContent = fmt(winAsset.size);
+    }
+  } catch (e) {
+    console.warn('Failed to fetch GitHub release info:', e);
+  }
 }
 
 const T = {
@@ -4167,7 +4209,7 @@ const T = {
     dlMacChip:"Apple Silicon ready",
     dlMacTtl:"macOS",
     dlMacSub:"12 Monterey or newer",
-    dlMacArch:"Universal",
+    dlMacArch:"Apple Silicon",
     dlMacStatNote:"Notarized",
     dlMacStatNoteVal:"Yes",
     dlMacMeta:"Apple Silicon (M1+)",
@@ -4176,7 +4218,7 @@ const T = {
     dlWinSub:"Windows 10 / 11",
     dlWinArch:"x64",
     dlWinStatNote:"Signed",
-    dlWinStatNoteVal:"Yes",
+    dlWinStatNoteVal:"No",
     dlWinMeta:"Windows 10/11",
     dlStatSize:"Size",
     dlStatFormat:"Format",
@@ -4379,7 +4421,7 @@ const T = {
     dlMacChip:"Apple Silicon готов",
     dlMacTtl:"macOS",
     dlMacSub:"12 Monterey или новее",
-    dlMacArch:"Universal",
+    dlMacArch:"Apple Silicon",
     dlMacStatNote:"Нотаризовано",
     dlMacStatNoteVal:"Да",
     dlMacMeta:"Apple Silicon (M1+)",
@@ -4388,7 +4430,7 @@ const T = {
     dlWinSub:"Windows 10 / 11",
     dlWinArch:"x64",
     dlWinStatNote:"Подписано",
-    dlWinStatNoteVal:"Да",
+    dlWinStatNoteVal:"Нет",
     dlWinMeta:"Windows 10/11",
     dlStatSize:"Размер",
     dlStatFormat:"Формат",
@@ -4591,7 +4633,7 @@ const T = {
     dlMacChip:"支持 Apple Silicon",
     dlMacTtl:"macOS",
     dlMacSub:"12 Monterey 或更新版本",
-    dlMacArch:"通用",
+    dlMacArch:"Apple 芯片",
     dlMacStatNote:"已公证",
     dlMacStatNoteVal:"是",
     dlMacMeta:"Apple Silicon (M1+)",
@@ -4600,7 +4642,7 @@ const T = {
     dlWinSub:"Windows 10 / 11",
     dlWinArch:"x64",
     dlWinStatNote:"已签名",
-    dlWinStatNoteVal:"是",
+    dlWinStatNoteVal:"否",
     dlWinMeta:"Windows 10/11",
     dlStatSize:"大小",
     dlStatFormat:"格式",
