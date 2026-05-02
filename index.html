@@ -3836,7 +3836,7 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
       <div class="stats">
         <div class="stat">
           <span class="k" data-key="dlStatSize">Size</span>
-          <span class="v mono" data-size-target="mac">84 MB</span>
+          <span class="v mono" data-size-target="mac">155 MB</span>
         </div>
         <div class="stat">
           <span class="k" data-key="dlStatFormat">Format</span>
@@ -3877,7 +3877,7 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
       <div class="stats">
         <div class="stat">
           <span class="k" data-key="dlStatSize2">Size</span>
-          <span class="v mono" data-size-target="win">96 MB</span>
+          <span class="v mono" data-size-target="win">140 MB</span>
         </div>
         <div class="stat">
           <span class="k" data-key="dlStatFormat2">Format</span>
@@ -3965,7 +3965,7 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
 
 <script>
 /* === SITE VERSION & RELEASE INFO ===
-   Live values pulled from GitHub Releases API on page load.
+   Live values pulled from /api/release (Vercel Edge Function which proxies GitHub Releases API).
    SITE_VERSION starts as a fallback, then gets overwritten by fetchReleaseInfo().
    Used to populate {VERSION} placeholder via applyVersion(). */
 let SITE_VERSION = "v0.0.15";
@@ -3985,15 +3985,14 @@ function applyVersion() {
 
 async function fetchReleaseInfo() {
   try {
-    const r = await fetch('https://api.github.com/repos/PavTer/BatchRender/releases/latest');
+    const r = await fetch('/api/release');
     if (!r.ok) return;
     const data = await r.json();
 
     // Update version
-    if (data.tag_name) {
+    if (data.version) {
       const oldVersion = SITE_VERSION;
-      SITE_VERSION = data.tag_name;
-      // Re-apply to all {VERSION} placeholders (in case they were already substituted with old value)
+      SITE_VERSION = data.version;
       document.querySelectorAll('[data-key]').forEach(el => {
         if (el.innerHTML && el.innerHTML.indexOf(oldVersion) !== -1) {
           el.innerHTML = el.innerHTML.split(oldVersion).join(SITE_VERSION);
@@ -4015,7 +4014,7 @@ async function fetchReleaseInfo() {
       if (el) el.textContent = fmt(winAsset.size);
     }
   } catch (e) {
-    console.warn('Failed to fetch GitHub release info:', e);
+    // Silent — fallback values stay in place
   }
 }
 
