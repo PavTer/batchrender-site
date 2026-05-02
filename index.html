@@ -1633,7 +1633,12 @@ section { padding: 100px 32px; max-width: 1280px; margin: 0 auto; }
 .video-empty p { color: var(--fg-mut); font-size: 14px; }
 
 /* PRICING — full reference port (Pricing.html, scoped to #pricing) */
-#pricing { position: relative; isolation: isolate; }
+#pricing {
+  position: relative;
+  isolation: isolate;
+  margin-left: auto;
+  margin-right: auto;
+}
 
   
   
@@ -1650,8 +1655,9 @@ section { padding: 100px 32px; max-width: 1280px; margin: 0 auto; }
   /* GIANT BACKGROUND TYPE */
   #pricing .megaword {
     position: absolute;
-    left: -24px;
+    left: 50%;
     bottom: -72px;
+    transform: translateX(-50%);
     font-family: var(--sans);
     font-weight: 900;
     font-size: 324px;
@@ -1674,13 +1680,14 @@ section { padding: 100px 32px; max-width: 1280px; margin: 0 auto; }
   #pricing .head {
     position: relative;
     z-index: 2;
-    display: grid;
-    grid-template-columns: 1fr auto;
-    align-items: end;
-    gap: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 18px;
     padding-bottom: 12px;
   }
-  #pricing .head-left { display: flex; flex-direction: column; gap: 10px; }
+  #pricing .head-left { display: flex; flex-direction: column; align-items: center; gap: 10px; }
   #pricing .eyebrow-row {
     display: flex; align-items: center; gap: 8px;
     animation: pr-head-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) backwards;
@@ -1739,19 +1746,7 @@ section { padding: 100px 32px; max-width: 1280px; margin: 0 auto; }
     position: relative;
     padding-right: 4.8px;
   }
-  #pricing .section-title .it::after {
-    content: "";
-    position: absolute;
-    left: 0; right: 4.8px; bottom: -4.8px;
-    height: 3.6px;
-    background: linear-gradient(90deg, #5EB2FF, #B488FF);
-    border-radius: 2.4px;
-    transform: scaleX(0); transform-origin: left;
-    animation: pr-under 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.7s forwards;
-  }
-  @keyframes pr-under{
-    to { transform: scaleX(1); }
-  }
+  /* (underline removed) */
   @keyframes pr-head-in{
     from { opacity: 0; transform: translateY(-8px); }
     to   { opacity: 1; transform: translateY(0); }
@@ -1799,7 +1794,7 @@ section { padding: 100px 32px; max-width: 1280px; margin: 0 auto; }
     gap: 17px;
     align-items: stretch;
     flex: 1;
-    margin-top: 4.8px;
+    margin-top: 48px;
     transition: filter 0.45s ease, opacity 0.45s ease;
     isolation: isolate;
   }
@@ -2294,33 +2289,465 @@ section { padding: 100px 32px; max-width: 1280px; margin: 0 auto; }
 
 
 
-/* FREE */
-.free-section { padding: 80px 32px; }
-.free-inner {
-  max-width: 920px; margin: 0 auto;
-  background: var(--bg-card); border: 1px solid var(--bd); border-radius: 14px;
-  padding: 60px 48px; text-align: center; position: relative; overflow: hidden;
+/* DOWNLOAD — full reference port (Download v1, scoped to #download) */
+#download {
+  position: relative;
+  isolation: isolate;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-.free-inner::before {
-  content: ""; position: absolute; inset: 0; pointer-events: none;
-  background: radial-gradient(400px 250px at 30% 0%, rgba(34,211,154,0.10), transparent 60%), radial-gradient(400px 250px at 100% 100%, rgba(59,158,255,0.08), transparent 60%);
-}
-.free-inner > * { position: relative; }
-.free-inner h2 { font-family: var(--sans); font-size: 38px; font-weight: 800; margin-bottom: 14px; color: var(--fg-strong); letter-spacing: -0.025em; }
-.free-inner p { color: var(--fg-mut); font-size: 16px; margin-bottom: 32px; line-height: 1.65; max-width: 620px; margin-left: auto; margin-right: auto; }
-.free-perks { display: flex; justify-content: center; gap: 28px; flex-wrap: wrap; margin-bottom: 36px; }
-.free-perk { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--fg); font-family: var(--mono); font-weight: 500; }
-.free-perk-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--ok); flex-shrink: 0; }
-.download-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-.btn-download {
-  display: inline-flex; align-items: center; gap: 10px;
-  background: rgba(255,255,255,0.04); border: 1px solid var(--bd-mid);
-  color: var(--fg-strong); padding: 13px 24px; border-radius: 10px;
-  text-decoration: none; font-size: 14px; font-weight: 500;
-  transition: all 0.15s;
-}
-.btn-download:hover { background: rgba(255,255,255,0.08); border-color: var(--info); transform: translateY(-2px); }
-.btn-download [data-lucide] { width: 16px; height: 16px; }
+
+  
+  
+  
+
+  /* SLIDE */
+  
+  
+
+  /* Giant background type */
+  #download .megaword {
+    position: absolute;
+    left: 50%;
+    bottom: 40px;
+    transform: translateX(-50%);
+    font-family: var(--sans);
+    font-weight: 900;
+    font-size: 220px;
+    line-height: 0.78;
+    letter-spacing: -0.06em;
+    color: transparent;
+    -webkit-text-stroke: 2px rgba(255,255,255,0.05);
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+    white-space: nowrap;
+  }
+  #download .megaword .accent { -webkit-text-stroke: 2px rgba(94,178,255,0.25); }
+
+  /* HEADER */
+  #download .head {
+    position: relative;
+    z-index: 2;
+    display: flex; flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 12px;
+    padding-bottom: 6px;
+    width: 100%;
+    max-width: 960px;
+  }
+  #download .eyebrow-row {
+    display: flex; align-items: center; gap: 10px;
+    animation: dl-head-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+  }
+  #download .eyebrow-pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 8px 15px;
+    border-radius: 749px;
+    border: 1px solid rgba(94,178,255,0.45);
+    color: #5EB2FF;
+    font-family: var(--mono);
+    font-weight: 600;
+    font-size: 16px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    background: rgba(46,122,236,0.10);
+  }
+  #download .eyebrow-pill .dot {
+    width: 8px; height: 8px; border-radius: 749px;
+    background: #5EE26B;
+    box-shadow: 0 0 10px #5EE26B;
+    animation: dl-pulse 1.6s ease-in-out infinite;
+  }
+  @keyframes dl-pulse{
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%      { opacity: 0.5; transform: scale(1.4); }
+  }
+  #download .eyebrow-line {
+    height: 1px; flex: 1;
+    background: linear-gradient(90deg, rgba(94,178,255,0.5), transparent);
+    max-width: 255px;
+  }
+  #download .eyebrow-meta {
+    font-family: var(--mono);
+    font-size: 16px;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.10em;
+  }
+
+  #download .section-title {
+    font-family: var(--sans);
+    font-weight: 800;
+    font-size: 84px;
+    line-height: 0.95;
+    letter-spacing: -0.035em;
+    color: #fff;
+    margin: 0;
+    animation: dl-head-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.1s backwards;
+  }
+  #download .section-title .it {
+    font-style: italic;
+    background: linear-gradient(180deg, #5EB2FF 0%, #B488FF 100%);
+    -webkit-background-clip: text; background-clip: text;
+    color: transparent;
+    position: relative;
+    padding-right: 6px;
+  }
+  /* (underline removed) */
+  @keyframes dl-head-in{
+    from { opacity: 0; transform: translateY(-10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  #download .section-sub {
+    font-weight: 400;
+    font-size: 21px;
+    line-height: 1.4;
+    color: rgba(255,255,255,0.7);
+    max-width: 975px;
+    margin: 0;
+    animation: dl-head-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.2s backwards;
+  }
+
+  /* MAIN SPLIT */
+  #download .main {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    align-items: stretch;
+    flex: 1;
+    margin-top: 56px;
+    isolation: isolate;
+    max-width: 960px;
+    width: 100%;
+    align-self: center;
+  }
+  #download .main::before {
+    content: "";
+    position: absolute;
+    inset: -30px -30px -30px -30px;
+    z-index: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(315px 240px at 14% 30%,  rgba(94,178,255,0.55),  transparent 65%),
+      radial-gradient(285px 225px at 40% 72%,  rgba(180,136,255,0.55), transparent 65%),
+      radial-gradient(270px 240px at 66% 30%,  rgba(94,226,107,0.40),  transparent 65%),
+      radial-gradient(315px 255px at 88% 70%,  rgba(255,177,0,0.42),   transparent 65%);
+    filter: saturate(1.1);
+    animation: dl-blobs 18s ease-in-out infinite;
+  }
+  @keyframes dl-blobs{
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33%      { transform: translate(-22px, 15px) scale(1.04); }
+    66%      { transform: translate(18px, -12px) scale(0.97); }
+  }
+
+  /* CARDS */
+  #download .card {
+    position: relative;
+    z-index: 1;
+    border-radius: 16px;
+    padding: 22px 21px 20px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.03));
+    border: 1px solid rgba(255,255,255,0.16);
+    box-shadow: 0 16px 45px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.18);
+    backdrop-filter: blur(27px) saturate(1.4);
+    -webkit-backdrop-filter: blur(27px) saturate(1.4);
+    display: flex; flex-direction: column; gap: 15px;
+    overflow: visible;
+    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.45s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+    animation: dl-card-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+    isolation: isolate;
+  }
+  #download .card:nth-of-type(1) { animation-delay: 0.30s; }
+  #download .card:nth-of-type(2) { animation-delay: 0.42s; }
+  @keyframes dl-card-in{
+    from { opacity: 0; transform: translateY(27px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  #download .card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 24px 60px rgba(0,0,0,0.55);
+    border-color: rgba(94,178,255,0.40);
+  }
+
+  #download .card .glyph {
+    position: absolute;
+    right: 18px; bottom: 14px;
+    font-family: var(--sans);
+    font-weight: 900;
+    font-size: 180px;
+    line-height: 0.8;
+    color: rgba(255,255,255,0.05);
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+    letter-spacing: -0.05em;
+  }
+
+  /* Header inside card */
+  #download .card-head {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 12px;
+    position: relative; z-index: 2;
+  }
+  #download .platform {
+    display: flex; align-items: center; gap: 10px;
+  }
+  #download .platform .logo {
+    width: 39px; height: 39px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.14);
+    display: flex; align-items: center; justify-content: center;
+    color: #fff;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.18);
+  }
+  #download .platform .logo svg { width: 20px; height: 20px; }
+  #download .platform .name {
+    display: flex; flex-direction: column; gap: 3px;
+  }
+  #download .platform .name .num {
+    font-family: var(--mono);
+    font-weight: 600;
+    font-size: 14px;
+    color: rgba(255,255,255,0.32);
+    letter-spacing: 0.16em;
+  }
+  #download .platform .name .ttl {
+    font-family: var(--sans);
+    font-weight: 800;
+    font-size: 27px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: #fff;
+  }
+  #download .platform .name .sub {
+    font-family: var(--mono);
+    font-size: 14px;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-top: 4.5px;
+  }
+
+  #download .arch-flag {
+    font-family: var(--mono);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    padding: 6px 10px;
+    border-radius: 749px;
+    border: 1px solid rgba(94,178,255,0.40);
+    color: #8EC5FF;
+    background: rgba(46,122,236,0.10);
+    white-space: nowrap;
+  }
+
+  /* Stats row */
+  #download .stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 9px;
+    padding: 9px 0 3px;
+    border-top: 1px solid rgba(255,255,255,0.10);
+    border-bottom: 1px solid rgba(255,255,255,0.10);
+    position: relative; z-index: 2;
+  }
+  #download .stat {
+    display: flex; flex-direction: column; gap: 3px;
+    padding: 4.5px 0;
+  }
+  #download .stat .k {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: rgba(255,255,255,0.48);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  #download .stat .v {
+    font-family: var(--sans);
+    font-weight: 800;
+    font-size: 16px;
+    line-height: 1;
+    color: #fff;
+    letter-spacing: -0.01em;
+  }
+  #download .stat .v.mono { font-family: var(--mono); font-weight: 600; font-size: 14px; }
+
+  /* CTA */
+  #download .spacer { flex: 1; }
+  #download .cta {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 6px;
+    padding: 12px 15px;
+    border-radius: 10px;
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: 16px;
+    text-decoration: none;
+    transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    cursor: pointer;
+    border: 1px solid transparent;
+    position: relative; z-index: 2;
+    overflow: hidden;
+    color: #fff;
+    background: linear-gradient(135deg, #2E7AEC 0%, #7239C9 100%);
+    box-shadow: 0 12px 36px rgba(46,122,236,0.55);
+  }
+  #download .cta:hover {
+    box-shadow: 0 18px 48px rgba(46,122,236,0.75);
+    transform: translateY(-2.2px);
+  }
+  #download .cta::after {
+    content: "";
+    position: absolute;
+    top: 0; left: -50%;
+    width: 60%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    transform: skewX(-25deg);
+    animation: dl-shine 3.0s ease-in-out infinite;
+  }
+  @keyframes dl-shine{
+    0%   { left: -60%; }
+    50%  { left: 130%; }
+    100% { left: 130%; }
+  }
+  #download .cta .arrow-box {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 24px; height: 24px;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.22);
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), background 0.3s ease;
+    font-size: 16px;
+  }
+  #download .cta:hover .arrow-box {
+    background: rgba(255,255,255,0.35);
+    transform: translateX(4.5px) rotate(-8deg);
+  }
+
+  #download .cta-meta {
+    display: flex; align-items: center; gap: 10px;
+    margin-top: 8px;
+    font-family: var(--mono);
+    font-size: 14px;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.06em;
+    position: relative; z-index: 2;
+  }
+  #download .cta-meta a {
+    color: #8EC5FF;
+    text-decoration: none;
+    border-bottom: 1px dashed rgba(94,178,255,0.4);
+  }
+  #download .cta-meta a:hover { color: #5EB2FF; border-bottom-color: #5EB2FF; }
+
+  /* PERKS — full-width strip below cards */
+  #download .perks-strip {
+    position: relative;
+    z-index: 2;
+    margin-top: 16px;
+    padding: 10px 18px;
+    border-radius: 12px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
+    border: 1px solid rgba(255,255,255,0.10);
+    display: grid;
+    grid-template-columns: auto repeat(4, 1fr);
+    align-items: center;
+    gap: 14px;
+    backdrop-filter: blur(15px);
+    animation: dl-card-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.55s backwards;
+    width: 100%;
+    max-width: 960px;
+    box-sizing: border-box;
+  }
+  #download .perks-strip .label {
+    font-family: var(--mono);
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #5EB2FF;
+    padding-right: 14px;
+    border-right: 1px solid rgba(255,255,255,0.10);
+  }
+  #download .perk {
+    display: flex; align-items: center; gap: 8px;
+    font-family: var(--sans);
+    font-weight: 500;
+    font-size: 13px;
+    color: rgba(255,255,255,0.85);
+  }
+  #download .perk .perk-dot {
+    width: 9px; height: 9px;
+    border-radius: 749px;
+    background: #5EE26B;
+    box-shadow: 0 0 10px rgba(94,226,107,0.7);
+    flex-shrink: 0;
+  }
+  #download .perk:nth-child(2) .perk-dot { background: #5EB2FF; box-shadow: 0 0 10px rgba(94,178,255,0.7); }
+  #download .perk:nth-child(3) .perk-dot { background: #B488FF; box-shadow: 0 0 10px rgba(180,136,255,0.7); }
+  #download .perk:nth-child(4) .perk-dot { background: #FFB100; box-shadow: 0 0 10px rgba(255,177,0,0.7); }
+  #download .perk:nth-child(5) .perk-dot { background: #FF6B6B; box-shadow: 0 0 10px rgba(255,107,107,0.7); }
+
+  /* FOOTNOTE */
+  #download .foot {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 18px;
+    margin-top: 10px;
+    color: rgba(255,255,255,0.5);
+    font-family: var(--mono);
+    font-size: 14px;
+    letter-spacing: 0.08em;
+    z-index: 2;
+    position: relative;
+    width: 100%;
+    max-width: 960px;
+    box-sizing: border-box;
+  }
+  #download .foot .left, #download .foot .right { display: flex; align-items: center; gap: 16px; }
+  #download .foot .item { display: inline-flex; align-items: center; gap: 6px; text-transform: uppercase; }
+  #download .foot .item svg { width: 14px; height: 14px; color: #5EB2FF; }
+
+  /* Float chip */
+  #download .float-chip {
+    position: absolute;
+    z-index: 4;
+    font-family: var(--mono);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 8px 10px;
+    border-radius: 9px;
+    background: #0B0E15;
+    border: 1px solid rgba(255,255,255,0.18);
+    color: #fff;
+    box-shadow: 0 9px 22px rgba(0,0,0,0.5);
+    display: inline-flex; align-items: center; gap: 6px;
+    transform: rotate(var(--rot, -4deg));
+    animation: dl-floaty 5s ease-in-out infinite;
+  }
+  #download .float-chip::before {
+    content: "";
+    width: 6px; height: 6px;
+    border-radius: 749px;
+    background: var(--c, #5EE26B);
+    box-shadow: 0 0 9px var(--c, #5EE26B);
+  }
+  @keyframes dl-floaty{
+    0%, 100% { transform: rotate(var(--rot, -4deg)) translateY(0); }
+    50%      { transform: rotate(var(--rot, -4deg)) translateY(-4.5px); }
+  }
+  #download .float-chip.tl { top: -16px; left: 14px; right: auto; --rot: -5deg; --c: #5EE26B; }
+
 
 /* FAQ */
 .faq-list { margin-top: 48px; }
@@ -2740,7 +3167,7 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
       <h1 data-key="heroTitle"><span class="word" style="animation-delay: 0.25s;">Less</span> <span class="word" style="animation-delay: 0.31s;">repetitive</span> <span class="word" style="animation-delay: 0.37s;">work.</span><br><span class="grad"><span class="word" style="animation-delay: 0.43s;">More</span> <span class="word" style="animation-delay: 0.49s;">control.</span></span></h1>
       <p class="lead" data-key="heroSub"><strong>BatchRender saves hundreds of working hours</strong>, turning repetitive tasks into a process that takes minutes.<br><br>You stay in full control of every step: each action is configurable, and the result is always predictable.<br><br>A clean, intuitive node-based interface helps you work faster — without unnecessary complexity.</p>
       <div class="hero-btns">
-        <a href="file:///Users/pavelterekhin/Downloads/index.html#free" class="btn-primary" data-key="heroCta1">Download Free Trial</a>
+        <a href="file:///Users/pavelterekhin/Downloads/index.html#download" class="btn-primary" data-key="heroCta1">Download Free Trial</a>
         <a href="file:///Users/pavelterekhin/Downloads/index.html#" class="btn-secondary" onclick="openDemoModal();return false;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="play" aria-hidden="true" class="lucide lucide-play"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"></path></svg><span data-key="heroCta2">See it in action</span></a>
       </div>
       <div class="hero-meta">
@@ -3205,7 +3632,7 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
 <section id="pricing">
 
   <div class="megaword">
-    PRICING<span class="accent">·25</span>
+    PRICING
   </div>
 
   <!-- HEADER -->
@@ -3214,7 +3641,7 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
       <div class="eyebrow-row">
         <span class="eyebrow-pill"><span class="dot"></span><span data-key="pricingEyebrow">Pricing · 4 plans</span></span>
         <span class="eyebrow-line"></span>
-        <span class="eyebrow-meta" data-key="pricingMeta">Updated · 2025</span>
+        <span class="eyebrow-meta" data-key="pricingMeta">Updated · 2026</span>
       </div>
       <h2 class="section-title"><span data-key="pricingTitlePart1">Pricing that</span> <span class="it" data-key="pricingTitlePart2">pays for itself.</span></h2>
     </div>
@@ -3335,19 +3762,15 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
   <div class="marquee">
     <div class="marquee-track">
       <span class="marquee-item"><span class="star">✦</span><span data-key="mqA1">2-machine activation</span></span>
-      <span class="marquee-item"><span class="num">€0</span><span data-key="mqA2">watermark fee</span></span>
       <span class="marquee-item"><span class="star">✦</span><span data-key="mqA3">All current and future nodes</span></span>
       <span class="marquee-item"><span class="num">14d</span><span data-key="mqA4">refund window</span></span>
       <span class="marquee-item"><span class="star">✦</span><span data-key="mqA5">No surprises at renewal</span></span>
-      <span class="marquee-item"><span class="num">€0</span><span data-key="mqA6">setup, ever</span></span>
       <span class="marquee-item"><span class="star">✦</span><span data-key="mqA7">Cards · PayPal · Apple Pay</span></span>
       <!-- duplicate for seamless loop -->
       <span class="marquee-item"><span class="star">✦</span><span data-key="mqB1">2-machine activation</span></span>
-      <span class="marquee-item"><span class="num">€0</span><span data-key="mqB2">watermark fee</span></span>
       <span class="marquee-item"><span class="star">✦</span><span data-key="mqB3">All current and future nodes</span></span>
       <span class="marquee-item"><span class="num">14d</span><span data-key="mqB4">refund window</span></span>
       <span class="marquee-item"><span class="star">✦</span><span data-key="mqB5">No surprises at renewal</span></span>
-      <span class="marquee-item"><span class="num">€0</span><span data-key="mqB6">setup, ever</span></span>
       <span class="marquee-item"><span class="star">✦</span><span data-key="mqB7">Cards · PayPal · Apple Pay</span></span>
     </div>
   </div>
@@ -3371,59 +3794,123 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
   </div>
 </section>
 
-<!-- FREE -->
-<section class="free-section" id="free">
-  <div class="free-inner">
-    <div class="section-eyebrow" data-key="freeLabel">Free Forever</div>
-    <h2 data-key="freeTitle">Try it free, with watermark</h2>
-    <p data-key="freeSub">Download BatchRender, build pipelines, render as much as you want. A small watermark stays on output until you activate a license — no time limit, no hidden expiry.</p>
-    <div class="free-perks">
-      <div class="free-perk"><div class="free-perk-dot"></div><span data-key="freePerk1">All nodes unlocked</span></div>
-      <div class="free-perk"><div class="free-perk-dot"></div><span data-key="freePerk2">Unlimited file count</span></div>
-      <div class="free-perk"><div class="free-perk-dot"></div><span data-key="freePerk3">No time limit</span></div>
-      <div class="free-perk"><div class="free-perk-dot"></div><span data-key="freePerk4">Watermark removed after activation</span></div>
+<!-- DOWNLOAD -->
+<section id="download">
+
+  <div class="megaword">DOWNLOAD</div>
+
+  <!-- HEADER -->
+  <div class="head">
+    <div class="eyebrow-row">
+      <span class="eyebrow-pill"><span class="dot"></span><span data-key="freeLabel">Free forever</span></span>
+      <span class="eyebrow-line"></span>
+      <span class="eyebrow-meta" data-key="downloadMeta">v2.4.1 · released 2026</span>
     </div>
-    <div class="download-btns">
-      <a href="https://github.com/PavTer/BatchRender/releases/latest" class="btn-download"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="apple" aria-hidden="true" class="lucide lucide-apple"><path d="M12 6.528V3a1 1 0 0 1 1-1h0"></path><path d="M18.237 21A15 15 0 0 0 22 11a6 6 0 0 0-10-4.472A6 6 0 0 0 2 11a15.1 15.1 0 0 0 3.763 10 3 3 0 0 0 3.648.648 5.5 5.5 0 0 1 5.178 0A3 3 0 0 0 18.237 21"></path></svg><span data-key="dlMac">Download for macOS</span></a>
-      <a href="https://github.com/PavTer/BatchRender/releases/latest" class="btn-download"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="monitor" aria-hidden="true" class="lucide lucide-monitor"><rect width="20" height="14" x="2" y="3" rx="2"></rect><line x1="8" x2="16" y1="21" y2="21"></line><line x1="12" x2="12" y1="17" y2="21"></line></svg><span data-key="dlWin">Download for Windows</span></a>
+    <h2 class="section-title"><span data-key="downloadTitlePart1">Try it free,</span> <span class="it" data-key="downloadTitlePart2">with watermark.</span></h2>
+    <p class="section-sub" data-key="freeSub">Download BatchRender, build pipelines, render as much as you want. A small watermark stays on output until you activate a license — no time limit, no hidden expiry.</p>
+  </div>
+
+  <!-- TWO CARDS -->
+  <div class="main">
+
+    <!-- macOS -->
+    <div class="card">
+      <span class="glyph">⌘</span>
+      <span class="float-chip tl"><span data-key="dlMacChip">Apple Silicon ready</span></span>
+
+      <div class="card-head">
+        <div class="platform">
+          <div class="logo">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.528V3a1 1 0 0 1 1-1h0"/><path d="M18.237 21A15 15 0 0 0 22 11a6 6 0 0 0-10-4.472A6 6 0 0 0 2 11a15.1 15.1 0 0 0 3.763 10 3 3 0 0 0 3.648.648 5.5 5.5 0 0 1 5.178 0A3 3 0 0 0 18.237 21"/></svg>
+          </div>
+          <div class="name">
+            <span class="num">01 / 02</span>
+            <span class="ttl" data-key="dlMacTtl">macOS</span>
+            <span class="sub" data-key="dlMacSub">12 Monterey or newer</span>
+          </div>
+        </div>
+        <span class="arch-flag" data-key="dlMacArch">Universal</span>
+      </div>
+
+      <div class="stats">
+        <div class="stat">
+          <span class="k" data-key="dlStatSize">Size</span>
+          <span class="v mono">84 MB</span>
+        </div>
+        <div class="stat">
+          <span class="k" data-key="dlStatFormat">Format</span>
+          <span class="v mono">.dmg</span>
+        </div>
+        <div class="stat">
+          <span class="k" data-key="dlMacStatNote">Notarized</span>
+          <span class="v" data-key="dlMacStatNoteVal">Yes</span>
+        </div>
+      </div>
+
+      <div class="spacer"></div>
+      <a href="https://github.com/PavTer/BatchRender/releases/latest" class="cta"><span data-key="dlMac">Download for macOS</span> <span class="arrow-box">↓</span></a>
+      <div class="cta-meta">
+        <span data-key="dlMacMeta">Apple Silicon &amp; Intel</span> · <a href="https://github.com/PavTer/BatchRender/releases/latest" data-key="dlReleaseNotes">Release notes</a>
+      </div>
     </div>
+
+    <!-- Windows -->
+    <div class="card">
+      <span class="glyph">⊞</span>
+      <span class="float-chip tl" style="--c:#5EB2FF; --rot:5deg;"><span data-key="dlWinChip">x64 build</span></span>
+
+      <div class="card-head">
+        <div class="platform">
+          <div class="logo">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></svg>
+          </div>
+          <div class="name">
+            <span class="num">02 / 02</span>
+            <span class="ttl" data-key="dlWinTtl">Windows</span>
+            <span class="sub" data-key="dlWinSub">Windows 10 / 11</span>
+          </div>
+        </div>
+        <span class="arch-flag" data-key="dlWinArch">x64</span>
+      </div>
+
+      <div class="stats">
+        <div class="stat">
+          <span class="k" data-key="dlStatSize2">Size</span>
+          <span class="v mono">96 MB</span>
+        </div>
+        <div class="stat">
+          <span class="k" data-key="dlStatFormat2">Format</span>
+          <span class="v mono">.exe</span>
+        </div>
+        <div class="stat">
+          <span class="k" data-key="dlWinStatNote">Signed</span>
+          <span class="v" data-key="dlWinStatNoteVal">Yes</span>
+        </div>
+      </div>
+
+      <div class="spacer"></div>
+      <a href="https://github.com/PavTer/BatchRender/releases/latest" class="cta"><span data-key="dlWin">Download for Windows</span> <span class="arrow-box">↓</span></a>
+      <div class="cta-meta">
+        <span data-key="dlWinMeta">Windows 10/11</span> · <a href="https://github.com/PavTer/BatchRender/releases/latest" data-key="dlReleaseNotes2">Release notes</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- PERKS STRIP -->
+  <div class="perks-strip">
+    <span class="label" data-key="dlPerksLabel">What's included</span>
+    <div class="perk"><span class="perk-dot"></span><span data-key="freePerk1">All nodes unlocked</span></div>
+    <div class="perk"><span class="perk-dot"></span><span data-key="freePerk2">Unlimited file count</span></div>
+    <div class="perk"><span class="perk-dot"></span><span data-key="freePerk3">No time limit</span></div>
+    <div class="perk"><span class="perk-dot"></span><span data-key="freePerk4">Watermark removed after activation</span></div>
   </div>
 </section>
-
-<!-- WHY NOT AI -->
-<div class="whynot-section" id="whynot">
-  <div class="whynot-inner">
-    <div class="section-eyebrow" data-key="whynotLabel">Built for editors</div>
-    <h2 class="section-title" data-key="whynotTitle">Made for people who actually edit video.</h2>
-    <p class="section-sub" data-key="whynotSub">Predictable. Repeatable. Yours.</p>
-    <div class="whynot-list">
-      <div class="whynot-item"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="check" aria-hidden="true" class="lucide lucide-check"><path d="M20 6 9 17l-5-5"></path></svg><span data-key="whynot1">Your files stay on your machine. Always.</span></div>
-      <div class="whynot-item"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="check" aria-hidden="true" class="lucide lucide-check"><path d="M20 6 9 17l-5-5"></path></svg><span data-key="whynot2">Every step is visible before you run it.</span></div>
-      <div class="whynot-item"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="check" aria-hidden="true" class="lucide lucide-check"><path d="M20 6 9 17l-5-5"></path></svg><span data-key="whynot3">Same input, same output. Always.</span></div>
-      <div class="whynot-item"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="check" aria-hidden="true" class="lucide lucide-check"><path d="M20 6 9 17l-5-5"></path></svg><span data-key="whynot4">Render once or render thousands. Cost stays the same.</span></div>
-      <div class="whynot-item"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="check" aria-hidden="true" class="lucide lucide-check"><path d="M20 6 9 17l-5-5"></path></svg><span data-key="whynot5">Works offline. Works on a plane. Works in a basement.</span></div>
-      <div class="whynot-item"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="check" aria-hidden="true" class="lucide lucide-check"><path d="M20 6 9 17l-5-5"></path></svg><span data-key="whynot6">No credits. No tokens. No tier limits.</span></div>
-    </div>
-    <div class="whynot-bottom" data-key="whynotBottom">// Predictable. Repeatable. Yours.</div>
-  </div>
-</div>
 
 <!-- FAQ -->
 <section id="faq">
   <div class="section-eyebrow" data-key="faqLabel">FAQ</div>
   <h2 class="section-title" data-key="faqTitle">Common questions.</h2>
   <div class="faq-list" id="faqList"><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Does BatchRender replace DaVinci, Premiere or Final Cut?<span class="faq-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></span></button><div class="faq-a"><div class="faq-a-inner">No. BatchRender is built to work alongside your editor of choice. You keep editing wherever you edit. BatchRender takes over the bulk export, format variation, watermarking, renaming and delivery work.</div></div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">What platforms are supported?<span class="faq-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></span></button><div class="faq-a"><div class="faq-a-inner">BatchRender ships native builds for macOS (Apple Silicon and Intel) and Windows. Linux is not supported at the moment.</div></div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Is the free trial really unlimited?<span class="faq-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></span></button><div class="faq-a"><div class="faq-a-inner">Yes. No time limit, no file count limit, all nodes unlocked. The only restriction is a small watermark on rendered output. <strong>URL Downloader works without watermark, forever</strong> — even on the free trial.</div></div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Do my files leave my computer?<span class="faq-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></span></button><div class="faq-a"><div class="faq-a-inner">No. Everything runs on your machine. Files never leave your computer — no cloud upload, no telemetry on file content, no per-minute charges. FFmpeg does the work locally.</div></div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Can I use BatchRender for commercial work?<span class="faq-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></span></button><div class="faq-a"><div class="faq-a-inner">Yes. All paid plans include full commercial use rights. Use it for client work, paid content, anything.</div></div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">How many machines can I activate?<span class="faq-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></span></button><div class="faq-a"><div class="faq-a-inner">All plans include 2-machine activation — typical setup like a laptop and a desktop. You can deactivate one and move the slot at any time.</div></div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Does BatchRender use AI?<span class="faq-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></span></button><div class="faq-a"><div class="faq-a-inner">No. Every operation is deterministic — same input, same output. You see what each node does before you run it. No "magic."</div></div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">How does the subscription work?<span class="faq-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></span></button><div class="faq-a"><div class="faq-a-inner">Pick Monthly, Quarterly or Yearly. Payment auto-renews at the end of each period. You can cancel any time — your license stays active until the period ends, then the watermark comes back.</div></div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Can I cancel and get a refund?<span class="faq-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></span></button><div class="faq-a"><div class="faq-a-inner">You can cancel auto-renewal any time from your account. For refunds within the first 14 days, contact us through the form below — we handle these case by case.</div></div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Does BatchRender work without internet?<span class="faq-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></span></button><div class="faq-a"><div class="faq-a-inner">Rendering and editing work fully offline. License activation requires a one-time online check, then the app works offline for the duration of your subscription period.</div></div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">What integrations are planned?<span class="faq-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></span></button><div class="faq-a"><div class="faq-a-inner">XML/EDL import from major NLEs is on the roadmap. The goal is for BatchRender to slot directly into existing post-production pipelines.</div></div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">What about VAT?<span class="faq-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></span></button><div class="faq-a"><div class="faq-a-inner">EU customers pay VAT on top of the listed price, calculated automatically at checkout based on your country. Non-EU customers usually pay the listed price as-is.</div></div></div></div>
-</section>
-
-<!-- FINAL CTA -->
-<section class="finalcta-section" id="final-cta">
-  <h2 data-key="finalCtaTitle">Stop losing hours to repetitive exports.</h2>
-  <p data-key="finalCtaSub">Download BatchRender. Free trial, no signup, no cloud. Try every node. Build any pipeline. See if it fits how you work.</p>
-  <div class="finalcta-btns">
-    <a href="https://github.com/PavTer/BatchRender/releases/latest" class="btn-primary"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="apple" aria-hidden="true" class="lucide lucide-apple"><path d="M12 6.528V3a1 1 0 0 1 1-1h0"></path><path d="M18.237 21A15 15 0 0 0 22 11a6 6 0 0 0-10-4.472A6 6 0 0 0 2 11a15.1 15.1 0 0 0 3.763 10 3 3 0 0 0 3.648.648 5.5 5.5 0 0 1 5.178 0A3 3 0 0 0 18.237 21"></path></svg><span data-key="finalCtaMac">Download for Mac</span></a>
-    <a href="https://github.com/PavTer/BatchRender/releases/latest" class="btn-primary"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="monitor" aria-hidden="true" class="lucide lucide-monitor"><rect width="20" height="14" x="2" y="3" rx="2"></rect><line x1="8" x2="16" y1="21" y2="21"></line><line x1="12" x2="12" y1="17" y2="21"></line></svg><span data-key="finalCtaWin">Download for Windows</span></a>
-  </div>
-  <div class="finalcta-secondary"><span data-key="finalCtaConvinced">Already convinced?</span> <a href="file:///Users/pavelterekhin/Downloads/index.html#pricing" data-key="finalCtaPricing">See pricing →</a></div>
 </section>
 
 <!-- CONTACT -->
@@ -3466,7 +3953,7 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
       </a>
       <p class="footer-desc" data-key="footerDesc">Companion tool for DaVinci, Premiere, Final Cut and CapCut. Local batch video processing for editors who deliver client work in volume.</p>
     </div>
-    <div class="footer-col"><h4 data-key="fcProduct">Product</h4><a href="file:///Users/pavelterekhin/Downloads/index.html#built-for" data-key="fcBuiltFor">Built for</a><a href="file:///Users/pavelterekhin/Downloads/index.html#features" data-key="fcFeatures">Features</a><a href="file:///Users/pavelterekhin/Downloads/index.html#pricing" data-key="fcPricing">Pricing</a><a href="file:///Users/pavelterekhin/Downloads/index.html#free" data-key="fcFree">Free download</a></div>
+    <div class="footer-col"><h4 data-key="fcProduct">Product</h4><a href="file:///Users/pavelterekhin/Downloads/index.html#built-for" data-key="fcBuiltFor">Built for</a><a href="file:///Users/pavelterekhin/Downloads/index.html#features" data-key="fcFeatures">Features</a><a href="file:///Users/pavelterekhin/Downloads/index.html#pricing" data-key="fcPricing">Pricing</a><a href="file:///Users/pavelterekhin/Downloads/index.html#download" data-key="fcFree">Free download</a></div>
     <div class="footer-col"><h4 data-key="fcSupport">Support</h4><a href="file:///Users/pavelterekhin/Downloads/index.html#contact" data-key="fcContact">Contact</a><a href="file:///Users/pavelterekhin/Downloads/index.html#faq" data-key="fcFaq">FAQ</a><a href="https://github.com/PavTer/BatchRender" data-key="fcGitHub">GitHub</a></div>
     <div class="footer-col"><h4 data-key="fcLegal">Legal</h4><a href="file:///Users/pavelterekhin/Downloads/privacy.html" data-key="fcPrivacy">Privacy Policy</a><a href="file:///Users/pavelterekhin/Downloads/terms.html" data-key="fcTerms">Terms of Service</a><a href="file:///Users/pavelterekhin/Downloads/refund.html" data-key="fcRefund">Refund Policy</a><a href="file:///Users/pavelterekhin/Downloads/eula.html" data-key="fcEula">EULA</a></div>
   </div>
@@ -3613,6 +4100,79 @@ const T = {
     fcSupport:"Support", fcContact:"Contact", fcFaq:"FAQ", fcGitHub:"GitHub",
     fcLegal:"Legal", fcPrivacy:"Privacy Policy", fcTerms:"Terms of Service", fcRefund:"Refund Policy", fcEula:"EULA",
     copyright:"© 2026 BatchRender · All rights reserved"
+  ,
+    pricingEyebrow:"Pricing · 4 plans",
+    pricingMeta:"Updated · 2026",
+    pricingTitlePart1:"Pricing that",
+    pricingTitlePart2:"pays for itself.",
+    pricingToggleSub:"Subscription",
+    pricingToggleOne:"One-time",
+    p1tier:"Monthly",
+    p1sub:"Subscription",
+    p1kind:"Sub",
+    p1period:"per month + VAT · auto-renews",
+    p1savings:"Flexible · cancel anytime",
+    p1cta:"Start Monthly",
+    popularBadge:"Best value",
+    p2chip:"−20% off",
+    p2tier:"Yearly",
+    p2sub:"Subscription · 12 months",
+    p2period:"per year + VAT · ~€13.33/mo",
+    p2savings:"12 months for the price of 10",
+    p2cta:"Start Yearly",
+    p3tier:"1 Month",
+    p3sub:"One-time payment",
+    p3kind:"One-off",
+    p3period:"single payment · 30 days access",
+    p3savings:"No subscription",
+    p3cta:"Buy 1 Month",
+    p4tier:"3 Months",
+    p4sub:"One-time payment",
+    p4kind:"One-off",
+    p4period:"single payment · 90 days access",
+    p4savings:"Save €10 vs. 3× monthly",
+    p4cta:"Buy 3 Months",
+    mqA1:"2-machine activation",
+    mqA3:"All current and future nodes",
+    mqA4:"refund window",
+    mqA5:"No surprises at renewal",
+    mqA7:"Cards · PayPal · Apple Pay",
+    mqB1:"2-machine activation",
+    mqB3:"All current and future nodes",
+    mqB4:"refund window",
+    mqB5:"No surprises at renewal",
+    mqB7:"Cards · PayPal · Apple Pay",
+    footPay:"Secure payment",
+    footRefund:"14-day refund",
+    footMethods:"Cards · PayPal · Apple Pay",
+    footVat:"All prices in EUR. VAT added at checkout.",
+    downloadMeta:"v2.4.1 · released 2026",
+    downloadTitlePart1:"Try it free,",
+    downloadTitlePart2:"with watermark.",
+    dlMacChip:"Apple Silicon ready",
+    dlMacTtl:"macOS",
+    dlMacSub:"12 Monterey or newer",
+    dlMacArch:"Universal",
+    dlMacStatNote:"Notarized",
+    dlMacStatNoteVal:"Yes",
+    dlMacMeta:"Apple Silicon & Intel",
+    dlWinChip:"x64 build",
+    dlWinTtl:"Windows",
+    dlWinSub:"Windows 10 / 11",
+    dlWinArch:"x64",
+    dlWinStatNote:"Signed",
+    dlWinStatNoteVal:"Yes",
+    dlWinMeta:"Windows 10/11",
+    dlStatSize:"Size",
+    dlStatFormat:"Format",
+    dlStatSize2:"Size",
+    dlStatFormat2:"Format",
+    dlReleaseNotes:"Release notes",
+    dlReleaseNotes2:"Release notes",
+    dlPerksLabel:"What's included",
+    dlFootSigned:"Code-signed & notarized",
+    dlFootGitHub:"Open releases on GitHub",
+    dlFootRight:"Latest version updated this month · Auto-update built in"
   },
 
   ru: {
@@ -3751,6 +4311,79 @@ const T = {
     fcSupport:"Поддержка", fcContact:"Контакты", fcFaq:"FAQ", fcGitHub:"GitHub",
     fcLegal:"Правовое", fcPrivacy:"Политика конфиденциальности", fcTerms:"Условия использования", fcRefund:"Политика возврата", fcEula:"EULA",
     copyright:"© 2026 BatchRender · Все права защищены"
+  ,
+    pricingEyebrow:"Цены · 4 плана",
+    pricingMeta:"Обновлено · 2026",
+    pricingTitlePart1:"Цены, которые",
+    pricingTitlePart2:"окупают себя.",
+    pricingToggleSub:"Подписка",
+    pricingToggleOne:"Разовая",
+    p1tier:"Месячная",
+    p1sub:"Подписка",
+    p1kind:"Sub",
+    p1period:"в месяц + VAT · авто-продление",
+    p1savings:"Гибко · отмена в любой момент",
+    p1cta:"Подписаться на месяц",
+    popularBadge:"Лучшая цена",
+    p2chip:"−20% скидка",
+    p2tier:"Годовая",
+    p2sub:"Подписка · 12 месяцев",
+    p2period:"в год + VAT · ~€13.33/мес",
+    p2savings:"12 месяцев по цене 10",
+    p2cta:"Подписаться на год",
+    p3tier:"1 месяц",
+    p3sub:"Разовый платёж",
+    p3kind:"Разово",
+    p3period:"единоразово · 30 дней доступа",
+    p3savings:"Без подписки",
+    p3cta:"Купить 1 месяц",
+    p4tier:"3 месяца",
+    p4sub:"Разовый платёж",
+    p4kind:"Разово",
+    p4period:"единоразово · 90 дней доступа",
+    p4savings:"Экономия €10 vs. 3× месяц",
+    p4cta:"Купить 3 месяца",
+    mqA1:"Активация на 2 машины",
+    mqA3:"Все текущие и будущие ноды",
+    mqA4:"окно возврата",
+    mqA5:"Без сюрпризов при продлении",
+    mqA7:"Карты · PayPal · Apple Pay",
+    mqB1:"Активация на 2 машины",
+    mqB3:"Все текущие и будущие ноды",
+    mqB4:"окно возврата",
+    mqB5:"Без сюрпризов при продлении",
+    mqB7:"Карты · PayPal · Apple Pay",
+    footPay:"Безопасная оплата",
+    footRefund:"Возврат 14 дней",
+    footMethods:"Карты · PayPal · Apple Pay",
+    footVat:"Все цены в EUR. НДС добавляется при оплате.",
+    downloadMeta:"v2.4.1 · выпущено в 2026",
+    downloadTitlePart1:"Попробуй бесплатно,",
+    downloadTitlePart2:"с водяным знаком.",
+    dlMacChip:"Apple Silicon готов",
+    dlMacTtl:"macOS",
+    dlMacSub:"12 Monterey или новее",
+    dlMacArch:"Universal",
+    dlMacStatNote:"Нотаризовано",
+    dlMacStatNoteVal:"Да",
+    dlMacMeta:"Apple Silicon и Intel",
+    dlWinChip:"x64 сборка",
+    dlWinTtl:"Windows",
+    dlWinSub:"Windows 10 / 11",
+    dlWinArch:"x64",
+    dlWinStatNote:"Подписано",
+    dlWinStatNoteVal:"Да",
+    dlWinMeta:"Windows 10/11",
+    dlStatSize:"Размер",
+    dlStatFormat:"Формат",
+    dlStatSize2:"Размер",
+    dlStatFormat2:"Формат",
+    dlReleaseNotes:"Список изменений",
+    dlReleaseNotes2:"Список изменений",
+    dlPerksLabel:"Что включено",
+    dlFootSigned:"Подписано и нотаризовано",
+    dlFootGitHub:"Открыть релизы на GitHub",
+    dlFootRight:"Последняя версия обновлена в этом месяце · Авто-обновление встроено"
   },
 
   zh: {
@@ -3889,6 +4522,79 @@ const T = {
     fcSupport:"支持", fcContact:"联系", fcFaq:"常见问题", fcGitHub:"GitHub",
     fcLegal:"法律", fcPrivacy:"隐私政策", fcTerms:"服务条款", fcRefund:"退款政策", fcEula:"最终用户许可协议",
     copyright:"© 2026 BatchRender · 版权所有"
+  ,
+    pricingEyebrow:"价格 · 4 个方案",
+    pricingMeta:"更新于 · 2026",
+    pricingTitlePart1:"物有所值的",
+    pricingTitlePart2:"定价方案。",
+    pricingToggleSub:"订阅",
+    pricingToggleOne:"一次性",
+    p1tier:"月度",
+    p1sub:"订阅",
+    p1kind:"Sub",
+    p1period:"每月 + 增值税 · 自动续费",
+    p1savings:"灵活 · 随时取消",
+    p1cta:"开始月度订阅",
+    popularBadge:"最超值",
+    p2chip:"−20% 折扣",
+    p2tier:"年度",
+    p2sub:"订阅 · 12 个月",
+    p2period:"每年 + 增值税 · 约 €13.33/月",
+    p2savings:"12 个月仅 10 个月的价格",
+    p2cta:"开始年度订阅",
+    p3tier:"1 个月",
+    p3sub:"一次性付款",
+    p3kind:"一次性",
+    p3period:"一次性付款 · 30 天访问",
+    p3savings:"无需订阅",
+    p3cta:"购买 1 个月",
+    p4tier:"3 个月",
+    p4sub:"一次性付款",
+    p4kind:"一次性",
+    p4period:"一次性付款 · 90 天访问",
+    p4savings:"比 3× 月度节省 €10",
+    p4cta:"购买 3 个月",
+    mqA1:"2 台设备激活",
+    mqA3:"所有当前和未来节点",
+    mqA4:"退款窗口",
+    mqA5:"续费无意外",
+    mqA7:"银行卡 · PayPal · Apple Pay",
+    mqB1:"2 台设备激活",
+    mqB3:"所有当前和未来节点",
+    mqB4:"退款窗口",
+    mqB5:"续费无意外",
+    mqB7:"银行卡 · PayPal · Apple Pay",
+    footPay:"安全支付",
+    footRefund:"14 天退款",
+    footMethods:"银行卡 · PayPal · Apple Pay",
+    footVat:"所有价格以欧元 (EUR) 计算。结账时添加增值税。",
+    downloadMeta:"v2.4.1 · 2026 年发布",
+    downloadTitlePart1:"免费试用,",
+    downloadTitlePart2:"带水印。",
+    dlMacChip:"支持 Apple Silicon",
+    dlMacTtl:"macOS",
+    dlMacSub:"12 Monterey 或更新版本",
+    dlMacArch:"通用",
+    dlMacStatNote:"已公证",
+    dlMacStatNoteVal:"是",
+    dlMacMeta:"Apple Silicon 和 Intel",
+    dlWinChip:"x64 构建",
+    dlWinTtl:"Windows",
+    dlWinSub:"Windows 10 / 11",
+    dlWinArch:"x64",
+    dlWinStatNote:"已签名",
+    dlWinStatNoteVal:"是",
+    dlWinMeta:"Windows 10/11",
+    dlStatSize:"大小",
+    dlStatFormat:"格式",
+    dlStatSize2:"大小",
+    dlStatFormat2:"格式",
+    dlReleaseNotes:"发行说明",
+    dlReleaseNotes2:"发行说明",
+    dlPerksLabel:"包含内容",
+    dlFootSigned:"代码签名并公证",
+    dlFootGitHub:"在 GitHub 上查看发行版",
+    dlFootRight:"最新版本本月更新 · 内置自动更新"
   }
 };
 let currentLang = 'en';
