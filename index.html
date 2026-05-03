@@ -3194,14 +3194,14 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
   .manifesto-no { font-size: 100px !important; }
   .manifesto-list { font-size: 28px !important; }
   .manifesto-just-row {
-    font-size: 22px !important;
+    font-size: 33px !important;
     flex-wrap: wrap !important;
     justify-content: center !important;
-    column-gap: 8px !important;
+    column-gap: 10px !important;
     row-gap: 4px !important;
     padding: 0 8px;
   }
-  .manifesto-wordmark { font-size: 22px !important; line-height: 1 !important; }
+  .manifesto-wordmark { font-size: 33px !important; line-height: 1 !important; }
   .manifesto-progress {
     width: min(280px, calc(100vw - 64px)) !important;
     max-width: 100% !important;
@@ -3247,32 +3247,46 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
   }
   .hero-meta-item { font-size: 12px; }
 
-  /* Hero visual — keep original SVG pipeline, allow horizontal scroll on small screens */
-  .hero-visual { transform: none !important; max-width: 100% !important; overflow: hidden; }
+  /* Hero visual — keep original SVG pipeline at readable size, scroll horizontally on mobile */
+  .hero-visual { transform: none !important; max-width: 100% !important; }
   .canvas-frame {
     transform: none;
     border-radius: 10px;
-    max-width: 100% !important;
+    width: calc(100vw - 32px) !important;
+    max-width: calc(100vw - 32px) !important;
+    min-width: 0 !important;
     overflow: hidden !important;
+    display: block !important;
+    box-sizing: border-box !important;
   }
   .canvas-titlebar { height: 28px; padding: 0 10px; }
   .canvas-titlebar > div:nth-child(2) { font-size: 11px !important; }
   .canvas-body {
-    height: 380px !important;
+    height: 320px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
     overflow-x: auto !important;
     overflow-y: hidden !important;
     -webkit-overflow-scrolling: touch;
-    max-width: 100% !important;
+    display: block !important;
+    /* visual hint that you can swipe — soft fade on right edge */
+    -webkit-mask-image: linear-gradient(90deg, #000 80%, rgba(0,0,0,0.55) 100%);
+            mask-image: linear-gradient(90deg, #000 80%, rgba(0,0,0,0.55) 100%);
   }
   .canvas-body > svg {
-    min-width: 800px !important;   /* keep the SVG readable; user swipes horizontally inside the frame */
+    width: 760px !important;
     height: 100% !important;
-    width: auto !important;
+    min-width: 760px !important;
+    max-width: 760px !important;
+    flex: none !important;
   }
   .canvas-hint { display: none !important; }   /* "Try drag" tooltip is desktop-only UX */
+  /* Reduce vertical breathing room between hero pipeline and companion section */
+  .hero { padding: 70px 16px 16px !important; }
 
   /* COMPANION */
-  .companion-section { padding: 60px 16px; }
+  .companion-section { padding: 24px 16px 60px !important; }
   .companion-section,
   .companion-inner { max-width: 100% !important; box-sizing: border-box; }
   .companion-grid { grid-template-columns: 1fr; gap: 28px; }
@@ -3282,7 +3296,19 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
   .companion-text p { font-size: 15px !important; line-height: 1.6 !important; max-width: 100% !important; word-wrap: break-word; }
   .companion-eyebrow-pill { font-size: 9px; white-space: normal !important; line-height: 1.3; text-align: left; }
   .copy { max-width: 100% !important; min-width: 0 !important; }
-  .diagram { max-width: 100% !important; overflow: hidden; }
+  .diagram { max-width: 100% !important; overflow: visible !important; }
+  /* BatchRender CTA — preserve soft glow (don't let parent clip it to a rect) */
+  .br-cta {
+    font-size: 22px !important;
+    padding: 14px 22px !important;
+    border-radius: 14px !important;
+    margin-top: 8px !important;
+    /* Don't wait 3.3s entry delay on mobile — show immediately */
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .br-cta .mark svg { width: 24px !important; }
   .brace-wrap, .brace-wrap svg { max-width: 100% !important; width: 100% !important; height: auto !important; }
   /* Editors row — keep natural chip width (per-text size), just allow wrapping */
   .editors-row {
@@ -3331,12 +3357,36 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
   .math-row .val { font-size: 14px; font-weight: 600; word-break: break-word; }
   .math-bottom { font-size: 14px !important; padding: 0 8px; }
 
-  /* FEATURES (Nodes carousel) */
+  /* FEATURES (Nodes carousel) — fit cards to viewport, real touch-target arrows */
   #features { padding: 60px 16px; overflow: hidden; }
-  #features .stage-wrap { overflow: hidden; margin: 32px -16px 0 !important; padding: 0 !important; }
-  #features .stage { transform: scale(0.62); transform-origin: 50% 50% !important; height: 400px !important; }
-  #features .dots { margin-top: 8px !important; }
-  #features .dot { min-width: 12px !important; min-height: 12px !important; }
+  #features .stage-wrap { margin: 32px -16px 0 !important; padding: 0 !important; height: 420px !important; }
+  #features .stage { height: 380px !important; }
+  #features .track { height: 360px !important; }
+  /* Card itself — narrower so it fits within the viewport without scale() */
+  #features .card {
+    width: 300px !important;
+    height: 360px !important;
+    margin-left: -150px !important;
+    margin-top: -180px !important;
+    padding: 22px !important;
+    gap: 14px !important;
+    border-radius: 18px !important;
+  }
+  #features .card h3 { font-size: 19px !important; line-height: 1.2 !important; }
+  #features .card p { font-size: 13px !important; line-height: 1.5 !important; }
+  #features .card-icon { width: 40px !important; height: 40px !important; }
+  #features .card-icon svg { width: 22px !important; height: 22px !important; }
+  /* Arrow buttons — clearer hit area, closer to active card */
+  #features .nav-arrow {
+    width: 44px !important;
+    height: 44px !important;
+  }
+  #features .nav-arrow.prev { left: 4px !important; }
+  #features .nav-arrow.next { right: 4px !important; }
+  #features .nav-arrow svg { width: 20px !important; height: 20px !important; }
+  /* Dots — bigger tap targets */
+  #features .dots { margin-top: 16px !important; gap: 6px !important; }
+  #features .dot { min-width: 10px !important; min-height: 10px !important; }
 
   /* TUTORIALS */
   .video-section section { padding: 40px 16px !important; }
@@ -3374,37 +3424,38 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
   }
   #pricing .grid::before { display: none !important; }
   #pricing .card {
-    padding: 24px 20px !important;
+    padding: 20px 17px !important;
     border-radius: 14px !important;
   }
   #pricing .card.featured {
     border-color: rgba(59,158,255,0.6) !important;
     box-shadow: 0 8px 32px rgba(59,158,255,0.18), inset 0 0 0 1px rgba(59,158,255,0.25) !important;
   }
-  #pricing .badge-popular { font-size: 11px !important; padding: 6px 12px !important; }
+  #pricing .card .glyph { font-size: 100px !important; }
+  #pricing .badge-popular { font-size: 10px !important; padding: 5px 10px !important; }
   #pricing .amount,
   #pricing .num,
-  #pricing .price-row .amount { font-size: 36px !important; }
-  #pricing .currency { font-size: 22px !important; }
-  #pricing .tier { font-size: 18px !important; }
-  #pricing .tier-num { font-size: 11px !important; }
-  #pricing .period { font-size: 13px !important; line-height: 1.4; }
+  #pricing .price-row .amount { font-size: 31px !important; }
+  #pricing .currency { font-size: 19px !important; }
+  #pricing .tier { font-size: 16px !important; }
+  #pricing .tier-num { font-size: 10px !important; }
+  #pricing .period { font-size: 12px !important; line-height: 1.4; }
   #pricing .cta {
     width: 100% !important;
-    min-height: 50px !important;
-    font-size: 15px !important;
+    min-height: 44px !important;
+    font-size: 14px !important;
     font-weight: 700 !important;
     justify-content: center;
-    padding: 14px 18px !important;
+    padding: 12px 16px !important;
   }
   #pricing .features,
   #pricing .feature-grid,
   #pricing .perks-grid {
     grid-template-columns: 1fr !important;
-    gap: 8px !important;
+    gap: 7px !important;
   }
   #pricing .features > *,
-  #pricing .perk { font-size: 13px !important; padding: 6px 0 !important; }
+  #pricing .perk { font-size: 12px !important; padding: 5px 0 !important; }
   /* Pricing trust foot bar */
   #pricing .foot {
     flex-direction: column !important;
@@ -3467,35 +3518,35 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
   #download .main { grid-template-columns: 1fr !important; gap: 16px !important; }
   #download .main::before { display: none !important; }
   #download .card {
-    padding: 24px 18px !important;
-    border-radius: 16px !important;
+    padding: 19px 14px !important;
+    border-radius: 14px !important;
   }
-  #download .card .glyph { font-size: 80px !important; }
-  #download .card-head { gap: 10px !important; }
-  #download .platform .logo { width: 36px !important; height: 36px !important; }
-  #download .platform .logo svg { width: 20px !important; height: 20px !important; }
-  #download .platform .name .num { font-size: 11px !important; }
-  #download .platform .name .ttl { font-size: 22px !important; }
-  #download .platform .name .sub { font-size: 12px !important; }
-  #download .arch-flag { font-size: 11px !important; padding: 5px 10px !important; }
+  #download .card .glyph { font-size: 64px !important; }
+  #download .card-head { gap: 8px !important; }
+  #download .platform .logo { width: 30px !important; height: 30px !important; }
+  #download .platform .logo svg { width: 16px !important; height: 16px !important; }
+  #download .platform .name .num { font-size: 9px !important; }
+  #download .platform .name .ttl { font-size: 18px !important; }
+  #download .platform .name .sub { font-size: 10px !important; }
+  #download .arch-flag { font-size: 9px !important; padding: 4px 8px !important; }
   #download .stats {
     grid-template-columns: repeat(3, 1fr) !important;
-    gap: 8px !important;
-    margin-top: 16px !important;
-    padding: 12px !important;
+    gap: 6px !important;
+    margin-top: 13px !important;
+    padding: 10px !important;
   }
-  #download .stat .k { font-size: 10px !important; }
-  #download .stat .v { font-size: 13px !important; }
+  #download .stat .k { font-size: 8px !important; }
+  #download .stat .v { font-size: 11px !important; }
   #download .cta {
     width: 100% !important;
-    min-height: 50px !important;
-    font-size: 15px !important;
+    min-height: 44px !important;
+    font-size: 13px !important;
     font-weight: 700 !important;
     justify-content: center !important;
-    padding: 14px 18px !important;
+    padding: 11px 14px !important;
   }
-  #download .cta-meta { font-size: 11px !important; line-height: 1.5; text-align: center; }
-  #download .float-chip { font-size: 10px !important; padding: 4px 10px !important; }
+  #download .cta-meta { font-size: 9px !important; line-height: 1.5; text-align: center; }
+  #download .float-chip { font-size: 8px !important; padding: 3px 8px !important; }
   /* Perks strip — label on top, 2-column grid of 4 perks below */
   #download .perks-strip {
     grid-template-columns: 1fr 1fr !important;
@@ -3656,7 +3707,11 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
   .cursor-glow { display: none !important; }
 
   /* Prevent any horizontal overflow */
-  html, body { overflow-x: hidden; }
+  html, body {
+    overflow-x: hidden;
+    width: 100% !important;
+    max-width: 100vw !important;
+  }
 }
 
 /* ─── Tablet 640-1023: clip horizontal overflow + 2-col fixes ─────────────── */
@@ -6011,6 +6066,24 @@ function setupNodesCarousel() {
   if (nextBtn) nextBtn.addEventListener('click', () => {
     active = (active + 1) % N; layout(); resetAuto();
   });
+
+  // Touch swipe support (mobile)
+  let touchStartX = null, touchStartY = null;
+  root.addEventListener('touchstart', (e) => {
+    if (e.touches.length !== 1) return;
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+  }, { passive: true });
+  root.addEventListener('touchend', (e) => {
+    if (touchStartX === null) return;
+    const t = e.changedTouches[0];
+    const dx = t.clientX - touchStartX;
+    const dy = t.clientY - touchStartY;
+    touchStartX = touchStartY = null;
+    if (Math.abs(dx) < 40 || Math.abs(dx) < Math.abs(dy) * 1.2) return;
+    if (dx < 0)      { active = (active + 1) % N; layout(); resetAuto(); }
+    else             { active = (active - 1 + N) % N; layout(); resetAuto(); }
+  }, { passive: true });
 
   // Auto-cycle
   let timer;
