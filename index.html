@@ -892,8 +892,9 @@ section { padding: 100px 32px; max-width: 1280px; margin: 0 auto; }
 }
 @keyframes manifestoWmIn { to { opacity: 1; clip-path: inset(0 0% 0 0); } }
 .manifesto-wordmark .batch {
-  background-image: linear-gradient(180deg, #5A4699 0%, #2A1E5C 100%);
+  background-image: linear-gradient(180deg, #B488FF 0%, #7239C9 100%);
   -webkit-background-clip: text; background-clip: text; color: transparent;
+  text-shadow: 0 0 24px rgba(180, 136, 255, 0.35);
   animation: manifestoWordmarkCycle 6s ease-in-out infinite;
 }
 .manifesto-wordmark .render {
@@ -3700,12 +3701,51 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
   /* Decorative cursor glow — disable on mobile */
   .cursor-glow { display: none !important; }
 
+  /* Sticky bottom CTA — visible on mobile only */
+  .sticky-cta {
+    display: inline-flex !important;
+    position: fixed !important;
+    left: 50% !important;
+    bottom: 16px !important;
+    transform: translateX(-50%) !important;
+    z-index: 1400;
+    /* Inherits .br-cta gradient/glow but tuned for sticky */
+    margin-top: 0 !important;
+    padding: 12px 22px !important;
+    font-size: 16px !important;
+    gap: 10px !important;
+    border-radius: 999px !important;
+    white-space: nowrap !important;
+    box-shadow:
+      0 12px 28px rgba(46,122,236,0.55),
+      0 0 0 1px rgba(255,255,255,0.10) inset,
+      0 1px 0 rgba(255,255,255,0.25) inset !important;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    animation: none !important;
+    opacity: 1 !important;
+  }
+  .sticky-cta.hidden {
+    opacity: 0;
+    transform: translate(-50%, 24px) !important;
+    pointer-events: none;
+  }
+  .sticky-cta .mark svg { width: 20px !important; }
+
+  /* Body padding so footer/last section isn't covered by sticky CTA */
+  body { padding-bottom: 80px; }
+
   /* Prevent any horizontal overflow */
   html, body {
     overflow-x: hidden;
     width: 100% !important;
     max-width: 100vw !important;
   }
+}
+
+/* Sticky CTA hidden by default everywhere except mobile */
+.sticky-cta { display: none !important; }
+@media (max-width: 767px) {
+  .sticky-cta { display: inline-flex !important; }
 }
 
 /* ─── Tablet 640-1023: clip horizontal overflow + 2-col fixes ─────────────── */
@@ -6212,6 +6252,45 @@ document.addEventListener('keydown', e => { if(e.key === 'Escape') closeDemoModa
         b.classList.toggle('active', b.getAttribute('data-mm-lang') === code);
       });
     };
+  }
+})();
+</script>
+
+<!-- Sticky mobile CTA: floats at bottom of mobile viewport, scrolls to #pricing -->
+<button class="br-cta sticky-cta" id="stickyCta" type="button" aria-label="Buy BatchRender">
+  <span class="mark">
+    <svg viewBox="0 0 1405 764" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;flex-shrink:0;" aria-hidden="true">
+      <path fill-opacity="0.961" d="M625 3C619 4 615 9 609 15L609 93C620 103 743 183 743 183C877 271 878 272 884 276C891 281 904 296 908 303C917 319 920 330 920 348C921 363 919 373 914 388C910 400 904 409 896 418C891 424 875 435 750 518C663 576 610 612 610 613C608 617 608 680 610 686C611 690 612 692 617 698C622 702 625 704 628 705C635 707 647 708 653 706C657 705 724 661 886 554C1125 396 1120 400 1128 387C1135 377 1138 363 1138 347C1137 331 1131 319 1119 307C1114 302 1062 268 884 153C758 72 654 6 653 6C652 6 649 5 646 4C640 1 632 1 625 3Z"></path>
+      <path fill-opacity="0.961" d="M379 4C369 8 360 17 358 27C356 34 356 98 358 102L390 105C418 105 421 105 425 107C430 110 434 114 437 120C438 125 439 127 438 137C438 148 438 150 435 155C432 160 431 161 427 164L421 167L377 166C353 166 328 166 321 166L309 167L305 171L300 175L300 187C299 193 300 200 300 202C301 206 305 212 309 214C310 215 326 215 366 216C415 216 421 216 425 218C429 220 433 224 436 230C438 234 439 236 439 250C439 267 437 272 432 277C427 283 434 283 320 284C216 284 216 284 213 286C206 291 203 300 205 314C207 322 210 328 216 331L220 333L320 333C408 333 421 334 425 335C430 337 433 340 436 345C438 349 438 351 438 366C438 382 438 383 436 387C434 390 431 393 429 395L424 398L335 399C247 399 247 399 244 401C242 402 240 405 238 407C236 411 235 413 235 420C234 432 236 438 240 444L244 448L333 449C422 449 422 449 426 451C431 454 434 457 436 463C438 466 438 469 438 481C439 500 436 508 427 513L423 515L345 516L267 516L263 520C259 524 257 531 258 542C259 552 260 555 265 559L269 564L343 564C383 564 418 564 421 564C428 565 433 569 436 576C438 580 438 582 438 595C438 608 438 609 436 614C434 618 432 620 428 623L423 625L393 625C377 625 362 626 361 626L358 627L358 682L360 687C363 693 371 701 377 704C385 708 401 708 408 704C409 704 411 703 413 702C415 702 513 638 631 560C749 481 849 415 853 413C863 408 870 402 877 394C896 373 898 337 881 314C876 308 871 304 861 297C649 159 410 6 409 6C408 6 405 5 403 4C397 2 385 2 379 4Z"></path>
+      <path fill-opacity="0.961" d="M890 4C886 6 880 10 878 14C878 15 877 18 876 22C875 28 875 76 876 97L877 112L992 186C1055 227 1109 262 1111 263C1116 265 1131 276 1136 281C1142 286 1151 299 1155 307C1163 324 1167 342 1166 360C1165 374 1163 384 1157 395C1150 409 1137 425 1133 426C1132 426 1074 465 1004 513L877 600L877 643C877 667 877 687 877 688C878 691 883 698 888 701C892 704 904 706 911 705C918 705 927 701 931 698C933 697 1033 629 1155 546C1277 464 1379 395 1382 393C1390 387 1397 377 1400 368C1404 353 1403 338 1395 324L1391 316L1304 257C1201 187 924 6 920 5C918 5 916 5 915 4C911 2 895 2 890 4Z"></path>
+    </svg>
+  </span>
+  <span>Buy BatchRender</span>
+</button>
+
+<!-- Sticky CTA logic: scroll to #pricing, hide when pricing/download in viewport -->
+<script>
+(function() {
+  var cta = document.getElementById('stickyCta');
+  if (!cta) return;
+  var pricing = document.getElementById('pricing');
+  var download = document.getElementById('download');
+  cta.addEventListener('click', function() {
+    if (pricing) pricing.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+  // Hide CTA when pricing or download is visible (avoids duplicating in-page CTAs)
+  if ('IntersectionObserver' in window && (pricing || download)) {
+    var hidden = { pricing: false, download: false };
+    var obs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.target.id === 'pricing')  hidden.pricing  = e.isIntersecting;
+        if (e.target.id === 'download') hidden.download = e.isIntersecting;
+      });
+      if (hidden.pricing || hidden.download) cta.classList.add('hidden');
+      else cta.classList.remove('hidden');
+    }, { threshold: 0.1 });
+    if (pricing)  obs.observe(pricing);
+    if (download) obs.observe(download);
   }
 })();
 </script>
