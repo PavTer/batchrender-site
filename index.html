@@ -3168,55 +3168,6 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
   box-shadow: 0 6px 22px rgba(59,158,255,0.3);
 }
 
-/* Mobile pipeline mock — vertical stack, hidden on desktop */
-.mobile-pipe {
-  display: none;
-  flex-direction: column;
-  gap: 0;
-  padding: 12px;
-}
-.mobile-pipe-node {
-  position: relative;
-  background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.015));
-  border: 1px solid var(--bd);
-  border-radius: 12px;
-  padding: 14px 16px;
-  display: flex; align-items: center; gap: 12px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
-}
-.mobile-pipe-node + .mobile-pipe-arrow { margin: 6px 0; }
-.mobile-pipe-icon {
-  width: 36px; height: 36px;
-  border-radius: 8px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 16px; font-weight: 700;
-  flex-shrink: 0;
-}
-.mobile-pipe-icon.in    { background: rgba(59,158,255,0.18);  color: #5eb2ff; border: 1px solid rgba(59,158,255,0.4); }
-.mobile-pipe-icon.cut   { background: rgba(255,196,84,0.16);  color: #ffc454; border: 1px solid rgba(255,196,84,0.4); }
-.mobile-pipe-icon.logo  { background: rgba(176,123,255,0.18); color: #c39aff; border: 1px solid rgba(176,123,255,0.4); }
-.mobile-pipe-icon.audio { background: rgba(34,211,154,0.18);  color: #22d39a; border: 1px solid rgba(34,211,154,0.4); }
-.mobile-pipe-icon.out   { background: rgba(255,255,255,0.08); color: var(--fg-strong); border: 1px solid rgba(255,255,255,0.2); }
-.mobile-pipe-body { flex: 1; min-width: 0; }
-.mobile-pipe-title { font-family: var(--sans); font-size: 14px; font-weight: 600; color: var(--fg-strong); }
-.mobile-pipe-meta { font-family: var(--mono); font-size: 11px; color: var(--fg-mut); margin-top: 2px; letter-spacing: 0.02em; }
-.mobile-pipe-arrow {
-  width: 2px; height: 20px;
-  margin: 4px auto;
-  background: linear-gradient(180deg, var(--bd-strong), var(--bd-soft));
-  position: relative;
-}
-.mobile-pipe-arrow::after {
-  content: "";
-  position: absolute;
-  bottom: -4px; left: 50%;
-  transform: translateX(-50%);
-  width: 0; height: 0;
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  border-top: 6px solid var(--bd-strong);
-}
-
 /* ─── Mobile (default, < 768px) ───────────────────────────────────────────── */
 @media (max-width: 767px) {
 
@@ -3296,15 +3247,29 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
   }
   .hero-meta-item { font-size: 12px; }
 
-  /* Hero visual — mobile pipe replaces SVG */
-  .hero-visual { transform: none !important; }
-  .canvas-frame { transform: none; border-radius: 10px; }
+  /* Hero visual — keep original SVG pipeline, allow horizontal scroll on small screens */
+  .hero-visual { transform: none !important; max-width: 100% !important; overflow: hidden; }
+  .canvas-frame {
+    transform: none;
+    border-radius: 10px;
+    max-width: 100% !important;
+    overflow: hidden !important;
+  }
   .canvas-titlebar { height: 28px; padding: 0 10px; }
-  .canvas-body { background-image: none; height: auto; min-height: 0; }
-  .canvas-body > svg,
-  .canvas-reset,
-  .canvas-hint { display: none !important; }
-  .mobile-pipe { display: flex; }
+  .canvas-titlebar > div:nth-child(2) { font-size: 11px !important; }
+  .canvas-body {
+    height: 380px !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    -webkit-overflow-scrolling: touch;
+    max-width: 100% !important;
+  }
+  .canvas-body > svg {
+    min-width: 800px !important;   /* keep the SVG readable; user swipes horizontally inside the frame */
+    height: 100% !important;
+    width: auto !important;
+  }
+  .canvas-hint { display: none !important; }   /* "Try drag" tooltip is desktop-only UX */
 
   /* COMPANION */
   .companion-section { padding: 60px 16px; }
@@ -3319,33 +3284,17 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
   .copy { max-width: 100% !important; min-width: 0 !important; }
   .diagram { max-width: 100% !important; overflow: hidden; }
   .brace-wrap, .brace-wrap svg { max-width: 100% !important; width: 100% !important; height: auto !important; }
-  .editors-row,
-  .companion-nle,
-  .nle-grid,
-  .nle-rail,
-  .editors-grid {
-    display: flex !important;
+  /* Editors row — keep natural chip width (per-text size), just allow wrapping */
+  .editors-row {
     flex-wrap: wrap !important;
     justify-content: center !important;
     gap: 8px !important;
     max-width: 100% !important;
   }
-  .editors-row > *,
-  .editors-row .editor,
-  .companion-nle > *,
-  .nle-pill,
-  .editor,
-  .editor-chip {
-    flex: 0 0 calc(33.333% - 6px) !important;
-    min-width: 0 !important;
-    min-height: 44px;
-    font-size: 11px !important;
-    padding: 10px 6px !important;
-    text-align: center;
-    box-sizing: border-box;
+  .editors-row .editor {
+    font-size: 12px !important;
+    padding: 9px 12px !important;
   }
-  .companion-final,
-  .companion-final-chip { max-width: 100% !important; box-sizing: border-box; }
 
   /* BUILT FOR */
   #built-for { padding: 60px 16px; }
@@ -3547,6 +3496,23 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
   }
   #download .cta-meta { font-size: 11px !important; line-height: 1.5; text-align: center; }
   #download .float-chip { font-size: 10px !important; padding: 4px 10px !important; }
+  /* Perks strip — label on top, 2-column grid of 4 perks below */
+  #download .perks-strip {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 10px 14px !important;
+    padding: 14px 16px !important;
+  }
+  #download .perks-strip .label {
+    grid-column: 1 / -1 !important;
+    border-right: none !important;
+    border-bottom: 1px solid rgba(255,255,255,0.10) !important;
+    padding-right: 0 !important;
+    padding-bottom: 8px !important;
+    text-align: center;
+    font-size: 11px !important;
+    letter-spacing: 0.16em !important;
+  }
+  #download .perk { font-size: 12px !important; }
 
   /* FREE-SECTION */
   .free-section { padding: 60px 16px; }
@@ -3724,9 +3690,9 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
   .usecases-grid { grid-template-columns: 1fr; gap: 20px; max-width: 600px; margin-left: auto; margin-right: auto; }
   .companion-grid { grid-template-columns: 1fr; gap: 32px; }
   .canvas-frame { transform: none; }
-  /* Mobile pipe also on tablet (canvas SVG hidden on mobile rules) */
-  .mobile-pipe { display: flex; max-width: 480px; margin: 0 auto; }
-  .canvas-body > svg { display: none !important; }
+  /* Hero pipeline: tablet shows original SVG with horizontal scroll if needed */
+  .canvas-body { overflow-x: auto !important; -webkit-overflow-scrolling: touch; }
+  .canvas-body > svg { min-width: 700px !important; height: auto !important; }
   /* Download cards: 2 columns on tablet */
   #download .main { grid-template-columns: 1fr 1fr !important; gap: 16px !important; }
   /* Megaword: still scaled */
@@ -3854,49 +3820,6 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
           <!-- Reset positions button -->
           <button class="canvas-reset" id="canvasReset" type="button" title="Reset node positions" aria-label="Reset node positions">↺</button>
           <div class="canvas-hint" id="canvasHint" data-key="canvasHint">Try drag</div>
-
-          <!-- Mobile-only static vertical pipeline mock -->
-          <div class="mobile-pipe" aria-hidden="true">
-            <div class="mobile-pipe-node">
-              <div class="mobile-pipe-icon in">▶</div>
-              <div class="mobile-pipe-body">
-                <div class="mobile-pipe-title">Video Input</div>
-                <div class="mobile-pipe-meta">5 files · 4.0 MB</div>
-              </div>
-            </div>
-            <div class="mobile-pipe-arrow"></div>
-            <div class="mobile-pipe-node">
-              <div class="mobile-pipe-icon cut">✂</div>
-              <div class="mobile-pipe-body">
-                <div class="mobile-pipe-title">Cutter</div>
-                <div class="mobile-pipe-meta">trim · slice · same rule</div>
-              </div>
-            </div>
-            <div class="mobile-pipe-arrow"></div>
-            <div class="mobile-pipe-node">
-              <div class="mobile-pipe-icon logo">⊕</div>
-              <div class="mobile-pipe-body">
-                <div class="mobile-pipe-title">Add Logo</div>
-                <div class="mobile-pipe-meta">watermark · brand</div>
-              </div>
-            </div>
-            <div class="mobile-pipe-arrow"></div>
-            <div class="mobile-pipe-node">
-              <div class="mobile-pipe-icon audio">♪</div>
-              <div class="mobile-pipe-body">
-                <div class="mobile-pipe-title">Add Audio</div>
-                <div class="mobile-pipe-meta">music · voiceover · mix</div>
-              </div>
-            </div>
-            <div class="mobile-pipe-arrow"></div>
-            <div class="mobile-pipe-node">
-              <div class="mobile-pipe-icon out">▼</div>
-              <div class="mobile-pipe-body">
-                <div class="mobile-pipe-title">Output</div>
-                <div class="mobile-pipe-meta">render · export · auto-rename</div>
-              </div>
-            </div>
-          </div>
 
           <svg viewBox="0 0 1000 460" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" id="pipelineSvg">
             <defs>
