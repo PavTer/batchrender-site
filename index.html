@@ -887,19 +887,32 @@ section { padding: 100px 32px; max-width: 1280px; margin: 0 auto; }
   display: inline-flex;
   align-items: baseline;
   opacity: 0;
+  /* Generous padding so animated drop-shadow glow has room to render */
+  padding: 16px 24px;
+  margin: -16px -24px;
   clip-path: inset(0 100% 0 0);
   animation: manifestoWmIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) 1.85s forwards;
 }
 @keyframes manifestoWmIn { to { opacity: 1; clip-path: inset(0 0% 0 0); } }
 .manifesto-wordmark .batch {
-  background-image: linear-gradient(180deg, #D4B5FF 0%, #9B6EFF 40%, #7239C9 100%);
+  background-image: linear-gradient(180deg, #E0C5FF 0%, #B488FF 40%, #8848E0 100%);
   -webkit-background-clip: text; background-clip: text; color: transparent;
-  animation: manifestoWordmarkCycle 6s ease-in-out infinite;
+  filter: drop-shadow(0 0 12px rgba(180, 136, 255, 0.45));
+  animation: manifestoWordmarkCycle 6s ease-in-out infinite, batchGlowPulse 3.4s ease-in-out infinite;
 }
 .manifesto-wordmark .render {
-  background-image: linear-gradient(180deg, #0AA7FF 0%, #0A98FF 50%, #5EB2FF 100%);
+  background-image: linear-gradient(180deg, #5EC8FF 0%, #2EAEFF 50%, #0AA7FF 100%);
   -webkit-background-clip: text; background-clip: text; color: transparent;
-  animation: manifestoWordmarkCycle 6s ease-in-out infinite;
+  filter: drop-shadow(0 0 12px rgba(94, 178, 255, 0.45));
+  animation: manifestoWordmarkCycle 6s ease-in-out infinite, renderGlowPulse 3.4s ease-in-out infinite;
+}
+@keyframes batchGlowPulse {
+  0%, 100% { filter: drop-shadow(0 0 8px  rgba(180, 136, 255, 0.30)); }
+  50%      { filter: drop-shadow(0 0 18px rgba(180, 136, 255, 0.65)); }
+}
+@keyframes renderGlowPulse {
+  0%, 100% { filter: drop-shadow(0 0 8px  rgba(94, 178, 255, 0.30)); }
+  50%      { filter: drop-shadow(0 0 18px rgba(94, 178, 255, 0.65)); }
 }
 @keyframes manifestoWordmarkCycle {
   0%, 100% { filter: hue-rotate(0deg) saturate(1); }
@@ -3207,7 +3220,7 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
     max-width: 100% !important;
   }
   .manifesto-no-row { column-gap: 16px !important; padding: 0 8px !important; }
-  .manifesto-stage { max-width: 100%; overflow: hidden; }
+  .manifesto-stage { max-width: 100%; overflow: visible; }
   .manifesto-brace-svg { height: 60px !important; }
   .manifesto-brace-wrap { margin-top: -16px !important; }
 
