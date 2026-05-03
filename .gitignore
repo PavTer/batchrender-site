@@ -1,0 +1,34 @@
+# macOS
+.DS_Store
+**/.DS_Store
+
+# Node / npm
+node_modules/
+
+# Python venvs
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+# Local site-editor leftovers (should never be committed)
+apply-*.sh
+apply-*.js
+index.html.new
+index.html.tmp
+index.html.backup
+index.html.backup-*
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.cursor/
+
+# Logs
+*.log
+logs/
+
+# OS
+Thumbs.db
