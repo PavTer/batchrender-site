@@ -6310,4 +6310,41 @@ document.addEventListener('keydown', e => { if(e.key === 'Escape') closeDemoModa
   }
 })();
 </script>
+<!-- LemonSqueezy checkout integration -->
+<script src="https://assets.lemonsqueezy.com/lemon.js" defer></script>
+<script>
+(function() {
+  // Map data-buy attribute → LemonSqueezy checkout URL
+  const CHECKOUTS = {
+    monthly:    "https://batchrender.lemonsqueezy.com/buy/3596aa34-2972-4fd2-ab52-5eff9cc50bbe",
+    yearly:     "https://batchrender.lemonsqueezy.com/buy/aba74d55-5b03-4bba-b482-3c74ab19e7da",
+    quarterly:  "https://batchrender.lemonsqueezy.com/buy/4104abc1-e242-472f-8c29-9c72a066a54e", // 1 Month one-time (€20)
+    "3months":  "https://batchrender.lemonsqueezy.com/buy/f1734401-fa59-49bf-a29e-f13a47edc8b8",
+  };
+
+  // Wait for LemonSqueezy script to load, then attach handlers
+  function attachHandlers() {
+    document.querySelectorAll('[data-buy]').forEach(btn => {
+      const plan = btn.getAttribute('data-buy');
+      const url  = CHECKOUTS[plan];
+      if (!url) return;
+
+      btn.setAttribute('href', url + '?embed=1');
+      btn.classList.add('lemonsqueezy-button');
+    });
+
+    // Trigger LemonSqueezy to scan for new buttons
+    if (window.createLemonSqueezy) {
+      window.createLemonSqueezy();
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', attachHandlers);
+  } else {
+    attachHandlers();
+  }
+})();
+</script>
+
 </body></html>
