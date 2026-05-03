@@ -1016,7 +1016,7 @@ section { padding: 100px 32px; max-width: 1280px; margin: 0 auto; }
     rgba(94,178,255,0.55) 360deg
   );
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
+  -webkit-mask-composite: source-out;
           mask-composite: exclude;
   pointer-events: none;
   opacity: 0.6;
@@ -2139,7 +2139,7 @@ section { padding: 100px 32px; max-width: 1280px; margin: 0 auto; }
     -webkit-mask:
       linear-gradient(#000 0 0) content-box,
       linear-gradient(#000 0 0);
-    -webkit-mask-composite: xor;
+    -webkit-mask-composite: source-out;
             mask-composite: exclude;
     pointer-events: none;
     animation: pr-glide 6s linear infinite;
@@ -3247,7 +3247,7 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
   }
   .hero-meta-item { font-size: 12px; }
 
-  /* Hero visual — keep original SVG pipeline at readable size, scroll horizontally on mobile */
+  /* Hero visual — fit original SVG to viewport (full pipeline visible at smaller scale) */
   .hero-visual { transform: none !important; max-width: 100% !important; }
   .canvas-frame {
     transform: none;
@@ -3262,24 +3262,19 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
   .canvas-titlebar { height: 28px; padding: 0 10px; }
   .canvas-titlebar > div:nth-child(2) { font-size: 11px !important; }
   .canvas-body {
-    height: 320px !important;
+    height: 220px !important;
     width: 100% !important;
     max-width: 100% !important;
     min-width: 0 !important;
-    overflow-x: auto !important;
-    overflow-y: hidden !important;
-    -webkit-overflow-scrolling: touch;
+    overflow: hidden !important;
     display: block !important;
-    /* visual hint that you can swipe — soft fade on right edge */
-    -webkit-mask-image: linear-gradient(90deg, #000 80%, rgba(0,0,0,0.55) 100%);
-            mask-image: linear-gradient(90deg, #000 80%, rgba(0,0,0,0.55) 100%);
   }
   .canvas-body > svg {
-    width: 760px !important;
+    width: 100% !important;
     height: 100% !important;
-    min-width: 760px !important;
-    max-width: 760px !important;
-    flex: none !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    /* viewBox=0 0 1000 460 + preserveAspectRatio="xMidYMid meet" makes it fit */
   }
   .canvas-hint { display: none !important; }   /* "Try drag" tooltip is desktop-only UX */
   /* Reduce vertical breathing room between hero pipeline and companion section */
@@ -3424,38 +3419,37 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
   }
   #pricing .grid::before { display: none !important; }
   #pricing .card {
-    padding: 20px 17px !important;
+    padding: 24px 20px !important;
     border-radius: 14px !important;
   }
   #pricing .card.featured {
     border-color: rgba(59,158,255,0.6) !important;
     box-shadow: 0 8px 32px rgba(59,158,255,0.18), inset 0 0 0 1px rgba(59,158,255,0.25) !important;
   }
-  #pricing .card .glyph { font-size: 100px !important; }
-  #pricing .badge-popular { font-size: 10px !important; padding: 5px 10px !important; }
+  #pricing .badge-popular { font-size: 11px !important; padding: 6px 12px !important; }
   #pricing .amount,
   #pricing .num,
-  #pricing .price-row .amount { font-size: 31px !important; }
-  #pricing .currency { font-size: 19px !important; }
-  #pricing .tier { font-size: 16px !important; }
-  #pricing .tier-num { font-size: 10px !important; }
-  #pricing .period { font-size: 12px !important; line-height: 1.4; }
+  #pricing .price-row .amount { font-size: 36px !important; }
+  #pricing .currency { font-size: 22px !important; }
+  #pricing .tier { font-size: 18px !important; }
+  #pricing .tier-num { font-size: 11px !important; }
+  #pricing .period { font-size: 13px !important; line-height: 1.4; }
   #pricing .cta {
     width: 100% !important;
-    min-height: 44px !important;
-    font-size: 14px !important;
+    min-height: 50px !important;
+    font-size: 15px !important;
     font-weight: 700 !important;
     justify-content: center;
-    padding: 12px 16px !important;
+    padding: 14px 18px !important;
   }
   #pricing .features,
   #pricing .feature-grid,
   #pricing .perks-grid {
     grid-template-columns: 1fr !important;
-    gap: 7px !important;
+    gap: 8px !important;
   }
   #pricing .features > *,
-  #pricing .perk { font-size: 12px !important; padding: 5px 0 !important; }
+  #pricing .perk { font-size: 13px !important; padding: 6px 0 !important; }
   /* Pricing trust foot bar */
   #pricing .foot {
     flex-direction: column !important;
