@@ -1,9 +1,20 @@
 /* ═══════════════════════════════════════════════════════════════════════════
- * BatchRender Inline Editor v2
- * Architecture: edit.html = full copy of index.html + editor overlay
- * Texts live in T{} object in the page. We make [data-key] elements
- * contenteditable, track changes, and on Save — patch T{} in edit.html
- * and index.html via GitHub API (using git tree to bypass 100KB limit).
+ * BatchRender Inline Editor v3 (fix/edit-page)
+ *
+ * Architecture:
+ *   /edit         → Vercel rewrite → /edit.html
+ *   /edit.html    = full clone of index.html + editor overlay (this script)
+ *   On Save        → patch T{} object in BOTH index.html and edit.html
+ *                    via GitHub Trees API (commit on main, Vercel auto-deploys)
+ *
+ * Changes vs v2:
+ *   - Activate ALL [data-key] elements, not just plain-text ones.
+ *     We edit innerHTML so users can keep <span>/<br>/<strong> markup.
+ *   - Idempotent activation — re-activating after lang switch does NOT
+ *     duplicate event listeners.
+ *   - Smarter T{} patching: scope to lang block + handle escaped quotes,
+ *     HTML entities, multi-line strings.
+ *   - Block link/button navigation while editing (capture-phase preventDefault).
  * ══════════════════════════════════════════════════════════════════════════ */
 
 const EDITOR_CONFIG = {
@@ -17,31 +28,49 @@ const editorState = {
   token: null,
   user: null,
   lang: 'en',
-  dirty: new Map(), // key -> { el, key, lang, oldVal, newVal }
-  indexSha: null,
-  editSha: null,
+  // dirty: key -> { el, key, lang, oldHTML, newHTML, newText }
+  dirty: new Map(),
 };
 
-// ─── OAUTH ────────────────────────────────────────────────────────────────
+// ═══════════════════════════════════════════════════════════════════════════
+// OAUTH
+// ═══════════════════════════════════════════════════════════════════════════
+
 function editorStartOAuth() {
   return new Promise((resolve, reject) => {
     const popup = window.open(EDITOR_CONFIG.OAUTH_URL, 'br_oauth', 'width=600,height=700');
-    if (!popup) { reject(new Error('Popup blocked — allow popups for this site')); return; }
+    if (!popup) {
+      reject(new Error('Popup blocked — allow popups for this site'));
+      return;
+    }
     const handler = (e) => {
       if (!e.data || typeof e.data !== 'string') return;
       if (e.data === 'authorizing:github') {
-        try { popup.postMessage('authorizing:github', e.origin || '*'); } catch(_) {}
+        try { popup.postMessage('authorizing:github', e.origin || '*'); } catch (_) {}
         return;
       }
       const m = e.data.match(/^authorization:github:success:(.+)$/);
       if (m) {
-        try { const d = JSON.parse(m[1]); window.removeEventListener('message', handler); popup.close(); resolve(d.token); } catch(err) { reject(err); }
+        try {
+          const d = JSON.parse(m[1]);
+          window.removeEventListener('message', handler);
+          popup.close();
+          resolve(d.token);
+        } catch (err) { reject(err); }
       }
       const em = e.data.match(/^authorization:github:error:(.+)$/);
-      if (em) { window.removeEventListener('message', handler); popup.close(); reject(new Error(em[1])); }
+      if (em) {
+        window.removeEventListener('message', handler);
+        popup.close();
+        reject(new Error(em[1]));
+      }
     };
     window.addEventListener('message', handler);
-    setTimeout(() => { window.removeEventListener('message', handler); if(!popup.closed) popup.close(); reject(new Error('OAuth timeout')); }, 120000);
+    setTimeout(() => {
+      window.removeEventListener('message', handler);
+      if (!popup.closed) popup.close();
+      reject(new Error('OAuth timeout'));
+    }, 120000);
   });
 }
 
@@ -53,11 +82,15 @@ async function editorGetUser(token) {
   return r.json();
 }
 
-// ─── GITHUB API ───────────────────────────────────────────────────────────
+// ═══════════════════════════════════════════════════════════════════════════
+// GITHUB API
+// ═══════════════════════════════════════════════════════════════════════════
+
 async function ghGet(path) {
-  const r = await fetch(`https://api.github.com/repos/${EDITOR_CONFIG.REPO}/contents/${path}?ref=${EDITOR_CONFIG.BRANCH}`, {
-    headers: { Authorization: 'token ' + editorState.token, Accept: 'application/vnd.github+json' }
-  });
+  const r = await fetch(
+    `https://api.github.com/repos/${EDITOR_CONFIG.REPO}/contents/${path}?ref=${EDITOR_CONFIG.BRANCH}`,
+    { headers: { Authorization: 'token ' + editorState.token, Accept: 'application/vnd.github+json' } }
+  );
   if (!r.ok) throw new Error(`GitHub GET ${path}: ${r.status}`);
   return r.json();
 }
@@ -72,19 +105,16 @@ async function ghUpdateFilesViaTree(files, message) {
   const base = EDITOR_CONFIG.REPO;
   const branch = EDITOR_CONFIG.BRANCH;
 
-  // 1. Get current commit SHA
   const refR = await fetch(`https://api.github.com/repos/${base}/git/refs/heads/${branch}`, { headers });
   if (!refR.ok) throw new Error('Cannot get branch ref: ' + refR.status);
   const ref = await refR.json();
   const baseSha = ref.object.sha;
 
-  // 2. Get base tree SHA
   const commitR = await fetch(`https://api.github.com/repos/${base}/git/commits/${baseSha}`, { headers });
   if (!commitR.ok) throw new Error('Cannot get commit: ' + commitR.status);
   const commit = await commitR.json();
   const baseTreeSha = commit.tree.sha;
 
-  // 3. Create blobs for each file
   const treeItems = [];
   for (const { path, content } of files) {
     const blobR = await fetch(`https://api.github.com/repos/${base}/git/blobs`, {
@@ -96,7 +126,6 @@ async function ghUpdateFilesViaTree(files, message) {
     treeItems.push({ path, mode: '100644', type: 'blob', sha: blob.sha });
   }
 
-  // 4. Create new tree
   const treeR = await fetch(`https://api.github.com/repos/${base}/git/trees`, {
     method: 'POST', headers,
     body: JSON.stringify({ base_tree: baseTreeSha, tree: treeItems })
@@ -104,7 +133,6 @@ async function ghUpdateFilesViaTree(files, message) {
   if (!treeR.ok) throw new Error('Cannot create tree: ' + treeR.status);
   const tree = await treeR.json();
 
-  // 5. Create commit
   const newCommitR = await fetch(`https://api.github.com/repos/${base}/git/commits`, {
     method: 'POST', headers,
     body: JSON.stringify({ message, tree: tree.sha, parents: [baseSha] })
@@ -112,7 +140,6 @@ async function ghUpdateFilesViaTree(files, message) {
   if (!newCommitR.ok) throw new Error('Cannot create commit: ' + newCommitR.status);
   const newCommit = await newCommitR.json();
 
-  // 6. Update branch ref
   const updateR = await fetch(`https://api.github.com/repos/${base}/git/refs/heads/${branch}`, {
     method: 'PATCH', headers,
     body: JSON.stringify({ sha: newCommit.sha })
@@ -121,58 +148,87 @@ async function ghUpdateFilesViaTree(files, message) {
   return newCommit;
 }
 
-// ─── MAKE ELEMENTS EDITABLE ───────────────────────────────────────────────
-function editorActivate() {
-  // All [data-key] elements become editable
-  document.querySelectorAll('[data-key]').forEach(el => {
-    // Skip elements whose content contains HTML tags (heroTitle etc) — too complex
-    const key = el.getAttribute('data-key');
-    const inner = el.innerHTML;
-    if (inner.includes('<') && inner.includes('>') && !inner.startsWith('"')) return;
-    // Skip buttons and links that are navigational
-    if (el.tagName === 'A' && el.closest('.lang-bar')) return;
-    if (el.classList.contains('btn-nav')) return;
+// ═══════════════════════════════════════════════════════════════════════════
+// MAKE ELEMENTS EDITABLE (idempotent — safe to call multiple times)
+// ═══════════════════════════════════════════════════════════════════════════
 
+function shouldSkipElement(el) {
+  // Skip language switcher — it's not content, it's UI controls
+  if (el.closest('.lang-bar') || el.closest('#editor-bar') || el.closest('#editor-login')) return true;
+  return false;
+}
+
+function editorActivate() {
+  // Activate ALL [data-key] elements regardless of inner HTML.
+  // We edit innerHTML so vlozhenny markup (<span class="grad">, <br>, <strong>) survives.
+  document.querySelectorAll('[data-key]').forEach((el) => {
+    if (shouldSkipElement(el)) return;
+    if (el.dataset.editorReady === '1') {
+      // Already activated — just refresh baseline (lang switched, content was repopulated)
+      el.dataset.original = el.innerHTML;
+      el.classList.remove('dirty');
+      return;
+    }
+    const key = el.getAttribute('data-key');
     el.setAttribute('contenteditable', 'true');
     el.setAttribute('data-edit', '');
     el.setAttribute('data-path', key);
-    el.setAttribute('data-original', el.innerHTML);
+    el.dataset.original = el.innerHTML;
+    el.dataset.editorReady = '1';
 
     el.addEventListener('input', onEditInput);
     el.addEventListener('paste', onEditPaste);
     el.addEventListener('keydown', onEditKeydown);
-    el.addEventListener('focus', onEditFocus);
-    el.addEventListener('blur', onEditBlur);
+    el.addEventListener('click', stopNavInEdit, true); // capture phase
   });
 
-  // Also make [data-nav-key] links editable
-  document.querySelectorAll('[data-nav-key]').forEach(el => {
+  // Same for [data-nav-key] (top nav links)
+  document.querySelectorAll('[data-nav-key]').forEach((el) => {
+    if (shouldSkipElement(el)) return;
+    if (el.dataset.editorReady === '1') {
+      el.dataset.original = el.innerHTML;
+      el.classList.remove('dirty');
+      return;
+    }
     const key = el.getAttribute('data-nav-key');
     el.setAttribute('contenteditable', 'true');
     el.setAttribute('data-edit', '');
     el.setAttribute('data-path', 'nav_' + key);
-    el.setAttribute('data-original', el.textContent);
+    el.dataset.original = el.innerHTML;
+    el.dataset.editorReady = '1';
+
     el.addEventListener('input', onEditInput);
     el.addEventListener('paste', onEditPaste);
     el.addEventListener('keydown', onEditKeydown);
+    el.addEventListener('click', stopNavInEdit, true);
   });
 }
 
-function onEditFocus(e) {
-  // Prevent link navigation
-  e.target.closest('a')?.addEventListener('click', stopNav, { once: true });
+function stopNavInEdit(e) {
+  // If user clicks on a link that has data-edit, prevent navigation so they can edit
+  const target = e.target.closest('a[data-edit], button[data-edit], a[contenteditable], button[contenteditable]');
+  if (target) {
+    e.preventDefault();
+    e.stopPropagation();
+    target.focus();
+  }
 }
-function onEditBlur() {}
-function stopNav(e) { e.preventDefault(); }
 
 function onEditInput(e) {
-  const el = e.target;
+  const el = e.currentTarget;
   const key = el.dataset.path;
   const original = el.dataset.original;
   const current = el.innerHTML;
 
   if (current !== original) {
-    editorState.dirty.set(key, { el, key, lang: editorState.lang, newVal: el.textContent, newHTML: current });
+    editorState.dirty.set(key, {
+      el,
+      key,
+      lang: editorState.lang,
+      oldHTML: original,
+      newHTML: current,
+      newText: el.textContent,
+    });
     el.classList.add('dirty');
   } else {
     editorState.dirty.delete(key);
@@ -188,11 +244,23 @@ function onEditPaste(e) {
 }
 
 function onEditKeydown(e) {
-  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); e.target.blur(); }
-  if (e.key === 'Escape') { e.target.blur(); }
+  // Esc — blur to deselect
+  if (e.key === 'Escape') { e.currentTarget.blur(); return; }
+  // Enter without shift — blur (commit). Shift+Enter — newline allowed.
+  if (e.key === 'Enter' && !e.shiftKey) {
+    // For inline elements (links, h1, span), block enter entirely
+    const tag = e.currentTarget.tagName;
+    if (tag === 'A' || tag === 'BUTTON' || tag === 'SPAN' || /^H[1-6]$/.test(tag)) {
+      e.preventDefault();
+      e.currentTarget.blur();
+    }
+  }
 }
 
-// ─── UI ───────────────────────────────────────────────────────────────────
+// ═══════════════════════════════════════════════════════════════════════════
+// UI
+// ═══════════════════════════════════════════════════════════════════════════
+
 function editorUpdateUI() {
   const count = editorState.dirty.size;
   document.getElementById('editor-count').textContent = count;
@@ -200,8 +268,13 @@ function editorUpdateUI() {
   document.getElementById('editor-discard-btn').disabled = count === 0;
   const ind = document.getElementById('editor-changes');
   const txt = ind.querySelector('.txt');
-  if (count === 0) { ind.classList.remove('saved'); txt.textContent = 'No changes'; }
-  else { ind.classList.remove('saved'); txt.textContent = count + ' unsaved change' + (count > 1 ? 's' : ''); }
+  if (count === 0) {
+    ind.classList.remove('saved');
+    txt.textContent = 'No changes';
+  } else {
+    ind.classList.remove('saved');
+    txt.textContent = count + ' unsaved change' + (count > 1 ? 's' : '');
+  }
 }
 
 function editorShowToast(msg, isError) {
@@ -212,7 +285,88 @@ function editorShowToast(msg, isError) {
   setTimeout(() => t.classList.remove('show'), isError ? 6000 : 3500);
 }
 
-// ─── SAVE ────────────────────────────────────────────────────────────────
+// ═══════════════════════════════════════════════════════════════════════════
+// SAVE — patch T{...} in both index.html and edit.html
+// ═══════════════════════════════════════════════════════════════════════════
+
+/**
+ * Find the boundary of a language block inside T = { ... } object.
+ * Returns [start, end) of the *value* portion (inside the {}), or null if not found.
+ *
+ * The page T object looks like:
+ *   const T = {
+ *     en: {
+ *       heroTitle: '...',
+ *       ...
+ *     },
+ *     ru: {
+ *       ...
+ *     },
+ *     zh: { ... }
+ *   };
+ *
+ * We need the inner content of the e.g. `en:` block.
+ */
+function findLangBlockBounds(content, lang) {
+  // Find `<lang>:` followed by `{` (allowing whitespace/newline)
+  const re = new RegExp(`\\b${lang}\\s*:\\s*\\{`, 'g');
+  const match = re.exec(content);
+  if (!match) return null;
+  // Position of the `{`
+  let depth = 1;
+  let i = re.lastIndex; // index right after the `{`
+  const start = i;
+  while (i < content.length && depth > 0) {
+    const ch = content[i];
+    // Skip strings
+    if (ch === "'" || ch === '"') {
+      const quote = ch;
+      i++;
+      while (i < content.length) {
+        if (content[i] === '\\') { i += 2; continue; }
+        if (content[i] === quote) { i++; break; }
+        i++;
+      }
+      continue;
+    }
+    if (ch === '{') depth++;
+    else if (ch === '}') depth--;
+    i++;
+  }
+  if (depth !== 0) return null;
+  return [start, i - 1]; // exclude the closing `}`
+}
+
+/**
+ * Replace `key: '...'` (or `key: "..."`) inside a slice of JS source.
+ * Properly handles escaped quotes inside string values.
+ * Returns the new slice, or null if key not found.
+ */
+function replaceKeyInBlock(slice, key, newValue) {
+  // Find `key:` (not preceded by alphanumerics/$/_)
+  const keyRe = new RegExp(`(^|[\\s,{])(${key})\\s*:\\s*(['"])`, 'g');
+  let m = keyRe.exec(slice);
+  if (!m) return null;
+  const quote = m[3];
+  const valueStart = keyRe.lastIndex; // right after opening quote
+  // Find matching closing quote, respecting backslash escapes
+  let i = valueStart;
+  while (i < slice.length) {
+    if (slice[i] === '\\') { i += 2; continue; }
+    if (slice[i] === quote) break;
+    i++;
+  }
+  if (i >= slice.length) return null;
+  const valueEnd = i; // position of closing quote
+
+  // Escape newValue for the chosen quote style
+  const escaped = newValue
+    .replace(/\\/g, '\\\\')
+    .replace(new RegExp(quote, 'g'), '\\' + quote);
+
+  return slice.slice(0, valueStart) + escaped + slice.slice(valueEnd);
+}
+
 async function editorSave() {
   if (editorState.dirty.size === 0) return;
   const btn = document.getElementById('editor-save-btn');
@@ -220,7 +374,6 @@ async function editorSave() {
   btn.querySelector('span').textContent = 'Saving...';
 
   try {
-    // Get current content of index.html and edit.html
     const [indexFile, editFile] = await Promise.all([
       ghGet('index.html'),
       ghGet('edit.html'),
@@ -229,67 +382,49 @@ async function editorSave() {
     let indexContent = atob(indexFile.content.replace(/\n/g, ''));
     let editContent = atob(editFile.content.replace(/\n/g, ''));
 
-    // For each dirty key, patch the T object string in both files
+    // For each dirty entry, patch T[lang][key] in BOTH files.
     const changes = Array.from(editorState.dirty.values());
     const changedKeys = [];
+    const failures = [];
 
-    for (const { key, lang, newVal } of changes) {
+    for (const { key, lang, newHTML } of changes) {
       const isNavKey = key.startsWith('nav_');
       const realKey = isNavKey ? key.slice(4) : key;
 
-      // Build replacement for the T object entry
-      // Pattern: key:"oldvalue" or key:'oldvalue'
-      // We do it per-language: find the lang block and replace within it
-      // Simple approach: replace all occurrences of this key in T[lang] section
-      const escaped = newVal.replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/'/g, "\\'");
-
-      // Replace in both files
-      [indexContent, editContent] = [indexContent, editContent].map(content => {
-        // Match: realKey:"...") or realKey:'...' in the right lang section
-        // Use a regex that finds the key followed by colon and quoted string
-        const patterns = [
-          new RegExp(`(${realKey}:)"[^"]*"`, 'g'),
-          new RegExp(`(${realKey}:)'[^']*'`, 'g'),
-        ];
-        // Only replace in the correct language block
-        // Find lang block boundaries and replace only there
-        const langStart = content.indexOf(`${lang}:`);
-        const nextLangStart = ['en','ru','zh'].filter(l => l !== lang)
-          .map(l => content.indexOf(`${l}:`, langStart + 1))
-          .filter(i => i > langStart)
-          .reduce((min, i) => i < min ? i : min, Infinity);
-        
-        if (langStart === -1) return content;
-        
-        const before = content.slice(0, langStart);
-        const langBlock = nextLangStart === Infinity 
-          ? content.slice(langStart) 
-          : content.slice(langStart, nextLangStart);
-        const after = nextLangStart === Infinity ? '' : content.slice(nextLangStart);
-        
-        let newBlock = langBlock;
-        patterns.forEach(re => {
-          newBlock = newBlock.replace(re, (match, prefix) => {
-            return `${prefix}"${newVal}"`;
-          });
-        });
-        
+      let success = true;
+      [indexContent, editContent] = [indexContent, editContent].map((content) => {
+        const bounds = findLangBlockBounds(content, lang);
+        if (!bounds) { success = false; return content; }
+        const [bStart, bEnd] = bounds;
+        const before = content.slice(0, bStart);
+        const block = content.slice(bStart, bEnd);
+        const after = content.slice(bEnd);
+        const newBlock = replaceKeyInBlock(block, realKey, newHTML);
+        if (newBlock === null) { success = false; return content; }
         return before + newBlock + after;
       });
-      changedKeys.push(realKey);
+
+      if (success) changedKeys.push(realKey);
+      else failures.push(realKey);
     }
 
-    // Commit both files
-    const commitMsg = `edit: update ${[...new Set(changedKeys)].slice(0,5).join(', ')} via inline editor`;
+    if (failures.length > 0 && changedKeys.length === 0) {
+      throw new Error(`Could not patch keys: ${failures.join(', ')}`);
+    }
+
+    const summary = [...new Set(changedKeys)].slice(0, 5).join(', ');
+    const more = changedKeys.length > 5 ? ` (+${changedKeys.length - 5} more)` : '';
+    const commitMsg = `edit: update ${summary}${more} via inline editor`;
+
     await ghUpdateFilesViaTree([
       { path: 'index.html', content: indexContent },
       { path: 'edit.html', content: editContent },
     ], commitMsg);
 
-    // Clear dirty state
+    // Clear dirty state, set new baseline
     editorState.dirty.forEach(({ el }) => {
       el.classList.remove('dirty');
-      el.dataset.original = el.innerHTML; // update baseline
+      el.dataset.original = el.innerHTML;
     });
     editorState.dirty.clear();
     editorUpdateUI();
@@ -297,7 +432,12 @@ async function editorSave() {
     const ind = document.getElementById('editor-changes');
     ind.classList.add('saved');
     ind.querySelector('.txt').textContent = 'Saved ✓';
-    editorShowToast('Committed! Vercel deploying (~30s)...');
+
+    if (failures.length > 0) {
+      editorShowToast(`Saved ${changedKeys.length}, failed: ${failures.join(', ')}`, true);
+    } else {
+      editorShowToast('Committed! Vercel deploying (~30s)...');
+    }
   } catch (err) {
     console.error('Editor save error:', err);
     editorShowToast(err.message || 'Save failed', true);
@@ -307,7 +447,10 @@ async function editorSave() {
   }
 }
 
-// ─── DISCARD ─────────────────────────────────────────────────────────────
+// ═══════════════════════════════════════════════════════════════════════════
+// DISCARD / LOGOUT
+// ═══════════════════════════════════════════════════════════════════════════
+
 function editorDiscard() {
   editorState.dirty.forEach(({ el }) => {
     el.innerHTML = el.dataset.original;
@@ -318,31 +461,28 @@ function editorDiscard() {
   editorShowToast('Changes discarded');
 }
 
-// ─── LOGOUT ──────────────────────────────────────────────────────────────
 function editorLogout() {
   sessionStorage.removeItem('br_editor_token');
   sessionStorage.removeItem('br_editor_user');
   location.reload();
 }
 
-// ─── BOOT ────────────────────────────────────────────────────────────────
+// ═══════════════════════════════════════════════════════════════════════════
+// BOOT
+// ═══════════════════════════════════════════════════════════════════════════
+
 async function editorBoot() {
-  const loginScreen = document.getElementById('editor-login');
-  const bar = document.getElementById('editor-bar');
-  const hint = document.getElementById('editor-hint');
   const errEl = document.getElementById('editor-login-error');
 
-  // Restore session
   const cachedToken = sessionStorage.getItem('br_editor_token');
   const cachedUser = sessionStorage.getItem('br_editor_user');
   if (cachedToken && cachedUser) {
     editorState.token = cachedToken;
-    editorState.user = JSON.parse(cachedUser);
+    try { editorState.user = JSON.parse(cachedUser); } catch (_) {}
     editorEnter();
     return;
   }
 
-  // Login button
   document.getElementById('editor-login-btn').addEventListener('click', async () => {
     errEl.textContent = '';
     const btn = document.getElementById('editor-login-btn');
@@ -375,49 +515,57 @@ function editorEnter() {
   const bar = document.getElementById('editor-bar');
   const hint = document.getElementById('editor-hint');
 
-  // Show user in bar
   const userBox = document.getElementById('editor-user');
   if (editorState.user) {
     userBox.innerHTML = `<img src="${editorState.user.avatar_url}" alt=""> @${editorState.user.login}`;
   }
 
-  // Wire up buttons
   document.getElementById('editor-save-btn').addEventListener('click', editorSave);
   document.getElementById('editor-discard-btn').addEventListener('click', editorDiscard);
   document.getElementById('editor-logout-btn').addEventListener('click', editorLogout);
 
-  // Lang switch — sync with site's own switcher
-  document.querySelectorAll('#editor-lang-switch button').forEach(btn => {
+  // Lang switch — drive site's setLang(), then re-baseline editable elements.
+  document.querySelectorAll('#editor-lang-switch button').forEach((btn) => {
     btn.addEventListener('click', () => {
+      // Warn if there are unsaved changes — switching lang will lose them
+      if (editorState.dirty.size > 0) {
+        if (!confirm(`You have ${editorState.dirty.size} unsaved change(s). Switch language anyway? Changes will be lost.`)) {
+          return;
+        }
+        editorState.dirty.clear();
+        editorUpdateUI();
+      }
       const lang = btn.dataset.lang;
       editorState.lang = lang;
-      document.querySelectorAll('#editor-lang-switch button').forEach(b => b.classList.toggle('active', b === btn));
-      // Trigger the site's own setLang so content updates
-      if (typeof setLang === 'function') {
-        const map = { en: 'en', ru: 'ru', zh: 'zh' };
-        setLang(map[lang]);
-      }
-      // Re-activate editable elements after lang switch
-      setTimeout(() => {
-        editorActivate();
-      }, 100);
+      document.querySelectorAll('#editor-lang-switch button').forEach((b) =>
+        b.classList.toggle('active', b === btn)
+      );
+      if (typeof setLang === 'function') setLang(lang);
+      // Re-baseline: setLang() rewrote innerHTML, so refresh data-original.
+      // editorActivate is idempotent thanks to data-editor-ready.
+      setTimeout(() => editorActivate(), 50);
     });
   });
 
-  // Keyboard shortcuts
+  // Cmd/Ctrl+S
   document.addEventListener('keydown', (e) => {
     if ((e.metaKey || e.ctrlKey) && e.key === 's') { e.preventDefault(); editorSave(); }
   });
 
-  // Hide login, show bar
+  // Warn on accidental tab close with unsaved changes
+  window.addEventListener('beforeunload', (e) => {
+    if (editorState.dirty.size > 0) {
+      e.preventDefault();
+      e.returnValue = '';
+    }
+  });
+
   loginScreen.style.display = 'none';
   bar.style.display = 'flex';
   hint.classList.add('show');
 
-  // Activate editing
   editorActivate();
   editorUpdateUI();
 }
 
-// Start
 document.addEventListener('DOMContentLoaded', editorBoot);
