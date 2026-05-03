@@ -2,7 +2,7 @@
 <!-- saved from url=(0048)# -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
 <!-- SEO -->
 <title>BatchRender — Your editor handles the cut. BatchRender handles the next 100 exports.</title>
@@ -3725,7 +3725,8 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
     max-width: 100vw !important;
     z-index: 1400;
     margin: 0 !important;
-    padding: 18px 20px !important;
+    /* Extra bottom padding accounts for iOS home indicator (safe-area-inset-bottom) */
+    padding: 18px 20px calc(18px + env(safe-area-inset-bottom)) 20px !important;
     font-size: 17px !important;
     gap: 10px !important;
     border-radius: 0 !important;
@@ -3747,7 +3748,7 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
   .sticky-cta .mark svg { width: 22px !important; }
 
   /* Body padding so footer/last section isn't covered by sticky CTA bar */
-  body { padding-bottom: 64px; }
+  body { padding-bottom: calc(64px + env(safe-area-inset-bottom)); }
 
   /* Prevent any horizontal overflow */
   html, body {
