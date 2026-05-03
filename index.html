@@ -5,19 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- SEO -->
-<title>BatchRender â Your editor handles the cut. BatchRender handles the next 100 exports.</title>
+<title>BatchRender — Your editor handles the cut. BatchRender handles the next 100 exports.</title>
 <meta name="description" content="Companion tool for DaVinci, Premiere, Final Cut and CapCut workflows. Drop 100 files in, build a pipeline once, export as much as you need. Local Mac &amp; Windows app, FFmpeg under the hood. Free trial, no signup.">
 <meta name="keywords" content="batch video processor, batch export davinci, batch export premiere, ffmpeg gui mac, ffmpeg gui windows, bulk video editor, batch watermark video, apply same edit to multiple videos, youtube downloader mac">
 <link rel="canonical" href="https://batchrender.com/">
 
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://batchrender.com/">
-<meta property="og:title" content="BatchRender â Your editor handles the cut. BatchRender handles the next 100 exports.">
+<meta property="og:title" content="BatchRender — Your editor handles the cut. BatchRender handles the next 100 exports.">
 <meta property="og:description" content="Companion tool for DaVinci, Premiere, Final Cut and CapCut. Drop 100 files in, build a pipeline once, export as much as you need. Local app for Mac &amp; Windows.">
 <meta property="og:image" content="https://batchrender.com/img/og-cover.png">
 
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="BatchRender â Your editor handles the cut. BatchRender handles the next 100 exports.">
+<meta name="twitter:title" content="BatchRender — Your editor handles the cut. BatchRender handles the next 100 exports.">
 <meta name="twitter:description" content="Companion tool for DaVinci, Premiere, Final Cut and CapCut. Built for editors who deliver client work in volume.">
 <meta name="twitter:image" content="https://batchrender.com/img/og-cover.png">
 
@@ -33,10 +33,10 @@
 {"@type":"Question","name":"Does BatchRender replace DaVinci, Premiere or Final Cut?","acceptedAnswer":{"@type":"Answer","text":"No. BatchRender is built to work alongside your editor of choice. You keep editing wherever you edit. BatchRender takes over the bulk export, format variation, watermarking and delivery work."}},
 {"@type":"Question","name":"What operating systems are supported?","acceptedAnswer":{"@type":"Answer","text":"BatchRender ships native builds for macOS (Apple Silicon and Intel) and Windows. Linux is not supported at the moment."}},
 {"@type":"Question","name":"Is the free trial really unlimited?","acceptedAnswer":{"@type":"Answer","text":"Yes. No time limit, no file count limit, all nodes unlocked. The only restriction is a small watermark on rendered output. URL Downloader works without watermark, forever."}},
-{"@type":"Question","name":"Can I use BatchRender for commercial work?","acceptedAnswer":{"@type":"Answer","text":"Yes. All paid plans include full commercial use rights â client work, paid content, anything."}},
-{"@type":"Question","name":"How many machines can I activate?","acceptedAnswer":{"@type":"Answer","text":"All plans include 2-machine activation â typical setup like a laptop and a desktop. You can deactivate one machine and move the slot at any time."}},
-{"@type":"Question","name":"Do my files leave my computer?","acceptedAnswer":{"@type":"Answer","text":"No. BatchRender runs entirely on your machine. Files never leave your computer â no cloud upload, no telemetry on file content, no per-minute charges."}},
-{"@type":"Question","name":"Does BatchRender use AI?","acceptedAnswer":{"@type":"Answer","text":"No. Every operation is deterministic â same input, same output. You see what each node does before you run it."}},
+{"@type":"Question","name":"Can I use BatchRender for commercial work?","acceptedAnswer":{"@type":"Answer","text":"Yes. All paid plans include full commercial use rights — client work, paid content, anything."}},
+{"@type":"Question","name":"How many machines can I activate?","acceptedAnswer":{"@type":"Answer","text":"All plans include 2-machine activation — typical setup like a laptop and a desktop. You can deactivate one machine and move the slot at any time."}},
+{"@type":"Question","name":"Do my files leave my computer?","acceptedAnswer":{"@type":"Answer","text":"No. BatchRender runs entirely on your machine. Files never leave your computer — no cloud upload, no telemetry on file content, no per-minute charges."}},
+{"@type":"Question","name":"Does BatchRender use AI?","acceptedAnswer":{"@type":"Answer","text":"No. Every operation is deterministic — same input, same output. You see what each node does before you run it."}},
 {"@type":"Question","name":"Does BatchRender work without internet?","acceptedAnswer":{"@type":"Answer","text":"Rendering and editing work fully offline. License activation requires a one-time online check, then the app works offline."}}
 ]}
 ]}
@@ -221,8 +221,8 @@ body::after {
 }
 .canvas-body svg { display: block; width: 100%; height: 100%; }
 
-/* Pipeline nodes â ÑÑÐ¸Ð»Ð¸ÑÑÐ¸ÐºÐ° ÐºÐ°Ðº Ð² Ð¿ÑÐ¸Ð»Ð¾Ð¶ÐµÐ½Ð¸Ð¸ */
-/* âââ BatchRender pipeline nodes â match real app v0.0.15 âââ */
+/* Pipeline nodes — стилистика как в приложении */
+/* ─── BatchRender pipeline nodes — match real app v0.0.15 ─── */
 .brnode { cursor: default; transition: opacity 0.4s ease-out; }
 .brnode-grab { cursor: grab; }
 .brnode.dragging .brnode-grab { cursor: grabbing; }
@@ -230,14 +230,14 @@ body::after {
 .brnode:hover .brnode-card { stroke: var(--bd-strong); }
 .brnode.dragging .brnode-card { stroke: var(--info); filter: drop-shadow(0 8px 24px rgba(59,158,255,0.45)); }
 
-/* Header strip â full-width colored top band (ÐºÐ°Ðº Ð² Ð¿ÑÐ¸Ð»Ð¾Ð¶ÐµÐ½Ð¸Ð¸) */
-.brnode-header { /* ÐºÐ¾Ð½ÑÐµÐ¹Ð½ÐµÑ Ð´Ð»Ñ ÑÐ²ÐµÑÐ½Ð¾Ð³Ð¾ ÑÐµÐ´ÐµÑÐ° */ }
+/* Header strip — full-width colored top band (как в приложении) */
+.brnode-header { /* контейнер для цветного хедера */ }
 .brnode-header-bg { fill: rgba(255,255,255,0.025); }
 .brnode-divider { stroke: var(--bd-soft); stroke-width: 1; }
 .brnode-icon { font-family: 'Inter', sans-serif; font-weight: 600; pointer-events: none; user-select: none; }
 .brnode-title { fill: var(--fg-strong); font-family: 'Inter', sans-serif; font-weight: 600; font-size: 11px; pointer-events: none; user-select: none; letter-spacing: -0.005em; }
 
-/* Count badge â small dark pill in top-right of header (Ð½Ð°Ð¿ÑÐ¸Ð¼ÐµÑ "5") */
+/* Count badge — small dark pill in top-right of header (например "5") */
 .brnode-badge-bg { fill: rgba(0,0,0,0.35); stroke: rgba(255,255,255,0.10); stroke-width: 0.5; }
 .brnode-badge-txt { fill: var(--fg-strong); font-family: 'IBM Plex Mono', monospace; font-size: 9px; font-weight: 600; pointer-events: none; user-select: none; }
 
@@ -246,12 +246,12 @@ body::after {
 .brnode-data { fill: var(--fg); font-family: 'IBM Plex Mono', monospace; font-size: 9px; pointer-events: none; user-select: none; }
 .brnode-num   { fill: var(--fg-mut); font-family: 'IBM Plex Mono', monospace; font-size: 9px; pointer-events: none; user-select: none; }
 
-/* Ports â outer ring + inner dot for that real-app feel */
+/* Ports — outer ring + inner dot for that real-app feel */
 .brnode-port { stroke: var(--bg-deep); stroke-width: 1.5; transition: r 0.15s; }
 .brnode-port:hover { r: 5.5; }
 .brnode:hover .brnode-port { r: 4.5; }
 
-/* Per-node colored top header â full width */
+/* Per-node colored top header — full width */
 .brnode[data-kind="input"]    .brnode-header-strip { fill: #3b9eff; }
 .brnode[data-kind="cutter"]   .brnode-header-strip { fill: #ec5da1; }
 .brnode[data-kind="logo"]     .brnode-header-strip { fill: #b07bff; }
@@ -260,7 +260,7 @@ body::after {
 .brnode[data-kind="output"]   .brnode-header-strip { fill: #22d39a; }
 .brnode[data-kind="output"]   .brnode-card { stroke: rgba(34,211,154,0.4); }
 
-/* Header text icon color â matches strip */
+/* Header text icon color — matches strip */
 .brnode[data-kind="input"]    .brnode-icon { fill: #3b9eff; }
 .brnode[data-kind="cutter"]   .brnode-icon { fill: #ec5da1; }
 .brnode[data-kind="logo"]     .brnode-icon { fill: #b07bff; }
@@ -275,7 +275,7 @@ body::after {
 .port-green  { fill: #22d39a; }
 .port-amber  { fill: #f5a623; }
 
-/* Wires â animated dashed bezier with type-colored stroke */
+/* Wires — animated dashed bezier with type-colored stroke */
 .wire { fill: none; stroke-width: 1.8; stroke-linecap: round; filter: drop-shadow(0 0 4px currentColor); }
 .wire.flow { stroke-dasharray: 4 4; animation: wireFlow 1.2s linear infinite; }
 @keyframes wireFlow { to { stroke-dashoffset: -16; } }
@@ -312,7 +312,7 @@ body::after {
   white-space: nowrap;
 }
 .canvas-hint::before {
-  content: "â";
+  content: "✋";
   font-size: 14px;
   display: inline-block;
   animation: canvasHintWave 1.6s ease-in-out infinite;
@@ -358,9 +358,9 @@ section { padding: 100px 32px; max-width: 1280px; margin: 0 auto; }
 .section-title { font-family: var(--sans); font-size: clamp(34px, 4.2vw, 54px); font-weight: 800; line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 18px; color: var(--fg-strong); }
 .section-sub { font-size: 16px; color: var(--fg-mut); max-width: 640px; line-height: 1.65; }
 
-/* COMPANION â works alongside your editor */
-/* COMPANION â Built to fit / Works alongside your editor
-   Reference: design_hero "Built to fit.html" â preserved 1:1
+/* COMPANION — works alongside your editor */
+/* COMPANION — Built to fit / Works alongside your editor
+   Reference: design_hero "Built to fit.html" — preserved 1:1
    Sizes scaled from 1920px reference to 1280px layout (ratio 0.66) */
 .companion-section {
   background:
@@ -441,12 +441,12 @@ section { padding: 100px 32px; max-width: 1280px; margin: 0 auto; }
   justify-content: center;
   z-index: 2;
 }
-/* Editor chip â base state is FINAL (visible).
+/* Editor chip — base state is FINAL (visible).
    - chip-in: one-time entry (fade + slide from above), uses :nth-child entry delays.
    - chip-bounce: INFINITE wave that travels through all 5 chips repeatedly.
      Total cycle 2.5s. Each chip bounces during its own 0.7s slot, then idle.
-     Slot offsets: 0s, 0.4s, 0.8s, 1.2s, 1.6s â wave passes through all 5, repeats.
-     Bounce keyframes occupy 0%â28% (â0.7s of 2.5s); 28%â100% chip rests at translateY(0). */
+     Slot offsets: 0s, 0.4s, 0.8s, 1.2s, 1.6s → wave passes through all 5, repeats.
+     Bounce keyframes occupy 0%–28% (≈0.7s of 2.5s); 28%–100% chip rests at translateY(0). */
 .editor {
   position: relative;
   font-family: var(--mono);
@@ -495,14 +495,14 @@ section { padding: 100px 32px; max-width: 1280px; margin: 0 auto; }
   box-shadow: 0 0 0 0 rgba(94,178,255,0.5);
   pointer-events: none;
 }
-/* Editor chip â highlighted state */
+/* Editor chip — highlighted state */
 .editor.pulse-active {
   border-color: rgba(94,178,255,0.55);
   color: #fff;
   box-shadow: 0 10px 24px rgba(46,122,236,0.45), inset 0 0 0 1px rgba(94,178,255,0.35);
   background: rgba(46,122,236,0.10);
 }
-/* .bounce class kept for backwards compat â same animations as .editor base */
+/* .bounce class kept for backwards compat — same animations as .editor base */
 .editor.bounce { /* no override needed; base .editor already has both animations */ }
 
 /* Brace SVG */
@@ -595,7 +595,7 @@ section { padding: 100px 32px; max-width: 1280px; margin: 0 auto; }
 .br-cta .mark { display: inline-flex; align-items: center; color: #fff; filter: drop-shadow(0 2px 6px rgba(0,0,0,0.3)); }
 .br-cta .mark svg { width: 32px; height: auto; }
 
-/* MATH â comparison block (reference: The_Math slide, scaled 0.75 for ~1440px) */
+/* MATH — comparison block (reference: The_Math slide, scaled 0.75 for ~1440px) */
 .math-section { padding: 80px 32px; max-width: 1280px; margin: 0 auto; }
 
 /* EQUATION */
@@ -755,7 +755,7 @@ section { padding: 100px 32px; max-width: 1280px; margin: 0 auto; }
 }
 .math-bottom strong { color: #fff; font-weight: 700; }
 
-/* MANIFESTO â top hero adapted from design_hero v10 reference */
+/* MANIFESTO — top hero adapted from design_hero v10 reference */
 .manifesto-section {
   position: relative;
   padding: clamp(80px, 10vh, 115px) 32px clamp(90px, 11vh, 140px);
@@ -781,7 +781,7 @@ section { padding: 100px 32px; max-width: 1280px; margin: 0 auto; }
   column-gap: clamp(24px, 3.5vw, 50px);
   align-items: center;
   justify-content: center;
-  /* CSS var = exact height of NO letters. font-size Ã line-height (0.82). */
+  /* CSS var = exact height of NO letters. font-size × line-height (0.82). */
   --no-fs: clamp(110px, 16vw, 240px);
   --no-h: calc(var(--no-fs) * 0.82);
 }
@@ -803,7 +803,7 @@ section { padding: 100px 32px; max-width: 1280px; margin: 0 auto; }
   display: flex; flex-direction: column;
   /* Height locked to NO letter height. Words space-between, with breathing padding
      so first word ('tokens') sits noticeably below top of N and last word ('magic')
-     sits noticeably above bottom of O â symmetric breathing. */
+     sits noticeably above bottom of O — symmetric breathing. */
   height: var(--no-h);
   justify-content: space-between;
   padding: calc(var(--no-h) * 0.10) 0;
@@ -813,7 +813,7 @@ section { padding: 100px 32px; max-width: 1280px; margin: 0 auto; }
 .manifesto-list .item {
   font-family: var(--sans);
   font-weight: 700;
-  /* Available height after padding = NO_h Ã 0.80. Divide by 5 with breathing factor 5.4. */
+  /* Available height after padding = NO_h × 0.80. Divide by 5 with breathing factor 5.4. */
   font-size: clamp(18px, calc(var(--no-fs) * 0.82 * 0.80 / 5.4), 38px);
   line-height: 1.0;
   letter-spacing: -0.02em;
@@ -829,7 +829,7 @@ section { padding: 100px 32px; max-width: 1280px; margin: 0 auto; }
 .manifesto-list .item:nth-child(5) { animation-delay: 0.74s; }
 @keyframes manifestoItemIn { to { opacity: 1; transform: translateX(0); } }
 
-/* Brace embracing the cluster â width matches actual NO+words block width */
+/* Brace embracing the cluster — width matches actual NO+words block width */
 .manifesto-brace-wrap {
   width: 100%;
   display: flex;
@@ -975,7 +975,7 @@ section { padding: 100px 32px; max-width: 1280px; margin: 0 auto; }
 .finalcta-secondary a { color: var(--info); text-decoration: none; border-bottom: 1px dashed var(--info); }
 .finalcta-secondary a:hover { color: var(--fg-strong); border-bottom-color: var(--fg-strong); }
 
-/* BUILT FOR â use cases (reference: For_whom slide, scaled 0.75 for ~1440px viewport) */
+/* BUILT FOR — use cases (reference: For_whom slide, scaled 0.75 for ~1440px viewport) */
 .usecases-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1135,7 +1135,7 @@ section { padding: 100px 32px; max-width: 1280px; margin: 0 auto; }
     0 0 30px rgba(94,178,255,0.45);
 }
 
-/* Scroll-in entry animation â triggered by IntersectionObserver adding .in to grid */
+/* Scroll-in entry animation — triggered by IntersectionObserver adding .in to grid */
 .usecases-grid .usecase-card { opacity: 0; transform: translateY(34px); }
 .usecases-grid.in .usecase-card {
   animation: usecase-card-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
@@ -1149,7 +1149,7 @@ section { padding: 100px 32px; max-width: 1280px; margin: 0 auto; }
 
 /* (How It Works section removed) */
 
-/* NODES â 3D carousel (reference: design_hero/Nodes.html, scoped to #features) */
+/* NODES — 3D carousel (reference: design_hero/Nodes.html, scoped to #features) */
 #features { padding-top: 80px; }
 #features .stage-wrap {
   position: relative; margin-top: 60px;
@@ -1251,7 +1251,7 @@ section { padding: 100px 32px; max-width: 1280px; margin: 0 auto; }
     margin: 0;
   }
 
-  /* Node visual: animated mini scene at the bottom â fixed height, never cropped */
+  /* Node visual: animated mini scene at the bottom — fixed height, never cropped */
   #features .scene {
     margin-top: auto;
     height: 110px;
@@ -1272,9 +1272,9 @@ section { padding: 100px 32px; max-width: 1280px; margin: 0 auto; }
     opacity: 0.5;
   }
 
-  /* Looping animations â only run on active card to keep things calm */
+  /* Looping animations — only run on active card to keep things calm */
 
-  /* INPUT â single folder fans into a stack */
+  /* INPUT — single folder fans into a stack */
   #features .scene-input { display: flex; align-items: center; justify-content: center; }
   #features .scene-input .stack {
     position: absolute; top: 50%; left: 50%;
@@ -1319,7 +1319,7 @@ section { padding: 100px 32px; max-width: 1280px; margin: 0 auto; }
     45%, 100% { transform: translate(22px, 10px) rotate(6deg); opacity: 0.65; }
   }
 
-  /* CUT â scrubbing playhead */
+  /* CUT — scrubbing playhead */
   #features .scene-cut .strip {
     position: absolute; top: 50%; left: 12px; right: 12px; height: 26px;
     transform: translateY(-50%);
@@ -1336,7 +1336,7 @@ section { padding: 100px 32px; max-width: 1280px; margin: 0 auto; }
   #features .is-active .scene-cut .playhead { animation: scrub 2.4s linear infinite; }
   @keyframes scrub{ 0% { left: 12px; } 100% { left: calc(100% - 14px); } }
 
-  /* BRAND â logo blinking on a video frame */
+  /* BRAND — logo blinking on a video frame */
   #features .scene-brand .frame {
     position: absolute; inset: 14px;
     border-radius: 8px;
@@ -1358,7 +1358,7 @@ section { padding: 100px 32px; max-width: 1280px; margin: 0 auto; }
     50%      { transform: scale(1.15); opacity: 0.8; }
   }
 
-  /* AUDIO â equalizer bars */
+  /* AUDIO — equalizer bars */
   #features .scene-audio { display: flex; align-items: center; justify-content: center; gap: 6px; }
   #features .scene-audio .bar {
     width: 8px; height: 20px; border-radius: 4px;
@@ -1382,7 +1382,7 @@ section { padding: 100px 32px; max-width: 1280px; margin: 0 auto; }
     50%      { height: 56px; }
   }
 
-  /* SOURCE â URL â dashed path â folder with video file */
+  /* SOURCE — URL → dashed path → folder with video file */
   #features .scene-source .url {
     position: absolute; top: 50%; left: 14px; transform: translateY(-50%);
     font-family: var(--mono); font-size: 14px; color: #5EB2FF;
@@ -1461,7 +1461,7 @@ section { padding: 100px 32px; max-width: 1280px; margin: 0 auto; }
     100%      { transform: translateY(-50%) scale(1); }
   }
 
-  /* TRANSFORM â horizontal video â vertical */
+  /* TRANSFORM — horizontal video → vertical */
   #features .scene-transform { display: flex; align-items: center; justify-content: center; gap: 18px; }
   #features .scene-transform .horiz, #features .scene-transform .vert {
     border-radius: 4px;
@@ -1486,7 +1486,7 @@ section { padding: 100px 32px; max-width: 1280px; margin: 0 auto; }
     font-size: 24px;
   }
 
-  /* PODCAST â waveform with one silence segment highlighted red */
+  /* PODCAST — waveform with one silence segment highlighted red */
   #features .scene-podcast .wave {
     position: absolute; top: 50%; left: 14px; right: 14px; height: 60px;
     transform: translateY(-50%);
@@ -1499,7 +1499,7 @@ section { padding: 100px 32px; max-width: 1280px; margin: 0 auto; }
     transform-origin: center;
     /* heights set per nth-child below to look like a waveform */
   }
-  /* Waveform shape â each bar a different height */
+  /* Waveform shape — each bar a different height */
   #features .scene-podcast .seg:nth-child(1) { height: 18%; }
   #features .scene-podcast .seg:nth-child(2) { height: 38%; }
   #features .scene-podcast .seg:nth-child(3) { height: 62%; }
@@ -1521,7 +1521,7 @@ section { padding: 100px 32px; max-width: 1280px; margin: 0 auto; }
   #features .scene-podcast .seg:nth-child(19) { height: 35%; }
   #features .scene-podcast .seg:nth-child(20) { height: 24%; }
 
-  /* Highlighted silence â red, with cut-out marker */
+  /* Highlighted silence — red, with cut-out marker */
   #features .scene-podcast .seg.silence {
     background: linear-gradient(180deg, #FF6B6B, #DD3B3B);
     box-shadow: 0 0 12px rgba(255,107,107,0.5);
@@ -1534,7 +1534,7 @@ section { padding: 100px 32px; max-width: 1280px; margin: 0 auto; }
     50%      { opacity: 1;    transform: scaleY(1.1); box-shadow: 0 0 18px rgba(255,107,107,0.8); }
   }
 
-  /* Cut indicator â dashed red bracket above the silence span (positioned by JS) */
+  /* Cut indicator — dashed red bracket above the silence span (positioned by JS) */
   #features .scene-podcast .cut-marker {
     position: absolute;
     top: 6px;
@@ -1566,7 +1566,7 @@ section { padding: 100px 32px; max-width: 1280px; margin: 0 auto; }
     50%      { opacity: 1; }
   }
 
-  /* Voice bars â subtle bobbing */
+  /* Voice bars — subtle bobbing */
   #features .is-active .scene-podcast .seg:not(.silence) {
     animation: bob 1.8s ease-in-out infinite;
   }
@@ -1632,7 +1632,7 @@ section { padding: 100px 32px; max-width: 1280px; margin: 0 auto; }
 .video-empty h3 { font-family: var(--sans); font-size: 20px; font-weight: 700; margin-bottom: 8px; color: var(--fg-strong); }
 .video-empty p { color: var(--fg-mut); font-size: 14px; }
 
-/* PRICING â full reference port (Pricing.html, scoped to #pricing) */
+/* PRICING — full reference port (Pricing.html, scoped to #pricing) */
 #pricing {
   position: relative;
   isolation: isolate;
@@ -1826,7 +1826,7 @@ section { padding: 100px 32px; max-width: 1280px; margin: 0 auto; }
     opacity: 0.4;
   }
 
-  /* CARDS â frosted glass */
+  /* CARDS — frosted glass */
   #pricing .card {
     position: relative;
     z-index: 1;
@@ -2114,7 +2114,7 @@ section { padding: 100px 32px; max-width: 1280px; margin: 0 auto; }
   #pricing .cta.primary:hover .arrow-box { background: rgba(255,255,255,0.35); }
 
   /* =========================================================
-     FEATURED CARD â extra visual weight
+     FEATURED CARD — extra visual weight
      ========================================================= */
   #pricing .card.featured {
     border-color: rgba(94,178,255,0.45);
@@ -2163,7 +2163,7 @@ section { padding: 100px 32px; max-width: 1280px; margin: 0 auto; }
     50%      { transform: translate(-12px, 12px); }
   }
 
-  /* Best-value flag â vertical typographic */
+  /* Best-value flag — vertical typographic */
   #pricing .badge-popular {
     position: absolute;
     top: -1px; right: 19px;
@@ -2289,7 +2289,7 @@ section { padding: 100px 32px; max-width: 1280px; margin: 0 auto; }
 
 
 
-/* DOWNLOAD â full reference port (Download v1, scoped to #download) */
+/* DOWNLOAD — full reference port (Download v1, scoped to #download) */
 #download {
   position: relative;
   isolation: isolate;
@@ -2649,7 +2649,7 @@ section { padding: 100px 32px; max-width: 1280px; margin: 0 auto; }
   }
   #download .cta-meta a:hover { color: #5EB2FF; border-bottom-color: #5EB2FF; }
 
-  /* PERKS â full-width strip below cards */
+  /* PERKS — full-width strip below cards */
   #download .perks-strip {
     position: relative;
     z-index: 2;
@@ -2804,9 +2804,9 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
 .footer-bottom { border-top: 1px solid var(--bd-soft); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
 .footer-bottom p { font-size: 12px; color: var(--fg-dim); font-family: var(--mono); }
 
-/* âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
-   ANIMATIONS â make it feel alive
-   âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ */
+/* ═══════════════════════════════════════════════════════════════════════════
+   ANIMATIONS — make it feel alive
+   ═══════════════════════════════════════════════════════════════════════════ */
 
 /* Reduced motion users get instant fades only */
 @media (prefers-reduced-motion: reduce) {
@@ -2840,7 +2840,7 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
 }
 .cursor-glow.active { opacity: 1; }
 
-/* HERO â entry animation, word stagger, parallax */
+/* HERO — entry animation, word stagger, parallax */
 .hero h1 .word {
   display: inline-block;
   opacity: 0; transform: translateY(28px);
@@ -2876,7 +2876,7 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
   to { background-position: 0% 50%; filter: blur(0); opacity: 1; }
 }
 
-/* Hero canvas â parallax on scroll, more dramatic float */
+/* Hero canvas — parallax on scroll, more dramatic float */
 .hero-visual { will-change: transform; }
 .canvas-frame {
   transform: rotateY(-2deg) rotateX(2deg);
@@ -2918,8 +2918,8 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
 .reveal.delay-5 { transition-delay: 0.40s; }
 .reveal.delay-6 { transition-delay: 0.48s; }
 
-/* Stagger inside grids â each child delayed automatically.
-   Note: .usecase-card, .feature-card, .price-card are excluded â they have their own animations. */
+/* Stagger inside grids — each child delayed automatically.
+   Note: .usecase-card, .feature-card, .price-card are excluded — they have their own animations. */
 .whynot-list .whynot-item {
   opacity: 0; transform: translateY(24px);
   transition: opacity 0.7s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.25s, box-shadow 0.25s;
@@ -2928,7 +2928,7 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
   opacity: 1 !important; transform: translateY(0) !important;
 }
 
-/* MATH section â scroll-in animations (reference-style, no math-card wrapper) */
+/* MATH section — scroll-in animations (reference-style, no math-card wrapper) */
 /* Section enters via .math-section.in (added by IntersectionObserver) */
 .math-section.in .math-eq { animation: math-head-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.36s backwards; }
 .math-section.in .math-bottom { animation: math-head-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) 2.1s backwards; }
@@ -2961,7 +2961,7 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Rows: animated stagger leftâright comparison (bad slides from left, good from right) */
+/* Rows: animated stagger left→right comparison (bad slides from left, good from right) */
 .math-col.bad  .math-row { opacity: 0; transform: translateX(-12px); }
 .math-col.good .math-row { opacity: 0; transform: translateX(12px); }
 .math-section.in .math-col.bad  .math-row { animation: math-row-in-left  0.5s cubic-bezier(0.22, 1, 0.36, 1) both; }
@@ -2983,7 +2983,7 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
 
 
 
-/* WHY NOT AI â checkmarks draw-in */
+/* WHY NOT AI — checkmarks draw-in */
 .whynot-list .whynot-item {
   opacity: 0; transform: translateX(-12px);
   transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
@@ -3007,7 +3007,7 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
 }
 @keyframes blink { 0%, 50% { opacity: 1; } 51%, 100% { opacity: 0; } }
 
-/* FINAL CTA â magnetic buttons + breathing background */
+/* FINAL CTA — magnetic buttons + breathing background */
 .finalcta-section { position: relative; overflow: hidden; }
 .finalcta-section::before {
   content: ""; position: absolute; inset: 0; pointer-events: none; z-index: -1;
@@ -3019,7 +3019,7 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
   transition: transform 0.15s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.25s;
 }
 
-/* Buttons globally â pulse on hover */
+/* Buttons globally — pulse on hover */
 .btn-primary { position: relative; overflow: hidden; }
 .btn-primary::after {
   content: ""; position: absolute; inset: 0;
@@ -3037,14 +3037,14 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
 }
 .btn-nav:hover::after { opacity: 1; }
 
-/* FAQ items â smooth open with chevron rotate */
+/* FAQ items — smooth open with chevron rotate */
 .faq-item { transition: background 0.3s; }
 .faq-item.open { background: rgba(59,158,255,0.03); }
 .faq-q { transition: color 0.2s, padding-left 0.3s; }
 .faq-item.open .faq-q { padding-left: 8px; }
 .faq-item:hover { background: rgba(255,255,255,0.02); }
 
-/* Lang switch â active state animation */
+/* Lang switch — active state animation */
 .lang-btn { position: relative; }
 .lang-btn.active::before {
   content: ""; position: absolute; bottom: -1px; left: 20%; right: 20%; height: 2px;
@@ -3053,7 +3053,7 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
 }
 @keyframes underlineIn { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 
-/* Nav bar â subtle blur intensifies on scroll */
+/* Nav bar — subtle blur intensifies on scroll */
 .nav-bar { transition: background 0.3s, backdrop-filter 0.3s, border-color 0.3s; }
 .nav-bar.scrolled { background: rgba(20,26,40,0.92); border-bottom-color: var(--bd-mid); }
 
@@ -3066,16 +3066,16 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
 .hero-meta-item:hover { color: var(--fg); }
 .hero-meta-item:hover [data-lucide] { transform: scale(1.2); transition: transform 0.2s; }
 
-/* âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
-   RESPONSIVE â mobile/tablet adaptation
+/* ═══════════════════════════════════════════════════════════════════════════
+   RESPONSIVE — mobile/tablet adaptation
    Breakpoints:
-     â¢ default  (mobile)         â overrides applied below
-     â¢ â¥640px   (large mobile)   â minor tweaks
-     â¢ â¥768px   (tablet)         â desktop layout begins
-     â¢ â¥1024px  (desktop)        â full desktop
-   âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ */
+     • default  (mobile)         — overrides applied below
+     • ≥640px   (large mobile)   — minor tweaks
+     • ≥768px   (tablet)         — desktop layout begins
+     • ≥1024px  (desktop)        — full desktop
+   ═══════════════════════════════════════════════════════════════════════════ */
 
-/* Hamburger button â visible only on mobile */
+/* Hamburger button — visible only on mobile */
 .nav-hamburger {
   display: none;
   background: none; border: none;
@@ -3168,7 +3168,7 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
   box-shadow: 0 6px 22px rgba(59,158,255,0.3);
 }
 
-/* âââ Mobile (default, < 768px) âââââââââââââââââââââââââââââââââââââââââââââ */
+/* ─── Mobile (default, < 768px) ───────────────────────────────────────────── */
 @media (max-width: 767px) {
 
   body { font-size: 16px; }
@@ -3247,7 +3247,7 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
   }
   .hero-meta-item { font-size: 12px; }
 
-  /* Hero visual â keep original SVG pipeline, allow horizontal scroll on small screens */
+  /* Hero visual — keep original SVG pipeline, allow horizontal scroll on small screens */
   .hero-visual { transform: none !important; max-width: 100% !important; overflow: hidden; }
   .canvas-frame {
     transform: none;
@@ -3284,7 +3284,7 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
   .copy { max-width: 100% !important; min-width: 0 !important; }
   .diagram { max-width: 100% !important; overflow: hidden; }
   .brace-wrap, .brace-wrap svg { max-width: 100% !important; width: 100% !important; height: auto !important; }
-  /* Editors row â keep natural chip width (per-text size), just allow wrapping */
+  /* Editors row — keep natural chip width (per-text size), just allow wrapping */
   .editors-row {
     flex-wrap: wrap !important;
     justify-content: center !important;
@@ -3496,7 +3496,7 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
   }
   #download .cta-meta { font-size: 11px !important; line-height: 1.5; text-align: center; }
   #download .float-chip { font-size: 10px !important; padding: 4px 10px !important; }
-  /* Perks strip â label on top, 2-column grid of 4 perks below */
+  /* Perks strip — label on top, 2-column grid of 4 perks below */
   #download .perks-strip {
     grid-template-columns: 1fr 1fr !important;
     gap: 10px 14px !important;
@@ -3652,14 +3652,14 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
   button.cta,
   a.cta { min-height: 44px; }
 
-  /* Decorative cursor glow â disable on mobile */
+  /* Decorative cursor glow — disable on mobile */
   .cursor-glow { display: none !important; }
 
   /* Prevent any horizontal overflow */
   html, body { overflow-x: hidden; }
 }
 
-/* âââ Tablet 640-1023: clip horizontal overflow + 2-col fixes âââââââââââââââ */
+/* ─── Tablet 640-1023: clip horizontal overflow + 2-col fixes ─────────────── */
 @media (min-width: 640px) and (max-width: 1023px) {
   html, body { overflow-x: hidden; }
   .cursor-glow { display: none !important; }
@@ -3671,7 +3671,7 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
   #features .card { min-width: calc(50vw - 32px) !important; }
 }
 
-/* âââ Tablet only (â¥768 and <1024) â show desktop nav, soft layouts ââââââââ */
+/* ─── Tablet only (≥768 and <1024) — show desktop nav, soft layouts ──────── */
 @media (min-width: 768px) and (max-width: 1023px) {
   .nav-hamburger { display: none; }
   .mobile-menu { display: none !important; }
@@ -3723,7 +3723,7 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
     <div class="lang-switch">
       <button class="lang-btn active" onclick="setLang(&#39;en&#39;)">EN</button>
       <button class="lang-btn" onclick="setLang(&#39;ru&#39;)">RU</button>
-      <button class="lang-btn" onclick="setLang(&#39;zh&#39;)">ä¸­æ</button>
+      <button class="lang-btn" onclick="setLang(&#39;zh&#39;)">中文</button>
     </div>
     <a href="#download" class="btn-nav" data-key="getStarted">Download Free Trial</a>
     <button class="nav-hamburger" id="navHamburger" type="button" aria-label="Open menu" aria-expanded="false">
@@ -3749,12 +3749,12 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
   <div class="mobile-menu-lang" role="group" aria-label="Language">
     <button class="active" onclick="setLang('en'); closeMobileMenu();" data-mm-lang="en">EN</button>
     <button onclick="setLang('ru'); closeMobileMenu();" data-mm-lang="ru">RU</button>
-    <button onclick="setLang('zh'); closeMobileMenu();" data-mm-lang="zh">ä¸­æ</button>
+    <button onclick="setLang('zh'); closeMobileMenu();" data-mm-lang="zh">中文</button>
   </div>
   <a href="#download" class="mobile-menu-cta" data-key="getStarted" data-mm-link>Download Free Trial</a>
 </div>
 
-<!-- MANIFESTO â top hero from design_hero reference -->
+<!-- MANIFESTO — top hero from design_hero reference -->
 <div class="manifesto-section" id="manifesto">
   <div class="manifesto-stage">
     <div class="manifesto-no-row">
@@ -3797,9 +3797,9 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
 <section class="hero">
   <div class="hero-grid">
     <div class="hero-left">
-      <div class="hero-eyebrow"><span class="eyebrow-dot"></span><span data-key="version">{VERSION} â Active Development</span></div>
+      <div class="hero-eyebrow"><span class="eyebrow-dot"></span><span data-key="version">{VERSION} — Active Development</span></div>
       <h1 data-key="heroTitle"><span class="word" style="animation-delay: 0.25s;">Less</span> <span class="word" style="animation-delay: 0.31s;">repetitive</span> <span class="word" style="animation-delay: 0.37s;">work.</span><br><span class="grad"><span class="word" style="animation-delay: 0.43s;">More</span> <span class="word" style="animation-delay: 0.49s;">control.</span></span></h1>
-      <p class="lead" data-key="heroSub"><strong>BatchRender saves hundreds of working hours</strong>, turning repetitive tasks into a process that takes minutes.<br><br>You stay in full control of every step: each action is configurable, and the result is always predictable.<br><br>A clean, intuitive node-based interface helps you work faster â without unnecessary complexity.</p>
+      <p class="lead" data-key="heroSub"><strong>BatchRender saves hundreds of working hours</strong>, turning repetitive tasks into a process that takes minutes.<br><br>You stay in full control of every step: each action is configurable, and the result is always predictable.<br><br>A clean, intuitive node-based interface helps you work faster — without unnecessary complexity.</p>
       <div class="hero-btns">
         <a href="#download" class="btn-primary" data-key="heroCta1">Download Free Trial</a>
         <a href="#" class="btn-secondary" onclick="openDemoModal();return false;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="play" aria-hidden="true" class="lucide lucide-play"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"></path></svg><span data-key="heroCta2">See it in action</span></a>
@@ -3814,11 +3814,11 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
       <div class="canvas-frame">
         <div class="canvas-titlebar">
           <span class="tb-dot r"></span><span class="tb-dot y"></span><span class="tb-dot g"></span>
-          <span class="tb-name">BatchRender â pipeline.brender</span>
+          <span class="tb-name">BatchRender — pipeline.brender</span>
         </div>
         <div class="canvas-body">
           <!-- Reset positions button -->
-          <button class="canvas-reset" id="canvasReset" type="button" title="Reset node positions" aria-label="Reset node positions">âº</button>
+          <button class="canvas-reset" id="canvasReset" type="button" title="Reset node positions" aria-label="Reset node positions">↺</button>
           <div class="canvas-hint" id="canvasHint" data-key="canvasHint">Try drag</div>
 
           <svg viewBox="0 0 1000 460" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" id="pipelineSvg">
@@ -3839,45 +3839,45 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
             </g>
             <g id="junctions"><g style="color:#3b9eff"><circle class="wire-junction-bg" cx="270" cy="66" r="8"></circle><text class="wire-junction-txt" x="270" y="69" text-anchor="middle">+</text></g><g style="color:#3b9eff"><circle class="wire-junction-bg" cx="660" cy="119" r="8"></circle><text class="wire-junction-txt" x="660" y="122" text-anchor="middle">=</text></g><g style="color:#b07bff"><circle class="wire-junction-bg" cx="660" cy="221" r="8"></circle><text class="wire-junction-txt" x="660" y="224" text-anchor="middle">=</text></g><g style="color:#22d39a"><circle class="wire-junction-bg" cx="660" cy="295" r="8"></circle><text class="wire-junction-txt" x="660" y="298" text-anchor="middle">=</text></g></g>
 
-            <!-- âââ Video Input #1 (B-files, top-left, source) ââââââââââââââââ -->
+            <!-- ─── Video Input #1 (B-files, top-left, source) ──────────────── -->
             <g class="brnode" data-id="vin1" data-kind="input" transform="translate(20,30)" style="opacity: 1;">
               <rect class="brnode-card" x="0" y="0" width="190" height="116" rx="10"></rect>
               <path class="brnode-header-strip" d="M 0 22 L 0 10 Q 0 0 10 0 L 180 0 Q 190 0 190 10 L 190 22 Z"></path>
               <line class="brnode-divider" x1="0" y1="22" x2="190" y2="22"></line>
               <rect class="brnode-grab" x="0" y="0" width="190" height="22" fill="transparent"></rect>
-              <text class="brnode-icon" x="10" y="15" font-size="10">â¶</text>
+              <text class="brnode-icon" x="10" y="15" font-size="10">▶</text>
               <text class="brnode-title" x="22" y="15">Video Input</text>
               <rect class="brnode-badge-bg" x="160" y="5" width="22" height="13" rx="3"></rect>
               <text class="brnode-badge-txt" x="171" y="14.5" text-anchor="middle">5</text>
               <!-- file list -->
               <text class="brnode-num" x="10" y="40">1.</text>
               <text class="brnode-data" x="22" y="40">B5.mp4</text>
-              <text class="brnode-meta" x="180" y="40" text-anchor="end">0:10 Â· 0.8MB</text>
+              <text class="brnode-meta" x="180" y="40" text-anchor="end">0:10 · 0.8MB</text>
               <text class="brnode-num" x="10" y="56">2.</text>
               <text class="brnode-data" x="22" y="56">B4.mp4</text>
-              <text class="brnode-meta" x="180" y="56" text-anchor="end">0:10 Â· 0.7MB</text>
+              <text class="brnode-meta" x="180" y="56" text-anchor="end">0:10 · 0.7MB</text>
               <text class="brnode-num" x="10" y="72">3.</text>
               <text class="brnode-data" x="22" y="72">B1.mp4</text>
-              <text class="brnode-meta" x="180" y="72" text-anchor="end">0:10 Â· 0.7MB</text>
+              <text class="brnode-meta" x="180" y="72" text-anchor="end">0:10 · 0.7MB</text>
               <text class="brnode-num" x="10" y="88">4.</text>
               <text class="brnode-data" x="22" y="88">B3.mp4</text>
-              <text class="brnode-meta" x="180" y="88" text-anchor="end">0:10 Â· 0.8MB</text>
+              <text class="brnode-meta" x="180" y="88" text-anchor="end">0:10 · 0.8MB</text>
               <text class="brnode-num" x="10" y="104">5.</text>
               <text class="brnode-data" x="22" y="104">B2.mp4</text>
-              <text class="brnode-meta" x="180" y="104" text-anchor="end">0:10 Â· 0.8MB</text>
-              <!-- only output port (no prev â this is start of chain) -->
+              <text class="brnode-meta" x="180" y="104" text-anchor="end">0:10 · 0.8MB</text>
+              <!-- only output port (no prev — this is start of chain) -->
               <text class="brnode-meta" x="10" y="40" opacity="0">prev</text>
               <text class="brnode-meta" x="180" y="36" text-anchor="end" fill="#3b9eff" opacity="0.85">video</text>
               <circle class="brnode-port port-blue" data-port-id="vin1:out" cx="190" cy="36" r="4"></circle>
             </g>
 
-            <!-- âââ Video Input #2 (A-files, chained from vin1) âââââââââââââââ -->
+            <!-- ─── Video Input #2 (A-files, chained from vin1) ─────────────── -->
             <g class="brnode" data-id="vin2" data-kind="input" transform="translate(330,30)" style="opacity: 1;">
               <rect class="brnode-card" x="0" y="0" width="210" height="132" rx="10"></rect>
               <path class="brnode-header-strip" d="M 0 22 L 0 10 Q 0 0 10 0 L 200 0 Q 210 0 210 10 L 210 22 Z"></path>
               <line class="brnode-divider" x1="0" y1="22" x2="210" y2="22"></line>
               <rect class="brnode-grab" x="0" y="0" width="210" height="22" fill="transparent"></rect>
-              <text class="brnode-icon" x="10" y="15" font-size="10">â¶</text>
+              <text class="brnode-icon" x="10" y="15" font-size="10">▶</text>
               <text class="brnode-title" x="22" y="15">Video Input</text>
               <rect class="brnode-badge-bg" x="180" y="5" width="22" height="13" rx="3"></rect>
               <text class="brnode-badge-txt" x="191" y="14.5" text-anchor="middle">5</text>
@@ -3888,30 +3888,30 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
               <!-- file list -->
               <text class="brnode-num" x="10" y="56">1.</text>
               <text class="brnode-data" x="22" y="56">A3.mp4</text>
-              <text class="brnode-meta" x="200" y="56" text-anchor="end">0:10 Â· 0.8MB</text>
+              <text class="brnode-meta" x="200" y="56" text-anchor="end">0:10 · 0.8MB</text>
               <text class="brnode-num" x="10" y="72">2.</text>
               <text class="brnode-data" x="22" y="72">A2.mp4</text>
-              <text class="brnode-meta" x="200" y="72" text-anchor="end">0:10 Â· 0.8MB</text>
+              <text class="brnode-meta" x="200" y="72" text-anchor="end">0:10 · 0.8MB</text>
               <text class="brnode-num" x="10" y="88">3.</text>
               <text class="brnode-data" x="22" y="88">A1.mp4</text>
-              <text class="brnode-meta" x="200" y="88" text-anchor="end">0:10 Â· 0.7MB</text>
+              <text class="brnode-meta" x="200" y="88" text-anchor="end">0:10 · 0.7MB</text>
               <text class="brnode-num" x="10" y="104">4.</text>
               <text class="brnode-data" x="22" y="104">A5.mp4</text>
-              <text class="brnode-meta" x="200" y="104" text-anchor="end">0:10 Â· 0.8MB</text>
+              <text class="brnode-meta" x="200" y="104" text-anchor="end">0:10 · 0.8MB</text>
               <text class="brnode-num" x="10" y="120">5.</text>
               <text class="brnode-data" x="22" y="120">A4.mp4</text>
-              <text class="brnode-meta" x="200" y="120" text-anchor="end">0:10 Â· 0.8MB</text>
+              <text class="brnode-meta" x="200" y="120" text-anchor="end">0:10 · 0.8MB</text>
               <!-- output port -->
               <circle class="brnode-port port-blue" data-port-id="vin2:out" cx="210" cy="36" r="4"></circle>
             </g>
 
-            <!-- âââ Add Logo (lifted up to mid-canvas, beside vin1) âââââââââââ -->
+            <!-- ─── Add Logo (lifted up to mid-canvas, beside vin1) ─────────── -->
             <g class="brnode" data-id="logo" data-kind="logo" transform="translate(330,210)" style="opacity: 1;">
               <rect class="brnode-card" x="0" y="0" width="210" height="80" rx="10"></rect>
               <path class="brnode-header-strip" d="M 0 22 L 0 10 Q 0 0 10 0 L 200 0 Q 210 0 210 10 L 210 22 Z"></path>
               <line class="brnode-divider" x1="0" y1="22" x2="210" y2="22"></line>
               <rect class="brnode-grab" x="0" y="0" width="210" height="22" fill="transparent"></rect>
-              <text class="brnode-icon" x="10" y="15" font-size="10">â</text>
+              <text class="brnode-icon" x="10" y="15" font-size="10">⊕</text>
               <text class="brnode-title" x="22" y="15">Add Logo</text>
               <text class="brnode-meta" x="200" y="40" text-anchor="end" fill="#b07bff" opacity="0.85">image</text>
               <circle class="brnode-port port-purple" data-port-id="logo:out" cx="210" cy="36" r="4"></circle>
@@ -3921,13 +3921,13 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
               <text class="brnode-data" x="42" y="60">small_BatchRender_Logo.png</text>
             </g>
 
-            <!-- âââ Add Audio (lifted up â was at the bottom, now beside Logo) â -->
+            <!-- ─── Add Audio (lifted up — was at the bottom, now beside Logo) ─ -->
             <g class="brnode" data-id="audio" data-kind="audio" transform="translate(330,310)" style="opacity: 1;">
               <rect class="brnode-card" x="0" y="0" width="210" height="116" rx="10"></rect>
               <path class="brnode-header-strip" d="M 0 22 L 0 10 Q 0 0 10 0 L 200 0 Q 210 0 210 10 L 210 22 Z"></path>
               <line class="brnode-divider" x1="0" y1="22" x2="210" y2="22"></line>
               <rect class="brnode-grab" x="0" y="0" width="210" height="22" fill="transparent"></rect>
-              <text class="brnode-icon" x="10" y="15" font-size="10">âª</text>
+              <text class="brnode-icon" x="10" y="15" font-size="10">♪</text>
               <text class="brnode-title" x="22" y="15">Add Audio</text>
               <rect class="brnode-badge-bg" x="180" y="5" width="22" height="13" rx="3"></rect>
               <text class="brnode-badge-txt" x="191" y="14.5" text-anchor="middle">18</text>
@@ -3936,23 +3936,23 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
               <!-- compact file list (4 visible) -->
               <text class="brnode-num" x="10" y="56">1.</text>
               <text class="brnode-data" x="22" y="56">07 Midnight Drive.mp3</text>
-              <text class="brnode-meta" x="200" y="56" text-anchor="end">5:04 Â· 12.2MB</text>
+              <text class="brnode-meta" x="200" y="56" text-anchor="end">5:04 · 12.2MB</text>
               <text class="brnode-num" x="10" y="72">2.</text>
               <text class="brnode-data" x="22" y="72">11 Velvet Hours.mp3</text>
-              <text class="brnode-meta" x="200" y="72" text-anchor="end">3:35 Â· 8.6MB</text>
+              <text class="brnode-meta" x="200" y="72" text-anchor="end">3:35 · 8.6MB</text>
               <text class="brnode-num" x="10" y="88">3.</text>
               <text class="brnode-data" x="22" y="88">06 Glass Echoes.mp3</text>
-              <text class="brnode-meta" x="200" y="88" text-anchor="end">3:35 Â· 8.6MB</text>
-              <text class="brnode-meta" x="105" y="106" text-anchor="middle" opacity="0.6">â¼ +15 more files</text>
+              <text class="brnode-meta" x="200" y="88" text-anchor="end">3:35 · 8.6MB</text>
+              <text class="brnode-meta" x="105" y="106" text-anchor="middle" opacity="0.6">▼ +15 more files</text>
             </g>
 
-            <!-- âââ Output (right, single video port + image + 2 audio) âââââââ -->
+            <!-- ─── Output (right, single video port + image + 2 audio) ─────── -->
             <g class="brnode" data-id="out" data-kind="output" transform="translate(780,130)" style="opacity: 1;">
               <rect class="brnode-card" x="0" y="0" width="170" height="160" rx="10"></rect>
               <path class="brnode-header-strip" d="M 0 22 L 0 10 Q 0 0 10 0 L 160 0 Q 170 0 170 10 L 170 22 Z"></path>
               <line class="brnode-divider" x1="0" y1="22" x2="170" y2="22"></line>
               <rect class="brnode-grab" x="0" y="0" width="170" height="22" fill="transparent"></rect>
-              <text class="brnode-icon" x="10" y="15" font-size="10">â¼</text>
+              <text class="brnode-icon" x="10" y="15" font-size="10">▼</text>
               <text class="brnode-title" x="22" y="15">Output</text>
               <!-- input ports stack on left -->
               <circle class="brnode-port port-blue" data-port-id="out:vid" cx="0" cy="42" r="4"></circle>
@@ -3971,7 +3971,7 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
           </svg>
           <div class="canvas-overlay">
             <span class="co-label">RENDER</span>
-            <span class="co-status">2 / 12 Â· intro_v2.mp4</span>
+            <span class="co-status">2 / 12 · intro_v2.mp4</span>
             <div class="co-progress"><div class="co-progress-fill"></div></div>
             <span class="co-pct">37%</span>
           </div>
@@ -3981,7 +3981,7 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
   </div>
 </section>
 
-<!-- COMPANION â Built to fit / Works alongside your editor -->
+<!-- COMPANION — Built to fit / Works alongside your editor -->
 <div class="companion-section in" id="companion">
   <div class="companion-inner">
     <div class="companion-grid">
@@ -3992,7 +3992,7 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
         <div class="companion-text">
           <p data-key="companionP1">BatchRender plugs in where editing ends.</p>
           <p data-key="companionP2">It handles batch processing of all your media, scaling and speeding up your entire workflow.</p>
-          <p data-key="companionP3">Simple cuts, voiceovers, multiple export formats, watermarks and logos, long-form video segmentation, file renaming, folder organization, final exports, and more â all <strong>automated within a single pipeline</strong>.</p>
+          <p data-key="companionP3">Simple cuts, voiceovers, multiple export formats, watermarks and logos, long-form video segmentation, file renaming, folder organization, final exports, and more — all <strong>automated within a single pipeline</strong>.</p>
           <p data-key="companionP4">It also includes <strong>smart automatic silence removal</strong> for interviews and podcasts, with the ability to send projects or individual files back into your editing system.</p>
         </div>
       </div>
@@ -4053,13 +4053,13 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
       <div class="usecase-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="mic" aria-hidden="true" class="lucide lucide-mic"><path d="M12 19v3"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><rect x="9" y="2" width="6" height="13" rx="3"></rect></svg></div>
       <div class="usecase-tag" data-key="uc2tag">Podcasters &amp; Creators</div>
       <h3 data-key="uc2t">Repurpose your archive in hours, not weeks</h3>
-      <p data-key="uc2d">Old episodes, lectures, streams â feed them through one pipeline and get a folder of <strong>Shorts/Reels-ready clips</strong>. Same crop, same outro, same loudness across the whole back-catalogue.</p>
+      <p data-key="uc2d">Old episodes, lectures, streams — feed them through one pipeline and get a folder of <strong>Shorts/Reels-ready clips</strong>. Same crop, same outro, same loudness across the whole back-catalogue.</p>
     </article>
     <article class="usecase-card in visible pulse-active" style="transition-delay: 0.16s; --tx: 0deg; --ty: 0deg;">
       <div class="usecase-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="trending-up" aria-hidden="true" class="lucide lucide-trending-up"><path d="M16 7h6v6"></path><path d="m22 7-8.5 8.5-5-5L2 17"></path></svg></div>
       <div class="usecase-tag" data-key="uc3tag">Performance marketers</div>
       <h3 data-key="uc3t">100 ad-creative variations from one source</h3>
-      <p data-key="uc3d">Test creative at scale. Generate <strong>dozens of variants</strong> â different cuts, overlays, audio, lengths â for Meta, TikTok and YouTube ads, all from a single base clip in one batch.</p>
+      <p data-key="uc3d">Test creative at scale. Generate <strong>dozens of variants</strong> — different cuts, overlays, audio, lengths — for Meta, TikTok and YouTube ads, all from a single base clip in one batch.</p>
     </article>
   </div>
 </section>
@@ -4070,7 +4070,7 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
   <h2 class="section-title" data-key="mathTitle">Your time is worth more than your software.</h2>
   <p class="section-sub" data-key="mathSub">A typical client delivery, end-to-end. Same files. Same outputs. Two very different ways to get there.</p>
 
-  <div class="math-eq" data-key="mathEq"><span class="accent">25 source clips</span> Ã <span class="accent">25 outros</span> Ã <span class="accent">4 export formats</span> = <span class="result">2,500 final files</span></div>
+  <div class="math-eq" data-key="mathEq"><span class="accent">25 source clips</span> × <span class="accent">25 outros</span> × <span class="accent">4 export formats</span> = <span class="result">2,500 final files</span></div>
 
   <div class="math-cols">
     <div class="math-col bad">
@@ -4080,7 +4080,7 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
       <div class="math-row" data-row="r3"><span class="lbl" data-key="mathBadR3l">File naming</span><span class="val" data-key="mathBadR3v">Manual</span></div>
       <div class="math-row" data-row="r4"><span class="lbl" data-key="mathBadR4l">Attention</span><span class="val" data-key="mathBadR4v">Constant</span></div>
       <div class="math-row" data-row="r5"><span class="lbl" data-key="mathBadR5l">Time</span><span class="val" data-key="mathBadR5v">~3 hours</span></div>
-      <div class="math-row row-pulse" data-row="r6"><span class="lbl" data-key="mathBadR6l">Cost in editor time</span><span class="val" data-key="mathBadR6v">$60 â $150 / project</span></div>
+      <div class="math-row row-pulse" data-row="r6"><span class="lbl" data-key="mathBadR6l">Cost in editor time</span><span class="val" data-key="mathBadR6v">$60 – $150 / project</span></div>
     </div>
     <div class="math-col good">
       <div class="math-col-title" data-key="mathGoodTitle">With BatchRender</div>
@@ -4120,7 +4120,7 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
             <div class="tags"><span class="tag" data-key="f1tag">INPUT</span></div>
           </div>
           <h3 data-key="f1t">Folder of files in, batch out</h3>
-          <p data-key="f1d">Point Video Input at a folder of .mp4 / .mov files. The node reads metadata, durations, sizes â the rest of your pipeline applies to all of them automatically.</p>
+          <p data-key="f1d">Point Video Input at a folder of .mp4 / .mov files. The node reads metadata, durations, sizes — the rest of your pipeline applies to all of them automatically.</p>
           <div class="scene scene-input">
             <div class="stack">
               <div class="folder f3"></div>
@@ -4139,7 +4139,7 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
             <div class="tags"><span class="tag" data-key="f2tag">EDIT</span></div>
           </div>
           <h3 data-key="f2t">Cut every file the same way</h3>
-          <p data-key="f2d">Frame-accurate Cutter with timecode input. Trim intros, slice into segments, drop the dead air â the same cut rule applied across hundreds of files in one go.</p>
+          <p data-key="f2d">Frame-accurate Cutter with timecode input. Trim intros, slice into segments, drop the dead air — the same cut rule applied across hundreds of files in one go.</p>
           <div class="scene scene-cut">
             <div class="strip"></div>
             <div class="playhead"></div>
@@ -4155,7 +4155,7 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
             <div class="tags"><span class="tag" data-key="f3tag">BRAND</span></div>
           </div>
           <h3 data-key="f3t">Watermarks &amp; logo overlay</h3>
-          <p data-key="f3d">Drop a logo or watermark on every video in the batch. Position, scale, opacity â set once, applied consistently. Brand the whole client folder in one render.</p>
+          <p data-key="f3d">Drop a logo or watermark on every video in the batch. Position, scale, opacity — set once, applied consistently. Brand the whole client folder in one render.</p>
           <div class="scene scene-brand">
             <div class="frame">
               <div class="logo">B</div>
@@ -4190,9 +4190,9 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
             <div class="tags"><span class="tag" data-key="f5tag">SOURCE</span></div>
           </div>
           <h3 data-key="f5t">Pull source from URLs</h3>
-          <p data-key="f5d">Built-in URL downloader (yt-dlp). Paste a list of links, BatchRender pulls the source material and feeds it straight into your pipeline â no manual download step.</p>
+          <p data-key="f5d">Built-in URL downloader (yt-dlp). Paste a list of links, BatchRender pulls the source material and feeds it straight into your pipeline — no manual download step.</p>
           <div class="scene scene-source">
-            <span class="url">youtube.com/â¦</span>
+            <span class="url">youtube.com/…</span>
             <div class="path"></div>
             <div class="chip"></div>
             <div class="folder-dest"></div>
@@ -4234,10 +4234,10 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
             <div class="tags"><span class="tag" data-key="f7tag">Transform</span></div>
           </div>
           <h3 data-key="f7t">Vertical-blur for social</h3>
-          <p data-key="f7d">Convert horizontal video to 9:16 with a blurred background fill. One node, no manual After-Effects work â perfect for Reels, Shorts and TikTok in batch.</p>
+          <p data-key="f7d">Convert horizontal video to 9:16 with a blurred background fill. One node, no manual After-Effects work — perfect for Reels, Shorts and TikTok in batch.</p>
           <div class="scene scene-transform">
             <div class="horiz"></div>
-            <span class="arrow-r">â</span>
+            <span class="arrow-r">→</span>
             <div class="vert"></div>
           </div>
         </div>
@@ -4273,9 +4273,9 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
   <div class="head">
     <div class="head-left">
       <div class="eyebrow-row">
-        <span class="eyebrow-pill"><span class="dot"></span><span data-key="pricingEyebrow">Pricing Â· 4 plans</span></span>
+        <span class="eyebrow-pill"><span class="dot"></span><span data-key="pricingEyebrow">Pricing · 4 plans</span></span>
         <span class="eyebrow-line"></span>
-        <span class="eyebrow-meta" data-key="pricingMeta">Updated Â· 2026</span>
+        <span class="eyebrow-meta" data-key="pricingMeta">Updated · 2026</span>
       </div>
       <h2 class="section-title"><span data-key="pricingTitlePart1">Pricing that</span> <span class="it" data-key="pricingTitlePart2">pays for itself.</span></h2>
     </div>
@@ -4290,7 +4290,7 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
 
     <!-- 1) MONTHLY -->
     <div class="card entering" data-mode="sub" data-hidden="false">
-      <span class="glyph">â¬</span>
+      <span class="glyph">€</span>
       <div class="tier-row">
         <div>
           <div class="tier-num">01 / 04</div>
@@ -4301,50 +4301,50 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
       </div>
       <div class="price-block">
         <div class="price-row">
-          <span class="amount"><span class="currency">â¬</span><span class="num" data-target="15">15</span></span>
+          <span class="amount"><span class="currency">€</span><span class="num" data-target="15">15</span></span>
           <div class="old-stack">
-            <span class="old-price">â¬20</span>
-            <span class="old-meta">â25%</span>
+            <span class="old-price">€20</span>
+            <span class="old-meta">−25%</span>
           </div>
         </div>
-        <div class="period" data-key="p1period">Auto-renews monthly Â· 2 machines</div>
+        <div class="period" data-key="p1period">Auto-renews monthly · 2 machines</div>
       </div>
-      <span class="savings cool" data-key="p1savings">â25% off original price</span>
+      <span class="savings cool" data-key="p1savings">−25% off original price</span>
       <div class="spacer"></div>
       <a href="#" data-buy="monthly" class="cta ghost" data-key="p1cta">Start Monthly</a>
     </div>
 
-    <!-- 2) YEARLY â FEATURED -->
+    <!-- 2) YEARLY — FEATURED -->
     <div class="card featured entering" data-mode="sub" data-hidden="false">
-      <span class="glyph">â¬</span>
+      <span class="glyph">€</span>
       <div class="badge-popular" data-key="popularBadge">BEST VALUE</div>
-      <span class="float-chip tl" data-key="p2chip">â20% off</span>
+      <span class="float-chip tl" data-key="p2chip">−20% off</span>
 
       <div class="tier-row">
         <div>
           <div class="tier-num featured-num">02 / 04</div>
           <div class="tier tier-large" data-key="p2tier">YEARLY</div>
-          <div class="tier-sub" data-key="p2sub">Subscription Â· 12 months</div>
+          <div class="tier-sub" data-key="p2sub">Subscription · 12 months</div>
         </div>
       </div>
       <div class="price-block">
         <div class="price-row">
-          <span class="amount gradient"><span class="currency">â¬</span><span class="num" data-target="160">160</span></span>
+          <span class="amount gradient"><span class="currency">€</span><span class="num" data-target="160">160</span></span>
           <div class="old-stack">
-            <span class="old-price">â¬200</span>
-            <span class="old-meta save">save â¬40</span>
+            <span class="old-price">€200</span>
+            <span class="old-meta save">save €40</span>
           </div>
         </div>
-        <div class="period" data-key="p2period">Auto-renews yearly Â· 2 machines</div>
+        <div class="period" data-key="p2period">Auto-renews yearly · 2 machines</div>
       </div>
-      <span class="savings" data-key="p2savings">Save $80/yr Â· ~$13.33/mo</span>
+      <span class="savings" data-key="p2savings">Save $80/yr · ~$13.33/mo</span>
       <div class="spacer"></div>
       <a href="#" data-buy="yearly" class="cta primary" data-key="p2cta">Start Yearly</a>
     </div>
 
     <!-- 3) ONE-TIME 1 MONTH -->
     <div class="card entering" data-mode="one" data-hidden="true">
-      <span class="glyph">â¬</span>
+      <span class="glyph">€</span>
       <div class="tier-row">
         <div>
           <div class="tier-num">03 / 04</div>
@@ -4355,18 +4355,18 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
       </div>
       <div class="price-block">
         <div class="price-row">
-          <span class="amount"><span class="currency">â¬</span><span class="num" data-target="20">20</span></span>
+          <span class="amount"><span class="currency">€</span><span class="num" data-target="20">20</span></span>
         </div>
-        <div class="period" data-key="p3period">Auto-renews quarterly Â· 2 machines</div>
+        <div class="period" data-key="p3period">Auto-renews quarterly · 2 machines</div>
       </div>
-      <span class="savings warm" data-key="p3savings">Save $10/quarter Â· ~$13.33/mo</span>
+      <span class="savings warm" data-key="p3savings">Save $10/quarter · ~$13.33/mo</span>
       <div class="spacer"></div>
       <a href="#" data-buy="quarterly" class="cta ghost" data-key="p3cta">Start Quarterly</a>
     </div>
 
     <!-- 4) ONE-TIME 3 MONTHS -->
     <div class="card entering" data-mode="one" data-hidden="true">
-      <span class="glyph">â¬</span>
+      <span class="glyph">€</span>
       <div class="tier-row">
         <div>
           <div class="tier-num">04 / 04</div>
@@ -4377,17 +4377,17 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
       </div>
       <div class="price-block">
         <div class="price-row">
-          <span class="amount"><span class="currency">â¬</span><span class="num" data-target="50">50</span></span>
+          <span class="amount"><span class="currency">€</span><span class="num" data-target="50">50</span></span>
           <div class="old-stack">
-            <span class="old-price">â¬60</span>
-            <span class="old-meta warm-meta">ââ¬10</span>
+            <span class="old-price">€60</span>
+            <span class="old-meta warm-meta">−€10</span>
           </div>
         </div>
-        <div class="period" data-key="p4period">single payment Â· 90 days access</div>
+        <div class="period" data-key="p4period">single payment · 90 days access</div>
       </div>
-      <span class="savings warm" data-key="p4savings">Save â¬10 vs. 3Ã monthly</span>
+      <span class="savings warm" data-key="p4savings">Save €10 vs. 3× monthly</span>
       <div class="spacer"></div>
-      <a href="#" data-buy="3months" class="cta ghost" data-key="p4cta">Buy 3 Months <span class="arrow-box">â</span></a>
+      <a href="#" data-buy="3months" class="cta ghost" data-key="p4cta">Buy 3 Months <span class="arrow-box">→</span></a>
     </div>
 
   </div>
@@ -4395,17 +4395,17 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
   <!-- MARQUEE -->
   <div class="marquee">
     <div class="marquee-track">
-      <span class="marquee-item"><span class="star">â¦</span><span data-key="mqA1">2-machine activation</span></span>
-      <span class="marquee-item"><span class="star">â¦</span><span data-key="mqA3">All current and future nodes</span></span>
+      <span class="marquee-item"><span class="star">✦</span><span data-key="mqA1">2-machine activation</span></span>
+      <span class="marquee-item"><span class="star">✦</span><span data-key="mqA3">All current and future nodes</span></span>
       <span class="marquee-item"><span class="num">14d</span><span data-key="mqA4">refund window</span></span>
-      <span class="marquee-item"><span class="star">â¦</span><span data-key="mqA5">No surprises at renewal</span></span>
-      <span class="marquee-item"><span class="star">â¦</span><span data-key="mqA7">Cards Â· PayPal Â· Apple Pay</span></span>
+      <span class="marquee-item"><span class="star">✦</span><span data-key="mqA5">No surprises at renewal</span></span>
+      <span class="marquee-item"><span class="star">✦</span><span data-key="mqA7">Cards · PayPal · Apple Pay</span></span>
       <!-- duplicate for seamless loop -->
-      <span class="marquee-item"><span class="star">â¦</span><span data-key="mqB1">2-machine activation</span></span>
-      <span class="marquee-item"><span class="star">â¦</span><span data-key="mqB3">All current and future nodes</span></span>
+      <span class="marquee-item"><span class="star">✦</span><span data-key="mqB1">2-machine activation</span></span>
+      <span class="marquee-item"><span class="star">✦</span><span data-key="mqB3">All current and future nodes</span></span>
       <span class="marquee-item"><span class="num">14d</span><span data-key="mqB4">refund window</span></span>
-      <span class="marquee-item"><span class="star">â¦</span><span data-key="mqB5">No surprises at renewal</span></span>
-      <span class="marquee-item"><span class="star">â¦</span><span data-key="mqB7">Cards Â· PayPal Â· Apple Pay</span></span>
+      <span class="marquee-item"><span class="star">✦</span><span data-key="mqB5">No surprises at renewal</span></span>
+      <span class="marquee-item"><span class="star">✦</span><span data-key="mqB7">Cards · PayPal · Apple Pay</span></span>
     </div>
   </div>
 
@@ -4421,7 +4421,7 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
       </span>
       <span class="item">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="M2 10h20"></path></svg>
-        <span data-key="footMethods">Cards Â· PayPal Â· Apple Pay</span>
+        <span data-key="footMethods">Cards · PayPal · Apple Pay</span>
       </span>
     </div>
     <div class="right" data-key="footVat">All prices in EUR. VAT added at checkout.</div>
@@ -4438,10 +4438,10 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
     <div class="eyebrow-row">
       <span class="eyebrow-pill"><span class="dot"></span><span data-key="freeLabel">Free forever</span></span>
       <span class="eyebrow-line"></span>
-      <span class="eyebrow-meta" data-key="downloadMeta">{VERSION} Â· released 2026</span>
+      <span class="eyebrow-meta" data-key="downloadMeta">{VERSION} · released 2026</span>
     </div>
     <h2 class="section-title"><span data-key="downloadTitlePart1">Try it free,</span> <span class="it" data-key="downloadTitlePart2">with watermark.</span></h2>
-    <p class="section-sub" data-key="freeSub">Download BatchRender, build pipelines, render as much as you want. A small watermark stays on output until you activate a license â no time limit, no hidden expiry.</p>
+    <p class="section-sub" data-key="freeSub">Download BatchRender, build pipelines, render as much as you want. A small watermark stays on output until you activate a license — no time limit, no hidden expiry.</p>
   </div>
 
   <!-- TWO CARDS -->
@@ -4449,7 +4449,7 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
 
     <!-- macOS -->
     <div class="card">
-      <span class="glyph">â</span>
+      <span class="glyph">⌘</span>
       <span class="float-chip tl"><span data-key="dlMacChip">Apple Silicon ready</span></span>
 
       <div class="card-head">
@@ -4482,15 +4482,15 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
       </div>
 
       <div class="spacer"></div>
-      <a href="https://github.com/PavTer/BatchRender-releases/releases/latest/download/BatchRender-mac-arm64.dmg" class="cta"><span data-key="dlMac">Download for macOS</span> <span class="arrow-box">â</span></a>
+      <a href="https://github.com/PavTer/BatchRender-releases/releases/latest/download/BatchRender-mac-arm64.dmg" class="cta"><span data-key="dlMac">Download for macOS</span> <span class="arrow-box">↓</span></a>
       <div class="cta-meta">
-        <span data-key="dlMacMeta">Apple Silicon (M1+)</span> Â· <a href="https://github.com/PavTer/BatchRender-releases/releases/latest" data-key="dlReleaseNotes">Release notes</a>
+        <span data-key="dlMacMeta">Apple Silicon (M1+)</span> · <a href="https://github.com/PavTer/BatchRender-releases/releases/latest" data-key="dlReleaseNotes">Release notes</a>
       </div>
     </div>
 
     <!-- Windows -->
     <div class="card">
-      <span class="glyph">â</span>
+      <span class="glyph">⊞</span>
       <span class="float-chip tl" style="--c:#5EB2FF; --rot:5deg;"><span data-key="dlWinChip">x64 build</span></span>
 
       <div class="card-head">
@@ -4523,9 +4523,9 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
       </div>
 
       <div class="spacer"></div>
-      <a href="https://github.com/PavTer/BatchRender-releases/releases/latest/download/BatchRender-win.exe" class="cta"><span data-key="dlWin">Download for Windows</span> <span class="arrow-box">â</span></a>
+      <a href="https://github.com/PavTer/BatchRender-releases/releases/latest/download/BatchRender-win.exe" class="cta"><span data-key="dlWin">Download for Windows</span> <span class="arrow-box">↓</span></a>
       <div class="cta-meta">
-        <span data-key="dlWinMeta">Windows 10/11</span> Â· <a href="https://github.com/PavTer/BatchRender-releases/releases/latest" data-key="dlReleaseNotes2">Release notes</a>
+        <span data-key="dlWinMeta">Windows 10/11</span> · <a href="https://github.com/PavTer/BatchRender-releases/releases/latest" data-key="dlReleaseNotes2">Release notes</a>
       </div>
     </div>
   </div>
@@ -4544,7 +4544,7 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
 <section id="faq">
   <div class="section-eyebrow" data-key="faqLabel">FAQ</div>
   <h2 class="section-title" data-key="faqTitle">Common questions.</h2>
-  <div class="faq-list" id="faqList"><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Does BatchRender replace DaVinci, Premiere or Final Cut?<span class="faq-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></span></button><div class="faq-a"><div class="faq-a-inner">No. BatchRender is built to work alongside your editor of choice. You keep editing wherever you edit. BatchRender takes over the bulk export, format variation, watermarking, renaming and delivery work.</div></div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">What platforms are supported?<span class="faq-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></span></button><div class="faq-a"><div class="faq-a-inner">BatchRender ships native builds for macOS (Apple Silicon and Intel) and Windows. Linux is not supported at the moment.</div></div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Is the free trial really unlimited?<span class="faq-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></span></button><div class="faq-a"><div class="faq-a-inner">Yes. No time limit, no file count limit, all nodes unlocked. The only restriction is a small watermark on rendered output. <strong>URL Downloader works without watermark, forever</strong> â even on the free trial.</div></div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Do my files leave my computer?<span class="faq-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></span></button><div class="faq-a"><div class="faq-a-inner">No. Everything runs on your machine. Files never leave your computer â no cloud upload, no telemetry on file content, no per-minute charges. FFmpeg does the work locally.</div></div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Can I use BatchRender for commercial work?<span class="faq-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></span></button><div class="faq-a"><div class="faq-a-inner">Yes. All paid plans include full commercial use rights. Use it for client work, paid content, anything.</div></div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">How many machines can I activate?<span class="faq-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></span></button><div class="faq-a"><div class="faq-a-inner">All plans include 2-machine activation â typical setup like a laptop and a desktop. You can deactivate one and move the slot at any time.</div></div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Does BatchRender use AI?<span class="faq-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></span></button><div class="faq-a"><div class="faq-a-inner">No. Every operation is deterministic â same input, same output. You see what each node does before you run it. No "magic."</div></div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">How does the subscription work?<span class="faq-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></span></button><div class="faq-a"><div class="faq-a-inner">Pick Monthly, Quarterly or Yearly. Payment auto-renews at the end of each period. You can cancel any time â your license stays active until the period ends, then the watermark comes back.</div></div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Can I cancel and get a refund?<span class="faq-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></span></button><div class="faq-a"><div class="faq-a-inner">You can cancel auto-renewal any time from your account. For refunds within the first 14 days, contact us through the form below â we handle these case by case.</div></div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Does BatchRender work without internet?<span class="faq-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></span></button><div class="faq-a"><div class="faq-a-inner">Rendering and editing work fully offline. License activation requires a one-time online check, then the app works offline for the duration of your subscription period.</div></div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">What integrations are planned?<span class="faq-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></span></button><div class="faq-a"><div class="faq-a-inner">XML/EDL import from major NLEs is on the roadmap. The goal is for BatchRender to slot directly into existing post-production pipelines.</div></div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">What about VAT?<span class="faq-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></span></button><div class="faq-a"><div class="faq-a-inner">EU customers pay VAT on top of the listed price, calculated automatically at checkout based on your country. Non-EU customers usually pay the listed price as-is.</div></div></div></div>
+  <div class="faq-list" id="faqList"><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Does BatchRender replace DaVinci, Premiere or Final Cut?<span class="faq-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></span></button><div class="faq-a"><div class="faq-a-inner">No. BatchRender is built to work alongside your editor of choice. You keep editing wherever you edit. BatchRender takes over the bulk export, format variation, watermarking, renaming and delivery work.</div></div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">What platforms are supported?<span class="faq-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></span></button><div class="faq-a"><div class="faq-a-inner">BatchRender ships native builds for macOS (Apple Silicon and Intel) and Windows. Linux is not supported at the moment.</div></div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Is the free trial really unlimited?<span class="faq-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></span></button><div class="faq-a"><div class="faq-a-inner">Yes. No time limit, no file count limit, all nodes unlocked. The only restriction is a small watermark on rendered output. <strong>URL Downloader works without watermark, forever</strong> — even on the free trial.</div></div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Do my files leave my computer?<span class="faq-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></span></button><div class="faq-a"><div class="faq-a-inner">No. Everything runs on your machine. Files never leave your computer — no cloud upload, no telemetry on file content, no per-minute charges. FFmpeg does the work locally.</div></div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Can I use BatchRender for commercial work?<span class="faq-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></span></button><div class="faq-a"><div class="faq-a-inner">Yes. All paid plans include full commercial use rights. Use it for client work, paid content, anything.</div></div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">How many machines can I activate?<span class="faq-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></span></button><div class="faq-a"><div class="faq-a-inner">All plans include 2-machine activation — typical setup like a laptop and a desktop. You can deactivate one and move the slot at any time.</div></div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Does BatchRender use AI?<span class="faq-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></span></button><div class="faq-a"><div class="faq-a-inner">No. Every operation is deterministic — same input, same output. You see what each node does before you run it. No "magic."</div></div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">How does the subscription work?<span class="faq-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></span></button><div class="faq-a"><div class="faq-a-inner">Pick Monthly, Quarterly or Yearly. Payment auto-renews at the end of each period. You can cancel any time — your license stays active until the period ends, then the watermark comes back.</div></div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Can I cancel and get a refund?<span class="faq-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></span></button><div class="faq-a"><div class="faq-a-inner">You can cancel auto-renewal any time from your account. For refunds within the first 14 days, contact us through the form below — we handle these case by case.</div></div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Does BatchRender work without internet?<span class="faq-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></span></button><div class="faq-a"><div class="faq-a-inner">Rendering and editing work fully offline. License activation requires a one-time online check, then the app works offline for the duration of your subscription period.</div></div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">What integrations are planned?<span class="faq-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></span></button><div class="faq-a"><div class="faq-a-inner">XML/EDL import from major NLEs is on the roadmap. The goal is for BatchRender to slot directly into existing post-production pipelines.</div></div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">What about VAT?<span class="faq-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></span></button><div class="faq-a"><div class="faq-a-inner">EU customers pay VAT on top of the listed price, calculated automatically at checkout based on your country. Non-EU customers usually pay the listed price as-is.</div></div></div></div>
 </section>
 
 <!-- CONTACT -->
@@ -4553,7 +4553,7 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
     <div>
       <div class="section-eyebrow" data-key="contactLabel">Contact</div>
       <h2 class="section-title" data-key="contactTitle">Get in touch</h2>
-      <p class="section-sub" data-key="contactSub">Questions about licensing, technical issues, feature requests â drop a message and I'll get back to you.</p>
+      <p class="section-sub" data-key="contactSub">Questions about licensing, technical issues, feature requests — drop a message and I'll get back to you.</p>
     </div>
     <div class="contact-form">
       <div class="form-group"><label data-key="formName">Your name</label><input type="text" id="contactName"></div>
@@ -4568,7 +4568,7 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
 <!-- DEMO MODAL -->
 <div class="modal-overlay" id="demoModal" onclick="closeDemoOutside(event)">
   <div class="modal-video">
-    <button class="modal-close-x" onclick="closeDemoModal()">â</button>
+    <button class="modal-close-x" onclick="closeDemoModal()">✕</button>
     <div id="demo-video-wrap">
       <div class="modal-placeholder">
         <h4 data-key="demoPlaceholderTitle">Demo video coming soon</h4>
@@ -4592,7 +4592,7 @@ footer { border-top: 1px solid var(--bd-soft); padding: 56px 32px 36px; max-widt
     <div class="footer-col"><h4 data-key="fcLegal">Legal</h4><a href="/privacy.html" data-key="fcPrivacy">Privacy Policy</a><a href="/terms.html" data-key="fcTerms">Terms of Service</a><a href="/refund.html" data-key="fcRefund">Refund Policy</a><a href="/eula.html" data-key="fcEula">EULA</a></div>
   </div>
   <div class="footer-bottom">
-    <p data-key="copyright">Â© 2026 BatchRender Â· All rights reserved</p>
+    <p data-key="copyright">© 2026 BatchRender · All rights reserved</p>
   </div>
 </footer>
 
@@ -4647,7 +4647,7 @@ async function fetchReleaseInfo() {
       if (el) el.textContent = fmt(winAsset.size);
     }
   } catch (e) {
-    // Silent â fallback values stay in place
+    // Silent — fallback values stay in place
   }
 }
 
@@ -4655,10 +4655,10 @@ const T = {
   en: {
     builtFor:"Built for", math:"The Math", features:"Nodes", videos:"Tutorials", pricing:"Pricing", faq:"FAQ", contact:"Contact",
     getStarted:"Download Free Trial",
-    version:"{VERSION} â Active Development",
+    version:"{VERSION} — Active Development",
     canvasHint:"Try drag",
     heroTitle:'Less repetitive work.<br><span class="grad">More control.</span>',
-    heroSub:'<strong>BatchRender saves hundreds of working hours</strong>, turning repetitive tasks into a process that takes minutes.<br><br>You stay in full control of every step: each action is configurable, and the result is always predictable.<br><br>A clean, intuitive node-based interface helps you work faster â without unnecessary complexity.',
+    heroSub:'<strong>BatchRender saves hundreds of working hours</strong>, turning repetitive tasks into a process that takes minutes.<br><br>You stay in full control of every step: each action is configurable, and the result is always predictable.<br><br>A clean, intuitive node-based interface helps you work faster — without unnecessary complexity.',
     heroCta1:"Download Free Trial", heroCta2:"See it in action",
     meta1:"No signup, no cloud", meta2:"Files stay on your machine", meta3:"Mac & Windows",
 
@@ -4666,7 +4666,7 @@ const T = {
     companionTitle:"Works alongside your editor",
     companionP1:"BatchRender plugs in where editing ends.",
     companionP2:"It handles batch processing of all your media, scaling and speeding up your entire workflow.",
-    companionP3:'Simple cuts, voiceovers, multiple export formats, watermarks and logos, long-form video segmentation, file renaming, folder organization, final exports, and more â all <strong>automated within a single pipeline</strong>.',
+    companionP3:'Simple cuts, voiceovers, multiple export formats, watermarks and logos, long-form video segmentation, file renaming, folder organization, final exports, and more — all <strong>automated within a single pipeline</strong>.',
     companionP4:'It also includes <strong>smart automatic silence removal</strong> for interviews and podcasts, with the ability to send projects or individual files back into your editing system.',
     nleResolve:"DaVinci Resolve", nlePremiere:"Premiere Pro", nleFCP:"Final Cut Pro", nleCapCut:"CapCut", nleAvid:"Avid",
 
@@ -4675,41 +4675,39 @@ const T = {
     uc1tag:"SMM & Content agencies", uc1t:"30 client videos. One pipeline.",
     uc1d:"Drop a folder of client clips, apply <strong>logo + intro + 9:16 crop</strong>, hit render. Same brand, same format, every time. No more tab-switching between 30 timeline edits.",
     uc2tag:"Podcasters & Creators", uc2t:"Repurpose your archive in hours, not weeks",
-    uc2d:"Old episodes, lectures, streams â feed them through one pipeline and get a folder of <strong>Shorts/Reels-ready clips</strong>. Same crop, same outro, same loudness across the whole back-catalogue.",
+    uc2d:"Old episodes, lectures, streams — feed them through one pipeline and get a folder of <strong>Shorts/Reels-ready clips</strong>. Same crop, same outro, same loudness across the whole back-catalogue.",
     uc3tag:"Performance marketers", uc3t:"100 ad-creative variations from one source",
-    uc3d:"Test creative at scale. Generate <strong>dozens of variants</strong> â different cuts, overlays, audio, lengths â for Meta, TikTok and YouTube ads, all from a single base clip in one batch.",
+    uc3d:"Test creative at scale. Generate <strong>dozens of variants</strong> — different cuts, overlays, audio, lengths — for Meta, TikTok and YouTube ads, all from a single base clip in one batch.",
 
     howLabel:"How it works", howTitle:"Three steps. Then it just runs.",
     howSub:"You define the pipeline once. BatchRender applies it to every file in the batch.",
     step1n:"Step 01", step1t:"Drop a folder",
-    step1d:"Drag in 100 .mp4 files, or paste a list of URLs. BatchRender reads everything into a Video Input node â no manual import, no naming conventions.",
+    step1d:"Drag in 100 .mp4 files, or paste a list of URLs. BatchRender reads everything into a Video Input node — no manual import, no naming conventions.",
     step2n:"Step 02", step2t:"Build a pipeline",
-    step2d:"Connect nodes: <strong>Video Input â Cutter â Add Audio â Add Logo â Output</strong>. Set parameters once. The graph is your edit recipe â visible, editable, reusable.",
+    step2d:"Connect nodes: <strong>Video Input → Cutter → Add Audio → Add Logo → Output</strong>. Set parameters once. The graph is your edit recipe — visible, editable, reusable.",
     step3n:"Step 03", step3t:"Run on the whole batch",
     step3d:"One click. Every file goes through the same pipeline. Watch progress live, get a folder of finished MP4s. Save the pipeline as a preset and reuse it next week.",
 
     featuresLabel:"Nodes", featuresTitle:"Every node earns its place",
     featuresSub:"Six nodes covering the operations creators actually repeat: input, cut, overlay, audio, source, transform.",
-    f1t:"Folder of files in, batch out", f1d:"Point Video Input at a folder of .mp4 / .mov files. The node reads metadata, durations, sizes â the rest of your pipeline applies to all of them automatically.", f1tag:"INPUT",
-    f2t:"Cut every file the same way", f2d:"Frame-accurate Cutter with timecode input. Trim intros, slice into segments, drop the dead air â the same cut rule applied across hundreds of files in one go.", f2tag:"EDIT",
-    f3t:"Watermarks &amp; logo overlay", f3d:"Drop a logo or watermark on every video in the batch. Position, scale, opacity â set once, applied consistently. Brand the whole client folder in one render.", f3tag:"BRAND",
+    f1t:"Folder of files in, batch out", f1d:"Point Video Input at a folder of .mp4 / .mov files. The node reads metadata, durations, sizes — the rest of your pipeline applies to all of them automatically.", f1tag:"INPUT",
+    f2t:"Cut every file the same way", f2d:"Frame-accurate Cutter with timecode input. Trim intros, slice into segments, drop the dead air — the same cut rule applied across hundreds of files in one go.", f2tag:"EDIT",
+    f3t:"Watermarks &amp; logo overlay", f3d:"Drop a logo or watermark on every video in the batch. Position, scale, opacity — set once, applied consistently. Brand the whole client folder in one render.", f3tag:"BRAND",
     f4t:"Music, voiceover, mute", f4d:"Add background music, voiceovers, or kill the original audio. Mix multiple tracks. Volume per track. Same audio recipe across every file in the queue.", f4tag:"AUDIO",
-    f5t:"Pull source from URLs", f5d:"Built-in URL downloader (yt-dlp). Paste a list of links, BatchRender pulls the source material and feeds it straight into your pipeline â no manual download step.", f5tag:"SOURCE",
+    f5t:"Pull source from URLs", f5d:"Built-in URL downloader (yt-dlp). Paste a list of links, BatchRender pulls the source material and feeds it straight into your pipeline — no manual download step.", f5tag:"SOURCE",
     f6t:"Auto silence removal for podcasts", f6d:"Detect and remove silence segments automatically. Tunable sensitivity, padding, threshold. Process hours of recordings into clean exports in one batch.", f6tag:"PODCAST", soonBadge:"SOON",
-    f7t:"Vertical-blur for social", f7d:"Convert horizontal video to 9:16 with a blurred background fill. One node, no manual After-Effects work â perfect for Reels, Shorts and TikTok in batch.", f7tag:"TRANSFORM",
+    f7t:"Vertical-blur for social", f7d:"Convert horizontal video to 9:16 with a blurred background fill. One node, no manual After-Effects work — perfect for Reels, Shorts and TikTok in batch.", f7tag:"TRANSFORM",
 
     mathLabel:"The Math", mathTitle:"Your time is worth more than your software.",
     mathSub:"A typical client delivery, end-to-end. Same files. Same outputs. Two very different ways to get there.",
-    mathEq:"
-    25 source clips + 25 outros × 4 export formats = 2,500 final files
-  ",
+    mathEq:'<span class="accent">25 source clips</span> × <span class="accent">25 outros</span> × <span class="accent">4 export formats</span> = <span class="result">2,500 final files</span>',
     mathBadTitle:"Without BatchRender",
     mathBadR1l:"Projects", mathBadR1v:"20+ separate",
     mathBadR2l:"Render presses", mathBadR2v:"100+",
     mathBadR3l:"File naming", mathBadR3v:"Manual",
     mathBadR4l:"Attention", mathBadR4v:"Constant",
     mathBadR5l:"Time", mathBadR5v:"~3 hours",
-    mathBadR6l:"Cost in editor time", mathBadR6v:"$60 â $150 / project",
+    mathBadR6l:"Cost in editor time", mathBadR6v:"$60 – $150 / project",
     mathGoodTitle:"With BatchRender",
     mathGoodR1l:"Projects", mathGoodR1v:"1 graph",
     mathGoodR2l:"Render presses", mathGoodR2v:"1 click",
@@ -4738,7 +4736,7 @@ const T = {
     finalCtaTitle:"Stop losing hours to repetitive exports.",
     finalCtaSub:"Download BatchRender. Free trial, no signup, no cloud. Try every node. Build any pipeline. See if it fits how you work.",
     finalCtaMac:"Download for Mac", finalCtaWin:"Download for Windows",
-    finalCtaConvinced:"Already convinced?", finalCtaPricing:"See pricing â",
+    finalCtaConvinced:"Already convinced?", finalCtaPricing:"See pricing →",
 
     videosLabel:"Tutorials", videosTitle:"Learn by watching",
     videosSub:"Step-by-step videos covering nodes, pipelines and real-world batch workflows.",
@@ -4747,19 +4745,19 @@ const T = {
     pricingLabel:"Pricing", pricingTitle:"Simple plans, real discounts",
     pricingSub:"Subscriptions auto-renew. Cancel any time. All plans include 2-machine activation.",
     pricingNote:"All prices in USD. VAT added at checkout for EU customers.",
-    p1tier:"MONTHLY", p1price:"15", p1old:"20", p1vat:"/ month + VAT", p1period:"Auto-renews monthly Â· 2 machines", p1savings:"â25% off original price",
+    p1tier:"MONTHLY", p1price:"15", p1old:"20", p1vat:"/ month + VAT", p1period:"Auto-renews monthly · 2 machines", p1savings:"−25% off original price",
     p1f1:"Full node-based editor", p1f2:"All current and future nodes", p1f3:"2-machine license", p1f4:"No watermark", p1f5:"Cancel any time",
     p1cta:"Start Monthly",
-    p2tier:"YEARLY", p2price:"160", p2old:"200", p2vat:"/ year + VAT", p2period:"Auto-renews yearly Â· 2 machines", p2savings:"Save $80/yr Â· ~$13.33/mo",
+    p2tier:"YEARLY", p2price:"160", p2old:"200", p2vat:"/ year + VAT", p2period:"Auto-renews yearly · 2 machines", p2savings:"Save $80/yr · ~$13.33/mo",
     p2f1:"Everything in Monthly", p2f2:"12 months for the price of ~10", p2f3:"Priority email support", p2f4:"2-machine license", p2f5:"Cancel before renewal",
     p2cta:"Start Yearly",
-    p3tier:"QUARTERLY", p3price:"40", p3old:"50", p3vat:"/ 3 months + VAT", p3period:"Auto-renews quarterly Â· 2 machines", p3savings:"Save $10/quarter Â· ~$13.33/mo",
+    p3tier:"QUARTERLY", p3price:"40", p3old:"50", p3vat:"/ 3 months + VAT", p3period:"Auto-renews quarterly · 2 machines", p3savings:"Save $10/quarter · ~$13.33/mo",
     p3f1:"Everything in Monthly", p3f2:"3 months for the price of ~2.7", p3f3:"2-machine license", p3f4:"Cancel before renewal",
     p3cta:"Start Quarterly",
     popularBadge:"BEST VALUE",
 
     freeLabel:"Free Forever", freeTitle:"Try it free, with watermark",
-    freeSub:"Download BatchRender, build pipelines, render as much as you want. A small watermark stays on output until you activate a license â no time limit, no hidden expiry.",
+    freeSub:"Download BatchRender, build pipelines, render as much as you want. A small watermark stays on output until you activate a license — no time limit, no hidden expiry.",
     freePerk1:"All nodes unlocked", freePerk2:"Unlimited file count", freePerk3:"No time limit", freePerk4:"Watermark removed after activation",
     dlMac:"Download for macOS", dlWin:"Download for Windows",
     demoPlaceholderTitle:"Demo video coming soon", demoPlaceholderSub:"Drop demo.mp4 into /img/ to play it here.",
@@ -4768,20 +4766,20 @@ const T = {
     faqList:[
       {q:"Does BatchRender replace DaVinci, Premiere or Final Cut?", a:"No. BatchRender is built to work alongside your editor of choice. You keep editing wherever you edit. BatchRender takes over the bulk export, format variation, watermarking, renaming and delivery work."},
       {q:"What platforms are supported?", a:"BatchRender ships native builds for macOS (Apple Silicon and Intel) and Windows. Linux is not supported at the moment."},
-      {q:"Is the free trial really unlimited?", a:"Yes. No time limit, no file count limit, all nodes unlocked. The only restriction is a small watermark on rendered output. <strong>URL Downloader works without watermark, forever</strong> â even on the free trial."},
-      {q:"Do my files leave my computer?", a:"No. Everything runs on your machine. Files never leave your computer â no cloud upload, no telemetry on file content, no per-minute charges. FFmpeg does the work locally."},
+      {q:"Is the free trial really unlimited?", a:"Yes. No time limit, no file count limit, all nodes unlocked. The only restriction is a small watermark on rendered output. <strong>URL Downloader works without watermark, forever</strong> — even on the free trial."},
+      {q:"Do my files leave my computer?", a:"No. Everything runs on your machine. Files never leave your computer — no cloud upload, no telemetry on file content, no per-minute charges. FFmpeg does the work locally."},
       {q:"Can I use BatchRender for commercial work?", a:"Yes. All paid plans include full commercial use rights. Use it for client work, paid content, anything."},
-      {q:"How many machines can I activate?", a:"All plans include 2-machine activation â typical setup like a laptop and a desktop. You can deactivate one and move the slot at any time."},
-      {q:"Does BatchRender use AI?", a:"No. Every operation is deterministic â same input, same output. You see what each node does before you run it. No \"magic.\""},
-      {q:"How does the subscription work?", a:"Pick Monthly, Quarterly or Yearly. Payment auto-renews at the end of each period. You can cancel any time â your license stays active until the period ends, then the watermark comes back."},
-      {q:"Can I cancel and get a refund?", a:"You can cancel auto-renewal any time from your account. For refunds within the first 14 days, contact us through the form below â we handle these case by case."},
+      {q:"How many machines can I activate?", a:"All plans include 2-machine activation — typical setup like a laptop and a desktop. You can deactivate one and move the slot at any time."},
+      {q:"Does BatchRender use AI?", a:"No. Every operation is deterministic — same input, same output. You see what each node does before you run it. No \"magic.\""},
+      {q:"How does the subscription work?", a:"Pick Monthly, Quarterly or Yearly. Payment auto-renews at the end of each period. You can cancel any time — your license stays active until the period ends, then the watermark comes back."},
+      {q:"Can I cancel and get a refund?", a:"You can cancel auto-renewal any time from your account. For refunds within the first 14 days, contact us through the form below — we handle these case by case."},
       {q:"Does BatchRender work without internet?", a:"Rendering and editing work fully offline. License activation requires a one-time online check, then the app works offline for the duration of your subscription period."},
       {q:"What integrations are planned?", a:"XML/EDL import from major NLEs is on the roadmap. The goal is for BatchRender to slot directly into existing post-production pipelines."},
       {q:"What about VAT?", a:"EU customers pay VAT on top of the listed price, calculated automatically at checkout based on your country. Non-EU customers usually pay the listed price as-is."}
     ],
 
     contactLabel:"Contact", contactTitle:"Get in touch",
-    contactSub:"Questions about licensing, technical issues, feature requests â drop a message and I'll get back to you.",
+    contactSub:"Questions about licensing, technical issues, feature requests — drop a message and I'll get back to you.",
     formName:"Your name", formEmail:"Email address", formSubject:"Subject", formMessage:"Message",
     subj1:"License question", subj2:"Technical issue", subj3:"Feature request", subj4:"Refund / Billing", subj5:"Other",
     sendBtn:"Send Message",
@@ -4790,10 +4788,10 @@ const T = {
     fcProduct:"Product", fcBuiltFor:"Built for", fcHow:"How it works", fcFeatures:"Features", fcPricing:"Pricing", fcFree:"Free download",
     fcSupport:"Support", fcContact:"Contact", fcFaq:"FAQ", fcGitHub:"GitHub",
     fcLegal:"Legal", fcPrivacy:"Privacy Policy", fcTerms:"Terms of Service", fcRefund:"Refund Policy", fcEula:"EULA",
-    copyright:"Â© 2026 BatchRender Â· All rights reserved"
+    copyright:"© 2026 BatchRender · All rights reserved"
   ,
-    pricingEyebrow:"Pricing Â· 4 plans",
-    pricingMeta:"Updated Â· 2026",
+    pricingEyebrow:"Pricing · 4 plans",
+    pricingMeta:"Updated · 2026",
     pricingTitlePart1:"Pricing that",
     pricingTitlePart2:"pays for itself.",
     pricingToggleSub:"Subscription",
@@ -4801,43 +4799,43 @@ const T = {
     p1tier:"Monthly",
     p1sub:"Subscription",
     p1kind:"Sub",
-    p1period:"per month + VAT Â· auto-renews",
-    p1savings:"Flexible Â· cancel anytime",
+    p1period:"per month + VAT · auto-renews",
+    p1savings:"Flexible · cancel anytime",
     p1cta:"Start Monthly",
     popularBadge:"Best value",
-    p2chip:"â20% off",
+    p2chip:"−20% off",
     p2tier:"Yearly",
-    p2sub:"Subscription Â· 12 months",
-    p2period:"per year + VAT Â· ~â¬13.33/mo",
+    p2sub:"Subscription · 12 months",
+    p2period:"per year + VAT · ~€13.33/mo",
     p2savings:"12 months for the price of 10",
     p2cta:"Start Yearly",
     p3tier:"1 Month",
     p3sub:"One-time payment",
     p3kind:"One-off",
-    p3period:"single payment Â· 30 days access",
+    p3period:"single payment · 30 days access",
     p3savings:"No subscription",
     p3cta:"Buy 1 Month",
     p4tier:"3 Months",
     p4sub:"One-time payment",
     p4kind:"One-off",
-    p4period:"single payment Â· 90 days access",
-    p4savings:"Save â¬10 vs. 3Ã monthly",
+    p4period:"single payment · 90 days access",
+    p4savings:"Save €10 vs. 3× monthly",
     p4cta:"Buy 3 Months",
     mqA1:"2-machine activation",
     mqA3:"All current and future nodes",
     mqA4:"refund window",
     mqA5:"No surprises at renewal",
-    mqA7:"Cards Â· PayPal Â· Apple Pay",
+    mqA7:"Cards · PayPal · Apple Pay",
     mqB1:"2-machine activation",
     mqB3:"All current and future nodes",
     mqB4:"refund window",
     mqB5:"No surprises at renewal",
-    mqB7:"Cards Â· PayPal Â· Apple Pay",
+    mqB7:"Cards · PayPal · Apple Pay",
     footPay:"Secure payment",
     footRefund:"14-day refund",
-    footMethods:"Cards Â· PayPal Â· Apple Pay",
+    footMethods:"Cards · PayPal · Apple Pay",
     footVat:"All prices in EUR. VAT added at checkout.",
-    downloadMeta:"{VERSION} Â· released 2026",
+    downloadMeta:"{VERSION} · released 2026",
     downloadTitlePart1:"Try it free,",
     downloadTitlePart2:"with watermark.",
     dlMacChip:"Apple Silicon ready",
@@ -4863,438 +4861,438 @@ const T = {
     dlPerksLabel:"What's included",
     dlFootSigned:"Code-signed & notarized",
     dlFootGitHub:"Open releases on GitHub",
-    dlFootRight:"Latest version updated this month Â· Auto-update built in"
+    dlFootRight:"Latest version updated this month · Auto-update built in"
   },
 
   ru: {
-    builtFor:"ÐÐ»Ñ ÐºÐ¾Ð³Ð¾", math:"ÐÐ°ÑÐµÐ¼Ð°ÑÐ¸ÐºÐ°", features:"ÐÐ¾Ð´Ñ", videos:"Ð£ÑÐ¾ÐºÐ¸", pricing:"Ð¦ÐµÐ½Ñ", faq:"FAQ", contact:"ÐÐ¾Ð½ÑÐ°ÐºÑÑ",
-    getStarted:"Ð¡ÐºÐ°ÑÐ°ÑÑ Ð±ÐµÑÐ¿Ð»Ð°ÑÐ½Ð¾",
-    version:"{VERSION} â ÐÐºÑÐ¸Ð²Ð½Ð°Ñ ÑÐ°Ð·ÑÐ°Ð±Ð¾ÑÐºÐ°",
-    canvasHint:"ÐÐ¾Ð¿ÑÐ¾Ð±ÑÐ¹ Ð¿Ð¾ÑÑÐ½ÑÑÑ",
-    heroTitle:'<span style="white-space:nowrap">ÐÐµÐ½ÑÑÐµ ÑÑÑÐ¸Ð½Ñ.</span><br><span class="grad">ÐÐ¾Ð»ÑÑÐµ ÐºÐ¾Ð½ÑÑÐ¾Ð»Ñ.</span>',
-    heroSub:'<strong>BatchRender ÑÐºÐ¾Ð½Ð¾Ð¼Ð¸Ñ ÑÐ¾ÑÐ½Ð¸ ÑÐ°ÑÐ¾Ð² ÑÐ°Ð±Ð¾ÑÑ</strong>, Ð¿ÑÐµÐ²ÑÐ°ÑÐ°Ñ ÑÑÑÐ¸Ð½Ð½ÑÐµ Ð·Ð°Ð´Ð°ÑÐ¸ Ð² Ð¿ÑÐ¾ÑÐµÑÑ, Ð·Ð°Ð½Ð¸Ð¼Ð°ÑÑÐ¸Ð¹ Ð¼Ð¸Ð½ÑÑÑ.<br><br>Ð¢Ñ ÑÐ¾ÑÑÐ°Ð½ÑÐµÑÑ Ð¿Ð¾Ð»Ð½ÑÐ¹ ÐºÐ¾Ð½ÑÑÐ¾Ð»Ñ Ð½Ð°Ð´ ÐºÐ°Ð¶Ð´ÑÐ¼ ÑÐ°Ð³Ð¾Ð¼: Ð»ÑÐ±Ð¾Ðµ Ð´ÐµÐ¹ÑÑÐ²Ð¸Ðµ Ð½Ð°ÑÑÑÐ°Ð¸Ð²Ð°ÐµÑÑÑ, Ð° ÑÐµÐ·ÑÐ»ÑÑÐ°Ñ Ð²ÑÐµÐ³Ð´Ð° Ð¿ÑÐµÐ´ÑÐºÐ°Ð·ÑÐµÐ¼.<br><br>Ð§Ð¸ÑÑÑÐ¹, Ð¿Ð¾Ð½ÑÑÐ½ÑÐ¹ Ð½Ð¾Ð´Ð¾Ð²ÑÐ¹ Ð¸Ð½ÑÐµÑÑÐµÐ¹Ñ Ð¿Ð¾Ð¼Ð¾Ð³Ð°ÐµÑ ÑÐ°Ð±Ð¾ÑÐ°ÑÑ Ð±ÑÑÑÑÐµÐµ â Ð±ÐµÐ· Ð»Ð¸ÑÐ½ÐµÐ¹ ÑÐ»Ð¾Ð¶Ð½Ð¾ÑÑÐ¸.',
-    heroCta1:"Ð¡ÐºÐ°ÑÐ°ÑÑ Ð±ÐµÑÐ¿Ð»Ð°ÑÐ½Ð¾", heroCta2:"ÐÐ¾ÑÐ¼Ð¾ÑÑÐµÑÑ Ð² Ð´ÐµÐ»Ðµ",
-    meta1:"ÐÐµÐ· ÑÐµÐ³Ð¸ÑÑÑÐ°ÑÐ¸Ð¸, Ð±ÐµÐ· Ð¾Ð±Ð»Ð°ÐºÐ°", meta2:"Ð¤Ð°Ð¹Ð»Ñ Ð¾ÑÑÐ°ÑÑÑÑ Ñ ÑÐµÐ±Ñ", meta3:"Mac Ð¸ Windows",
+    builtFor:"Для кого", math:"Математика", features:"Ноды", videos:"Уроки", pricing:"Цены", faq:"FAQ", contact:"Контакты",
+    getStarted:"Скачать бесплатно",
+    version:"{VERSION} — Активная разработка",
+    canvasHint:"Попробуй потянуть",
+    heroTitle:'<span style="white-space:nowrap">Меньше рутины.</span><br><span class="grad">Больше контроля.</span>',
+    heroSub:'<strong>BatchRender экономит сотни часов работы</strong>, превращая рутинные задачи в процесс, занимающий минуты.<br><br>Ты сохраняешь полный контроль над каждым шагом: любое действие настраивается, а результат всегда предсказуем.<br><br>Чистый, понятный нодовый интерфейс помогает работать быстрее — без лишней сложности.',
+    heroCta1:"Скачать бесплатно", heroCta2:"Посмотреть в деле",
+    meta1:"Без регистрации, без облака", meta2:"Файлы остаются у тебя", meta3:"Mac и Windows",
 
-    companionLabel:"ÐÐ°ÐºÐµÑÐ½Ð°Ñ Ð¾Ð±ÑÐ°Ð±Ð¾ÑÐºÐ° ÑÐ¾ÑÐµÐ½ ÑÐ°Ð¹Ð»Ð¾Ð² Ð·Ð° ÑÐ°Ð·",
-    companionTitle:"Ð Ð°Ð±Ð¾ÑÐ°ÐµÑ ÑÑÐ´Ð¾Ð¼ Ñ ÑÐ²Ð¾Ð¸Ð¼ ÑÐµÐ´Ð°ÐºÑÐ¾ÑÐ¾Ð¼",
-    companionP1:"BatchRender Ð¿Ð¾Ð´ÑÐ²Ð°ÑÑÐ²Ð°ÐµÑ ÑÐ°Ð¼, Ð³Ð´Ðµ Ð·Ð°ÐºÐ°Ð½ÑÐ¸Ð²Ð°ÐµÑÑÑ Ð¼Ð¾Ð½ÑÐ°Ð¶.",
-    companionP2:"ÐÐ½ Ð±ÐµÑÑÑ Ð½Ð° ÑÐµÐ±Ñ Ð¿Ð°ÐºÐµÑÐ½ÑÑ Ð¾Ð±ÑÐ°Ð±Ð¾ÑÐºÑ Ð²ÑÐµÑ ÑÐ²Ð¾Ð¸Ñ Ð¼ÐµÐ´Ð¸Ð°, Ð¼Ð°ÑÑÑÐ°Ð±Ð¸ÑÑÑ Ð¸ ÑÑÐºÐ¾ÑÑÑ Ð²ÐµÑÑ ÑÐ°Ð±Ð¾ÑÐ¸Ð¹ Ð¿ÑÐ¾ÑÐµÑÑ.",
-    companionP3:'ÐÑÐ¾ÑÑÑÐµ Ð½Ð°ÑÐµÐ·ÐºÐ¸, Ð¾Ð·Ð²ÑÑÐºÐ°, Ð½ÐµÑÐºÐ¾Ð»ÑÐºÐ¾ ÑÐ¾ÑÐ¼Ð°ÑÐ¾Ð² ÑÐºÑÐ¿Ð¾ÑÑÐ°, Ð²Ð¾Ð´ÑÐ½ÑÐµ Ð·Ð½Ð°ÐºÐ¸ Ð¸ Ð»Ð¾Ð³Ð¾ÑÐ¸Ð¿Ñ, Ð½Ð°ÑÐµÐ·ÐºÐ° Ð´Ð»Ð¸Ð½Ð½ÑÑ Ð²Ð¸Ð´ÐµÐ¾, Ð¿ÐµÑÐµÐ¸Ð¼ÐµÐ½Ð¾Ð²Ð°Ð½Ð¸Ðµ ÑÐ°Ð¹Ð»Ð¾Ð², ÑÐ°ÑÐºÐ»Ð°Ð´ÐºÐ° Ð¿Ð¾ Ð¿Ð°Ð¿ÐºÐ°Ð¼, ÑÐ¸Ð½Ð°Ð»ÑÐ½ÑÐµ ÑÐºÑÐ¿Ð¾ÑÑÑ â Ð²ÑÑ <strong>Ð°Ð²ÑÐ¾Ð¼Ð°ÑÐ¸Ð·Ð¸ÑÐ¾Ð²Ð°Ð½Ð¾ Ð² Ð¾Ð´Ð½Ð¾Ð¼ Ð¿Ð°Ð¹Ð¿Ð»Ð°Ð¹Ð½Ðµ</strong>.',
-    companionP4:'Ð¢Ð°ÐºÐ¶Ðµ Ð²ÐºÐ»ÑÑÐ°ÐµÑ <strong>ÑÐ¼Ð½Ð¾Ðµ Ð°Ð²ÑÐ¾Ð¼Ð°ÑÐ¸ÑÐµÑÐºÐ¾Ðµ ÑÐ´Ð°Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð°ÑÐ·</strong> Ð´Ð»Ñ Ð¸Ð½ÑÐµÑÐ²ÑÑ Ð¸ Ð¿Ð¾Ð´ÐºÐ°ÑÑÐ¾Ð², Ñ Ð²Ð¾Ð·Ð¼Ð¾Ð¶Ð½Ð¾ÑÑÑÑ Ð¾ÑÐ¿ÑÐ°Ð²Ð¸ÑÑ Ð¿ÑÐ¾ÐµÐºÑÑ Ð¸Ð»Ð¸ Ð¾ÑÐ´ÐµÐ»ÑÐ½ÑÐµ ÑÐ°Ð¹Ð»Ñ Ð¾Ð±ÑÐ°ÑÐ½Ð¾ Ð² ÑÐ²Ð¾Ñ ÑÐ¸ÑÑÐµÐ¼Ñ Ð¼Ð¾Ð½ÑÐ°Ð¶Ð°.',
+    companionLabel:"Пакетная обработка сотен файлов за раз",
+    companionTitle:"Работает рядом с твоим редактором",
+    companionP1:"BatchRender подхватывает там, где заканчивается монтаж.",
+    companionP2:"Он берёт на себя пакетную обработку всех твоих медиа, масштабируя и ускоряя весь рабочий процесс.",
+    companionP3:'Простые нарезки, озвучка, несколько форматов экспорта, водяные знаки и логотипы, нарезка длинных видео, переименование файлов, раскладка по папкам, финальные экспорты — всё <strong>автоматизировано в одном пайплайне</strong>.',
+    companionP4:'Также включает <strong>умное автоматическое удаление пауз</strong> для интервью и подкастов, с возможностью отправить проекты или отдельные файлы обратно в твою систему монтажа.',
     nleResolve:"DaVinci Resolve", nlePremiere:"Premiere Pro", nleFCP:"Final Cut Pro", nleCapCut:"CapCut", nleAvid:"Avid",
 
-    builtForLabel:"ÐÐ»Ñ ÐºÐ¾Ð³Ð¾", builtForTitle:"ÐÐ»Ñ ÑÐµÑ, ÐºÑÐ¾ Ð´ÐµÐ»Ð°ÐµÑ Ð¾Ð´Ð¸Ð½ Ð¸ ÑÐ¾Ñ Ð¶Ðµ Ð¼Ð¾Ð½ÑÐ°Ð¶ ÑÐ½Ð¾Ð²Ð° Ð¸ ÑÐ½Ð¾Ð²Ð°",
-    builtForSub:"ÐÑÐ»Ð¸ ÑÑ Ð¾Ð±ÑÐ°Ð±Ð°ÑÑÐ²Ð°ÐµÑÑ Ð¿Ð¾Ð²ÑÐ¾ÑÑÑÑÐ¸Ð¹ÑÑ ÐºÐ¾Ð½ÑÐµÐ½Ñ Ð¿Ð¾ Ð¼Ð½Ð¾Ð¶ÐµÑÑÐ²Ñ ÑÐ°Ð¹Ð»Ð¾Ð² â BatchRender Ð¿ÑÐµÐ²ÑÐ°ÑÐ°ÐµÑ ÑÐ°ÑÑ ÑÑÑÐ½Ð¾Ð¹ ÑÐ°Ð±Ð¾ÑÑ Ð² Ð¾Ð´Ð¸Ð½ ÑÐµÐ½Ð´ÐµÑ.",
-    uc1tag:"SMM Ð¸ ÐºÐ¾Ð½ÑÐµÐ½Ñ-Ð°Ð³ÐµÐ½ÑÑÑÐ²Ð°", uc1t:"30 Ð²Ð¸Ð´ÐµÐ¾ ÐºÐ»Ð¸ÐµÐ½ÑÐ° â Ð¾Ð´Ð¸Ð½ Ð¿Ð°Ð¹Ð¿Ð»Ð°Ð¹Ð½",
-    uc1d:"ÐÐ¸Ð´Ð°ÐµÑÑ Ð¿Ð°Ð¿ÐºÑ ÐºÐ»Ð¸Ð¿Ð¾Ð², Ð¿ÑÐ¸Ð¼ÐµÐ½ÑÐµÑÑ <strong>Ð»Ð¾Ð³Ð¾ + Ð¸Ð½ÑÑÐ¾ + ÐºÑÐ¾Ð¿ 9:16</strong>, Ð½Ð°Ð¶Ð¸Ð¼Ð°ÐµÑÑ ÑÐµÐ½Ð´ÐµÑ. ÐÐ´Ð¸Ð½ Ð±ÑÐµÐ½Ð´, Ð¾Ð´Ð¸Ð½ ÑÐ¾ÑÐ¼Ð°Ñ, Ð²ÑÐµÐ³Ð´Ð° Ð¾Ð´Ð¸Ð½Ð°ÐºÐ¾Ð²Ð¾. ÐÐ¸ÐºÐ°ÐºÐ¾Ð³Ð¾ Ð¿ÐµÑÐµÐºÐ»ÑÑÐµÐ½Ð¸Ñ Ð¼ÐµÐ¶Ð´Ñ 30 ÑÐ°Ð¹Ð¼Ð»Ð°Ð¹Ð½Ð°Ð¼Ð¸.",
-    uc2tag:"ÐÐ¾Ð´ÐºÐ°ÑÑÐµÑÑ Ð¸ Ð±Ð»Ð¾Ð³ÐµÑÑ", uc2t:"ÐÐµÑÐµÐ¿Ð°ÐºÑÐ¹ Ð°ÑÑÐ¸Ð² Ð·Ð° ÑÐ°ÑÑ, Ð° Ð½Ðµ Ð½ÐµÐ´ÐµÐ»Ð¸",
-    uc2d:"Ð¡ÑÐ°ÑÑÐµ Ð²ÑÐ¿ÑÑÐºÐ¸, Ð»ÐµÐºÑÐ¸Ð¸, ÑÑÑÐ¸Ð¼Ñ â Ð¿ÑÐ¾Ð³Ð¾Ð½ÑÐ¹ ÑÐµÑÐµÐ· Ð¾Ð´Ð¸Ð½ Ð¿Ð°Ð¹Ð¿Ð»Ð°Ð¹Ð½ Ð¸ Ð¿Ð¾Ð»ÑÑÐ°Ð¹ Ð¿Ð°Ð¿ÐºÑ Ð³Ð¾ÑÐ¾Ð²ÑÑ <strong>Shorts/Reels ÐºÐ»Ð¸Ð¿Ð¾Ð²</strong>. ÐÐ´Ð¸Ð½ ÐºÑÐ¾Ð¿, Ð¾Ð´Ð½Ð¾ Ð¸Ð½ÑÑÐ¾, Ð¾Ð´Ð¸Ð½ ÑÑÐ¾Ð²ÐµÐ½Ñ Ð³ÑÐ¾Ð¼ÐºÐ¾ÑÑÐ¸ Ð½Ð° Ð²ÑÑÐ¼ Ð±ÑÐº-ÐºÐ°ÑÐ°Ð»Ð¾Ð³Ðµ.",
-    uc3tag:"Performance-Ð¼Ð°ÑÐºÐµÑÐ¾Ð»Ð¾Ð³Ð¸", uc3t:"100 ÑÐµÐºÐ»Ð°Ð¼Ð½ÑÑ ÐºÑÐµÐ°ÑÐ¸Ð²Ð¾Ð² Ð¸Ð· Ð¾Ð´Ð½Ð¾Ð³Ð¾ Ð¸ÑÑÐ¾Ð´Ð½Ð¸ÐºÐ°",
-    uc3d:"Ð¢ÐµÑÑÐ¸ÑÑÐ¹ ÐºÑÐµÐ°ÑÐ¸Ð²Ñ Ð¼Ð°ÑÑÐ¾Ð²Ð¾. ÐÐµÐ½ÐµÑÐ¸ÑÑÐ¹ <strong>Ð´ÐµÑÑÑÐºÐ¸ Ð²Ð°ÑÐ¸Ð°ÑÐ¸Ð¹</strong> â ÑÐ°Ð·Ð½ÑÐµ Ð½Ð°ÑÐµÐ·ÐºÐ¸, Ð¾Ð²ÐµÑÐ»ÐµÐ¸, Ð°ÑÐ´Ð¸Ð¾, Ð´Ð»Ð¸ÑÐµÐ»ÑÐ½Ð¾ÑÑÐ¸ â Ð´Ð»Ñ Meta, TikTok Ð¸ YouTube ÑÐµÐºÐ»Ð°Ð¼Ñ Ð¸Ð· Ð¾Ð´Ð½Ð¾Ð³Ð¾ Ð±Ð°Ð·Ð¾Ð²Ð¾Ð³Ð¾ ÑÐ¾Ð»Ð¸ÐºÐ° Ð·Ð° Ð¾Ð´Ð¸Ð½ Ð±Ð°ÑÑ.",
+    builtForLabel:"Для кого", builtForTitle:"Для тех, кто делает один и тот же монтаж снова и снова",
+    builtForSub:"Если ты обрабатываешь повторяющийся контент по множеству файлов — BatchRender превращает часы ручной работы в один рендер.",
+    uc1tag:"SMM и контент-агентства", uc1t:"30 видео клиента — один пайплайн",
+    uc1d:"Кидаешь папку клипов, применяешь <strong>лого + интро + кроп 9:16</strong>, нажимаешь рендер. Один бренд, один формат, всегда одинаково. Никакого переключения между 30 таймлайнами.",
+    uc2tag:"Подкастеры и блогеры", uc2t:"Перепакуй архив за часы, а не недели",
+    uc2d:"Старые выпуски, лекции, стримы — прогоняй через один пайплайн и получай папку готовых <strong>Shorts/Reels клипов</strong>. Один кроп, одно интро, один уровень громкости на всём бэк-каталоге.",
+    uc3tag:"Performance-маркетологи", uc3t:"100 рекламных креативов из одного исходника",
+    uc3d:"Тестируй креативы массово. Генерируй <strong>десятки вариаций</strong> — разные нарезки, оверлеи, аудио, длительности — для Meta, TikTok и YouTube рекламы из одного базового ролика за один батч.",
 
-    howLabel:"ÐÐ°Ðº ÑÐ°Ð±Ð¾ÑÐ°ÐµÑ", howTitle:"Ð¢ÑÐ¸ ÑÐ°Ð³Ð°. ÐÐ°Ð»ÑÑÐµ ÑÐ°Ð±Ð¾ÑÐ°ÐµÑ ÑÐ°Ð¼Ð¾.",
-    howSub:"ÐÐ´Ð¸Ð½ ÑÐ°Ð· Ð¾Ð¿ÑÐµÐ´ÐµÐ»ÑÐµÑÑ Ð¿Ð°Ð¹Ð¿Ð»Ð°Ð¹Ð½. BatchRender Ð¿ÑÐ¸Ð¼ÐµÐ½ÑÐµÑ ÐµÐ³Ð¾ Ðº ÐºÐ°Ð¶Ð´Ð¾Ð¼Ñ ÑÐ°Ð¹Ð»Ñ Ð² Ð±Ð°ÑÑÐµ.",
-    step1n:"Ð¨Ð°Ð³ 01", step1t:"ÐÐ¸Ð½Ñ Ð¿Ð°Ð¿ÐºÑ",
-    step1d:"ÐÐµÑÐµÑÐ°ÑÐºÐ¸Ð²Ð°ÐµÑÑ 100 .mp4 ÑÐ°Ð¹Ð»Ð¾Ð² Ð¸Ð»Ð¸ Ð²ÑÑÐ°Ð²Ð»ÑÐµÑÑ ÑÐ¿Ð¸ÑÐ¾Ðº URL. BatchRender ÑÐ¸ÑÐ°ÐµÑ Ð²ÑÑ Ð² Video Input Ð½Ð¾Ð´Ñ â Ð±ÐµÐ· ÑÑÑÐ½Ð¾Ð³Ð¾ Ð¸Ð¼Ð¿Ð¾ÑÑÐ°, Ð±ÐµÐ· Ð¿ÑÐ°Ð²Ð¸Ð» Ð¸Ð¼ÐµÐ½Ð¾Ð²Ð°Ð½Ð¸Ñ.",
-    step2n:"Ð¨Ð°Ð³ 02", step2t:"Ð¡Ð¾Ð±ÐµÑÐ¸ Ð¿Ð°Ð¹Ð¿Ð»Ð°Ð¹Ð½",
-    step2d:"Ð¡Ð¾ÐµÐ´Ð¸Ð½ÑÐµÑÑ Ð½Ð¾Ð´Ñ: <strong>Video Input â Cutter â Add Audio â Add Logo â Output</strong>. ÐÐ°ÑÐ°Ð¼ÐµÑÑÑ Ð·Ð°Ð´Ð°ÑÑÑ Ð¾Ð´Ð¸Ð½ ÑÐ°Ð·. ÐÑÐ°Ñ â ÑÑÐ¾ ÑÐ²Ð¾Ð¹ ÑÐµÑÐµÐ¿Ñ Ð¼Ð¾Ð½ÑÐ°Ð¶Ð°: Ð²Ð¸Ð´Ð¸Ð¼ÑÐ¹, ÑÐµÐ´Ð°ÐºÑÐ¸ÑÑÐµÐ¼ÑÐ¹, Ð¿ÐµÑÐµÐ¸ÑÐ¿Ð¾Ð»ÑÐ·ÑÐµÐ¼ÑÐ¹.",
-    step3n:"Ð¨Ð°Ð³ 03", step3t:"ÐÑÐ¾Ð³Ð¾Ð½ Ð½Ð° Ð²ÐµÑÑ Ð±Ð°ÑÑ",
-    step3d:"ÐÐ´Ð¸Ð½ ÐºÐ»Ð¸Ðº. ÐÐ°Ð¶Ð´ÑÐ¹ ÑÐ°Ð¹Ð» Ð¿ÑÐ¾ÑÐ¾Ð´Ð¸Ñ Ð¾Ð´Ð¸Ð½ Ð¸ ÑÐ¾Ñ Ð¶Ðµ Ð¿Ð°Ð¹Ð¿Ð»Ð°Ð¹Ð½. Ð¡Ð¼Ð¾ÑÑÐ¸ÑÑ Ð¿ÑÐ¾Ð³ÑÐµÑÑ Ð² ÑÐµÐ°Ð»ÑÐ½Ð¾Ð¼ Ð²ÑÐµÐ¼ÐµÐ½Ð¸, Ð¿Ð¾Ð»ÑÑÐ°ÐµÑÑ Ð¿Ð°Ð¿ÐºÑ Ð³Ð¾ÑÐ¾Ð²ÑÑ MP4. Ð¡Ð¾ÑÑÐ°Ð½ÑÐµÑÑ Ð¿Ð°Ð¹Ð¿Ð»Ð°Ð¹Ð½ ÐºÐ°Ðº Ð¿ÑÐµÑÐµÑ Ð¸ Ð¿ÐµÑÐµÐ¸ÑÐ¿Ð¾Ð»ÑÐ·ÑÐµÑÑ Ð½Ð° ÑÐ»ÐµÐ´ÑÑÑÐµÐ¹ Ð½ÐµÐ´ÐµÐ»Ðµ.",
+    howLabel:"Как работает", howTitle:"Три шага. Дальше работает само.",
+    howSub:"Один раз определяешь пайплайн. BatchRender применяет его к каждому файлу в батче.",
+    step1n:"Шаг 01", step1t:"Кинь папку",
+    step1d:"Перетаскиваешь 100 .mp4 файлов или вставляешь список URL. BatchRender читает всё в Video Input ноду — без ручного импорта, без правил именования.",
+    step2n:"Шаг 02", step2t:"Собери пайплайн",
+    step2d:"Соединяешь ноды: <strong>Video Input → Cutter → Add Audio → Add Logo → Output</strong>. Параметры задаёшь один раз. Граф — это твой рецепт монтажа: видимый, редактируемый, переиспользуемый.",
+    step3n:"Шаг 03", step3t:"Прогон на весь батч",
+    step3d:"Один клик. Каждый файл проходит один и тот же пайплайн. Смотришь прогресс в реальном времени, получаешь папку готовых MP4. Сохраняешь пайплайн как пресет и переиспользуешь на следующей неделе.",
 
-    featuresLabel:"ÐÐ¾Ð´Ñ", featuresTitle:"ÐÐ°Ð¶Ð´Ð°Ñ Ð½Ð¾Ð´Ð° Ð½Ð° ÑÐ²Ð¾ÑÐ¼ Ð¼ÐµÑÑÐµ",
-    featuresSub:"Ð¨ÐµÑÑÑ Ð½Ð¾Ð´ Ð¿Ð¾ÐºÑÑÐ²Ð°ÑÑ Ð¾Ð¿ÐµÑÐ°ÑÐ¸Ð¸, ÐºÐ¾ÑÐ¾ÑÑÐµ ÐºÑÐ¸ÑÐ¹ÑÐ¾ÑÑ ÑÐµÐ°Ð»ÑÐ½Ð¾ Ð¿Ð¾Ð²ÑÐ¾ÑÑÑÑ: Ð²ÑÐ¾Ð´, Ð½Ð°ÑÐµÐ·ÐºÐ°, Ð¾Ð²ÐµÑÐ»ÐµÐ¹, Ð°ÑÐ´Ð¸Ð¾, Ð¸ÑÑÐ¾ÑÐ½Ð¸Ðº, ÑÑÐ°Ð½ÑÑÐ¾ÑÐ¼Ð°ÑÐ¸Ñ.",
-    f1t:"ÐÐ°Ð¿ÐºÐ° ÑÐ°Ð¹Ð»Ð¾Ð² Ð½Ð° Ð²ÑÐ¾Ð´Ðµ â Ð±Ð°ÑÑ Ð½Ð° Ð²ÑÑÐ¾Ð´Ðµ", f1d:"Ð£ÐºÐ°Ð·ÑÐ²Ð°ÐµÑÑ Video Input Ð½Ð° Ð¿Ð°Ð¿ÐºÑ Ñ .mp4 / .mov. ÐÐ¾Ð´Ð° ÑÐ¸ÑÐ°ÐµÑ Ð¼ÐµÑÐ°Ð´Ð°Ð½Ð½ÑÐµ, Ð´Ð»Ð¸ÑÐµÐ»ÑÐ½Ð¾ÑÑÐ¸, ÑÐ°Ð·Ð¼ÐµÑÑ â Ð¾ÑÑÐ°Ð»ÑÐ½Ð¾Ð¹ Ð¿Ð°Ð¹Ð¿Ð»Ð°Ð¹Ð½ Ð¿ÑÐ¸Ð¼ÐµÐ½ÑÐµÑÑÑ ÐºÐ¾ Ð²ÑÐµÐ¼ Ð°Ð²ÑÐ¾Ð¼Ð°ÑÐ¸ÑÐµÑÐºÐ¸.", f1tag:"ÐÐ¥ÐÐ",
-    f2t:"Ð ÐµÐ¶Ñ Ð²ÑÐµ ÑÐ°Ð¹Ð»Ñ Ð¾Ð´Ð¸Ð½Ð°ÐºÐ¾Ð²Ð¾", f2d:"Cutter Ñ Ð¿Ð¾ÐºÐ°Ð´ÑÐ¾Ð²Ð¾Ð¹ ÑÐ¾ÑÐ½Ð¾ÑÑÑÑ Ð¸ ÑÐ°Ð¹Ð¼ÐºÐ¾Ð´Ð°Ð¼Ð¸. Ð ÐµÐ¶Ñ Ð¸Ð½ÑÑÐ¾, Ð½Ð°ÑÐµÐ·Ð°Ð¹ Ð½Ð° ÑÐµÐ³Ð¼ÐµÐ½ÑÑ, Ð²ÑÐºÐ¸Ð´ÑÐ²Ð°Ð¹ ÑÐ¸ÑÐ¸Ð½Ñ â Ð¾Ð´Ð½Ð¾ Ð¿ÑÐ°Ð²Ð¸Ð»Ð¾ Ð¿ÑÐ¸Ð¼ÐµÐ½ÑÐµÑÑÑ Ðº ÑÐ¾ÑÐ½ÑÐ¼ ÑÐ°Ð¹Ð»Ð¾Ð² Ð·Ð° Ð¾Ð´Ð¸Ð½ Ð¿ÑÐ¾Ð³Ð¾Ð½.", f2tag:"ÐÐÐÐ¢ÐÐ",
-    f3t:"ÐÐ¾Ð´ÑÐ½ÑÐµ Ð·Ð½Ð°ÐºÐ¸ Ð¸ Ð»Ð¾Ð³Ð¾ÑÐ¸Ð¿Ñ", f3d:"ÐÐ°ÐºÐ»Ð°Ð´ÑÐ²Ð°Ð¹ Ð»Ð¾Ð³Ð¾ Ð¸Ð»Ð¸ Ð²Ð¾ÑÐµÑÐ¼Ð°ÑÐºÑ Ð½Ð° ÐºÐ°Ð¶Ð´Ð¾Ðµ Ð²Ð¸Ð´ÐµÐ¾ Ð² Ð±Ð°ÑÑÐµ. ÐÐ¾Ð·Ð¸ÑÐ¸Ñ, Ð¼Ð°ÑÑÑÐ°Ð±, Ð¿ÑÐ¾Ð·ÑÐ°ÑÐ½Ð¾ÑÑÑ â Ð·Ð°Ð´Ð°Ð» Ð¾Ð´Ð¸Ð½ ÑÐ°Ð·, Ð¿ÑÐ¸Ð¼ÐµÐ½ÑÐµÑÑÑ ÐºÐ¾Ð½ÑÐ¸ÑÑÐµÐ½ÑÐ½Ð¾. ÐÑÐµÐ½Ð´Ð¸ÑÑÐµÑ Ð¿Ð°Ð¿ÐºÑ ÐºÐ»Ð¸ÐµÐ½ÑÐ° Ð·Ð° Ð¾Ð´Ð¸Ð½ ÑÐµÐ½Ð´ÐµÑ.", f3tag:"ÐÐ ÐÐÐ",
-    f4t:"ÐÑÐ·ÑÐºÐ°, Ð³Ð¾Ð»Ð¾Ñ, mute", f4d:"ÐÐ¾Ð±Ð°Ð²Ð»ÑÐ¹ ÑÐ¾Ð½Ð¾Ð²ÑÑ Ð¼ÑÐ·ÑÐºÑ, voiceover, Ð¾ÑÐºÐ»ÑÑÐ°Ð¹ Ð¾ÑÐ¸Ð³Ð¸Ð½Ð°Ð». ÐÐ¸ÐºÑÑÐ¹ Ð½ÐµÑÐºÐ¾Ð»ÑÐºÐ¾ Ð´Ð¾ÑÐ¾Ð¶ÐµÐº. ÐÑÐ¾Ð¼ÐºÐ¾ÑÑÑ Ð½Ð° ÐºÐ°Ð¶Ð´ÑÐ¹ ÑÑÐµÐº. ÐÐ´Ð¸Ð½ Ð¸ ÑÐ¾Ñ Ð¶Ðµ Ð°ÑÐ´Ð¸Ð¾-ÑÐµÑÐµÐ¿Ñ Ð½Ð° ÐºÐ°Ð¶Ð´Ð¾Ð¼ ÑÐ°Ð¹Ð»Ðµ Ð² Ð¾ÑÐµÑÐµÐ´Ð¸.", f4tag:"ÐÐ£ÐÐÐ",
-    f5t:"ÐÑÑÐ¾ÑÐ½Ð¸Ðº Ð¸Ð· URL", f5d:"ÐÑÑÑÐ¾ÐµÐ½Ð½ÑÐ¹ URL-Ð·Ð°Ð³ÑÑÐ·ÑÐ¸Ðº (yt-dlp). ÐÑÑÐ°Ð²Ð¸Ð» ÑÐ¿Ð¸ÑÐ¾Ðº ÑÑÑÐ»Ð¾Ðº â BatchRender ÑÐºÐ°ÑÐ¸Ð²Ð°ÐµÑ Ð¸ÑÑÐ¾Ð´Ð½Ð¸ÐºÐ¸ Ð¸ ÑÑÐ°Ð·Ñ Ð¿ÑÐ¾Ð³Ð¾Ð½ÑÐµÑ ÑÐµÑÐµÐ· Ð¿Ð°Ð¹Ð¿Ð»Ð°Ð¹Ð½. ÐÐµÐ· Ð¾ÑÐ´ÐµÐ»ÑÐ½Ð¾Ð³Ð¾ ÑÐ°Ð³Ð° Ð·Ð°Ð³ÑÑÐ·ÐºÐ¸.", f5tag:"ÐÐ¡Ð¢ÐÐ§ÐÐÐ",
-    f6t:"ÐÐ²ÑÐ¾-ÑÐ´Ð°Ð»ÐµÐ½Ð¸Ðµ ÑÐ¸ÑÐ¸Ð½Ñ Ð² Ð¿Ð¾Ð´ÐºÐ°ÑÑÐ°Ñ", f6d:"ÐÐ²ÑÐ¾Ð¼Ð°ÑÐ¸ÑÐµÑÐºÐ¸ Ð½Ð°ÑÐ¾Ð´Ð¸Ñ Ð¸ Ð²ÑÑÐµÐ·Ð°ÐµÑ ÑÐ¸ÑÐ¸Ð½Ñ. ÐÐ°ÑÑÑÐ°Ð¸Ð²Ð°ÐµÐ¼Ð°Ñ ÑÑÐ²ÑÑÐ²Ð¸ÑÐµÐ»ÑÐ½Ð¾ÑÑÑ, Ð¿Ð°Ð´Ð´Ð¸Ð½Ð³, Ð¿Ð¾ÑÐ¾Ð³. Ð§Ð°ÑÑ Ð·Ð°Ð¿Ð¸ÑÐµÐ¹ Ð¿ÑÐµÐ²ÑÐ°ÑÐ°ÑÑÑÑ Ð² ÑÐ¸ÑÑÑÐµ ÑÐºÑÐ¿Ð¾ÑÑÑ Ð·Ð° Ð¾Ð´Ð¸Ð½ Ð±Ð°ÑÑ.", f6tag:"ÐÐÐÐÐÐ¡Ð¢", soonBadge:"Ð¡ÐÐÐ Ð",
-    f7t:"Vertical-blur Ð´Ð»Ñ ÑÐ¾ÑÑÐµÑÐµÐ¹", f7d:"ÐÐ¾Ð½Ð²ÐµÑÑÐ°ÑÐ¸Ñ Ð³Ð¾ÑÐ¸Ð·Ð¾Ð½ÑÐ°Ð»ÑÐ½Ð¾Ð³Ð¾ Ð²Ð¸Ð´ÐµÐ¾ Ð² 9:16 Ñ Ð±Ð»ÑÑ-ÑÐ¾Ð½Ð¾Ð¼. ÐÐ´Ð½Ð° Ð½Ð¾Ð´Ð° â Ð±ÐµÐ· ÑÑÑÐ½Ð¾Ð¹ ÑÐ°Ð±Ð¾ÑÑ Ð² After Effects. ÐÐ¾Ð´ÑÐ¾Ð´Ð¸Ñ Ð´Ð»Ñ Reels, Shorts Ð¸ TikTok Ð¿Ð°ÐºÐµÑÐ½Ð¾.", f7tag:"Ð¢Ð ÐÐÐ¡Ð¤ÐÐ Ð",
+    featuresLabel:"Ноды", featuresTitle:"Каждая нода на своём месте",
+    featuresSub:"Шесть нод покрывают операции, которые криэйторы реально повторяют: вход, нарезка, оверлей, аудио, источник, трансформация.",
+    f1t:"Папка файлов на входе — батч на выходе", f1d:"Указываешь Video Input на папку с .mp4 / .mov. Нода читает метаданные, длительности, размеры — остальной пайплайн применяется ко всем автоматически.", f1tag:"ВХОД",
+    f2t:"Режь все файлы одинаково", f2d:"Cutter с покадровой точностью и таймкодами. Режь интро, нарезай на сегменты, выкидывай тишину — одно правило применяется к сотням файлов за один прогон.", f2tag:"МОНТАЖ",
+    f3t:"Водяные знаки и логотипы", f3d:"Накладывай лого или вотермарку на каждое видео в батче. Позиция, масштаб, прозрачность — задал один раз, применяется консистентно. Брендирует папку клиента за один рендер.", f3tag:"БРЕНД",
+    f4t:"Музыка, голос, mute", f4d:"Добавляй фоновую музыку, voiceover, отключай оригинал. Миксуй несколько дорожек. Громкость на каждый трек. Один и тот же аудио-рецепт на каждом файле в очереди.", f4tag:"АУДИО",
+    f5t:"Источник из URL", f5d:"Встроенный URL-загрузчик (yt-dlp). Вставил список ссылок — BatchRender скачивает исходники и сразу прогоняет через пайплайн. Без отдельного шага загрузки.", f5tag:"ИСТОЧНИК",
+    f6t:"Авто-удаление тишины в подкастах", f6d:"Автоматически находит и вырезает тишину. Настраиваемая чувствительность, паддинг, порог. Часы записей превращаются в чистые экспорты за один батч.", f6tag:"ПОДКАСТ", soonBadge:"СКОРО",
+    f7t:"Vertical-blur для соцсетей", f7d:"Конвертация горизонтального видео в 9:16 с блюр-фоном. Одна нода — без ручной работы в After Effects. Подходит для Reels, Shorts и TikTok пакетно.", f7tag:"ТРАНСФОРМ",
 
-    mathLabel:"ÐÐ°ÑÐµÐ¼Ð°ÑÐ¸ÐºÐ°", mathTitle:"Ð¢Ð²Ð¾Ñ Ð²ÑÐµÐ¼Ñ Ð´Ð¾ÑÐ¾Ð¶Ðµ ÑÐ²Ð¾ÐµÐ³Ð¾ ÑÐ¾ÑÑÐ°.",
-    mathSub:"Ð¢Ð¸Ð¿Ð¸ÑÐ½Ð°Ñ ÐºÐ»Ð¸ÐµÐ½ÑÑÐºÐ°Ñ ÑÐ´Ð°ÑÐ° Ð¾Ñ Ð¸ Ð´Ð¾. Ð¢Ðµ Ð¶Ðµ ÑÐ°Ð¹Ð»Ñ. Ð¢Ðµ Ð¶Ðµ Ð²ÑÑÐ¾Ð´Ð½ÑÐµ ÑÐ¾ÑÐ¼Ð°ÑÑ. ÐÐ²Ð° ÑÐ¾Ð²ÐµÑÑÐµÐ½Ð½Ð¾ ÑÐ°Ð·Ð½ÑÑ ÑÐ¿Ð¾ÑÐ¾Ð±Ð° Ð¸Ñ Ð¿Ð¾Ð»ÑÑÐ¸ÑÑ.",
-    mathEq:'<span class="accent">25 Ð¸ÑÑÐ¾Ð´Ð½ÑÑ ÐºÐ»Ð¸Ð¿Ð¾Ð²</span> Ã <span class="accent">25 outro</span> Ã <span class="accent">4 ÑÐ¾ÑÐ¼Ð°ÑÐ° ÑÐºÑÐ¿Ð¾ÑÑÐ°</span> = <span class="result">2 500 ÑÐ¸Ð½Ð°Ð»ÑÐ½ÑÑ ÑÐ°Ð¹Ð»Ð¾Ð²</span>',
-    mathBadTitle:"ÐÐµÐ· BatchRender",
-    mathBadR1l:"ÐÑÐ¾ÐµÐºÑÐ¾Ð²", mathBadR1v:"20+ Ð¾ÑÐ´ÐµÐ»ÑÐ½ÑÑ",
-    mathBadR2l:"ÐÐ°Ð¶Ð°ÑÐ¸Ð¹ Â«ÑÐµÐ½Ð´ÐµÑÂ»", mathBadR2v:"100+",
-    mathBadR3l:"ÐÐ¼ÐµÐ½Ð¾Ð²Ð°Ð½Ð¸Ðµ ÑÐ°Ð¹Ð»Ð¾Ð²", mathBadR3v:"ÐÑÑÑÐ½ÑÑ",
-    mathBadR4l:"ÐÐ½Ð¸Ð¼Ð°Ð½Ð¸Ðµ", mathBadR4v:"ÐÐ¾ÑÑÐ¾ÑÐ½Ð½Ð¾",
-    mathBadR5l:"ÐÑÐµÐ¼Ñ", mathBadR5v:"~3 ÑÐ°ÑÐ°",
-    mathBadR6l:"Ð¡ÑÐ¾Ð¸Ð¼Ð¾ÑÑÑ Ð² ÑÐ°ÑÐ°Ñ Ð¼Ð¾Ð½ÑÐ°Ð¶ÑÑÐ°", mathBadR6v:"$60 â $150 Ð·Ð° Ð¿ÑÐ¾ÐµÐºÑ",
-    mathGoodTitle:"Ð¡ BatchRender",
-    mathGoodR1l:"ÐÑÐ¾ÐµÐºÑÐ¾Ð²", mathGoodR1v:"1 Ð³ÑÐ°Ñ",
-    mathGoodR2l:"ÐÐ°Ð¶Ð°ÑÐ¸Ð¹ Â«ÑÐµÐ½Ð´ÐµÑÂ»", mathGoodR2v:"1 ÐºÐ»Ð¸Ðº",
-    mathGoodR3l:"ÐÐ¼ÐµÐ½Ð¾Ð²Ð°Ð½Ð¸Ðµ ÑÐ°Ð¹Ð»Ð¾Ð²", mathGoodR3v:"ÐÐ²ÑÐ¾Ð¼Ð°ÑÐ¸ÑÐµÑÐºÐ¾Ðµ",
-    mathGoodR4l:"ÐÐ½Ð¸Ð¼Ð°Ð½Ð¸Ðµ", mathGoodR4v:"ÐÐ°Ð¿ÑÑÑÐ¸Ð» Ð¸ Ð·Ð°Ð±ÑÐ»",
-    mathGoodR5l:"ÐÑÐµÐ¼Ñ", mathGoodR5v:"~5 Ð¼Ð¸Ð½ÑÑ Ð½Ð° Ð½Ð°ÑÑÑÐ¾Ð¹ÐºÑ",
-    mathGoodR6l:"Ð¡ÑÐ¾Ð¸Ð¼Ð¾ÑÑÑ", mathGoodR6v:"$15 / Ð¼ÐµÑÑÑ Ð²ÑÐµÐ³Ð¾",
-    mathBottom:"<strong>BatchRender Ð¾ÐºÑÐ¿Ð°ÐµÑÑÑ Ñ Ð¿ÐµÑÐ²Ð¾Ð³Ð¾ Ð¸ÑÐ¿Ð¾Ð»ÑÐ·Ð¾Ð²Ð°Ð½Ð¸Ñ.</strong><br>ÐÐµÐ½ÑÑÐµ Ð¿Ð¾Ð»Ð¾Ð²Ð¸Ð½Ñ ÑÐµÐ½Ñ Ð¿Ð¾Ð´Ð¿Ð¸ÑÐºÐ¸ Ð½Ð° Adobe CC.",
+    mathLabel:"Математика", mathTitle:"Твоё время дороже твоего софта.",
+    mathSub:"Типичная клиентская сдача от и до. Те же файлы. Те же выходные форматы. Два совершенно разных способа их получить.",
+    mathEq:'<span class="accent">25 исходных клипов</span> × <span class="accent">25 outro</span> × <span class="accent">4 формата экспорта</span> = <span class="result">2 500 финальных файлов</span>',
+    mathBadTitle:"Без BatchRender",
+    mathBadR1l:"Проектов", mathBadR1v:"20+ отдельных",
+    mathBadR2l:"Нажатий «рендер»", mathBadR2v:"100+",
+    mathBadR3l:"Именование файлов", mathBadR3v:"Вручную",
+    mathBadR4l:"Внимание", mathBadR4v:"Постоянно",
+    mathBadR5l:"Время", mathBadR5v:"~3 часа",
+    mathBadR6l:"Стоимость в часах монтажёра", mathBadR6v:"$60 – $150 за проект",
+    mathGoodTitle:"С BatchRender",
+    mathGoodR1l:"Проектов", mathGoodR1v:"1 граф",
+    mathGoodR2l:"Нажатий «рендер»", mathGoodR2v:"1 клик",
+    mathGoodR3l:"Именование файлов", mathGoodR3v:"Автоматическое",
+    mathGoodR4l:"Внимание", mathGoodR4v:"Запустил и забыл",
+    mathGoodR5l:"Время", mathGoodR5v:"~5 минут на настройку",
+    mathGoodR6l:"Стоимость", mathGoodR6v:"$15 / месяц всего",
+    mathBottom:"<strong>BatchRender окупается с первого использования.</strong><br>Меньше половины цены подписки на Adobe CC.",
 
-    manifestoNo:"ÐÐÐ",
-    manifestoW1:"ÑÐ¾ÐºÐµÐ½Ð¾Ð²", manifestoW2:"Ð»Ð¸Ð¼Ð¸ÑÐ¾Ð²", manifestoW3:"Ð¾Ð±Ð»Ð°ÐºÐ°", manifestoW4:"ÑÑÑÐ¿ÑÐ¸Ð·Ð¾Ð²", manifestoW5:"Ð¼Ð°Ð³Ð¸Ð¸",
-    manifestoJust:"Ð¿ÑÐ¾ÑÑÐ¾",
-    manifestoTagline:"<strong>Ð¤Ð°Ð¹Ð»Ñ Ð½Ð° Ð²ÑÐ¾Ð´Ðµ. Ð¤Ð°Ð¹Ð»Ñ Ð½Ð° Ð²ÑÑÐ¾Ð´Ðµ.</strong> ÐÐ° ÑÐ²Ð¾ÐµÐ¹ Ð¼Ð°ÑÐ¸Ð½Ðµ.",
+    manifestoNo:"БЕЗ",
+    manifestoW1:"токенов", manifestoW2:"лимитов", manifestoW3:"облака", manifestoW4:"сюрпризов", manifestoW5:"магии",
+    manifestoJust:"просто",
+    manifestoTagline:"<strong>Файлы на входе. Файлы на выходе.</strong> На твоей машине.",
 
-    whynotLabel:"ÐÐ»Ñ ÑÐµÑ, ÐºÑÐ¾ Ð¼Ð¾Ð½ÑÐ¸ÑÑÐµÑ",
-    whynotTitle:"Ð¡Ð´ÐµÐ»Ð°Ð½Ð¾ Ð´Ð»Ñ ÑÐµÑ, ÐºÑÐ¾ ÑÐµÐ°Ð»ÑÐ½Ð¾ Ð¼Ð¾Ð½ÑÐ¸ÑÑÐµÑ Ð²Ð¸Ð´ÐµÐ¾.",
-    whynotSub:"ÐÑÐµÐ´ÑÐºÐ°Ð·ÑÐµÐ¼Ð¾. ÐÐ¾Ð²ÑÐ¾ÑÑÐµÐ¼Ð¾. Ð¢Ð²Ð¾Ñ.",
-    whynot1:"Ð¤Ð°Ð¹Ð»Ñ Ð¾ÑÑÐ°ÑÑÑÑ Ð½Ð° ÑÐ²Ð¾ÐµÐ¹ Ð¼Ð°ÑÐ¸Ð½Ðµ. ÐÑÐµÐ³Ð´Ð°.",
-    whynot2:"ÐÐ°Ð¶Ð´ÑÐ¹ ÑÐ°Ð³ Ð²Ð¸Ð´Ð½Ð¾ Ð´Ð¾ ÑÐ¾Ð³Ð¾, ÐºÐ°Ðº ÑÑ ÐµÐ³Ð¾ Ð·Ð°Ð¿ÑÑÑÐ¸ÑÑ.",
-    whynot3:"ÐÐ´Ð¸Ð½ Ð¸ ÑÐ¾Ñ Ð¶Ðµ Ð²ÑÐ¾Ð´ â Ð¾Ð´Ð¸Ð½ Ð¸ ÑÐ¾Ñ Ð¶Ðµ Ð²ÑÑÐ¾Ð´. ÐÑÐµÐ³Ð´Ð°.",
-    whynot4:"ÐÐ´Ð¸Ð½ ÑÐµÐ½Ð´ÐµÑ Ð¸Ð»Ð¸ ÑÑÑÑÑÐ° â ÑÑÐ¾Ð¸Ð¼Ð¾ÑÑÑ Ð½Ðµ Ð¼ÐµÐ½ÑÐµÑÑÑ.",
-    whynot5:"Ð Ð°Ð±Ð¾ÑÐ°ÐµÑ Ð¾ÑÐ»Ð°Ð¹Ð½. Ð ÑÐ°Ð¼Ð¾Ð»ÑÑÐµ. Ð Ð¿Ð¾Ð´Ð²Ð°Ð»Ðµ.",
-    whynot6:"ÐÐ¸ÐºÐ°ÐºÐ¸Ñ ÐºÑÐµÐ´Ð¸ÑÐ¾Ð², ÑÐ¾ÐºÐµÐ½Ð¾Ð², ÑÐ°ÑÐ¸ÑÐ½ÑÑ Ð»Ð¸Ð¼Ð¸ÑÐ¾Ð².",
-    whynotBottom:"// ÐÑÐµÐ´ÑÐºÐ°Ð·ÑÐµÐ¼Ð¾. ÐÐ¾Ð²ÑÐ¾ÑÑÐµÐ¼Ð¾. Ð¢Ð²Ð¾Ñ.",
+    whynotLabel:"Для тех, кто монтирует",
+    whynotTitle:"Сделано для тех, кто реально монтирует видео.",
+    whynotSub:"Предсказуемо. Повторяемо. Твоё.",
+    whynot1:"Файлы остаются на твоей машине. Всегда.",
+    whynot2:"Каждый шаг видно до того, как ты его запустишь.",
+    whynot3:"Один и тот же вход — один и тот же выход. Всегда.",
+    whynot4:"Один рендер или тысяча — стоимость не меняется.",
+    whynot5:"Работает офлайн. В самолёте. В подвале.",
+    whynot6:"Никаких кредитов, токенов, тарифных лимитов.",
+    whynotBottom:"// Предсказуемо. Повторяемо. Твоё.",
 
-    finalCtaTitle:"Ð¥Ð²Ð°ÑÐ¸Ñ ÑÐµÑÑÑÑ ÑÐ°ÑÑ Ð½Ð° Ð¿Ð¾Ð²ÑÐ¾ÑÑÑÑÐ¸ÐµÑÑ ÑÐºÑÐ¿Ð¾ÑÑÑ.",
-    finalCtaSub:"Ð¡ÐºÐ°ÑÐ¸Ð²Ð°Ð¹ BatchRender. ÐÐµÑÐ¿Ð»Ð°ÑÐ½Ð°Ñ Ð²ÐµÑÑÐ¸Ñ, Ð±ÐµÐ· ÑÐµÐ³Ð¸ÑÑÑÐ°ÑÐ¸Ð¸, Ð±ÐµÐ· Ð¾Ð±Ð»Ð°ÐºÐ°. ÐÐ¾Ð¿ÑÐ¾Ð±ÑÐ¹ Ð²ÑÐµ Ð½Ð¾Ð´Ñ. Ð¡Ð¾Ð±ÐµÑÐ¸ Ð»ÑÐ±Ð¾Ð¹ Ð¿Ð°Ð¹Ð¿Ð»Ð°Ð¹Ð½. ÐÐ¾ÑÐ¼Ð¾ÑÑÐ¸, Ð¿Ð¾Ð´ÑÐ¾Ð´Ð¸Ñ Ð»Ð¸ ÑÐµÐ±Ðµ.",
-    finalCtaMac:"Ð¡ÐºÐ°ÑÐ°ÑÑ Ð´Ð»Ñ Mac", finalCtaWin:"Ð¡ÐºÐ°ÑÐ°ÑÑ Ð´Ð»Ñ Windows",
-    finalCtaConvinced:"Ð£Ð¶Ðµ ÑÐ±ÐµÐ´Ð¸Ð»ÑÑ?", finalCtaPricing:"ÐÐ¾ÑÐ¼Ð¾ÑÑÐµÑÑ ÑÐµÐ½Ñ â",
+    finalCtaTitle:"Хватит терять часы на повторяющиеся экспорты.",
+    finalCtaSub:"Скачивай BatchRender. Бесплатная версия, без регистрации, без облака. Попробуй все ноды. Собери любой пайплайн. Посмотри, подходит ли тебе.",
+    finalCtaMac:"Скачать для Mac", finalCtaWin:"Скачать для Windows",
+    finalCtaConvinced:"Уже убедился?", finalCtaPricing:"Посмотреть цены →",
 
-    videosLabel:"Ð£ÑÐ¾ÐºÐ¸", videosTitle:"Ð£ÑÐ¸ÑÑ Ð¿Ð¾ Ð²Ð¸Ð´ÐµÐ¾",
-    videosSub:"ÐÐ¾ÑÐ°Ð³Ð¾Ð²ÑÐµ ÑÐ¾Ð»Ð¸ÐºÐ¸ Ð¿ÑÐ¾ Ð½Ð¾Ð´Ñ, Ð¿Ð°Ð¹Ð¿Ð»Ð°Ð¹Ð½Ñ Ð¸ ÑÐµÐ°Ð»ÑÐ½ÑÐµ ÑÑÐµÐ½Ð°ÑÐ¸Ð¸ Ð¿Ð°ÐºÐµÑÐ½Ð¾Ð¹ Ð¾Ð±ÑÐ°Ð±Ð¾ÑÐºÐ¸.",
-    videosEmptyTitle:"Ð£ÑÐ¾ÐºÐ¸ Ð² Ð¿ÑÐ¾Ð¸Ð·Ð²Ð¾Ð´ÑÑÐ²Ðµ", videosEmptySub:"ÐÐµÑÐ²ÑÐµ Ð²Ð¸Ð´ÐµÐ¾ ÑÐºÐ¾ÑÐ¾ Ð¿Ð¾ÑÐ²ÑÑÑÑ. Ð Ð¿Ð¾ÐºÐ° â ÐºÐ°ÑÐ°Ð¹ free-Ð²ÐµÑÑÐ¸Ñ Ð¸ Ð¿ÑÐ¾Ð±ÑÐ¹ ÑÐ°Ð¼.",
+    videosLabel:"Уроки", videosTitle:"Учись по видео",
+    videosSub:"Пошаговые ролики про ноды, пайплайны и реальные сценарии пакетной обработки.",
+    videosEmptyTitle:"Уроки в производстве", videosEmptySub:"Первые видео скоро появятся. А пока — качай free-версию и пробуй сам.",
 
-    pricingLabel:"Ð¦ÐµÐ½Ñ", pricingTitle:"ÐÑÐ¾ÑÑÑÐµ Ð¿Ð»Ð°Ð½Ñ, ÑÐµÐ°Ð»ÑÐ½ÑÐµ ÑÐºÐ¸Ð´ÐºÐ¸",
-    pricingSub:"ÐÐ¾Ð´Ð¿Ð¸ÑÐºÐ° Ñ Ð°Ð²ÑÐ¾-Ð¿ÑÐ¾Ð´Ð»ÐµÐ½Ð¸ÐµÐ¼. ÐÐ¾Ð¶Ð½Ð¾ Ð¾ÑÐ¼ÐµÐ½Ð¸ÑÑ Ð² Ð»ÑÐ±Ð¾Ð¹ Ð¼Ð¾Ð¼ÐµÐ½Ñ. ÐÑÐµ Ð¿Ð»Ð°Ð½Ñ â Ð½Ð° 2 Ð¼Ð°ÑÐ¸Ð½Ñ.",
-    pricingNote:"ÐÑÐµ ÑÐµÐ½Ñ Ð² USD. ÐÐÐ¡ Ð´Ð¾Ð±Ð°Ð²Ð»ÑÐµÑÑÑ Ð½Ð° ÑÐµÐºÐ°ÑÑÐµ Ð´Ð»Ñ Ð¿Ð¾ÐºÑÐ¿Ð°ÑÐµÐ»ÐµÐ¹ Ð¸Ð· ÐÐ¡.",
-    p1tier:"ÐÐÐ¡Ð¯Ð§ÐÐÐ¯", p1price:"15", p1old:"20", p1vat:"/ Ð¼ÐµÑÑÑ + VAT", p1period:"ÐÐ²ÑÐ¾-Ð¿ÑÐ¾Ð´Ð»ÐµÐ½Ð¸Ðµ ÐºÐ°Ð¶Ð´ÑÐ¹ Ð¼ÐµÑÑÑ Â· 2 Ð¼Ð°ÑÐ¸Ð½Ñ", p1savings:"â25% Ð¾Ñ Ð¸Ð·Ð½Ð°ÑÐ°Ð»ÑÐ½Ð¾Ð¹ ÑÐµÐ½Ñ",
-    p1f1:"ÐÐ¾Ð»Ð½ÑÐ¹ Ð½Ð¾Ð´Ð¾Ð²ÑÐ¹ ÑÐµÐ´Ð°ÐºÑÐ¾Ñ", p1f2:"ÐÑÐµ ÑÐµÐºÑÑÐ¸Ðµ Ð¸ Ð±ÑÐ´ÑÑÐ¸Ðµ Ð½Ð¾Ð´Ñ", p1f3:"ÐÐ¸ÑÐµÐ½Ð·Ð¸Ñ Ð½Ð° 2 Ð¼Ð°ÑÐ¸Ð½Ñ", p1f4:"ÐÐµÐ· Ð²Ð¾Ð´ÑÐ½Ð¾Ð³Ð¾ Ð·Ð½Ð°ÐºÐ°", p1f5:"ÐÑÐ¼ÐµÐ½Ð° Ð² Ð»ÑÐ±Ð¾Ð¹ Ð¼Ð¾Ð¼ÐµÐ½Ñ",
-    p1cta:"ÐÐ¾Ð´Ð¿Ð¸ÑÐ°ÑÑÑÑ Ð½Ð° Ð¼ÐµÑÑÑ",
-    p2tier:"ÐÐÐÐÐÐÐ¯", p2price:"160", p2old:"200", p2vat:"/ Ð³Ð¾Ð´ + VAT", p2period:"ÐÐ²ÑÐ¾-Ð¿ÑÐ¾Ð´Ð»ÐµÐ½Ð¸Ðµ ÑÐ°Ð· Ð² Ð³Ð¾Ð´ Â· 2 Ð¼Ð°ÑÐ¸Ð½Ñ", p2savings:"Ð­ÐºÐ¾Ð½Ð¾Ð¼Ð¸Ñ $80/Ð³Ð¾Ð´ Â· ~$13,33/Ð¼ÐµÑ",
-    p2f1:"ÐÑÑ ÑÑÐ¾ Ð² Ð¼ÐµÑÑÑÐ½Ð¾Ð¹", p2f2:"12 Ð¼ÐµÑÑÑÐµÐ² Ð¿Ð¾ ÑÐµÐ½Ðµ ~10", p2f3:"ÐÑÐ¸Ð¾ÑÐ¸ÑÐµÑÐ½Ð°Ñ Ð¿Ð¾Ð´Ð´ÐµÑÐ¶ÐºÐ°", p2f4:"ÐÐ¸ÑÐµÐ½Ð·Ð¸Ñ Ð½Ð° 2 Ð¼Ð°ÑÐ¸Ð½Ñ", p2f5:"ÐÑÐ¼ÐµÐ½Ð° Ð´Ð¾ Ð¿ÑÐ¾Ð´Ð»ÐµÐ½Ð¸Ñ",
-    p2cta:"ÐÐ¾Ð´Ð¿Ð¸ÑÐ°ÑÑÑÑ Ð½Ð° Ð³Ð¾Ð´",
-    p3tier:"3 ÐÐÐ¡Ð¯Ð¦Ð", p3price:"40", p3old:"50", p3vat:"/ 3 Ð¼ÐµÑÑÑÐ° + VAT", p3period:"ÐÐ²ÑÐ¾-Ð¿ÑÐ¾Ð´Ð»ÐµÐ½Ð¸Ðµ ÑÐ°Ð· Ð² 3 Ð¼ÐµÑÑÑÐ° Â· 2 Ð¼Ð°ÑÐ¸Ð½Ñ", p3savings:"Ð­ÐºÐ¾Ð½Ð¾Ð¼Ð¸Ñ $10/ÐºÐ²Ð°ÑÑÐ°Ð» Â· ~$13,33/Ð¼ÐµÑ",
-    p3f1:"ÐÑÑ ÑÑÐ¾ Ð² Ð¼ÐµÑÑÑÐ½Ð¾Ð¹", p3f2:"3 Ð¼ÐµÑÑÑÐ° Ð¿Ð¾ ÑÐµÐ½Ðµ ~2,7", p3f3:"ÐÐ¸ÑÐµÐ½Ð·Ð¸Ñ Ð½Ð° 2 Ð¼Ð°ÑÐ¸Ð½Ñ", p3f4:"ÐÑÐ¼ÐµÐ½Ð° Ð´Ð¾ Ð¿ÑÐ¾Ð´Ð»ÐµÐ½Ð¸Ñ",
-    p3cta:"ÐÐ¾Ð´Ð¿Ð¸ÑÐ°ÑÑÑÑ Ð½Ð° 3 Ð¼ÐµÑÑÑÐ°",
-    popularBadge:"ÐÐ£Ð§Ð¨ÐÐ¯ Ð¦ÐÐÐ",
+    pricingLabel:"Цены", pricingTitle:"Простые планы, реальные скидки",
+    pricingSub:"Подписка с авто-продлением. Можно отменить в любой момент. Все планы — на 2 машины.",
+    pricingNote:"Все цены в USD. НДС добавляется на чекауте для покупателей из ЕС.",
+    p1tier:"МЕСЯЧНАЯ", p1price:"15", p1old:"20", p1vat:"/ месяц + VAT", p1period:"Авто-продление каждый месяц · 2 машины", p1savings:"−25% от изначальной цены",
+    p1f1:"Полный нодовый редактор", p1f2:"Все текущие и будущие ноды", p1f3:"Лицензия на 2 машины", p1f4:"Без водяного знака", p1f5:"Отмена в любой момент",
+    p1cta:"Подписаться на месяц",
+    p2tier:"ГОДОВАЯ", p2price:"160", p2old:"200", p2vat:"/ год + VAT", p2period:"Авто-продление раз в год · 2 машины", p2savings:"Экономия $80/год · ~$13,33/мес",
+    p2f1:"Всё что в месячной", p2f2:"12 месяцев по цене ~10", p2f3:"Приоритетная поддержка", p2f4:"Лицензия на 2 машины", p2f5:"Отмена до продления",
+    p2cta:"Подписаться на год",
+    p3tier:"3 МЕСЯЦА", p3price:"40", p3old:"50", p3vat:"/ 3 месяца + VAT", p3period:"Авто-продление раз в 3 месяца · 2 машины", p3savings:"Экономия $10/квартал · ~$13,33/мес",
+    p3f1:"Всё что в месячной", p3f2:"3 месяца по цене ~2,7", p3f3:"Лицензия на 2 машины", p3f4:"Отмена до продления",
+    p3cta:"Подписаться на 3 месяца",
+    popularBadge:"ЛУЧШАЯ ЦЕНА",
 
-    freeLabel:"Free Forever", freeTitle:"ÐÑÐ¾Ð±ÑÐ¹ Ð±ÐµÑÐ¿Ð»Ð°ÑÐ½Ð¾ Ñ Ð²Ð¾Ð´ÑÐ½ÑÐ¼ Ð·Ð½Ð°ÐºÐ¾Ð¼",
-    freeSub:"ÐÐ°ÑÐ°Ð¹ BatchRender, ÑÐ¾Ð±Ð¸ÑÐ°Ð¹ Ð¿Ð°Ð¹Ð¿Ð»Ð°Ð¹Ð½Ñ, ÑÐµÐ½Ð´ÐµÑÐ¸ ÑÐºÐ¾Ð»ÑÐºÐ¾ ÑÐ¾ÑÐµÑÑ. ÐÐ° Ð²ÑÑÐ¾Ð´Ðµ Ð¾ÑÑÐ°ÑÑÑÑ Ð½ÐµÐ±Ð¾Ð»ÑÑÐ¾Ð¹ Ð²Ð¾Ð´ÑÐ½Ð¾Ð¹ Ð·Ð½Ð°Ðº â Ð¿Ð¾ÐºÐ° Ð½Ðµ Ð°ÐºÑÐ¸Ð²Ð¸ÑÑÐµÑÑ Ð»Ð¸ÑÐµÐ½Ð·Ð¸Ñ. ÐÐµÐ· ÑÐ°Ð¹Ð¼ÐµÑÐ°, Ð±ÐµÐ· ÑÑÐ¾ÐºÐ° Ð³Ð¾Ð´Ð½Ð¾ÑÑÐ¸.",
-    freePerk1:"ÐÑÐµ Ð½Ð¾Ð´Ñ Ð´Ð¾ÑÑÑÐ¿Ð½Ñ", freePerk2:"ÐÐµÐ· Ð»Ð¸Ð¼Ð¸ÑÐ° Ð¿Ð¾ ÑÐ¸ÑÐ»Ñ ÑÐ°Ð¹Ð»Ð¾Ð²", freePerk3:"ÐÐµÐ· Ð¾Ð³ÑÐ°Ð½Ð¸ÑÐµÐ½Ð¸Ñ Ð¿Ð¾ Ð²ÑÐµÐ¼ÐµÐ½Ð¸", freePerk4:"ÐÐ¾Ð´ÑÐ½Ð¾Ð¹ Ð·Ð½Ð°Ðº ÑÐ±Ð¸ÑÐ°ÐµÑÑÑ Ð¿Ð¾ÑÐ»Ðµ Ð°ÐºÑÐ¸Ð²Ð°ÑÐ¸Ð¸",
-    dlMac:"Ð¡ÐºÐ°ÑÐ°ÑÑ Ð´Ð»Ñ macOS", dlWin:"Ð¡ÐºÐ°ÑÐ°ÑÑ Ð´Ð»Ñ Windows",
-    demoPlaceholderTitle:"ÐÐµÐ¼Ð¾-ÑÐ¾Ð»Ð¸Ðº ÑÐºÐ¾ÑÐ¾", demoPlaceholderSub:"ÐÐ¾Ð»Ð¾Ð¶Ð¸ demo.mp4 Ð² /img/ â Ð¸ Ð²Ð¸Ð´ÐµÐ¾ Ð·Ð°Ð¸Ð³ÑÐ°ÐµÑ Ð·Ð´ÐµÑÑ.",
+    freeLabel:"Free Forever", freeTitle:"Пробуй бесплатно с водяным знаком",
+    freeSub:"Качай BatchRender, собирай пайплайны, рендери сколько хочешь. На выходе остаётся небольшой водяной знак — пока не активируешь лицензию. Без таймера, без срока годности.",
+    freePerk1:"Все ноды доступны", freePerk2:"Без лимита по числу файлов", freePerk3:"Без ограничения по времени", freePerk4:"Водяной знак убирается после активации",
+    dlMac:"Скачать для macOS", dlWin:"Скачать для Windows",
+    demoPlaceholderTitle:"Демо-ролик скоро", demoPlaceholderSub:"Положи demo.mp4 в /img/ — и видео заиграет здесь.",
 
-    faqLabel:"FAQ", faqTitle:"Ð§Ð°ÑÑÑÐµ Ð²Ð¾Ð¿ÑÐ¾ÑÑ.",
+    faqLabel:"FAQ", faqTitle:"Частые вопросы.",
     faqList:[
-      {q:"BatchRender Ð·Ð°Ð¼ÐµÐ½ÑÐµÑ DaVinci, Premiere Ð¸Ð»Ð¸ Final Cut?", a:"ÐÐµÑ. BatchRender ÑÐ´ÐµÐ»Ð°Ð½, ÑÑÐ¾Ð±Ñ ÑÐ°Ð±Ð¾ÑÐ°ÑÑ ÑÑÐ´Ð¾Ð¼ Ñ ÑÐ²Ð¾Ð¸Ð¼ Ð¼Ð¾Ð½ÑÐ°Ð¶Ð½ÑÐ¼ ÑÐµÐ´Ð°ÐºÑÐ¾ÑÐ¾Ð¼. ÐÐ¾Ð½ÑÐ¸ÑÑÐµÑÑ ÑÐ°Ð¼, Ð³Ð´Ðµ Ð¿ÑÐ¸Ð²ÑÐº. BatchRender Ð±ÐµÑÑÑ Ð½Ð° ÑÐµÐ±Ñ Ð¿Ð°ÐºÐµÑÐ½ÑÐµ ÑÐºÑÐ¿Ð¾ÑÑÑ, Ð²Ð°ÑÐ¸Ð°ÑÐ¸Ð¸ ÑÐ¾ÑÐ¼Ð°ÑÐ¾Ð², Ð²Ð¾Ð´ÑÐ½ÑÐµ Ð·Ð½Ð°ÐºÐ¸, Ð¿ÐµÑÐµÐ¸Ð¼ÐµÐ½Ð¾Ð²Ð°Ð½Ð¸Ðµ Ð¸ ÑÐ´Ð°ÑÑ ÐºÐ»Ð¸ÐµÐ½ÑÑ."},
-      {q:"ÐÐ°ÐºÐ¸Ðµ Ð¿Ð»Ð°ÑÑÐ¾ÑÐ¼Ñ Ð¿Ð¾Ð´Ð´ÐµÑÐ¶Ð¸Ð²Ð°ÑÑÑÑ?", a:"ÐÐ°ÑÐ¸Ð²Ð½ÑÐµ ÑÐ±Ð¾ÑÐºÐ¸ Ð´Ð»Ñ macOS (Apple Silicon Ð¸ Intel) Ð¸ Windows. Linux Ð¿Ð¾ÐºÐ° Ð½Ðµ Ð¿Ð¾Ð´Ð´ÐµÑÐ¶Ð¸Ð²Ð°ÐµÑÑÑ."},
-      {q:"Free-Ð²ÐµÑÑÐ¸Ñ ÑÐµÐ°Ð»ÑÐ½Ð¾ Ð±ÐµÐ· Ð¾Ð³ÑÐ°Ð½Ð¸ÑÐµÐ½Ð¸Ð¹?", a:"ÐÐ°. ÐÐµÐ· ÑÐ°Ð¹Ð¼ÐµÑÐ°, Ð±ÐµÐ· Ð»Ð¸Ð¼Ð¸ÑÐ° Ð½Ð° ÑÐ¸ÑÐ»Ð¾ ÑÐ°Ð¹Ð»Ð¾Ð², Ð²ÑÐµ Ð½Ð¾Ð´Ñ Ð¾ÑÐºÑÑÑÑ. ÐÐ´Ð¸Ð½ÑÑÐ²ÐµÐ½Ð½Ð¾Ðµ â Ð½ÐµÐ±Ð¾Ð»ÑÑÐ¾Ð¹ Ð²Ð¾Ð´ÑÐ½Ð¾Ð¹ Ð·Ð½Ð°Ðº Ð½Ð° Ð²ÑÑÐ¾Ð´Ðµ. <strong>URL Downloader ÑÐ°Ð±Ð¾ÑÐ°ÐµÑ Ð±ÐµÐ· Ð²Ð¾Ð´ÑÐ½Ð¾Ð³Ð¾ Ð·Ð½Ð°ÐºÐ° Ð½Ð°Ð²ÑÐµÐ³Ð´Ð°</strong> â Ð´Ð°Ð¶Ðµ Ð½Ð° free-Ð²ÐµÑÑÐ¸Ð¸."},
-      {q:"Ð¤Ð°Ð¹Ð»Ñ ÐºÑÐ´Ð°-ÑÐ¾ ÑÑÐ¾Ð´ÑÑ Ñ Ð¼Ð¾ÐµÐ³Ð¾ ÐºÐ¾Ð¼Ð¿ÑÑÑÐµÑÐ°?", a:"ÐÐµÑ. ÐÑÑ ÐºÑÑÑÐ¸ÑÑÑ Ñ ÑÐµÐ±Ñ Ð½Ð° Ð¼Ð°ÑÐ¸Ð½Ðµ. Ð¤Ð°Ð¹Ð»Ñ Ð½Ðµ Ð¿Ð¾ÐºÐ¸Ð´Ð°ÑÑ ÐºÐ¾Ð¼Ð¿ÑÑÑÐµÑ â Ð½Ð¸ÐºÐ°ÐºÐ¾Ð¹ Ð¾Ð±Ð»Ð°ÑÐ½Ð¾Ð¹ Ð·Ð°Ð³ÑÑÐ·ÐºÐ¸, Ð½Ð¸ÐºÐ°ÐºÐ¾Ð¹ ÑÐµÐ»ÐµÐ¼ÐµÑÑÐ¸Ð¸ Ð¿Ð¾ ÑÐ¾Ð´ÐµÑÐ¶Ð¸Ð¼Ð¾Ð¼Ñ, Ð½Ð¸ÐºÐ°ÐºÐ¾Ð¹ Ð¾Ð¿Ð»Ð°ÑÑ Ð¿Ð¾ Ð¼Ð¸Ð½ÑÑÐ°Ð¼. FFmpeg Ð´ÐµÐ»Ð°ÐµÑ Ð²ÑÑ ÑÐ°Ð±Ð¾ÑÑ Ð»Ð¾ÐºÐ°Ð»ÑÐ½Ð¾."},
-      {q:"ÐÐ¾Ð¶Ð½Ð¾ Ð¸ÑÐ¿Ð¾Ð»ÑÐ·Ð¾Ð²Ð°ÑÑ Ð´Ð»Ñ ÐºÐ¾Ð¼Ð¼ÐµÑÑÐµÑÐºÐ¸Ñ Ð¿ÑÐ¾ÐµÐºÑÐ¾Ð²?", a:"ÐÐ°. ÐÑÐµ Ð¿Ð»Ð°ÑÐ½ÑÐµ Ð¿Ð»Ð°Ð½Ñ Ð²ÐºÐ»ÑÑÐ°ÑÑ Ð¿Ð¾Ð»Ð½ÑÐµ Ð¿ÑÐ°Ð²Ð° Ð½Ð° ÐºÐ¾Ð¼Ð¼ÐµÑÑÐµÑÐºÐ¾Ðµ Ð¸ÑÐ¿Ð¾Ð»ÑÐ·Ð¾Ð²Ð°Ð½Ð¸Ðµ. ÐÐ»Ð¸ÐµÐ½ÑÑÐºÐ°Ñ ÑÐ°Ð±Ð¾ÑÐ°, Ð¿Ð»Ð°ÑÐ½ÑÐ¹ ÐºÐ¾Ð½ÑÐµÐ½Ñ â Ð²ÑÑ ÑÐ°Ð·ÑÐµÑÐµÐ½Ð¾."},
-      {q:"ÐÐ° ÑÐºÐ¾Ð»ÑÐºÐ¾ Ð¼Ð°ÑÐ¸Ð½ Ð¼Ð¾Ð¶Ð½Ð¾ Ð¿Ð¾ÑÑÐ°Ð²Ð¸ÑÑ?", a:"ÐÑÐµ Ð¿Ð»Ð°Ð½Ñ â Ð½Ð° 2 Ð¼Ð°ÑÐ¸Ð½Ñ (Ð½Ð°Ð¿ÑÐ¸Ð¼ÐµÑ, Ð½Ð¾ÑÑ + Ð´ÐµÑÐºÑÐ¾Ð¿). ÐÐµÐ°ÐºÑÐ¸Ð²Ð¸ÑÐ¾Ð²Ð°ÑÑ Ð¾Ð´Ð½Ñ Ð¸ Ð¿ÐµÑÐµÐ½ÐµÑÑÐ¸ ÑÐ»Ð¾Ñ Ð½Ð° Ð´ÑÑÐ³ÑÑ Ð¼Ð¾Ð¶Ð½Ð¾ Ð² Ð»ÑÐ±Ð¾Ð¹ Ð¼Ð¾Ð¼ÐµÐ½Ñ."},
-      {q:"BatchRender Ð¸ÑÐ¿Ð¾Ð»ÑÐ·ÑÐµÑ AI?", a:"ÐÐµÑ. ÐÐ°Ð¶Ð´Ð°Ñ Ð¾Ð¿ÐµÑÐ°ÑÐ¸Ñ Ð´ÐµÑÐµÑÐ¼Ð¸Ð½Ð¸ÑÐ¾Ð²Ð°Ð½Ð° â Ð¾Ð´Ð¸Ð½ Ð¸ ÑÐ¾Ñ Ð¶Ðµ Ð²ÑÐ¾Ð´ Ð´Ð°ÑÑ Ð¾Ð´Ð¸Ð½ Ð¸ ÑÐ¾Ñ Ð¶Ðµ Ð²ÑÑÐ¾Ð´. ÐÐ°Ð¶Ð´ÑÐ¹ ÑÐ°Ð³ Ð½Ð¾Ð´Ñ Ð²Ð¸Ð´ÐµÐ½ Ð´Ð¾ ÑÐ¾Ð³Ð¾, ÐºÐ°Ðº ÑÑ ÐµÑ Ð·Ð°Ð¿ÑÑÑÐ¸ÑÑ. ÐÐ¸ÐºÐ°ÐºÐ¾Ð¹ Â«Ð¼Ð°Ð³Ð¸Ð¸Â»."},
-      {q:"ÐÐ°Ðº ÑÐ°Ð±Ð¾ÑÐ°ÐµÑ Ð¿Ð¾Ð´Ð¿Ð¸ÑÐºÐ°?", a:"ÐÑÐ±Ð¸ÑÐ°ÐµÑÑ Ð¼ÐµÑÑÑ, 3 Ð¼ÐµÑÑÑÐ° Ð¸Ð»Ð¸ Ð³Ð¾Ð´. ÐÐ¿Ð»Ð°ÑÐ° Ð°Ð²ÑÐ¾-Ð¿ÑÐ¾Ð´Ð»ÐµÐ²Ð°ÐµÑÑÑ Ð² ÐºÐ¾Ð½ÑÐµ Ð¿ÐµÑÐ¸Ð¾Ð´Ð°. ÐÐ¾Ð¶Ð½Ð¾ Ð¾ÑÐ¼ÐµÐ½Ð¸ÑÑ Ð² Ð»ÑÐ±Ð¾Ð¹ Ð¼Ð¾Ð¼ÐµÐ½Ñ â Ð»Ð¸ÑÐµÐ½Ð·Ð¸Ñ Ð°ÐºÑÐ¸Ð²Ð½Ð° Ð´Ð¾ ÐºÐ¾Ð½ÑÐ° Ð¾Ð¿Ð»Ð°ÑÐµÐ½Ð½Ð¾Ð³Ð¾ Ð¿ÐµÑÐ¸Ð¾Ð´Ð°, Ð¿Ð¾ÑÐ¾Ð¼ Ð²Ð¾Ð·Ð²ÑÐ°ÑÐ°ÐµÑÑÑ Ð²Ð¾Ð´ÑÐ½Ð¾Ð¹ Ð·Ð½Ð°Ðº."},
-      {q:"ÐÐ¾Ð¶Ð½Ð¾ Ð¾ÑÐ¼ÐµÐ½Ð¸ÑÑ Ð¸ Ð²ÐµÑÐ½ÑÑÑ Ð´ÐµÐ½ÑÐ³Ð¸?", a:"ÐÑÐ¼ÐµÐ½Ð¸ÑÑ Ð°Ð²ÑÐ¾-Ð¿ÑÐ¾Ð´Ð»ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð¶Ð½Ð¾ Ð² Ð»ÑÐ±Ð¾Ð¹ Ð¼Ð¾Ð¼ÐµÐ½Ñ Ð² Ð»Ð¸ÑÐ½Ð¾Ð¼ ÐºÐ°Ð±Ð¸Ð½ÐµÑÐµ. ÐÐ¾ Ð²Ð¾Ð·Ð²ÑÐ°ÑÑ ÑÑÐµÐ´ÑÑÐ² Ð² Ð¿ÐµÑÐ²ÑÐµ 14 Ð´Ð½ÐµÐ¹ â Ð¿Ð¸ÑÐ¸ ÑÐµÑÐµÐ· ÑÐ¾ÑÐ¼Ñ Ð½Ð¸Ð¶Ðµ, ÑÐ°Ð·Ð±Ð¸ÑÐ°ÐµÐ¼ Ð¸Ð½Ð´Ð¸Ð²Ð¸Ð´ÑÐ°Ð»ÑÐ½Ð¾."},
-      {q:"BatchRender ÑÐ°Ð±Ð¾ÑÐ°ÐµÑ Ð±ÐµÐ· Ð¸Ð½ÑÐµÑÐ½ÐµÑÐ°?", a:"Ð ÐµÐ½Ð´ÐµÑ Ð¸ ÑÐµÐ´Ð°ÐºÑÐ¸ÑÐ¾Ð²Ð°Ð½Ð¸Ðµ ÑÐ°Ð±Ð¾ÑÐ°ÑÑ Ð¾ÑÐ»Ð°Ð¹Ð½ Ð¿Ð¾Ð»Ð½Ð¾ÑÑÑÑ. ÐÐºÑÐ¸Ð²Ð°ÑÐ¸Ñ Ð»Ð¸ÑÐµÐ½Ð·Ð¸Ð¸ ÑÑÐµÐ±ÑÐµÑ ÑÐ°Ð·Ð¾Ð²Ð¾Ð¹ Ð¿ÑÐ¾Ð²ÐµÑÐºÐ¸ Ð² ÑÐµÑÐ¸, Ð´Ð°Ð»ÑÑÐµ Ð¿ÑÐ¸Ð»Ð¾Ð¶ÐµÐ½Ð¸Ðµ ÑÐ°Ð±Ð¾ÑÐ°ÐµÑ Ð¾ÑÐ»Ð°Ð¹Ð½ Ð´Ð¾ ÐºÐ¾Ð½ÑÐ° Ð¿ÐµÑÐ¸Ð¾Ð´Ð° Ð¿Ð¾Ð´Ð¿Ð¸ÑÐºÐ¸."},
-      {q:"ÐÐ°ÐºÐ¸Ðµ Ð¸Ð½ÑÐµÐ³ÑÐ°ÑÐ¸Ð¸ Ð¿Ð»Ð°Ð½Ð¸ÑÑÑÑÑÑ?", a:"Ð Ð¿Ð»Ð°Ð½Ð°Ñ â Ð¸Ð¼Ð¿Ð¾ÑÑ XML/EDL Ð¸Ð· Ð¾ÑÐ½Ð¾Ð²Ð½ÑÑ NLE. Ð¦ÐµÐ»Ñ â ÑÑÐ¾Ð±Ñ BatchRender Ð²ÑÑÑÐ°Ð¸Ð²Ð°Ð»ÑÑ Ð¿ÑÑÐ¼Ð¾ Ð² ÑÑÑÐµÑÑÐ²ÑÑÑÐ¸Ðµ Ð¿Ð¾ÑÑ-Ð¿ÑÐ¾Ð´Ð°ÐºÑÐ½ Ð¿Ð°Ð¹Ð¿Ð»Ð°Ð¹Ð½Ñ."},
-      {q:"Ð§ÑÐ¾ Ñ ÐÐÐ¡?", a:"ÐÐ¾ÐºÑÐ¿Ð°ÑÐµÐ»Ð¸ Ð¸Ð· ÐÐ¡ Ð¿Ð»Ð°ÑÑÑ ÐÐÐ¡ ÑÐ²ÐµÑÑÑ, ÑÑÐ¸ÑÐ°ÐµÑÑÑ Ð°Ð²ÑÐ¾Ð¼Ð°ÑÐ¸ÑÐµÑÐºÐ¸ Ð½Ð° ÑÐµÐºÐ°ÑÑÐµ Ð¿Ð¾ ÑÑÑÐ°Ð½Ðµ. ÐÐ° Ð¿ÑÐµÐ´ÐµÐ»Ð°Ð¼Ð¸ ÐÐ¡ Ð¾Ð±ÑÑÐ½Ð¾ Ð¿Ð»Ð°ÑÑÑ ÑÐºÐ°Ð·Ð°Ð½Ð½ÑÑ ÑÐµÐ½Ñ Ð±ÐµÐ· Ð´Ð¾Ð±Ð°Ð²Ð¾Ðº."}
+      {q:"BatchRender заменяет DaVinci, Premiere или Final Cut?", a:"Нет. BatchRender сделан, чтобы работать рядом с твоим монтажным редактором. Монтируешь там, где привык. BatchRender берёт на себя пакетные экспорты, вариации форматов, водяные знаки, переименование и сдачу клиенту."},
+      {q:"Какие платформы поддерживаются?", a:"Нативные сборки для macOS (Apple Silicon и Intel) и Windows. Linux пока не поддерживается."},
+      {q:"Free-версия реально без ограничений?", a:"Да. Без таймера, без лимита на число файлов, все ноды открыты. Единственное — небольшой водяной знак на выходе. <strong>URL Downloader работает без водяного знака навсегда</strong> — даже на free-версии."},
+      {q:"Файлы куда-то уходят с моего компьютера?", a:"Нет. Всё крутится у тебя на машине. Файлы не покидают компьютер — никакой облачной загрузки, никакой телеметрии по содержимому, никакой оплаты по минутам. FFmpeg делает всю работу локально."},
+      {q:"Можно использовать для коммерческих проектов?", a:"Да. Все платные планы включают полные права на коммерческое использование. Клиентская работа, платный контент — всё разрешено."},
+      {q:"На сколько машин можно поставить?", a:"Все планы — на 2 машины (например, ноут + десктоп). Деактивировать одну и перенести слот на другую можно в любой момент."},
+      {q:"BatchRender использует AI?", a:"Нет. Каждая операция детерминирована — один и тот же вход даёт один и тот же выход. Каждый шаг ноды виден до того, как ты её запустишь. Никакой «магии»."},
+      {q:"Как работает подписка?", a:"Выбираешь месяц, 3 месяца или год. Оплата авто-продлевается в конце периода. Можно отменить в любой момент — лицензия активна до конца оплаченного периода, потом возвращается водяной знак."},
+      {q:"Можно отменить и вернуть деньги?", a:"Отменить авто-продление можно в любой момент в личном кабинете. По возврату средств в первые 14 дней — пиши через форму ниже, разбираем индивидуально."},
+      {q:"BatchRender работает без интернета?", a:"Рендер и редактирование работают офлайн полностью. Активация лицензии требует разовой проверки в сети, дальше приложение работает офлайн до конца периода подписки."},
+      {q:"Какие интеграции планируются?", a:"В планах — импорт XML/EDL из основных NLE. Цель — чтобы BatchRender встраивался прямо в существующие пост-продакшн пайплайны."},
+      {q:"Что с НДС?", a:"Покупатели из ЕС платят НДС сверху, считается автоматически на чекауте по стране. За пределами ЕС обычно платят указанную цену без добавок."}
     ],
 
-    contactLabel:"ÐÐ¾Ð½ÑÐ°ÐºÑÑ", contactTitle:"Ð¡Ð²ÑÐ·Ð°ÑÑÑÑ",
-    contactSub:"ÐÐ¾Ð¿ÑÐ¾ÑÑ Ð¾ Ð»Ð¸ÑÐµÐ½Ð·Ð¸Ð¸, ÑÐµÑÐ½Ð¸ÑÐµÑÐºÐ¸Ðµ Ð¿ÑÐ¾Ð±Ð»ÐµÐ¼Ñ, Ð·Ð°Ð¿ÑÐ¾ÑÑ ÑÐ¸Ñ â Ð¿Ð¸ÑÐ¸ ÑÐµÑÐµÐ· ÑÐ¾ÑÐ¼Ñ, Ñ Ð¾ÑÐ²ÐµÑÑ.",
-    formName:"ÐÐ¼Ñ", formEmail:"Email", formSubject:"Ð¢ÐµÐ¼Ð°", formMessage:"Ð¡Ð¾Ð¾Ð±ÑÐµÐ½Ð¸Ðµ",
-    subj1:"ÐÐ¾Ð¿ÑÐ¾Ñ Ð¿Ð¾ Ð»Ð¸ÑÐµÐ½Ð·Ð¸Ð¸", subj2:"Ð¢ÐµÑÐ½Ð¸ÑÐµÑÐºÐ°Ñ Ð¿ÑÐ¾Ð±Ð»ÐµÐ¼Ð°", subj3:"ÐÐ°Ð¿ÑÐ¾Ñ ÑÐ¸ÑÐ¸", subj4:"ÐÐ¾Ð·Ð²ÑÐ°Ñ / ÐÐ¸Ð»Ð»Ð¸Ð½Ð³", subj5:"ÐÑÑÐ³Ð¾Ðµ",
-    sendBtn:"ÐÑÐ¿ÑÐ°Ð²Ð¸ÑÑ",
+    contactLabel:"Контакты", contactTitle:"Связаться",
+    contactSub:"Вопросы о лицензии, технические проблемы, запросы фич — пиши через форму, я отвечу.",
+    formName:"Имя", formEmail:"Email", formSubject:"Тема", formMessage:"Сообщение",
+    subj1:"Вопрос по лицензии", subj2:"Техническая проблема", subj3:"Запрос фичи", subj4:"Возврат / Биллинг", subj5:"Другое",
+    sendBtn:"Отправить",
 
-    footerDesc:"ÐÐ¾Ð¿Ð¾Ð»Ð½ÐµÐ½Ð¸Ðµ Ðº DaVinci, Premiere, Final Cut Ð¸ CapCut. ÐÐ¾ÐºÐ°Ð»ÑÐ½Ð°Ñ Ð¿Ð°ÐºÐµÑÐ½Ð°Ñ Ð¾Ð±ÑÐ°Ð±Ð¾ÑÐºÐ° Ð²Ð¸Ð´ÐµÐ¾ Ð´Ð»Ñ ÑÐµÐ´Ð°ÐºÑÐ¾ÑÐ¾Ð², ÐºÐ¾ÑÐ¾ÑÑÐµ ÑÐ´Ð°ÑÑ ÐºÐ»Ð¸ÐµÐ½ÑÑÐºÑÑ ÑÐ°Ð±Ð¾ÑÑ Ð¿Ð°ÑÐºÐ°Ð¼Ð¸.",
-    fcProduct:"ÐÑÐ¾Ð´ÑÐºÑ", fcBuiltFor:"ÐÐ»Ñ ÐºÐ¾Ð³Ð¾", fcHow:"ÐÐ°Ðº ÑÐ°Ð±Ð¾ÑÐ°ÐµÑ", fcFeatures:"ÐÐ¾Ð´Ñ", fcPricing:"Ð¦ÐµÐ½Ñ", fcFree:"ÐÐµÑÐ¿Ð»Ð°ÑÐ½Ð°Ñ Ð²ÐµÑÑÐ¸Ñ",
-    fcSupport:"ÐÐ¾Ð´Ð´ÐµÑÐ¶ÐºÐ°", fcContact:"ÐÐ¾Ð½ÑÐ°ÐºÑÑ", fcFaq:"FAQ", fcGitHub:"GitHub",
-    fcLegal:"ÐÑÐ°Ð²Ð¾Ð²Ð¾Ðµ", fcPrivacy:"ÐÐ¾Ð»Ð¸ÑÐ¸ÐºÐ° ÐºÐ¾Ð½ÑÐ¸Ð´ÐµÐ½ÑÐ¸Ð°Ð»ÑÐ½Ð¾ÑÑÐ¸", fcTerms:"Ð£ÑÐ»Ð¾Ð²Ð¸Ñ Ð¸ÑÐ¿Ð¾Ð»ÑÐ·Ð¾Ð²Ð°Ð½Ð¸Ñ", fcRefund:"ÐÐ¾Ð»Ð¸ÑÐ¸ÐºÐ° Ð²Ð¾Ð·Ð²ÑÐ°ÑÐ°", fcEula:"EULA",
-    copyright:"Â© 2026 BatchRender Â· ÐÑÐµ Ð¿ÑÐ°Ð²Ð° Ð·Ð°ÑÐ¸ÑÐµÐ½Ñ"
+    footerDesc:"Дополнение к DaVinci, Premiere, Final Cut и CapCut. Локальная пакетная обработка видео для редакторов, которые сдают клиентскую работу пачками.",
+    fcProduct:"Продукт", fcBuiltFor:"Для кого", fcHow:"Как работает", fcFeatures:"Ноды", fcPricing:"Цены", fcFree:"Бесплатная версия",
+    fcSupport:"Поддержка", fcContact:"Контакты", fcFaq:"FAQ", fcGitHub:"GitHub",
+    fcLegal:"Правовое", fcPrivacy:"Политика конфиденциальности", fcTerms:"Условия использования", fcRefund:"Политика возврата", fcEula:"EULA",
+    copyright:"© 2026 BatchRender · Все права защищены"
   ,
-    pricingEyebrow:"Ð¦ÐµÐ½Ñ Â· 4 Ð¿Ð»Ð°Ð½Ð°",
-    pricingMeta:"ÐÐ±Ð½Ð¾Ð²Ð»ÐµÐ½Ð¾ Â· 2026",
-    pricingTitlePart1:"Ð¦ÐµÐ½Ñ, ÐºÐ¾ÑÐ¾ÑÑÐµ",
-    pricingTitlePart2:"Ð¾ÐºÑÐ¿Ð°ÑÑ ÑÐµÐ±Ñ.",
-    pricingToggleSub:"ÐÐ¾Ð´Ð¿Ð¸ÑÐºÐ°",
-    pricingToggleOne:"Ð Ð°Ð·Ð¾Ð²Ð°Ñ",
-    p1tier:"ÐÐµÑÑÑÐ½Ð°Ñ",
-    p1sub:"ÐÐ¾Ð´Ð¿Ð¸ÑÐºÐ°",
+    pricingEyebrow:"Цены · 4 плана",
+    pricingMeta:"Обновлено · 2026",
+    pricingTitlePart1:"Цены, которые",
+    pricingTitlePart2:"окупают себя.",
+    pricingToggleSub:"Подписка",
+    pricingToggleOne:"Разовая",
+    p1tier:"Месячная",
+    p1sub:"Подписка",
     p1kind:"Sub",
-    p1period:"Ð² Ð¼ÐµÑÑÑ + VAT Â· Ð°Ð²ÑÐ¾-Ð¿ÑÐ¾Ð´Ð»ÐµÐ½Ð¸Ðµ",
-    p1savings:"ÐÐ¸Ð±ÐºÐ¾ Â· Ð¾ÑÐ¼ÐµÐ½Ð° Ð² Ð»ÑÐ±Ð¾Ð¹ Ð¼Ð¾Ð¼ÐµÐ½Ñ",
-    p1cta:"ÐÐ¾Ð´Ð¿Ð¸ÑÐ°ÑÑÑÑ Ð½Ð° Ð¼ÐµÑÑÑ",
-    popularBadge:"ÐÑÑÑÐ°Ñ ÑÐµÐ½Ð°",
-    p2chip:"â20% ÑÐºÐ¸Ð´ÐºÐ°",
-    p2tier:"ÐÐ¾Ð´Ð¾Ð²Ð°Ñ",
-    p2sub:"ÐÐ¾Ð´Ð¿Ð¸ÑÐºÐ° Â· 12 Ð¼ÐµÑÑÑÐµÐ²",
-    p2period:"Ð² Ð³Ð¾Ð´ + VAT Â· ~â¬13.33/Ð¼ÐµÑ",
-    p2savings:"12 Ð¼ÐµÑÑÑÐµÐ² Ð¿Ð¾ ÑÐµÐ½Ðµ 10",
-    p2cta:"ÐÐ¾Ð´Ð¿Ð¸ÑÐ°ÑÑÑÑ Ð½Ð° Ð³Ð¾Ð´",
-    p3tier:"1 Ð¼ÐµÑÑÑ",
-    p3sub:"Ð Ð°Ð·Ð¾Ð²ÑÐ¹ Ð¿Ð»Ð°ÑÑÐ¶",
-    p3kind:"Ð Ð°Ð·Ð¾Ð²Ð¾",
-    p3period:"ÐµÐ´Ð¸Ð½Ð¾ÑÐ°Ð·Ð¾Ð²Ð¾ Â· 30 Ð´Ð½ÐµÐ¹ Ð´Ð¾ÑÑÑÐ¿Ð°",
-    p3savings:"ÐÐµÐ· Ð¿Ð¾Ð´Ð¿Ð¸ÑÐºÐ¸",
-    p3cta:"ÐÑÐ¿Ð¸ÑÑ 1 Ð¼ÐµÑÑÑ",
-    p4tier:"3 Ð¼ÐµÑÑÑÐ°",
-    p4sub:"Ð Ð°Ð·Ð¾Ð²ÑÐ¹ Ð¿Ð»Ð°ÑÑÐ¶",
-    p4kind:"Ð Ð°Ð·Ð¾Ð²Ð¾",
-    p4period:"ÐµÐ´Ð¸Ð½Ð¾ÑÐ°Ð·Ð¾Ð²Ð¾ Â· 90 Ð´Ð½ÐµÐ¹ Ð´Ð¾ÑÑÑÐ¿Ð°",
-    p4savings:"Ð­ÐºÐ¾Ð½Ð¾Ð¼Ð¸Ñ â¬10 vs. 3Ã Ð¼ÐµÑÑÑ",
-    p4cta:"ÐÑÐ¿Ð¸ÑÑ 3 Ð¼ÐµÑÑÑÐ°",
-    mqA1:"ÐÐºÑÐ¸Ð²Ð°ÑÐ¸Ñ Ð½Ð° 2 Ð¼Ð°ÑÐ¸Ð½Ñ",
-    mqA3:"ÐÑÐµ ÑÐµÐºÑÑÐ¸Ðµ Ð¸ Ð±ÑÐ´ÑÑÐ¸Ðµ Ð½Ð¾Ð´Ñ",
-    mqA4:"Ð¾ÐºÐ½Ð¾ Ð²Ð¾Ð·Ð²ÑÐ°ÑÐ°",
-    mqA5:"ÐÐµÐ· ÑÑÑÐ¿ÑÐ¸Ð·Ð¾Ð² Ð¿ÑÐ¸ Ð¿ÑÐ¾Ð´Ð»ÐµÐ½Ð¸Ð¸",
-    mqA7:"ÐÐ°ÑÑÑ Â· PayPal Â· Apple Pay",
-    mqB1:"ÐÐºÑÐ¸Ð²Ð°ÑÐ¸Ñ Ð½Ð° 2 Ð¼Ð°ÑÐ¸Ð½Ñ",
-    mqB3:"ÐÑÐµ ÑÐµÐºÑÑÐ¸Ðµ Ð¸ Ð±ÑÐ´ÑÑÐ¸Ðµ Ð½Ð¾Ð´Ñ",
-    mqB4:"Ð¾ÐºÐ½Ð¾ Ð²Ð¾Ð·Ð²ÑÐ°ÑÐ°",
-    mqB5:"ÐÐµÐ· ÑÑÑÐ¿ÑÐ¸Ð·Ð¾Ð² Ð¿ÑÐ¸ Ð¿ÑÐ¾Ð´Ð»ÐµÐ½Ð¸Ð¸",
-    mqB7:"ÐÐ°ÑÑÑ Â· PayPal Â· Apple Pay",
-    footPay:"ÐÐµÐ·Ð¾Ð¿Ð°ÑÐ½Ð°Ñ Ð¾Ð¿Ð»Ð°ÑÐ°",
-    footRefund:"ÐÐ¾Ð·Ð²ÑÐ°Ñ 14 Ð´Ð½ÐµÐ¹",
-    footMethods:"ÐÐ°ÑÑÑ Â· PayPal Â· Apple Pay",
-    footVat:"ÐÑÐµ ÑÐµÐ½Ñ Ð² EUR. ÐÐÐ¡ Ð´Ð¾Ð±Ð°Ð²Ð»ÑÐµÑÑÑ Ð¿ÑÐ¸ Ð¾Ð¿Ð»Ð°ÑÐµ.",
-    downloadMeta:"{VERSION} Â· Ð²ÑÐ¿ÑÑÐµÐ½Ð¾ Ð² 2026",
-    downloadTitlePart1:"ÐÐ¾Ð¿ÑÐ¾Ð±ÑÐ¹ Ð±ÐµÑÐ¿Ð»Ð°ÑÐ½Ð¾,",
-    downloadTitlePart2:"Ñ Ð²Ð¾Ð´ÑÐ½ÑÐ¼ Ð·Ð½Ð°ÐºÐ¾Ð¼.",
-    dlMacChip:"Apple Silicon Ð³Ð¾ÑÐ¾Ð²",
+    p1period:"в месяц + VAT · авто-продление",
+    p1savings:"Гибко · отмена в любой момент",
+    p1cta:"Подписаться на месяц",
+    popularBadge:"Лучшая цена",
+    p2chip:"−20% скидка",
+    p2tier:"Годовая",
+    p2sub:"Подписка · 12 месяцев",
+    p2period:"в год + VAT · ~€13.33/мес",
+    p2savings:"12 месяцев по цене 10",
+    p2cta:"Подписаться на год",
+    p3tier:"1 месяц",
+    p3sub:"Разовый платёж",
+    p3kind:"Разово",
+    p3period:"единоразово · 30 дней доступа",
+    p3savings:"Без подписки",
+    p3cta:"Купить 1 месяц",
+    p4tier:"3 месяца",
+    p4sub:"Разовый платёж",
+    p4kind:"Разово",
+    p4period:"единоразово · 90 дней доступа",
+    p4savings:"Экономия €10 vs. 3× месяц",
+    p4cta:"Купить 3 месяца",
+    mqA1:"Активация на 2 машины",
+    mqA3:"Все текущие и будущие ноды",
+    mqA4:"окно возврата",
+    mqA5:"Без сюрпризов при продлении",
+    mqA7:"Карты · PayPal · Apple Pay",
+    mqB1:"Активация на 2 машины",
+    mqB3:"Все текущие и будущие ноды",
+    mqB4:"окно возврата",
+    mqB5:"Без сюрпризов при продлении",
+    mqB7:"Карты · PayPal · Apple Pay",
+    footPay:"Безопасная оплата",
+    footRefund:"Возврат 14 дней",
+    footMethods:"Карты · PayPal · Apple Pay",
+    footVat:"Все цены в EUR. НДС добавляется при оплате.",
+    downloadMeta:"{VERSION} · выпущено в 2026",
+    downloadTitlePart1:"Попробуй бесплатно,",
+    downloadTitlePart2:"с водяным знаком.",
+    dlMacChip:"Apple Silicon готов",
     dlMacTtl:"macOS",
-    dlMacSub:"12 Monterey Ð¸Ð»Ð¸ Ð½Ð¾Ð²ÐµÐµ",
+    dlMacSub:"12 Monterey или новее",
     dlMacArch:"Apple Silicon",
-    dlMacStatNote:"ÐÐ¾ÑÐ°ÑÐ¸Ð·Ð¾Ð²Ð°Ð½Ð¾",
-    dlMacStatNoteVal:"ÐÐ°",
+    dlMacStatNote:"Нотаризовано",
+    dlMacStatNoteVal:"Да",
     dlMacMeta:"Apple Silicon (M1+)",
-    dlWinChip:"x64 ÑÐ±Ð¾ÑÐºÐ°",
+    dlWinChip:"x64 сборка",
     dlWinTtl:"Windows",
     dlWinSub:"Windows 10 / 11",
     dlWinArch:"x64",
-    dlWinStatNote:"ÐÐ¾Ð´Ð¿Ð¸ÑÐ°Ð½Ð¾",
-    dlWinStatNoteVal:"ÐÐµÑ",
+    dlWinStatNote:"Подписано",
+    dlWinStatNoteVal:"Нет",
     dlWinMeta:"Windows 10/11",
-    dlStatSize:"Ð Ð°Ð·Ð¼ÐµÑ",
-    dlStatFormat:"Ð¤Ð¾ÑÐ¼Ð°Ñ",
-    dlStatSize2:"Ð Ð°Ð·Ð¼ÐµÑ",
-    dlStatFormat2:"Ð¤Ð¾ÑÐ¼Ð°Ñ",
-    dlReleaseNotes:"Ð¡Ð¿Ð¸ÑÐ¾Ðº Ð¸Ð·Ð¼ÐµÐ½ÐµÐ½Ð¸Ð¹",
-    dlReleaseNotes2:"Ð¡Ð¿Ð¸ÑÐ¾Ðº Ð¸Ð·Ð¼ÐµÐ½ÐµÐ½Ð¸Ð¹",
-    dlPerksLabel:"Ð§ÑÐ¾ Ð²ÐºÐ»ÑÑÐµÐ½Ð¾",
-    dlFootSigned:"ÐÐ¾Ð´Ð¿Ð¸ÑÐ°Ð½Ð¾ Ð¸ Ð½Ð¾ÑÐ°ÑÐ¸Ð·Ð¾Ð²Ð°Ð½Ð¾",
-    dlFootGitHub:"ÐÑÐºÑÑÑÑ ÑÐµÐ»Ð¸Ð·Ñ Ð½Ð° GitHub",
-    dlFootRight:"ÐÐ¾ÑÐ»ÐµÐ´Ð½ÑÑ Ð²ÐµÑÑÐ¸Ñ Ð¾Ð±Ð½Ð¾Ð²Ð»ÐµÐ½Ð° Ð² ÑÑÐ¾Ð¼ Ð¼ÐµÑÑÑÐµ Â· ÐÐ²ÑÐ¾-Ð¾Ð±Ð½Ð¾Ð²Ð»ÐµÐ½Ð¸Ðµ Ð²ÑÑÑÐ¾ÐµÐ½Ð¾"
+    dlStatSize:"Размер",
+    dlStatFormat:"Формат",
+    dlStatSize2:"Размер",
+    dlStatFormat2:"Формат",
+    dlReleaseNotes:"Список изменений",
+    dlReleaseNotes2:"Список изменений",
+    dlPerksLabel:"Что включено",
+    dlFootSigned:"Подписано и нотаризовано",
+    dlFootGitHub:"Открыть релизы на GitHub",
+    dlFootRight:"Последняя версия обновлена в этом месяце · Авто-обновление встроено"
   },
 
   zh: {
-    builtFor:"éåè°", math:"ææ¬å¯¹æ¯", features:"èç¹", videos:"æç¨", pricing:"ä»·æ ¼", faq:"å¸¸è§é®é¢", contact:"èç³»",
-    getStarted:"åè´¹è¯ç¨",
-    version:"{VERSION} â æç»­å¼åä¸­",
-    canvasHint:"è¯è¯æå¨",
-    heroTitle:'å°åéå¤çå·¥ä½ã<br><span class="grad">å¤ä¸ä»½ææ§ã</span>',
-    heroSub:'<strong>BatchRender èçæ°ç¾å°æ¶å·¥ä½æ¶é´</strong>,å°éå¤ä»»å¡åæå åéå°±è½å®æçæµç¨ã<br><br>ä½ å¯¹æ¯ä¸æ­¥é½ä¿æå®å¨ææ§:æ¯ä¸ªæä½é½å¯éç½®,ç»æå§ç»å¯é¢æµã<br><br>ç®æ´ç´è§çèç¹å¼çé¢è®©ä½ å·¥ä½å¾æ´å¿«ââæ²¡æå¤ä½çå¤ææ§ã',
-    heroCta1:"åè´¹è¯ç¨", heroCta2:"ççææ",
-    meta1:"æ éæ³¨å,æ äºç«¯", meta2:"æä»¶çå¨ä½ ççµè", meta3:"Mac å Windows",
+    builtFor:"适合谁", math:"成本对比", features:"节点", videos:"教程", pricing:"价格", faq:"常见问题", contact:"联系",
+    getStarted:"免费试用",
+    version:"{VERSION} — 持续开发中",
+    canvasHint:"试试拖动",
+    heroTitle:'少做重复的工作。<br><span class="grad">多一份掌控。</span>',
+    heroSub:'<strong>BatchRender 节省数百小时工作时间</strong>,将重复任务变成几分钟就能完成的流程。<br><br>你对每一步都保持完全掌控:每个操作都可配置,结果始终可预测。<br><br>简洁直观的节点式界面让你工作得更快——没有多余的复杂性。',
+    heroCta1:"免费试用", heroCta2:"看看效果",
+    meta1:"无需注册,无云端", meta2:"文件留在你的电脑", meta3:"Mac 和 Windows",
 
-    companionLabel:"ä¸æ¬¡æ¹éå¤çæ°ç¾ä¸ªæä»¶",
-    companionTitle:"ä¸ä½ çç¼è¾å¨å¹¶è©å·¥ä½",
-    companionP1:"BatchRender æ¥ç»­å¨åªè¾ç»æçå°æ¹ã",
-    companionP2:"å®è´è´£æ¹éå¤çä½ ææçåªä½,æ©å±å¹¶å éæ´ä¸ªå·¥ä½æµç¨ã",
-    companionP3:'ç®ååªåãéé³ãå¤ç§å¯¼åºæ ¼å¼ãæ°´å°å logoãé¿è§é¢åæ®µãæä»¶éå½åãæä»¶å¤¹æ´çãæç»å¯¼åºç­ç­ââå¨é½<strong>å¨ä¸ä¸ªç®¡éåèªå¨å®æ</strong>ã',
-    companionP4:'è¿åæ¬ç¨äºè®¿è°åæ­å®¢ç<strong>æºè½éé³èªå¨ç§»é¤</strong>,å¹¶è½å°é¡¹ç®æåä¸ªæä»¶éåä½ çåªè¾ç³»ç»ã',
+    companionLabel:"一次批量处理数百个文件",
+    companionTitle:"与你的编辑器并肩工作",
+    companionP1:"BatchRender 接续在剪辑结束的地方。",
+    companionP2:"它负责批量处理你所有的媒体,扩展并加速整个工作流程。",
+    companionP3:'简单剪切、配音、多种导出格式、水印和 logo、长视频分段、文件重命名、文件夹整理、最终导出等等——全都<strong>在一个管道内自动完成</strong>。',
+    companionP4:'还包括用于访谈和播客的<strong>智能静音自动移除</strong>,并能将项目或单个文件送回你的剪辑系统。',
     nleResolve:"DaVinci Resolve", nlePremiere:"Premiere Pro", nleFCP:"Final Cut Pro", nleCapCut:"CapCut", nleAvid:"Avid",
 
-    builtForLabel:"éåè°", builtForTitle:"ä¸ºéå¤å¶ä½ç¸ååå®¹çäººèç",
-    builtForSub:"å¦æä½ éè¦å¯¹å¤ä¸ªæä»¶è¿è¡éå¤å¤ç,BatchRender ææ°å°æ¶çæå·¥å³å¨åæä¸æ¬¡æ¸²æã",
-    uc1tag:"SMM ä¸åå®¹ä»£ç", uc1t:"30 ä¸ªå®¢æ·è§é¢ãä¸ä¸ªç®¡éã",
-    uc1d:"æå¥ä¸ä¸ªå®¢æ·çæ®µæä»¶å¤¹,åºç¨<strong>Logo + çå¤´ + 9:16 è£åª</strong>,ç¹å»æ¸²æãåæ ·çåç,åæ ·çæ ¼å¼,æ¯æ¬¡é½ä¸è´ãåä¹ä¸ç¨å¨ 30 ä¸ªæ¶é´çº¿ç¼è¾ä¹é´åæ¢æ ç­¾ã",
-    uc2tag:"æ­å®¢ä¸»ä¸åä½è", uc2t:"ç¨å å°æ¶éæ°æåä½ çå­æ¡£,èä¸æ¯å å¨",
-    uc2d:"æ§èç®ãè®²åº§ãç´æ­ â éè¿ä¸ä¸ªç®¡é,å¾å°ä¸ä¸ªæä»¶å¤¹ç<strong>Shorts/Reels å°±ç»ªçæ®µ</strong>ãæ´ä¸ªè¿å¾åå®¹ç»ä¸è£åªãç»ä¸çå°¾ãç»ä¸é³éã",
-    uc3tag:"ææè¥éäººå", uc3t:"ä»ä¸ä¸ªæºçæ 100 ä¸ªå¹¿ååæåä½",
-    uc3d:"å¤§è§æ¨¡æµè¯åæãä»åä¸ªåºç¡çæ®µä¸æ¬¡æ¹éçæ<strong>æ°åä¸ªåä½</strong> â ä¸ååªè¾ãå å ãé³é¢ãæ¶é¿ â ç¨äº MetaãTikTok å YouTube å¹¿åã",
+    builtForLabel:"适合谁", builtForTitle:"为重复制作相同内容的人而生",
+    builtForSub:"如果你需要对多个文件进行重复处理,BatchRender 把数小时的手工劳动变成一次渲染。",
+    uc1tag:"SMM 与内容代理", uc1t:"30 个客户视频。一个管道。",
+    uc1d:"拖入一个客户片段文件夹,应用<strong>Logo + 片头 + 9:16 裁剪</strong>,点击渲染。同样的品牌,同样的格式,每次都一致。再也不用在 30 个时间线编辑之间切换标签。",
+    uc2tag:"播客主与创作者", uc2t:"用几小时重新打包你的存档,而不是几周",
+    uc2d:"旧节目、讲座、直播 — 通过一个管道,得到一个文件夹的<strong>Shorts/Reels 就绪片段</strong>。整个过往内容统一裁剪、统一片尾、统一音量。",
+    uc3tag:"效果营销人员", uc3t:"从一个源生成 100 个广告创意变体",
+    uc3d:"大规模测试创意。从单个基础片段一次批量生成<strong>数十个变体</strong> — 不同剪辑、叠加、音频、时长 — 用于 Meta、TikTok 和 YouTube 广告。",
 
-    howLabel:"å·¥ä½åç", howTitle:"ä¸æ­¥ãç¶åå®èªå·±è¿è¡ã",
-    howSub:"ä½ å®ä¹ä¸æ¬¡ç®¡éãBatchRender åºç¨å°æ¹æ¬¡ä¸­çæ¯ä¸ä¸ªæä»¶ã",
-    step1n:"æ­¥éª¤ 01", step1t:"æå¥æä»¶å¤¹",
-    step1d:"æå¥ 100 ä¸ª .mp4 æä»¶,æç²è´´ä¸ä¸ª URL åè¡¨ãBatchRender å¨é¨è¯»å¥ Video Input èç¹ â æ éæå¨å¯¼å¥,æ éå½åè§åã",
-    step2n:"æ­¥éª¤ 02", step2t:"æå»ºç®¡é",
-    step2d:"è¿æ¥èç¹:<strong>Video Input â Cutter â Add Audio â Add Logo â Output</strong>ãåæ°è®¾ç½®ä¸æ¬¡ãå¾å½¢å°±æ¯ä½ çç¼è¾éæ¹ â å¯è§ãå¯ç¼è¾ãå¯éç¨ã",
-    step3n:"æ­¥éª¤ 03", step3t:"å¨æ´ä¸ªæ¹æ¬¡ä¸è¿è¡",
-    step3d:"ä¸é®ãæ¯ä¸ªæä»¶ç»è¿ç¸åçç®¡éãå®æ¶è§çè¿åº¦,å¾å°ä¸ä¸ªæä»¶å¤¹çæå MP4ãæç®¡éä¿å­ä¸ºé¢è®¾,ä¸å¨åç¨ã",
+    howLabel:"工作原理", howTitle:"三步。然后它自己运行。",
+    howSub:"你定义一次管道。BatchRender 应用到批次中的每一个文件。",
+    step1n:"步骤 01", step1t:"拖入文件夹",
+    step1d:"拖入 100 个 .mp4 文件,或粘贴一个 URL 列表。BatchRender 全部读入 Video Input 节点 — 无需手动导入,无需命名规则。",
+    step2n:"步骤 02", step2t:"构建管道",
+    step2d:"连接节点:<strong>Video Input → Cutter → Add Audio → Add Logo → Output</strong>。参数设置一次。图形就是你的编辑配方 — 可见、可编辑、可重用。",
+    step3n:"步骤 03", step3t:"在整个批次上运行",
+    step3d:"一键。每个文件经过相同的管道。实时观看进度,得到一个文件夹的成品 MP4。把管道保存为预设,下周再用。",
 
-    featuresLabel:"èç¹", featuresTitle:"æ¯ä¸ªèç¹é½æå®çä½ç½®",
-    featuresSub:"å­ä¸ªèç¹è¦çåä½èçæ­£éå¤çæä½:è¾å¥ãåªè¾ãå å ãé³é¢ãæ¥æºãåæ¢ã",
-    f1t:"è¾å¥æä»¶å¤¹,æ¹éè¾åº", f1d:"å° Video Input æå .mp4 / .mov æä»¶å¤¹ãèç¹è¯»ååæ°æ®ãæ¶é¿ãå¤§å° â ç®¡éçå¶ä½é¨åèªå¨åºç¨äºå¨é¨æä»¶ã", f1tag:"è¾å¥",
-    f2t:"ç¨åæ ·çæ¹å¼åªè¾æ¯ä¸ªæä»¶", f2d:"å¸§çº§ç²¾åº¦ç Cutter,æ¯ææ¶é´ç è¾å¥ãåªæçå¤´ãåçææ®µãå é¤éé³ â åä¸è§åä¸æ¬¡åºç¨äºæ°ç¾ä¸ªæä»¶ã", f2tag:"åªè¾",
-    f3t:"æ°´å°ä¸ Logo å å ", f3d:"ä¸ºæ¹æ¬¡ä¸­çæ¯ä¸ªè§é¢å å  Logo ææ°´å°ãä½ç½®ãç¼©æ¾ãä¸éæåº¦ â è®¾ç½®ä¸æ¬¡,ä¸è´åºç¨ãä¸æ¬¡æ¸²æä¸ºæ´ä¸ªå®¢æ·æä»¶å¤¹æä¸åçã", f3tag:"åç",
-    f4t:"é³ä¹ãéé³ãéé³", f4d:"æ·»å èæ¯é³ä¹ãéé³,æå³é­åå§é³é¢ãæ··åå¤ä¸ªè½¨éãæ¯è½¨ç¬ç«é³éãåæ ·çé³é¢éæ¹åºç¨äºéåä¸­çæ¯ä¸ªæä»¶ã", f4tag:"é³é¢",
-    f5t:"ä» URL æåæ¥æº", f5d:"åç½® URL ä¸è½½å¨(yt-dlp)ãç²è´´é¾æ¥åè¡¨,BatchRender æåæºç´ æå¹¶ç´æ¥éå¥ä½ çç®¡é â æ éåç¬çä¸è½½æ­¥éª¤ã", f5tag:"æ¥æº",
-    f6t:"æ­å®¢èªå¨éé³ç§»é¤", f6d:"èªå¨æ£æµå¹¶å é¤éé³æ®µãå¯è°çµæåº¦ãé´è·ãéå¼ãä¸æ¬¡æ¹éå°æ°å°æ¶å½é³å¤çä¸ºå¹²åçå¯¼åºæä»¶ã", f6tag:"æ­å®¢", soonBadge:"å³å°æ¨åº",
-    f7t:"ç¤¾äº¤åªä½ç«å±æ¨¡ç³", f7d:"å°æ¨ªå±è§é¢è½¬æ¢ä¸º 9:16 å¸¦æ¨¡ç³èæ¯å¡«åãä¸ä¸ªèç¹,æ éæå¨ After Effects å·¥ä½ â å®ç¾ééæ¹é ReelsãShorts å TikTokã", f7tag:"åæ¢",
+    featuresLabel:"节点", featuresTitle:"每个节点都有它的位置",
+    featuresSub:"六个节点覆盖创作者真正重复的操作:输入、剪辑、叠加、音频、来源、变换。",
+    f1t:"输入文件夹,批量输出", f1d:"将 Video Input 指向 .mp4 / .mov 文件夹。节点读取元数据、时长、大小 — 管道的其余部分自动应用于全部文件。", f1tag:"输入",
+    f2t:"用同样的方式剪辑每个文件", f2d:"帧级精度的 Cutter,支持时间码输入。剪掉片头、切片成段、删除静音 — 同一规则一次应用于数百个文件。", f2tag:"剪辑",
+    f3t:"水印与 Logo 叠加", f3d:"为批次中的每个视频叠加 Logo 或水印。位置、缩放、不透明度 — 设置一次,一致应用。一次渲染为整个客户文件夹打上品牌。", f3tag:"品牌",
+    f4t:"音乐、配音、静音", f4d:"添加背景音乐、配音,或关闭原始音频。混合多个轨道。每轨独立音量。同样的音频配方应用于队列中的每个文件。", f4tag:"音频",
+    f5t:"从 URL 拉取来源", f5d:"内置 URL 下载器(yt-dlp)。粘贴链接列表,BatchRender 拉取源素材并直接送入你的管道 — 无需单独的下载步骤。", f5tag:"来源",
+    f6t:"播客自动静音移除", f6d:"自动检测并删除静音段。可调灵敏度、间距、阈值。一次批量将数小时录音处理为干净的导出文件。", f6tag:"播客", soonBadge:"即将推出",
+    f7t:"社交媒体竖屏模糊", f7d:"将横屏视频转换为 9:16 带模糊背景填充。一个节点,无需手动 After Effects 工作 — 完美适配批量 Reels、Shorts 和 TikTok。", f7tag:"变换",
 
-    mathLabel:"ç®ç¬è´¦", mathTitle:"ä½ çæ¶é´æ¯ä½ çè½¯ä»¶æ´å¼é±ã",
-    mathSub:"å¸åçå®¢æ·äº¤ä»,ä»å¤´å°å°¾ãåæ ·çæä»¶ãåæ ·çè¾åºãä¸¤ç§æªç¶ä¸åçå®ææ¹å¼ã",
-    mathEq:'<span class="accent">25 ä¸ªæºçæ®µ</span> Ã <span class="accent">25 ä¸ªçå°¾</span> Ã <span class="accent">4 ç§å¯¼åºæ ¼å¼</span> = <span class="result">2,500 ä¸ªæç»æä»¶</span>',
-    mathBadTitle:"æ²¡æ BatchRender",
-    mathBadR1l:"é¡¹ç®æ°", mathBadR1v:"20+ ç¬ç«é¡¹ç®",
-    mathBadR2l:"æä¸æ¸²ææ¬¡æ°", mathBadR2v:"100+",
-    mathBadR3l:"æä»¶å½å", mathBadR3v:"æå¨",
-    mathBadR4l:"ä¸æ³¨åº¦", mathBadR4v:"æç»­æå¥",
-    mathBadR5l:"èæ¶", mathBadR5v:"~3 å°æ¶",
-    mathBadR6l:"åªè¾å¸å·¥æ¶ææ¬", mathBadR6v:"æ¯é¡¹ç® $60 â $150",
-    mathGoodTitle:"ä½¿ç¨ BatchRender",
-    mathGoodR1l:"é¡¹ç®æ°", mathGoodR1v:"1 ä¸ªå¾",
-    mathGoodR2l:"æä¸æ¸²ææ¬¡æ°", mathGoodR2v:"1 æ¬¡ç¹å»",
-    mathGoodR3l:"æä»¶å½å", mathGoodR3v:"èªå¨",
-    mathGoodR4l:"ä¸æ³¨åº¦", mathGoodR4v:"è®¾ç½®åå¿æ",
-    mathGoodR5l:"èæ¶", mathGoodR5v:"~5 åéè®¾ç½®",
-    mathGoodR6l:"ææ¬", mathGoodR6v:"æ¯æ $15 å¨å",
-    mathBottom:"<strong>BatchRender ç¬¬ä¸æ¬¡ä½¿ç¨å°±åæ¬ã</strong><br>ä¸å° Adobe CC è®¢éä»·æ ¼çä¸åã",
+    mathLabel:"算笔账", mathTitle:"你的时间比你的软件更值钱。",
+    mathSub:"典型的客户交付,从头到尾。同样的文件。同样的输出。两种截然不同的完成方式。",
+    mathEq:'<span class="accent">25 个源片段</span> × <span class="accent">25 个片尾</span> × <span class="accent">4 种导出格式</span> = <span class="result">2,500 个最终文件</span>',
+    mathBadTitle:"没有 BatchRender",
+    mathBadR1l:"项目数", mathBadR1v:"20+ 独立项目",
+    mathBadR2l:"按下渲染次数", mathBadR2v:"100+",
+    mathBadR3l:"文件命名", mathBadR3v:"手动",
+    mathBadR4l:"专注度", mathBadR4v:"持续投入",
+    mathBadR5l:"耗时", mathBadR5v:"~3 小时",
+    mathBadR6l:"剪辑师工时成本", mathBadR6v:"每项目 $60 – $150",
+    mathGoodTitle:"使用 BatchRender",
+    mathGoodR1l:"项目数", mathGoodR1v:"1 个图",
+    mathGoodR2l:"按下渲染次数", mathGoodR2v:"1 次点击",
+    mathGoodR3l:"文件命名", mathGoodR3v:"自动",
+    mathGoodR4l:"专注度", mathGoodR4v:"设置后忘掉",
+    mathGoodR5l:"耗时", mathGoodR5v:"~5 分钟设置",
+    mathGoodR6l:"成本", mathGoodR6v:"每月 $15 全包",
+    mathBottom:"<strong>BatchRender 第一次使用就回本。</strong><br>不到 Adobe CC 订阅价格的一半。",
 
-    manifestoNo:"æ ",
-    manifestoW1:"Token", manifestoW2:"éå¶", manifestoW3:"äºç«¯", manifestoW4:"æå¤", manifestoW5:"é­æ³",
-    manifestoJust:"åªæ¯",
-    manifestoTagline:"<strong>æä»¶è¿ãæä»¶åºã</strong>å¨ä½ ççµèä¸ã",
+    manifestoNo:"无",
+    manifestoW1:"Token", manifestoW2:"限制", manifestoW3:"云端", manifestoW4:"意外", manifestoW5:"魔法",
+    manifestoJust:"只是",
+    manifestoTagline:"<strong>文件进。文件出。</strong>在你的电脑上。",
 
-    whynotLabel:"ä¸ºåªè¾å¸èå",
-    whynotTitle:"ä¸ºçæ­£åªè¾è§é¢çäººèåã",
-    whynotSub:"å¯é¢æãå¯éå¤ãå±äºä½ ã",
-    whynot1:"æä»¶å§ç»çå¨ä½ ççµèä¸ã",
-    whynot2:"è¿è¡åæ¯ä¸æ­¥é½å¯è§ã",
-    whynot3:"ç¸åè¾å¥,å§ç»ç¸åè¾åºã",
-    whynot4:"æ¸²æä¸æ¬¡è¿æ¯ä¸åæ¬¡,ææ¬ä¸åã",
-    whynot5:"ç¦»çº¿å¯ç¨ãé£æºä¸å¯ç¨ãå°ä¸å®¤ä¹è½è·ã",
-    whynot6:"æ²¡æç§¯åãæ²¡æ Tokenãæ²¡æå¥é¤éå¶ã",
-    whynotBottom:"// å¯é¢æãå¯éå¤ãå±äºä½ ã",
+    whynotLabel:"为剪辑师而做",
+    whynotTitle:"为真正剪辑视频的人而做。",
+    whynotSub:"可预期。可重复。属于你。",
+    whynot1:"文件始终留在你的电脑上。",
+    whynot2:"运行前每一步都可见。",
+    whynot3:"相同输入,始终相同输出。",
+    whynot4:"渲染一次还是上千次,成本不变。",
+    whynot5:"离线可用。飞机上可用。地下室也能跑。",
+    whynot6:"没有积分。没有 Token。没有套餐限制。",
+    whynotBottom:"// 可预期。可重复。属于你。",
 
-    finalCtaTitle:"å«åææ¶é´æµªè´¹å¨éå¤å¯¼åºä¸ã",
-    finalCtaSub:"ä¸è½½ BatchRenderãåè´¹è¯ç¨,æ éæ³¨å,æ äºç«¯ãè¯ç¨æ¯ä¸ªèç¹ãæå»ºä»»æç®¡éãçæ¯å¦éåä½ çå·¥ä½æ¹å¼ã",
-    finalCtaMac:"ä¸è½½ Mac ç", finalCtaWin:"ä¸è½½ Windows ç",
-    finalCtaConvinced:"å·²ç»ä¸å®å³å¿?", finalCtaPricing:"æ¥çä»·æ ¼ â",
+    finalCtaTitle:"别再把时间浪费在重复导出上。",
+    finalCtaSub:"下载 BatchRender。免费试用,无需注册,无云端。试用每个节点。构建任意管道。看是否适合你的工作方式。",
+    finalCtaMac:"下载 Mac 版", finalCtaWin:"下载 Windows 版",
+    finalCtaConvinced:"已经下定决心?", finalCtaPricing:"查看价格 →",
 
-    videosLabel:"æç¨", videosTitle:"çè§é¢å­¦ä¹ ",
-    videosSub:"åæ­¥è§é¢æ¶µçèç¹ãç®¡éåçå®æ¹éå·¥ä½æµã",
-    videosEmptyTitle:"æç¨å¶ä½ä¸­", videosEmptySub:"é¦æ¹è§é¢å³å°æ¨åºãåä¸è½½åè´¹çè¯è¯çã",
+    videosLabel:"教程", videosTitle:"看视频学习",
+    videosSub:"分步视频涵盖节点、管道和真实批量工作流。",
+    videosEmptyTitle:"教程制作中", videosEmptySub:"首批视频即将推出。先下载免费版试试看。",
 
-    pricingLabel:"ä»·æ ¼", pricingTitle:"ç®åæ¹æ¡,çå®ææ£",
-    pricingSub:"è®¢éèªå¨ç»­è´¹ãå¯éæ¶åæ¶ãæææ¹æ¡åæ¯æ 2 å°è®¾å¤æ¿æ´»ã",
-    pricingNote:"ææä»·æ ¼ä»¥ç¾å (USD) è®¡ç®ãæ¬§çå®¢æ·å¨ç»è´¦æ¶èªå¨æ·»å å¢å¼ç¨ã",
-    p1tier:"æåº¦", p1price:"15", p1old:"20", p1vat:"/ æ + VAT", p1period:"æ¯æèªå¨ç»­è´¹ Â· 2 å°è®¾å¤", p1savings:"åä»· â25%",
-    p1f1:"å®æ´èç¹å¼ç¼è¾å¨", p1f2:"ææå½ååæªæ¥èç¹", p1f3:"2 å°è®¾å¤è®¸å¯è¯", p1f4:"æ æ°´å°", p1f5:"å¯éæ¶åæ¶",
-    p1cta:"å¼å§æåº¦è®¢é",
-    p2tier:"å¹´åº¦", p2price:"160", p2old:"200", p2vat:"/ å¹´ + VAT", p2period:"æ¯å¹´èªå¨ç»­è´¹ Â· 2 å°è®¾å¤", p2savings:"ç $80/å¹´ Â· çº¦ $13.33/æ",
-    p2f1:"åå«æåº¦æ¹æ¡çææåå®¹", p2f2:"12 ä¸ªæä»çº¦ 10 ä¸ªæçä»·æ ¼", p2f3:"ä¼åé®ä»¶æ¯æ", p2f4:"2 å°è®¾å¤è®¸å¯è¯", p2f5:"ç»­è´¹åå¯åæ¶",
-    p2cta:"å¼å§å¹´åº¦è®¢é",
-    p3tier:"3 ä¸ªæ", p3price:"40", p3old:"50", p3vat:"/ 3 ä¸ªæ + VAT", p3period:"æ¯ 3 ä¸ªæèªå¨ç»­è´¹ Â· 2 å°è®¾å¤", p3savings:"ç $10/å­£ Â· çº¦ $13.33/æ",
-    p3f1:"åå«æåº¦æ¹æ¡çææåå®¹", p3f2:"3 ä¸ªæä»çº¦ 2.7 ä¸ªæçä»·æ ¼", p3f3:"2 å°è®¾å¤è®¸å¯è¯", p3f4:"ç»­è´¹åå¯åæ¶",
-    p3cta:"å¼å§ 3 ä¸ªæè®¢é",
-    popularBadge:"æè¶å¼",
+    pricingLabel:"价格", pricingTitle:"简单方案,真实折扣",
+    pricingSub:"订阅自动续费。可随时取消。所有方案均支持 2 台设备激活。",
+    pricingNote:"所有价格以美元 (USD) 计算。欧盟客户在结账时自动添加增值税。",
+    p1tier:"月度", p1price:"15", p1old:"20", p1vat:"/ 月 + VAT", p1period:"每月自动续费 · 2 台设备", p1savings:"原价 −25%",
+    p1f1:"完整节点式编辑器", p1f2:"所有当前和未来节点", p1f3:"2 台设备许可证", p1f4:"无水印", p1f5:"可随时取消",
+    p1cta:"开始月度订阅",
+    p2tier:"年度", p2price:"160", p2old:"200", p2vat:"/ 年 + VAT", p2period:"每年自动续费 · 2 台设备", p2savings:"省 $80/年 · 约 $13.33/月",
+    p2f1:"包含月度方案的所有内容", p2f2:"12 个月仅约 10 个月的价格", p2f3:"优先邮件支持", p2f4:"2 台设备许可证", p2f5:"续费前可取消",
+    p2cta:"开始年度订阅",
+    p3tier:"3 个月", p3price:"40", p3old:"50", p3vat:"/ 3 个月 + VAT", p3period:"每 3 个月自动续费 · 2 台设备", p3savings:"省 $10/季 · 约 $13.33/月",
+    p3f1:"包含月度方案的所有内容", p3f2:"3 个月仅约 2.7 个月的价格", p3f3:"2 台设备许可证", p3f4:"续费前可取消",
+    p3cta:"开始 3 个月订阅",
+    popularBadge:"最超值",
 
-    freeLabel:"æ°¸ä¹åè´¹", freeTitle:"åè´¹è¯ç¨,å¸¦æ°´å°",
-    freeSub:"ä¸è½½ BatchRender,æå»ºç®¡é,ä»»ææ¸²æãè¾åºä¼å¸¦ä¸ä¸ªå°æ°´å°,ç´å°æ¿æ´»è®¸å¯è¯ â æ æ¶é´éå¶,æ éèè¿æã",
-    freePerk1:"ææèç¹è§£é", freePerk2:"æä»¶æ°éæ éå¶", freePerk3:"æ æ¶é´éå¶", freePerk4:"æ¿æ´»åæ°´å°æ¶å¤±",
-    dlMac:"ä¸è½½ macOS ç", dlWin:"ä¸è½½ Windows ç",
-    demoPlaceholderTitle:"æ¼ç¤ºè§é¢å³å°æ¨åº", demoPlaceholderSub:"å° demo.mp4 æ¾å¥ /img/ ç®å½,å³å¯å¨æ­¤å¤æ­æ¾ã",
+    freeLabel:"永久免费", freeTitle:"免费试用,带水印",
+    freeSub:"下载 BatchRender,构建管道,任意渲染。输出会带一个小水印,直到激活许可证 — 无时间限制,无隐藏过期。",
+    freePerk1:"所有节点解锁", freePerk2:"文件数量无限制", freePerk3:"无时间限制", freePerk4:"激活后水印消失",
+    dlMac:"下载 macOS 版", dlWin:"下载 Windows 版",
+    demoPlaceholderTitle:"演示视频即将推出", demoPlaceholderSub:"将 demo.mp4 放入 /img/ 目录,即可在此处播放。",
 
-    faqLabel:"å¸¸è§é®é¢", faqTitle:"å¸¸è§é®é¢ã",
+    faqLabel:"常见问题", faqTitle:"常见问题。",
     faqList:[
-      {q:"BatchRender ä¼åä»£ DaVinciãPremiere æ Final Cut å?", a:"ä¸ä¼ãBatchRender æ¨å¨ä¸ä½ éæ©çåªè¾å¨å¹¶è©å·¥ä½ãä½ ç»§ç»­å¨åæ¥çå°æ¹åªè¾ãBatchRender æ¥ç®¡æ¹éå¯¼åºãæ ¼å¼åä½ãå æ°´å°ãéå½ååäº¤ä»å·¥ä½ã"},
-      {q:"æ¯æåªäºå¹³å°?", a:"BatchRender æä¾ macOS(Apple Silicon å Intel)å Windows çåçæå»ºãç®åä¸æ¯æ Linuxã"},
-      {q:"åè´¹è¯ç¨ççæ éå¶å?", a:"æ¯çãæ æ¶é´éå¶ãæ æä»¶æ°ééå¶ãææèç¹è§£éãå¯ä¸çéå¶æ¯è¾åºå¸¦æå°æ°´å°ã<strong>URL ä¸è½½å¨æ°¸è¿æ æ°´å°</strong> â å³ä½¿å¨åè´¹è¯ç¨çä¸­ä¹æ¯å¦æ­¤ã"},
-      {q:"æçæä»¶ä¼ç¦»å¼æççµèå?", a:"ä¸ä¼ãä¸åé½å¨ä½ ççµèä¸è¿è¡ãæä»¶æ°¸è¿ä¸ä¼ç¦»å¼ä½ ççµè â æ²¡æäºä¸ä¼ ,æ²¡æåå®¹é¥æµ,æ²¡ææåéæ¶è´¹ãFFmpeg å¨æ¬å°å®æææå·¥ä½ã"},
-      {q:"å¯ä»¥ç¨äºåä¸é¡¹ç®å?", a:"å¯ä»¥ãææä»è´¹æ¹æ¡é½åå«å®æ´çåä¸ä½¿ç¨æãå®¢æ·å·¥ä½ãä»è´¹åå®¹,ä»»ä½ç¨éé½å¯ä»¥ã"},
-      {q:"å¯ä»¥å¨å¤å°å°è®¾å¤ä¸æ¿æ´»?", a:"æææ¹æ¡é½åå« 2 å°è®¾å¤æ¿æ´» â å¸åè®¾ç½®å¦ç¬è®°æ¬åå°å¼æºãå¯éæ¶åç¨ä¸å°å¹¶å°åé¢è½¬ç§»å°å¦ä¸å°è®¾å¤ã"},
-      {q:"BatchRender ä½¿ç¨ AI å?", a:"ä¸ãæ¯ä¸ªæä½é½æ¯ç¡®å®æ§ç â ç¸åè¾å¥,å§ç»ç¸åè¾åºãè¿è¡åæ¯ä¸ªèç¹çè¡ä¸ºé½å¯è§ãæ²¡æãé­æ³ãã"},
-      {q:"è®¢éå¦ä½è¿ä½?", a:"éæ©æåº¦ãå­£åº¦æå¹´åº¦ãå¨æ¯ä¸ªå¨æç»ææ¶èªå¨ç»­è´¹ãå¯ä»¥éæ¶åæ¶ â è®¸å¯è¯å¨å·²ä»è´¹æé´åä¿æææ,ä¹åæ°´å°ä¼åæ¥ã"},
-      {q:"å¯ä»¥åæ¶å¹¶éæ¬¾å?", a:"å¯ä»¥éæ¶ä»è´¦æ·ä¸­åæ¶èªå¨ç»­è´¹ãå 14 å¤©åçéæ¬¾è¯·éè¿ä¸æ¹è¡¨åèç³»,éæ¡å¤çã"},
-      {q:"BatchRender ç¦»çº¿å¯ç¨å?", a:"æ¸²æåç¼è¾å®å¨ç¦»çº¿å·¥ä½ãè®¸å¯è¯æ¿æ´»éè¦ä¸æ¬¡æ§å¨çº¿éªè¯,ä¹ååºç¨ç¨åºå¨è®¢éæé´åå¯ç¦»çº¿å·¥ä½ã"},
-      {q:"è®¡åéæä»ä¹?", a:"è·¯çº¿å¾ä¸æä»ä¸»æµ NLE å¯¼å¥ XML/EDL çåè½ãç®æ æ¯è®© BatchRender ç´æ¥åµå¥ç°æçåæå¶ä½æµæ°´çº¿ã"},
-      {q:"å¢å¼ç¨æä¹ç®?", a:"æ¬§çå®¢æ·éå¨æ ä»·åºç¡ä¸æ¯ä»å¢å¼ç¨,ç»è´¦æ¶æ ¹æ®æå¨å½å®¶èªå¨è®¡ç®ãéæ¬§çå®¢æ·éå¸¸ææ ä»·æ¯ä»ã"}
+      {q:"BatchRender 会取代 DaVinci、Premiere 或 Final Cut 吗?", a:"不会。BatchRender 旨在与你选择的剪辑器并肩工作。你继续在原来的地方剪辑。BatchRender 接管批量导出、格式变体、加水印、重命名和交付工作。"},
+      {q:"支持哪些平台?", a:"BatchRender 提供 macOS(Apple Silicon 和 Intel)和 Windows 的原生构建。目前不支持 Linux。"},
+      {q:"免费试用真的无限制吗?", a:"是的。无时间限制、无文件数量限制、所有节点解锁。唯一的限制是输出带有小水印。<strong>URL 下载器永远无水印</strong> — 即使在免费试用版中也是如此。"},
+      {q:"我的文件会离开我的电脑吗?", a:"不会。一切都在你的电脑上运行。文件永远不会离开你的电脑 — 没有云上传,没有内容遥测,没有按分钟收费。FFmpeg 在本地完成所有工作。"},
+      {q:"可以用于商业项目吗?", a:"可以。所有付费方案都包含完整的商业使用权。客户工作、付费内容,任何用途都可以。"},
+      {q:"可以在多少台设备上激活?", a:"所有方案都包含 2 台设备激活 — 典型设置如笔记本和台式机。可随时停用一台并将名额转移到另一台设备。"},
+      {q:"BatchRender 使用 AI 吗?", a:"不。每个操作都是确定性的 — 相同输入,始终相同输出。运行前每个节点的行为都可见。没有「魔法」。"},
+      {q:"订阅如何运作?", a:"选择月度、季度或年度。在每个周期结束时自动续费。可以随时取消 — 许可证在已付费期间内保持有效,之后水印会回来。"},
+      {q:"可以取消并退款吗?", a:"可以随时从账户中取消自动续费。前 14 天内的退款请通过下方表单联系,逐案处理。"},
+      {q:"BatchRender 离线可用吗?", a:"渲染和编辑完全离线工作。许可证激活需要一次性在线验证,之后应用程序在订阅期间内可离线工作。"},
+      {q:"计划集成什么?", a:"路线图上有从主流 NLE 导入 XML/EDL 的功能。目标是让 BatchRender 直接嵌入现有的后期制作流水线。"},
+      {q:"增值税怎么算?", a:"欧盟客户需在标价基础上支付增值税,结账时根据所在国家自动计算。非欧盟客户通常按标价支付。"}
     ],
 
-    contactLabel:"èç³»", contactTitle:"èç³»æä»¬",
-    contactSub:"è®¸å¯è¯ãææ¯é®é¢ãåè½å»ºè®® â éè¿è¡¨åçè¨,æä¼å°½å¿«åå¤ã",
-    formName:"æ¨çå§å", formEmail:"é®ç®±å°å", formSubject:"ä¸»é¢", formMessage:"çè¨",
-    subj1:"è®¸å¯è¯é®é¢", subj2:"ææ¯é®é¢", subj3:"åè½å»ºè®®", subj4:"éæ¬¾ / è´¦å", subj5:"å¶ä»",
-    sendBtn:"åéæ¶æ¯",
+    contactLabel:"联系", contactTitle:"联系我们",
+    contactSub:"许可证、技术问题、功能建议 — 通过表单留言,我会尽快回复。",
+    formName:"您的姓名", formEmail:"邮箱地址", formSubject:"主题", formMessage:"留言",
+    subj1:"许可证问题", subj2:"技术问题", subj3:"功能建议", subj4:"退款 / 账单", subj5:"其他",
+    sendBtn:"发送消息",
 
-    footerDesc:"DaVinciãPremiereãFinal Cut å CapCut çéå¥å·¥å·ãé¢åå¤§éäº¤ä»å®¢æ·ä½åçåªè¾å¸çæ¬å°æ¹éè§é¢å¤çã",
-    fcProduct:"äº§å", fcBuiltFor:"éåè°", fcHow:"å·¥ä½åç", fcFeatures:"èç¹", fcPricing:"ä»·æ ¼", fcFree:"åè´¹ä¸è½½",
-    fcSupport:"æ¯æ", fcContact:"èç³»", fcFaq:"å¸¸è§é®é¢", fcGitHub:"GitHub",
-    fcLegal:"æ³å¾", fcPrivacy:"éç§æ¿ç­", fcTerms:"æå¡æ¡æ¬¾", fcRefund:"éæ¬¾æ¿ç­", fcEula:"æç»ç¨æ·è®¸å¯åè®®",
-    copyright:"Â© 2026 BatchRender Â· çæææ"
+    footerDesc:"DaVinci、Premiere、Final Cut 和 CapCut 的配套工具。面向大量交付客户作品的剪辑师的本地批量视频处理。",
+    fcProduct:"产品", fcBuiltFor:"适合谁", fcHow:"工作原理", fcFeatures:"节点", fcPricing:"价格", fcFree:"免费下载",
+    fcSupport:"支持", fcContact:"联系", fcFaq:"常见问题", fcGitHub:"GitHub",
+    fcLegal:"法律", fcPrivacy:"隐私政策", fcTerms:"服务条款", fcRefund:"退款政策", fcEula:"最终用户许可协议",
+    copyright:"© 2026 BatchRender · 版权所有"
   ,
-    pricingEyebrow:"ä»·æ ¼ Â· 4 ä¸ªæ¹æ¡",
-    pricingMeta:"æ´æ°äº Â· 2026",
-    pricingTitlePart1:"ç©ææå¼ç",
-    pricingTitlePart2:"å®ä»·æ¹æ¡ã",
-    pricingToggleSub:"è®¢é",
-    pricingToggleOne:"ä¸æ¬¡æ§",
-    p1tier:"æåº¦",
-    p1sub:"è®¢é",
+    pricingEyebrow:"价格 · 4 个方案",
+    pricingMeta:"更新于 · 2026",
+    pricingTitlePart1:"物有所值的",
+    pricingTitlePart2:"定价方案。",
+    pricingToggleSub:"订阅",
+    pricingToggleOne:"一次性",
+    p1tier:"月度",
+    p1sub:"订阅",
     p1kind:"Sub",
-    p1period:"æ¯æ + å¢å¼ç¨ Â· èªå¨ç»­è´¹",
-    p1savings:"çµæ´» Â· éæ¶åæ¶",
-    p1cta:"å¼å§æåº¦è®¢é",
-    popularBadge:"æè¶å¼",
-    p2chip:"â20% ææ£",
-    p2tier:"å¹´åº¦",
-    p2sub:"è®¢é Â· 12 ä¸ªæ",
-    p2period:"æ¯å¹´ + å¢å¼ç¨ Â· çº¦ â¬13.33/æ",
-    p2savings:"12 ä¸ªæä» 10 ä¸ªæçä»·æ ¼",
-    p2cta:"å¼å§å¹´åº¦è®¢é",
-    p3tier:"1 ä¸ªæ",
-    p3sub:"ä¸æ¬¡æ§ä»æ¬¾",
-    p3kind:"ä¸æ¬¡æ§",
-    p3period:"ä¸æ¬¡æ§ä»æ¬¾ Â· 30 å¤©è®¿é®",
-    p3savings:"æ éè®¢é",
-    p3cta:"è´­ä¹° 1 ä¸ªæ",
-    p4tier:"3 ä¸ªæ",
-    p4sub:"ä¸æ¬¡æ§ä»æ¬¾",
-    p4kind:"ä¸æ¬¡æ§",
-    p4period:"ä¸æ¬¡æ§ä»æ¬¾ Â· 90 å¤©è®¿é®",
-    p4savings:"æ¯ 3Ã æåº¦èç â¬10",
-    p4cta:"è´­ä¹° 3 ä¸ªæ",
-    mqA1:"2 å°è®¾å¤æ¿æ´»",
-    mqA3:"ææå½ååæªæ¥èç¹",
-    mqA4:"éæ¬¾çªå£",
-    mqA5:"ç»­è´¹æ æå¤",
-    mqA7:"é¶è¡å¡ Â· PayPal Â· Apple Pay",
-    mqB1:"2 å°è®¾å¤æ¿æ´»",
-    mqB3:"ææå½ååæªæ¥èç¹",
-    mqB4:"éæ¬¾çªå£",
-    mqB5:"ç»­è´¹æ æå¤",
-    mqB7:"é¶è¡å¡ Â· PayPal Â· Apple Pay",
-    footPay:"å®å¨æ¯ä»",
-    footRefund:"14 å¤©éæ¬¾",
-    footMethods:"é¶è¡å¡ Â· PayPal Â· Apple Pay",
-    footVat:"ææä»·æ ¼ä»¥æ¬§å (EUR) è®¡ç®ãç»è´¦æ¶æ·»å å¢å¼ç¨ã",
-    downloadMeta:"{VERSION} Â· 2026 å¹´åå¸",
-    downloadTitlePart1:"åè´¹è¯ç¨,",
-    downloadTitlePart2:"å¸¦æ°´å°ã",
-    dlMacChip:"æ¯æ Apple Silicon",
+    p1period:"每月 + 增值税 · 自动续费",
+    p1savings:"灵活 · 随时取消",
+    p1cta:"开始月度订阅",
+    popularBadge:"最超值",
+    p2chip:"−20% 折扣",
+    p2tier:"年度",
+    p2sub:"订阅 · 12 个月",
+    p2period:"每年 + 增值税 · 约 €13.33/月",
+    p2savings:"12 个月仅 10 个月的价格",
+    p2cta:"开始年度订阅",
+    p3tier:"1 个月",
+    p3sub:"一次性付款",
+    p3kind:"一次性",
+    p3period:"一次性付款 · 30 天访问",
+    p3savings:"无需订阅",
+    p3cta:"购买 1 个月",
+    p4tier:"3 个月",
+    p4sub:"一次性付款",
+    p4kind:"一次性",
+    p4period:"一次性付款 · 90 天访问",
+    p4savings:"比 3× 月度节省 €10",
+    p4cta:"购买 3 个月",
+    mqA1:"2 台设备激活",
+    mqA3:"所有当前和未来节点",
+    mqA4:"退款窗口",
+    mqA5:"续费无意外",
+    mqA7:"银行卡 · PayPal · Apple Pay",
+    mqB1:"2 台设备激活",
+    mqB3:"所有当前和未来节点",
+    mqB4:"退款窗口",
+    mqB5:"续费无意外",
+    mqB7:"银行卡 · PayPal · Apple Pay",
+    footPay:"安全支付",
+    footRefund:"14 天退款",
+    footMethods:"银行卡 · PayPal · Apple Pay",
+    footVat:"所有价格以欧元 (EUR) 计算。结账时添加增值税。",
+    downloadMeta:"{VERSION} · 2026 年发布",
+    downloadTitlePart1:"免费试用,",
+    downloadTitlePart2:"带水印。",
+    dlMacChip:"支持 Apple Silicon",
     dlMacTtl:"macOS",
-    dlMacSub:"12 Monterey ææ´æ°çæ¬",
-    dlMacArch:"Apple è¯ç",
-    dlMacStatNote:"å·²å¬è¯",
-    dlMacStatNoteVal:"æ¯",
+    dlMacSub:"12 Monterey 或更新版本",
+    dlMacArch:"Apple 芯片",
+    dlMacStatNote:"已公证",
+    dlMacStatNoteVal:"是",
     dlMacMeta:"Apple Silicon (M1+)",
-    dlWinChip:"x64 æå»º",
+    dlWinChip:"x64 构建",
     dlWinTtl:"Windows",
     dlWinSub:"Windows 10 / 11",
     dlWinArch:"x64",
-    dlWinStatNote:"å·²ç­¾å",
-    dlWinStatNoteVal:"å¦",
+    dlWinStatNote:"已签名",
+    dlWinStatNoteVal:"否",
     dlWinMeta:"Windows 10/11",
-    dlStatSize:"å¤§å°",
-    dlStatFormat:"æ ¼å¼",
-    dlStatSize2:"å¤§å°",
-    dlStatFormat2:"æ ¼å¼",
-    dlReleaseNotes:"åè¡è¯´æ",
-    dlReleaseNotes2:"åè¡è¯´æ",
-    dlPerksLabel:"åå«åå®¹",
-    dlFootSigned:"ä»£ç ç­¾åå¹¶å¬è¯",
-    dlFootGitHub:"å¨ GitHub ä¸æ¥çåè¡ç",
-    dlFootRight:"ææ°çæ¬æ¬ææ´æ° Â· åç½®èªå¨æ´æ°"
+    dlStatSize:"大小",
+    dlStatFormat:"格式",
+    dlStatSize2:"大小",
+    dlStatFormat2:"格式",
+    dlReleaseNotes:"发行说明",
+    dlReleaseNotes2:"发行说明",
+    dlPerksLabel:"包含内容",
+    dlFootSigned:"代码签名并公证",
+    dlFootGitHub:"在 GitHub 上查看发行版",
+    dlFootRight:"最新版本本月更新 · 内置自动更新"
   }
 };
 let currentLang = 'en';
 function setLang(lang) {
   currentLang = lang;
   document.querySelectorAll('.lang-btn').forEach(b => {
-    const map = {'en':'EN','ru':'RU','zh':'ä¸­æ'};
+    const map = {'en':'EN','ru':'RU','zh':'中文'};
     b.classList.toggle('active', b.textContent.trim() === map[lang]);
   });
   const t = T[lang];
@@ -5356,7 +5354,7 @@ function submitContactForm() {
   const message = document.getElementById('contactMessage').value.trim();
   if (!name || !email || !message) { alert('Please fill all fields'); return; }
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { alert('Invalid email'); return; }
-  alert('Message sent â thanks, I will reply soon.');
+  alert('Message sent — thanks, I will reply soon.');
   document.getElementById('contactName').value = '';
   document.getElementById('contactEmail').value = '';
   document.getElementById('contactMessage').value = '';
@@ -5386,7 +5384,7 @@ function setupReveal() {
 
   document.querySelectorAll('.usecase-card, .whynot-item, .reveal').forEach(el => observer.observe(el));
 
-  // Section-level reveal â these wrappers trigger their children's .in animations
+  // Section-level reveal — these wrappers trigger their children's .in animations
   const sectionObs = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (e.isIntersecting) {
@@ -5599,7 +5597,7 @@ function setupCountUp() {
   obs.observe(target.closest('.math-section'));
 }
 
-// Live render counter â fake but eye-catching on the hero canvas overlay
+// Live render counter — fake but eye-catching on the hero canvas overlay
 function setupRenderCounter() {
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   const status = document.querySelector('.co-status');
@@ -5612,12 +5610,12 @@ function setupRenderCounter() {
     p = Math.min(99, p + Math.floor(Math.random() * 8) + 2);
     if (p > 95) p = 28; // wrap
     const f = files[Math.floor(Math.random() * files.length)];
-    status.textContent = n + ' / 12 Â· ' + f;
+    status.textContent = n + ' / 12 · ' + f;
     pct.textContent = p + '%';
   }, 1800);
 }
 
-/* âââ Pipeline canvas: drag nodes + recompute wires ââââââââââââââââââââââââ */
+/* ─── Pipeline canvas: drag nodes + recompute wires ──────────────────────── */
 function setupPipeline() {
   const svg = document.getElementById('pipelineSvg');
   if (!svg) return;
@@ -5637,7 +5635,7 @@ function setupPipeline() {
     n.__pos = { ...initial.get(n) };
   });
 
-  // ââ Wire path math ââ
+  // ── Wire path math ──
   // Returns absolute (svg user-space) center of a port circle, accounting for parent node translate
   function portCenter(portId) {
     const port = svg.querySelector('[data-port-id="' + CSS.escape(portId) + '"]');
@@ -5666,7 +5664,7 @@ function setupPipeline() {
       w.__mid = { x: (a.x + b.x) / 2, y: (a.y + b.y) / 2, color: w.getAttribute('stroke') || '#3b9eff' };
     });
 
-    // Junction markers ("=" or "+") â read from each wire's data-junction attr, draw at midpoint
+    // Junction markers ("=" or "+") — read from each wire's data-junction attr, draw at midpoint
     if (junctionsLayer) {
       junctionsLayer.innerHTML = '';
       const ns = 'http://www.w3.org/2000/svg';
@@ -5695,7 +5693,7 @@ function setupPipeline() {
 
   updateWires();
 
-  // ââ Drag handling ââ
+  // ── Drag handling ──
   function clientToSvg(clientX, clientY) {
     const rect = svg.getBoundingClientRect();
     const vb = svg.viewBox.baseVal;
@@ -5768,7 +5766,7 @@ function setupPipeline() {
   window.addEventListener('pointerup', onPointerUp);
   window.addEventListener('pointercancel', onPointerUp);
 
-  // Reset button â animate nodes back to initial positions
+  // Reset button — animate nodes back to initial positions
   const resetBtn = document.getElementById('canvasReset');
   if (resetBtn) {
     resetBtn.addEventListener('click', () => {
@@ -5792,7 +5790,7 @@ function setupPipeline() {
     });
   }
 
-  // ââ Arrival animation: nodes fly into place when canvas scrolls into view ââ
+  // ── Arrival animation: nodes fly into place when canvas scrolls into view ──
   // Each node gets a small per-node offset; on scroll-in we animate back to initial.
   const offsets = [
     { x: -50, y: -30 },   // vin1
@@ -5801,7 +5799,7 @@ function setupPipeline() {
     { x: -40, y:  55 },   // audio
     { x:  70, y:  20 },   // out
   ];
-  // Pre-shift each node visually (without changing initial map â that stays canonical)
+  // Pre-shift each node visually (without changing initial map — that stays canonical)
   nodes.forEach((n, i) => {
     const base = initial.get(n);
     const off = offsets[i % offsets.length];
@@ -5943,13 +5941,13 @@ function setupBuyButtons() {
       const plan = a.dataset.buy;
       const url = BUY_URLS[plan];
       if (url && url.length > 0) {
-        // Real checkout configured â let the link work normally
+        // Real checkout configured — let the link work normally
         a.setAttribute('href', url);
         a.setAttribute('target', '_blank');
         a.setAttribute('rel', 'noopener');
         return;
       }
-      // No checkout yet â scroll to download section
+      // No checkout yet — scroll to download section
       e.preventDefault();
       const dl = document.getElementById('download');
       if (dl) dl.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -6055,7 +6053,7 @@ function setupNodesCarousel() {
 }
 
 function setupMathPulse() {
-  // Sync-pulse matching rows (bad â good) one pair at a time
+  // Sync-pulse matching rows (bad ↔ good) one pair at a time
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (reduce) return;
   const keys = ['r1','r2','r3','r4','r5','r6'];
@@ -6076,7 +6074,7 @@ function setupMathPulse() {
 }
 
 function setupUsecasePulse() {
-  // Sequential card highlight cycle â pulses each usecase card in turn forever
+  // Sequential card highlight cycle — pulses each usecase card in turn forever
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (reduce) return;
   const cards = document.querySelectorAll('#built-for .usecase-card');
